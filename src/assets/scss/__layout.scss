@@ -1,0 +1,99 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 20px 60px;
+    background-color: var(--background-main);
+
+    .menu {
+        @include center_flex;
+        justify-content: space-between;
+
+        &.ant-menu-light {
+            background-color: transparent !important;
+        }
+
+        .ant-menu-item {
+            text-overflow: unset;
+            margin: 0;
+        }
+
+        .ant-menu-item-selected {
+            background-color: transparent !important;
+        }
+
+        span {
+            position: relative;
+            padding: 8px;
+            margin: 0 10px;
+            @include text-style(var(--vt-c-white), 16px, 700);
+            text-transform: uppercase;
+
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 0;
+                height: 2px;
+                background-color: var(--vt-c-main);
+                transition: all 0.3s linear;
+            }
+
+            &:hover {
+                cursor: pointer;
+                color: var(--vt-c-main);
+                opacity: 0.9;
+
+                &::before {
+                    width: 100%;
+                    transform: translate(-50%, 0);
+                }
+            }
+        }
+    }
+
+    .auth {
+        width: 100px;
+        color: var(--vt-c-white);
+        cursor: pointer;
+
+        .avatar {
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
+
+.homepage {
+    margin-top: 80px;
+    height: 1000px;
+}
+
+.footer {
+    background-color: var(--background-main);
+    padding: 50px 100px;
+    color: var(--vt-c-white);
+
+    .primary {
+        .logo {
+            margin-bottom: 10px;
+        }
+        .detail {
+            line-break: anywhere;
+            line-height: inherit;
+        }
+    }
+
+    .title {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    li {
+        text-align: center;
+        margin-bottom: 8px;
+    }
+}
