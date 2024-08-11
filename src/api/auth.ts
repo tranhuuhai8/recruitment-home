@@ -1,35 +1,20 @@
 import request from '@/api/config'
 
-export function login(payload: Record<string, any>) {
-    const url = 'auth/login'
-    return request<any, any>({
-        url,
+export const login = (payload: Record<string, any>, prefix: string) =>
+    request<any, any>({
+        url: `auth/${prefix}/login`,
         method: 'POST',
         data: payload,
     })
-}
 
-export function changePassword(payload: Record<string, any>) {
-    const url = 'auth/change-password'
-    return request<any, any>({
-        url,
-        method: 'PATCH',
-        data: payload,
-    })
-}
-
-export const logout = () => {
-    const url = 'auth/logout'
-    return request({
-        url,
+export const logout = (prefix: string) =>
+    request({
+        url: `auth/${prefix}/logout`,
         method: 'POST',
     })
-}
 
-export const me = () => {
-    const url = 'auth/me'
-    return request<any, any>({
-        url,
+export const me = (prefix: string) =>
+    request<any, any>({
+        url: `auth/${prefix}/me`,
         method: 'GET',
     })
-}

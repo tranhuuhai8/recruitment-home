@@ -3,7 +3,7 @@ import { onUnmounted, reactive, ref } from 'vue'
 import { INITIAL_LOGIN } from './shared'
 import { useAuthStore } from '@/stores'
 import { useRouter } from 'vue-router'
-import { STATUS_CODE_SUCCESS, notify, trim } from '@/libs'
+import { STATUS_CODE_SUCCESS, getRouterName, notify, trim } from '@/libs'
 import i18n from '@/lang'
 import type { FormInstance } from 'ant-design-vue'
 
@@ -15,13 +15,12 @@ const authStore = useAuthStore()
 const formState = reactive<any>({ ...INITIAL_LOGIN })
 
 const onFinish = async (values: any) => {
-    // authStore.setUserInformation({}, '1234')
-    // return router.push({ name: 'home' })
     loading.value = true
-    const { status_code, message } = await authStore.login(values)
+    const { status_code, message } = await authStore.login(values, 'applicant')
     loading.value = false
     if (status_code === STATUS_CODE_SUCCESS) {
-        return router.push({ name: 'staff' })
+        notify(message, '', 'success')
+        return router.push({ name: getRouterName() })
     }
     notify(message, '', 'error')
 }

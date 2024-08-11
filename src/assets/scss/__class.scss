@@ -1,0 +1,19 @@
+.flex-center {
+    @include center_flex;
+}
+
+.flex-center-between {
+    @include center_flex(space-between);
+}
+
+.flex-center-all {
+    @include center_flex(end);
+}
+
+.hidden {
+    display: none;
+}
+
+.no-border {
+    border: unset;
+}

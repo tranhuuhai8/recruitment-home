@@ -4,6 +4,8 @@ import {
     PAGE_FIRST,
     REGEX_TEL,
     REGEX_TEL_V2,
+    ROLE_APPLICANT,
+    ROUTE_DASHBOARD,
 } from '@/libs'
 import type { Option, ParamsList } from '@/interface'
 
@@ -92,9 +94,8 @@ export const getInfoUser = () => {
     return JSON.parse(info)
 }
 
-export const getDateTime = (date: string | Date, time: string) => {
-    return new Date(`${date} ${time}`)
-}
+export const getRouterName = () =>
+    ROUTE_DASHBOARD[getInfoUser()?.role ?? ROLE_APPLICANT]
 
 export const partition = (arr: any[], fn: any) =>
     arr.reduce(

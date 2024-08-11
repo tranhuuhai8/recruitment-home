@@ -45,9 +45,6 @@ export const PAYLOAD_ALL: ParamsList = {
     all: 1,
 }
 
-export const PAGE_NOT_FOUND = 'page-not-found'
-export const ROUTER_AUTH = ['forgot-password', 'reset-password']
-
 export const DAY_LIST: {
     [key: number]: string
 } = {
@@ -64,3 +61,7 @@ export const ALL_OPTION = {
     label: '全て',
     value: 'all',
 }
+
+export const ROLE_ADMIN = 1
+export const ROLE_EMPLOYER = 2
+export const ROLE_APPLICANT = 3

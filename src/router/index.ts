@@ -1,13 +1,33 @@
-import { getToken } from '@/libs'
-import { useQueryStore } from '@/stores'
+import { getInfoUser } from './../libs/utils/helper'
+import { useQueryStore, useAuthStore } from '@/stores'
 import { createRouter, createWebHistory } from 'vue-router'
+import * as Page from '@/views/index'
+import { ROLE_ADMIN, ROLE_APPLICANT, ROLE_EMPLOYER } from '@/libs'
 
 const ifAuthenticated = (to: any, from: any, next: any) => {
-    if (getToken()) {
-        next()
+    const authStore = useAuthStore()
+    if (!authStore.isAuthenticated) {
+        next('/auth/login')
         return
     }
-    next('/login')
+
+    const userRole = getInfoUser()?.role ?? ROLE_APPLICANT
+    const rolePathMap: Record<number, string> = {
+        [ROLE_ADMIN]: 'admin',
+        [ROLE_EMPLOYER]: 'employer',
+        [ROLE_APPLICANT]: 'applicant',
+    }
+
+    const expectedPath = rolePathMap[userRole]
+    const isAuthorized = to.matched.some((record: Record<string, any>) => {
+        return record.path.startsWith(`/${expectedPath}`)
+    })
+
+    if (!isAuthorized) {
+        return next({ name: `${expectedPath}-dashboard` })
+    }
+
+    next()
 }
 
 const router = createRouter({
@@ -15,25 +35,56 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-            name: 'home',
-            component: () => import('../views/HomeView.vue'),
-            beforeEnter: ifAuthenticated,
-        },
-        {
-            path: '/about',
-            name: 'about',
-            component: () => import('../views/AboutView.vue'),
-            beforeEnter: ifAuthenticated,
-        },
-        {
-            path: '/login',
-            name: 'login',
-            component: () => import('../views/Auth/LoginView.vue'),
-        },
-        {
-            path: '/not-found',
-            name: 'not-found',
-            component: () => import('../views/NotFound.vue'),
+            children: [
+                {
+                    path: '',
+                    name: 'home',
+                    component: Page.HomeView,
+                },
+                {
+                    path: 'auth',
+                    children: [
+                        {
+                            path: 'login',
+                            name: 'login',
+                            component: Page.LoginView,
+                        },
+                    ],
+                },
+                {
+                    path: 'admin',
+                    children: [
+                        {
+                            path: '',
+                            name: 'admin-dashboard',
+                            component: Page.HomeViewAdmin,
+                            beforeEnter: ifAuthenticated,
+                        },
+                    ],
+                },
+                {
+                    path: 'applicant',
+                    children: [
+                        {
+                            path: '',
+                            name: 'applicant-dashboard',
+                            component: Page.HomeViewApplicant,
+                            beforeEnter: ifAuthenticated,
+                        },
+                    ],
+                },
+                {
+                    path: 'employer',
+                    children: [
+                        {
+                            path: '',
+                            name: 'employer-dashboard',
+                            component: Page.HomeViewEmployer,
+                            beforeEnter: ifAuthenticated,
+                        },
+                    ],
+                },
+            ],
         },
     ],
 })
