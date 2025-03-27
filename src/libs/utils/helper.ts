@@ -1,56 +1,87 @@
-import dayjs from 'dayjs'
-import { REGEX_EMAIL, ROLE_ADMIN, ROLE_CANDIDATE } from '..'
-import i18n from '@/lang'
-import { notification } from 'ant-design-vue'
 import {
-    CheckCircleOutlined,
-    InfoCircleOutlined,
-    WarningOutlined,
-    CloseCircleOutlined,
-} from '@ant-design/icons-vue'
-import { h } from 'vue'
+    ALL_OPTION,
+    formatter,
+    PAGE_FIRST,
+    REGEX_TEL,
+    REGEX_TEL_V2,
+} from '@/libs'
+import type { Option, ParamsList } from '@/interface'
 
-const { t } = i18n
+export const hash = Math.floor(Math.random() * 90000) + 10000
 
-const typeIcon = {
-    info: [InfoCircleOutlined, 'blue'],
-    success: [CheckCircleOutlined, 'green'],
-    warning: [WarningOutlined, 'orange'],
-    error: [CloseCircleOutlined, 'red'],
+export const toggleBodyClass = (className = 'body') => {
+    const el = document.body
+    el.classList.remove(...el.classList)
+    el.classList.add(className)
 }
-export type notifyType = 'success' | 'warning' | 'info' | 'error'
 
-export const notify = (
-    message?: string,
-    description?: string,
-    type: notifyType = 'success'
+export const getDaysInMonth = (month: number, year: number) => {
+    return new Array(31).fill('').reduce((acc, _, i) => {
+        const date = new Date(year, month, i + 1)
+        if (date.getMonth() === month) {
+            acc.push(date)
+        }
+        return acc
+    }, [])
+}
+
+export const formatMoney = (value: string) => {
+    if (!value) return '0'
+
+    return formatter(value) + '円'
+}
+
+export const getFormikErr = (data: any) => {
+    const errorData: any = {}
+    data.forEach((v: any, k: any) => {
+        errorData[k] = v + ''
+    })
+    return errorData
+}
+
+export const isObjectNull = (object: object) => {
+    return !!Object.keys(object).length
+}
+
+export const getOptions = (array: any[], name = 'name') => {
+    return array?.map((item) => ({ label: item[name], value: item.id }))
+}
+
+export const getObjOptions = (
+    obj: Record<number, string>,
+    hasAll = true,
+    end = true
 ) => {
-    const [icon, color] = typeIcon[type]
-    notification[type]({
-        message,
-        description,
-        icon: () => h(icon, { style: `color: ${color}` }),
+    const options = Object.entries(obj).map(([value, label]) => ({
+        label,
+        value: +value,
+    }))
+
+    if (hasAll && end) return [...options, ALL_OPTION]
+    if (hasAll) return [ALL_OPTION, ...options]
+
+    return options
+}
+
+export const mapKeyToData = (value: any) => {
+    return Object.entries(value).map(([k, v]) => {
+        return Object.fromEntries([
+            ['key', k],
+            [
+                'data',
+                Array.isArray(v)
+                    ? JSON.stringify((v as Array<string>).map((i) => Number(i)))
+                    : v,
+            ],
+        ])
     })
 }
 
-export const formatDay = (day: any, format = 'YYYY-MM-DD') => {
-    if (!day) return ''
-    return dayjs(new Date(day)).format(format)
-}
-
-export const formatDateTime = (date: any, time: any) => {
-    if (!date || !time) return ''
-    return formatDay(date) + ' ' + formatDay(time, 'HH:mm:ss')
-}
-
-export const getDateMonthYear = () => {
-    const today = new Date()
-    const day = today.getDate().toString().padStart(2, '0')
-    const month = (today.getMonth() + 1).toString().padStart(2, '0')
-    const year = today.getFullYear().toString()
-
-    return `${year}${month}${day}`
-}
+export const mapSortQuery = (query: ParamsList, key: string, dir?: string) => ({
+    ...query.value,
+    page: PAGE_FIRST,
+    orders: [{ key, dir: dir ? `${dir}ing` : 'descending' }],
+})
 
 export const getFirstErrorMessage = (errors: Record<string, any>) => {
     return Object.values(errors).flat().shift() as string
@@ -61,25 +92,55 @@ export const getInfoUser = () => {
     return JSON.parse(info)
 }
 
-export const getRouterName = () => {
-    const role = getInfoUser()?.role
-
-    if (role === ROLE_CANDIDATE) {
-        return 'home-candidate'
-    }
-
-    return role === ROLE_ADMIN ? 'home-admin' : 'home-employer'
-}
 export const getDateTime = (date: string | Date, time: string) => {
     return new Date(`${date} ${time}`)
 }
 
-export const validateEmail = async (_: any, value: any) => {
-    const regex = new RegExp(REGEX_EMAIL)
-    if (value) {
-        if (!regex.test(value)) {
-            return Promise.reject(new Error(t('validation.email')))
+export const partition = (arr: any[], fn: any) =>
+    arr.reduce(
+        (acc, val, i, arr) => {
+            acc[fn(val, i, arr) ? 0 : 1].push(val)
+            return acc
+        },
+        [[], []]
+    )
+
+export const groupBy = (list: Array<any>, keyGetter: any) => {
+    const map = new Map()
+    list.forEach((item) => {
+        const key = keyGetter(item)
+        const collection = map.get(key)
+        if (!collection) {
+            map.set(key, [item])
+        } else {
+            collection.push(item)
         }
+    })
+    return map
+}
+
+export const generateUniqueCodes = (count: number, length: number) => {
+    const codes = new Set()
+    while (codes.size < count) {
+        const code = Math.random()
+            .toString(36)
+            .substring(2, 2 + length)
+        codes.add(code)
     }
-    return Promise.resolve()
+    return [...codes]
+}
+
+export const filterOption = (input: any, option: Option) =>
+    (option?.label ?? '').toLocaleLowerCase().includes(input.toLowerCase())
+
+export const regexTel = (value: KeyboardEvent) => {
+    if (!REGEX_TEL.test(value.key)) {
+        value.preventDefault()
+    }
+}
+
+export const checkRegex = (value: KeyboardEvent) => {
+    if (!REGEX_TEL_V2.test(value.key)) {
+        value.preventDefault()
+    }
 }

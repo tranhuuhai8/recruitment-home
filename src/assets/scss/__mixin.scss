@@ -29,9 +29,23 @@
     line-height: $lh;
 }
 
-$start: 0;
-$end: 30;
+@mixin text-shorten($numLines: 1) {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
+    @supports (-webkit-line-clamp: $numLines) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: initial;
+        display: -webkit-box;
+        -webkit-line-clamp: $numLines;
+        -webkit-box-orient: vertical;
+    }
+}
+
+$start: 0;
+$end: 50;
 @for $i from $start through $end {
     .pl-#{$i} {
         padding-left: #{$i}px;
@@ -45,6 +59,17 @@ $end: 30;
     .pt-#{$i} {
         padding-top: #{$i}px;
     }
+    .p-#{$i} {
+        padding: #{$i}px;
+    }
+    .px-#{$i} {
+        padding-left: #{$i}px;
+        padding-right: #{$i}px;
+    }
+    .py-#{$i} {
+        padding-top: #{$i}px;
+        padding-bottom: #{$i}px;
+    }
     .ml-#{$i} {
         margin-left: #{$i}px;
     }
@@ -57,11 +82,73 @@ $end: 30;
     .mt-#{$i} {
         margin-top: #{$i}px;
     }
+    .mx-#{$i} {
+        margin-left: #{$i}px;
+        margin-right: #{$i}px;
+    }
+    .my-#{$i} {
+        margin-top: #{$i}px;
+        margin-bottom: #{$i}px;
+    }
+    .m-#{$i} {
+        margin: #{$i}px;
+    }
     .fz-#{$i} {
         font-size: #{$i}px;
     }
+    .text-shorten-#{$i} {
+        @include text-shorten(#{$i});
+    }
 }
 $maxFontWeight: 1000;
+
+$positions: top, left, right, bottom, none;
+@each $position in $positions {
+    @if $position == none {
+        .bh-#{$position} {
+            border-style: none !important;
+        }
+    } @else {
+        .bh-#{$position} {
+            border-#{$position}-style: hidden !important;
+        }
+    }
+}
+
+$positionsBox: relative, absolute, fixed, unset;
+@each $position in $positionsBox {
+    .pos-#{$position} {
+        position: #{$position};
+    }
+}
+
+$minSize: 0;
+$maxSize: 500;
+@for $i from $minSize through $maxSize {
+    .w-#{$i} {
+        width: #{$i}px;
+    }
+    .h-#{$i} {
+        width: #{$i}px;
+    }
+    .vw-#{$i} {
+        width: #{$i}vw;
+    }
+    .vh-#{$i} {
+        height: #{$i}vh;
+    }
+    .size-#{$i} {
+        width: #{$i}px;
+        height: #{$i}px;
+    }
+}
+
+$positionsText: start, end, right, left, center;
+@each $pt in $positionsText {
+    .text-#{$pt} {
+        text-align: #{$pt};
+    }
+}
 
 $fw: 100;
 @while $fw < $maxFontWeight {
@@ -71,10 +158,11 @@ $fw: 100;
     $fw: $fw + 100;
 }
 
-@mixin center_flex {
+@mixin center_flex($align: center, $justify: center, $direction: row) {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: $direction;
+    align-items: $align;
+    justify-content: $justify;
 }
 
 @mixin center_pos {
@@ -97,4 +185,20 @@ $fw: 100;
     left: $left;
     right: $right;
     bottom: $bottom;
+}
+
+@mixin baseBtn(
+    $bg: var(--vt-c-main),
+    $width: 92px,
+    $height: 36px,
+    $borderRadius: var(--vt-br-btn)
+) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $width;
+    height: $height;
+    background-color: $bg;
+    border-radius: $borderRadius;
+    box-shadow: unset;
 }

@@ -19,16 +19,11 @@ onMounted(() => {
 </script>
 
 <template>
-    <a-layout>
-        <a-layout-sider width="240" v-if="route.name !== 'login'">
-            <AppSidebarVue />
-        </a-layout-sider>
-        <a-layout class="ant-layout-body">
-            <AppHeaderVue v-if="isRouteLogin" />
-            <a-layout-content>
-                <slot />
-            </a-layout-content>
-            <AppFooterVue v-if="isRouteLogin" />
-        </a-layout>
+    <a-layout class="ant-layout-body">
+        <AppHeaderVue />
+        <a-layout-content>
+            <slot />
+        </a-layout-content>
+        <AppFooterVue />
     </a-layout>
 </template>
