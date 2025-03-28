@@ -11,14 +11,5 @@ export interface User {
 }
 
 export interface PaginateUserParams {
-    data?: {
-        id: number
-        full_name: string
-        tel: string
-        created_at: string
-        first_experience_date: string
-        last_session_date: string
-        is_active: string
-        plane_type: string
-    }[]
+    data?: User[]
 }

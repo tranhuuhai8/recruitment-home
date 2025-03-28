@@ -7,7 +7,7 @@ const { t } = useI18n()
 <template>
     <a-row class="footer" justify="space-between">
         <a-col :span="7" class="primary">
-            <h1 class="logo">Booking Hair</h1>
+            <h1 class="logo">{{ t('title') }}</h1>
             <p class="detail">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Provident rerum necessitatibus tenetur maiores labore, ipsam

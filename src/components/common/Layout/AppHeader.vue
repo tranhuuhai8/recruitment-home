@@ -51,8 +51,11 @@ const handleMenuClick: MenuProps['onClick'] = (e) => {
 const handleClick: MenuProps['onClick'] = async (e) => {
     const { key } = e
     if (key == '1') {
-        const data = await authStore.logout()
-        if (data) onLogin()
+        authStore.token = null
+        localStorage.clear()
+        onLogin()
+        // const data = await authStore.logout()
+        // data && onLogin()
     }
 }
 
@@ -69,7 +72,7 @@ onMounted(async () => {
 <template>
     <a-row justify="space-between" align="middle" class="header">
         <a-col>
-            <h1 class="logo">Book Hair THH</h1>
+            <h1 class="logo">{{ t('title') }}</h1>
         </a-col>
         <a-col>
             <a-menu

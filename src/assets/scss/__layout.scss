@@ -7,9 +7,12 @@
     padding: 20px 60px;
     background-color: var(--background-main);
 
+    .logo {
+        color: var(--vt-c-white);
+    }
+
     .menu {
-        @include center_flex;
-        justify-content: space-between;
+        @extend .flex-center-between;
 
         &.ant-menu-light {
             background-color: transparent !important;
@@ -67,9 +70,9 @@
     }
 }
 
-.homepage {
+.container-main {
+    height: 100vh;
     margin-top: 80px;
-    height: 1000px;
 }
 
 .footer {
