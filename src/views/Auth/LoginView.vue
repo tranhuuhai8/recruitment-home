@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { onUnmounted, reactive, ref } from 'vue'
-import { INITIAL_LOGIN, rulesLogin } from './shared'
+import { INITIAL_LOGIN } from './shared'
 import { useAuthStore } from '@/stores'
 import { useRouter } from 'vue-router'
 import { STATUS_CODE_SUCCESS, notify, trim } from '@/libs'
@@ -15,15 +15,15 @@ const authStore = useAuthStore()
 const formState = reactive<any>({ ...INITIAL_LOGIN })
 
 const onFinish = async (values: any) => {
-    authStore.setUserInformation({}, '1234')
-    return router.push({ name: 'home' })
-    // loading.value = true
-    // const { status_code, message } = await authStore.login(values)
-    // loading.value = false
-    // if (status_code === STATUS_CODE_SUCCESS) {
-    //     return router.push({ name: 'staff' })
-    // }
-    // notify(message, '', 'error')
+    // authStore.setUserInformation({}, '1234')
+    // return router.push({ name: 'home' })
+    loading.value = true
+    const { status_code, message } = await authStore.login(values)
+    loading.value = false
+    if (status_code === STATUS_CODE_SUCCESS) {
+        return router.push({ name: 'staff' })
+    }
+    notify(message, '', 'error')
 }
 
 onUnmounted(() => formRef.value?.resetFields())
