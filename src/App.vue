@@ -3,7 +3,7 @@ import LayoutVue from '@/components/common/LayoutVue.vue'
 import { ref, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores'
-import { ROUTER_AUTH } from './libs/constants/constants'
+import { ROUTER_AUTH } from './libs'
 
 const config = {
     token: {
@@ -17,7 +17,7 @@ const authStore = useAuthStore()
 const isLogin = ref(authStore.isAuthenticated)
 const router = useRouter()
 
-authStore.$subscribe((mutations, state) => {
+authStore.$subscribe((mutations: any, state: any) => {
     isLogin.value = !!state.token
     if (
         !authStore.isAuthenticated &&

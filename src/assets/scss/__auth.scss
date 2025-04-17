@@ -1,0 +1,17 @@
+.box-auth {
+    // flex-direction: column;
+    // height: 100vh;
+}
+.form-auth {
+    width: 50%;
+    @extend .flex-center;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid var(--vt-c-gray);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: var(--vt-box-shadow-1);
+
+    &.login {
+    }
+}

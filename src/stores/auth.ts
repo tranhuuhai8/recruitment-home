@@ -10,9 +10,9 @@ export const useAuthStore = defineStore('auth', () => {
     const token = ref(TOKEN_STR)
     const isAuthenticated = computed(() => !!token.value)
 
-    const login = async (payload: any | {}) => {
+    const login = async (payload: Record<string, any>, prefix: string) => {
         try {
-            const result = await API.login(payload)
+            const result = await API.login(payload, prefix)
             if (result.status_code === STATUS_CODE_SUCCESS) {
                 const { data } = result
                 setUserInformation(data.me, data.access_token)
@@ -24,23 +24,15 @@ export const useAuthStore = defineStore('auth', () => {
         }
     }
 
-    const logout = async () => {
+    const logout = async (prefix: string) => {
         try {
-            const data: any = await API.logout()
+            const data: any = await API.logout(prefix)
             if (data) {
                 localStorage.clear()
                 token.value = null
                 return true
             }
             return false
-        } catch (error: any) {
-            return error
-        }
-    }
-
-    const changePassword = async (payload: any | {}) => {
-        try {
-            return await API.changePassword(payload)
         } catch (error: any) {
             return error
         }
@@ -53,9 +45,9 @@ export const useAuthStore = defineStore('auth', () => {
         me.value = user
     }
 
-    const getMe = async () => {
+    const getMe = async (prefix: string) => {
         try {
-            const { data } = await API.me()
+            const { data } = await API.me(prefix)
             me.value = data
             return data
         } catch (error: any) {
@@ -67,10 +59,8 @@ export const useAuthStore = defineStore('auth', () => {
 
     return {
         token,
-        me,
         isAuthenticated,
         login,
-        changePassword,
         setUserInformation,
         logout,
         getUser,
