@@ -1,0 +1,66 @@
+$mobile-custom: 500px;
+$mobile-width: 768px;
+$tablet-width: 1024px;
+$desktop-width: 1280px;
+$breakpoints: (
+    mobile: $mobile-width,
+    tablet: $tablet-width,
+    custom: $tablet-width,
+    desktop: $desktop-width,
+);
+
+@mixin mobile-custom {
+    @media (max-width: #{$mobile-custom}) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: #{$mobile-width}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: #{$mobile-width}) and (max-width: #{$tablet-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin desktop-custom {
+    @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: #{$desktop-width}) {
+        @content;
+    }
+}
+
+@mixin media($keys...) {
+    @each $key in $keys {
+        @if ($key == mobile-custom) {
+            @include mobile-custom {
+                @content;
+            }
+        } @else if ($key == mobile) {
+            @include mobile {
+                @content;
+            }
+        } @else if ($key == tablet) {
+            @include tablet {
+                @content;
+            }
+        } @else if ($key == desktop) {
+            @include desktop {
+                @content;
+            }
+        } @else if ($key == desktop-custom) {
+            @include desktop-custom {
+                @content;
+            }
+        }
+    }
+}

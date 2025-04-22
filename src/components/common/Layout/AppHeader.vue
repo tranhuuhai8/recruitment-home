@@ -72,17 +72,17 @@ onMounted(async () => {
 <template>
     <a-row justify="space-between" align="middle" class="header">
         <a-col>
-            <h1 class="logo">{{ t('title') }}</h1>
+            <h1 class="header-logo">{{ t('title') }}</h1>
         </a-col>
         <a-col>
             <a-menu
-                class="menu"
+                class="header-menu"
                 :items="items"
                 :selectedKeys="selectedKeys"
                 @click="handleMenuClick"
             />
         </a-col>
-        <a-col class="auth">
+        <a-col class="header-auth">
             <a-dropdown :placement="'bottomRight'" v-if="isLogin">
                 <a-row justify="space-between" align="middle">
                     <img class="avatar" :src="Avatar" />

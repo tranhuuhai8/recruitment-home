@@ -30,24 +30,12 @@ export const getDaysInMonth = (month: number, year: number) => {
 export const formatMoney = (value: string) => {
     if (!value) return '0'
 
-    return formatter(value) + '円'
+    return formatter(value) + 'VND'
 }
 
-export const getFormikErr = (data: any) => {
-    const errorData: any = {}
-    data.forEach((v: any, k: any) => {
-        errorData[k] = v + ''
-    })
-    return errorData
-}
+export const isObjectNull = (object: object) => !!Object.keys(object).length
 
-export const isObjectNull = (object: object) => {
-    return !!Object.keys(object).length
-}
-
-export const getOptions = (array: any[], name = 'name') => {
-    return array?.map((item) => ({ label: item[name], value: item.id }))
-}
+export const getOptions = (array: any[], name = 'name') => array?.map((item) => ({ label: item[name], value: item.id }))
 
 export const getObjOptions = (
     obj: Record<number, string>,
@@ -85,16 +73,14 @@ export const mapSortQuery = (query: ParamsList, key: string, dir?: string) => ({
     orders: [{ key, dir: dir ? `${dir}ing` : 'descending' }],
 })
 
-export const getFirstErrorMessage = (errors: Record<string, any>) => {
-    return Object.values(errors).flat().shift() as string
-}
+export const getFirstErrorMessage = (errors: Record<string, any>) => Object.values(errors).flat().shift() as string
 
 export const getInfoUser = () => {
     const info: any = localStorage.getItem('user')
     return JSON.parse(info)
 }
 
-export const getRouterName = () =>
+export const getRouterDashboard = () =>
     ROUTE_DASHBOARD[getInfoUser()?.role ?? ROLE_APPLICANT]
 
 export const partition = (arr: any[], fn: any) =>
