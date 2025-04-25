@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 *,
 *::before,
 *::after {
-    font-family: 'Noto Sans JP';
+    font-family: "Noto Sans JP";
     box-sizing: border-box;
     margin: 0;
     position: relative;
@@ -16,11 +16,17 @@ ul {
 }
 
 body {
-    min-height: 100vh;
     line-height: 1.6;
-    font-family: 'Noto Sans JP';
+    font-family: "Noto Sans JP";
     font-size: 15px;
     position: relative;
+    padding: 0;
+    margin: 0;
+}
+
+.ant-layout-content {
+    margin-top: 80px;
+    height: 600px;
 }
 
 * {

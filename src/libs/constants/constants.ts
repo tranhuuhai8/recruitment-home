@@ -63,5 +63,5 @@ export const ALL_OPTION = {
 }
 
 export const ROLE_ADMIN = 1
-export const ROLE_EMPLOYER = 2
+export const ROLE_COMPANY = 2
 export const ROLE_APPLICANT = 3

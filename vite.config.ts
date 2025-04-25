@@ -8,6 +8,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 export default defineConfig({
   server: {
     port: 3024,
+    allowedHosts: ['recruitment-home.ith18.site']
   },
   plugins: [
     vue(),

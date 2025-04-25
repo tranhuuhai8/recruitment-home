@@ -7,27 +7,37 @@ export const rulesLogin = {
     mail_address: [
         {
             required: true,
-            message: 'Email required',
+            message: t('validation.required', [t('auth.label.mail_address')]),
             trigger: 'blur',
         },
         {
             validator: (_: any, value: any) =>
-                validateEmail(_, value, t('mail_address'), true),
+                validateEmail(_, value, t('auth.label.mail_address'), true),
             trigger: 'blur',
         },
     ],
     password: [
         {
             required: true,
-            message: 'Password required',
+            message: t('validation.required', [t('auth.label.password')]),
         },
         {
             max: MAX_STRING,
-            message: 'Password max string 255',
+            message: t('validation.max.string', [
+                t('auth.label.password'),
+                MAX_STRING,
+            ]),
         },
         {
             min: MIN_STRING,
-            message: 'Password min string 8',
+            message: t('validation.min.string', [t('password'), MIN_STRING]),
+        },
+    ],
+    role: [
+        {
+            required: true,
+            message: t('validation.required', [t('auth.label.role')]),
+            trigger: 'blur',
         },
     ],
 }

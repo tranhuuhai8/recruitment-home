@@ -2,7 +2,7 @@ import { getInfoUser } from './../libs/utils/helper'
 import { useQueryStore, useAuthStore } from '@/stores'
 import { createRouter, createWebHistory } from 'vue-router'
 import * as Page from '@/views/index'
-import { ROLE_ADMIN, ROLE_APPLICANT, ROLE_EMPLOYER } from '@/libs'
+import { ROLE_ADMIN, ROLE_APPLICANT, ROLE_COMPANY } from '@/libs'
 
 const ifAuthenticated = (to: any, from: any, next: any) => {
     const authStore = useAuthStore()
@@ -14,7 +14,7 @@ const ifAuthenticated = (to: any, from: any, next: any) => {
     const userRole = getInfoUser()?.role ?? ROLE_APPLICANT
     const rolePathMap: Record<number, string> = {
         [ROLE_ADMIN]: 'admin',
-        [ROLE_EMPLOYER]: 'employer',
+        [ROLE_COMPANY]: 'company',
         [ROLE_APPLICANT]: 'applicant',
     }
 
@@ -74,12 +74,12 @@ const router = createRouter({
                     ],
                 },
                 {
-                    path: 'employer',
+                    path: 'company',
                     children: [
                         {
                             path: '',
-                            name: 'employer-dashboard',
-                            component: Page.HomeViewEmployer,
+                            name: 'company-dashboard',
+                            component: Page.HomeViewCompany,
                             beforeEnter: ifAuthenticated,
                         },
                     ],
