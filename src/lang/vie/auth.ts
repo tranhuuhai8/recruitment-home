@@ -1,5 +1,5 @@
 export default {
-    login: 'Đăng nhập 1',
+    login: 'Đăng nhập',
     logout: 'Đăng xuất',
     forgot_password: 'Quên mật khẩu',
     label: {

@@ -39,7 +39,7 @@ onUnmounted(() => formRef.value?.resetFields())
 
 <template>
     <div class="box-auth">
-        <h1 class="title">{{ t('login') }}</h1>
+        <h1 class="title">{{ t('auth.login') }}</h1>
         <a-form
             class="form-auth form-login"
             name="login_form"

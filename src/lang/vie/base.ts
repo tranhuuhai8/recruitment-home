@@ -1,10 +1,5 @@
 export default {
     title: 'Recruitment Home',
-    login: 'Đăng nhập',
-    logout: 'Đăng xuất',
-    mail_address: 'Email',
-    password: 'Mật khẩu',
-    forgot_password: 'Quên mật khẩu',
     save: 'Lưu',
     back: 'Quay lại',
     cancel: 'Đóng',
