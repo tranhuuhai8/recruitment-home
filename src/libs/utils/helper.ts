@@ -5,7 +5,8 @@ import {
     REGEX_TEL,
     REGEX_TEL_V2,
     ROLE_APPLICANT,
-    ROUTE_DASHBOARD,
+    ROLE_PATH_PREFIX,
+    ROUTE_NAME_DASHBOARD,
 } from '@/libs'
 import type { Option, ParamsList } from '@/interface'
 
@@ -35,7 +36,8 @@ export const formatMoney = (value: string) => {
 
 export const isObjectNull = (object: object) => !!Object.keys(object).length
 
-export const getOptions = (array: any[], name = 'name') => array?.map((item) => ({ label: item[name], value: item.id }))
+export const getOptions = (array: any[], name = 'name') =>
+    array?.map((item) => ({ label: item[name], value: item.id }))
 
 export const getObjOptions = (
     obj: Record<number, string>,
@@ -73,7 +75,8 @@ export const mapSortQuery = (query: ParamsList, key: string, dir?: string) => ({
     orders: [{ key, dir: dir ? `${dir}ing` : 'descending' }],
 })
 
-export const getFirstErrorMessage = (errors: Record<string, any>) => Object.values(errors).flat().shift() as string
+export const getFirstErrorMessage = (errors: Record<string, any>) =>
+    Object.values(errors).flat().shift() as string
 
 export const getInfoUser = () => {
     const info: any = localStorage.getItem('user')
@@ -81,7 +84,7 @@ export const getInfoUser = () => {
 }
 
 export const getRouterDashboard = () =>
-    ROUTE_DASHBOARD[getInfoUser()?.role ?? ROLE_APPLICANT]
+    ROUTE_NAME_DASHBOARD[getInfoUser()?.role ?? ROLE_APPLICANT]
 
 export const partition = (arr: any[], fn: any) =>
     arr.reduce(
@@ -131,3 +134,6 @@ export const checkRegex = (value: KeyboardEvent) => {
         value.preventDefault()
     }
 }
+
+export const getRolePathMap = () =>
+    ROLE_PATH_PREFIX[getInfoUser()?.role ?? ROLE_APPLICANT]

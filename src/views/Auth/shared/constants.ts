@@ -5,7 +5,7 @@ const { t } = i18n
 export const INITIAL_LOGIN = {
     mail_address: '',
     password: '',
-    role: 'admin'
+    role: 'admin',
 }
 
 export const INITIAL_RESET_PASSWORD = {
@@ -18,7 +18,6 @@ export const INITIAL_CHANGE_PASSWORD = {
     new_password: '',
     new_password_confirmation: '',
 }
-
 
 export const ROLE_OPTIONS = [
     {

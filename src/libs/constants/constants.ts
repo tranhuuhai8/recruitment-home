@@ -1,5 +1,10 @@
 import type { PaginateParams, ParamsList } from '@/interface'
 import dayjs from 'dayjs'
+import {
+    APP_SIDEBAR_ADMIN,
+    APP_SIDEBAR_APPLICANT,
+    APP_SIDEBAR_COMPANY,
+} from '../utils/links'
 
 export const MONTHS = Array.from({ length: 12 }, (item, i) => {
     return dayjs(new Date(0, i)).format('MM')
@@ -65,3 +70,15 @@ export const ALL_OPTION = {
 export const ROLE_ADMIN = 1
 export const ROLE_COMPANY = 2
 export const ROLE_APPLICANT = 3
+
+export const ROLE_PATH_PREFIX: Record<number, string> = {
+    [ROLE_ADMIN]: 'admin',
+    [ROLE_COMPANY]: 'company',
+    [ROLE_APPLICANT]: 'applicant',
+}
+
+export const SIDEBAR_BY_ROLE: Record<number, any> = {
+    [ROLE_ADMIN]: APP_SIDEBAR_ADMIN,
+    [ROLE_COMPANY]: APP_SIDEBAR_COMPANY,
+    [ROLE_APPLICANT]: APP_SIDEBAR_APPLICANT,
+}

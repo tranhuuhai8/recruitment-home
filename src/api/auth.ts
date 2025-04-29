@@ -8,7 +8,7 @@ export const login = (payload: Record<string, any>, prefix: string) =>
     })
 
 export const logout = (prefix: string) =>
-    request({
+    request<any, any>({
         url: `auth/${prefix}/logout`,
         method: 'POST',
     })

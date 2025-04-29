@@ -1,4 +1,5 @@
 .box-auth {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -9,6 +10,14 @@
     border-radius: 10px;
     box-shadow: var(--vt-box-shadow-1);
     background-color: var(--vt-c-white);
+
+    .back-to-home {
+        position: absolute;
+        top: 5px;
+        left: 10px;
+        font-size: 18px;
+        cursor: pointer;
+    }
 
     .title {
         text-align: center;

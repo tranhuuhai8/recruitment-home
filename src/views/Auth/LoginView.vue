@@ -6,6 +6,7 @@ import { useRouter } from 'vue-router'
 import { STATUS_CODE_SUCCESS, getRouterDashboard, notify, trim } from '@/libs'
 import i18n from '@/lang'
 import type { FormInstance } from 'ant-design-vue'
+import { ArrowLeftOutlined } from '@ant-design/icons-vue'
 
 const loading = ref(false)
 const formRef = ref<FormInstance>()
@@ -39,6 +40,9 @@ onUnmounted(() => formRef.value?.resetFields())
 
 <template>
     <div class="box-auth">
+        <div class="back-to-home" @click="() => router.push({ name: 'home' })">
+            <ArrowLeftOutlined />
+        </div>
         <h1 class="title">{{ t('auth.login') }}</h1>
         <a-form
             class="form-auth form-login"

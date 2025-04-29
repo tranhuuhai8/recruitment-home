@@ -3,7 +3,7 @@
 }
 
 .flex-center-between {
-    @include center_flex(space-between);
+    @include center_flex(center, space-between);
 }
 
 .flex-center-all {
