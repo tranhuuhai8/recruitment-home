@@ -5,7 +5,7 @@
     right: 0;
     z-index: 1000;
     padding: 20px 60px;
-    background-color: var(--background-main);
+    background-color: var(--bg-main-home);
 
     .header-logo {
         color: var(--vt-c-white);
@@ -81,7 +81,7 @@
 }
 
 .footer {
-    background-color: var(--background-main);
+    background-color: var(--bg-main-home);
     padding: 50px 100px;
     color: var(--vt-c-white);
 
@@ -106,14 +106,59 @@
             margin-top: 80px;
         }
     }
+
+    .header-manager {
+        padding: 5px 20px;
+        background-color: var(--vt-c-white);
+        border-bottom: 1px solid #dedcdc;
+
+        .logo {
+            width: 125px;
+        }
+
+        .anticon {
+            margin: 0 20px;
+            svg {
+                font-size: 21px;
+            }
+        }
+    }
 }
 
 .content-manager {
     height: 100vh;
     @include center_flex(start, space-between);
 
-    .header-menu {
+    .sidebar-menu {
+        width: 200px;
         height: 100%;
+        padding: 20px 12px;
+        border-inline-end: 1px solid #dedcdc;
+
+        .ant-menu-item {
+            margin: 0 0 8px;
+
+            &:hover,
+            &.ant-menu-item-active {
+                color: var(--vt-c-white) !important;
+                background-color: var(--vt-c-primary) !important;
+            }
+        }
+
+        .ant-menu-submenu {
+            .ant-menu-submenu-title {
+                margin: 0;
+            }
+        }
+
+        .ant-menu-item-icon {
+            vertical-align: middle;
+        }
     }
 
+    .ant-layout-content {
+        height: 100%;
+        padding: 40px;
+        background-color: var(--bg-main-admin);
+    }
 }

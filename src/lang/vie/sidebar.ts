@@ -1,0 +1,15 @@
+export default {
+    home: 'Trang chủ',
+    info: 'Thông tin',
+    user: 'Ngưởi dùng',
+    menu1: 'Menu1',
+    menu2: 'Menu2',
+    menu3: 'Menu3',
+    menu4: 'Menu4',
+    menu5: 'Menu5',
+    companies: 'Công ty',
+    applicants: 'Ứng viên',
+    jobs: 'Công việc',
+    reviews: 'Đánh giá',
+    master_data: 'Dữ liệu',
+}

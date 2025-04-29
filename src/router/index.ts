@@ -47,10 +47,57 @@ const router = createRouter({
                     path: 'admin',
                     children: [
                         {
-                            path: '',
+                            path: 'dashboard',
                             name: 'admin-dashboard',
                             component: Page.HomeViewAdmin,
                             beforeEnter: ifAuthenticated,
+                        },
+                        {
+                            path: 'companies',
+                            name: 'admin-companies',
+                            component: Page.HomeViewAdmin,
+                            beforeEnter: ifAuthenticated,
+                        },
+                        {
+                            path: 'applicants',
+                            name: 'admin-applicants',
+                            component: Page.HomeViewAdmin,
+                            beforeEnter: ifAuthenticated,
+                        },
+                        {
+                            path: 'jobs',
+                            name: 'admin-jobs',
+                            component: Page.HomeViewAdmin,
+                            beforeEnter: ifAuthenticated,
+                        },
+                        {
+                            path: 'reviews',
+                            name: 'admin-reviews',
+                            component: Page.HomeViewAdmin,
+                            beforeEnter: ifAuthenticated,
+                        },
+                        {
+                            path: 'master-data',
+                            children: [
+                                {
+                                    path: 'contact-types',
+                                    name: 'admin-contact-types',
+                                    component: Page.HomeViewAdmin,
+                                    beforeEnter: ifAuthenticated,
+                                },
+                                {
+                                    path: 'cities',
+                                    name: 'admin-cities',
+                                    component: Page.HomeViewAdmin,
+                                    beforeEnter: ifAuthenticated,
+                                },
+                                {
+                                    path: 'job-categories',
+                                    name: 'admin-job-categories',
+                                    component: Page.HomeViewAdmin,
+                                    beforeEnter: ifAuthenticated,
+                                },
+                            ],
                         },
                     ],
                 },
