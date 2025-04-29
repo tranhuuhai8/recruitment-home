@@ -30,7 +30,10 @@ export const rulesLogin = {
         },
         {
             min: MIN_STRING,
-            message: t('validation.min.string', [t('password'), MIN_STRING]),
+            message: t('validation.min.string', [
+                t('auth.label.password'),
+                MIN_STRING,
+            ]),
         },
     ],
     role: [

@@ -12,6 +12,9 @@ export default {
         male: 'Male',
         female: 'Female',
     },
+    notify: {
+        error: 'An error occurred',
+    },
     pagination: {
         prev: 'Previous',
         next: 'Next',
@@ -23,5 +26,21 @@ export default {
         not_found: 'Not Found',
         status: '404',
         btn_redirect: 'Back to home',
+    },
+    header: {
+        home: 'Home',
+        about: 'About',
+        account: 'Account',
+        logout: 'Log out',
+    },
+    sidebar: {
+        home: 'Home',
+        info: 'Information',
+        user: 'User',
+        menu1: 'Menu1',
+        menu2: 'Menu2',
+        menu3: 'Menu3',
+        menu4: 'Menu4',
+        menu5: 'Menu5',
     },
 }

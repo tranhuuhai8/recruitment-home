@@ -1,7 +1,12 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import * as API from '@/api/auth'
-import { STATUS_CODE_SUCCESS } from '@/libs'
+import {
+    getInfoUser,
+    ROLE_APPLICANT,
+    ROLE_PATH_PREFIX,
+    STATUS_CODE_SUCCESS,
+} from '@/libs'
 const tokenKey = 'access_token'
 
 export const useAuthStore = defineStore('auth', () => {
@@ -24,17 +29,19 @@ export const useAuthStore = defineStore('auth', () => {
         }
     }
 
-    const logout = async (prefix: string) => {
+    const logout = async () => {
         try {
-            const data: any = await API.logout(prefix)
-            if (data) {
+            const { status_code, message } = await API.logout(
+                ROLE_PATH_PREFIX[getInfoUser()?.role ?? ROLE_APPLICANT]
+            )
+            if (status_code === STATUS_CODE_SUCCESS) {
                 localStorage.clear()
                 token.value = null
-                return true
+                return message
             }
             return false
         } catch (error: any) {
-            return error
+            return false
         }
     }
 

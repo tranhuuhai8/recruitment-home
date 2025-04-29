@@ -73,6 +73,7 @@
         .header-logo {
             display: none;
         }
+
         .header-menu {
             display: none;
         }
@@ -87,6 +88,7 @@
     .footer-logo {
         margin-bottom: 10px;
     }
+
     .detail {
         line-break: anywhere;
         line-height: inherit;
@@ -96,4 +98,22 @@
         flex-direction: column;
         padding: 25px 40px;
     }
+}
+
+.ant-layout-body {
+    &:has(.header) {
+        .ant-layout-content {
+            margin-top: 80px;
+        }
+    }
+}
+
+.content-manager {
+    height: 100vh;
+    @include center_flex(start, space-between);
+
+    .header-menu {
+        height: 100%;
+    }
+
 }

@@ -11,5 +11,5 @@ export default {
         admin: 'Admin',
         applicant: 'Applicant',
         company: 'Company',
-    }
+    },
 }

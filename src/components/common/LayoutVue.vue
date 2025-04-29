@@ -1,25 +1,38 @@
 <script lang="ts" setup>
-import { onMounted, ref, watch } from 'vue'
-import { AppHeaderVue, AppFooterVue } from '.'
-import { getInfoUser } from '@/libs'
+import { ref, watch } from 'vue'
+import { AppHeaderVue, AppFooterVue, AppSidebarVue, AppHeaderManager } from '.'
 import { useRoute } from 'vue-router'
+import { ROUTE_PATH_MANAGER, ROUTER_AUTH } from '@/libs'
 
-const role = ref()
-const isRouteLogin = ref()
+const isRouteAuth = ref()
+const isRouteManager = ref()
 const route = useRoute()
 
 watch(route, () => {
-    isRouteLogin.value = route.name !== 'login'
-    role.value = getInfoUser()?.role
-})
+    isRouteManager.value = ROUTE_PATH_MANAGER.some((prefix) =>
+        route.path.startsWith(`/${prefix}`)
+    )
 
-onMounted(() => {
-    role.value = getInfoUser()?.role
+    isRouteAuth.value = ROUTER_AUTH.includes(String(route.name))
 })
 </script>
 
 <template>
-    <a-layout class="ant-layout-body">
+    <a-layout class="ant-layout-body" v-if="isRouteAuth">
+        <a-layout-content>
+            <slot />
+        </a-layout-content>
+    </a-layout>
+    <a-layout class="ant-layout-body" v-if="isRouteManager">
+        <AppHeaderManager />
+        <div class="content-manager">
+            <AppSidebarVue />
+            <a-layout-content>
+                <slot />
+            </a-layout-content>
+        </div>
+    </a-layout>
+    <a-layout class="ant-layout-body" v-if="!isRouteAuth && !isRouteManager">
         <AppHeaderVue />
         <a-layout-content>
             <slot />

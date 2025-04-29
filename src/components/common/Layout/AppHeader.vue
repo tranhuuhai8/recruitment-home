@@ -4,21 +4,20 @@ import type { MenuProps, ItemType } from 'ant-design-vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores'
 import Avatar from '@/assets/imgs/avatar.png'
-import { APP_SIDEBAR, getInfoUser } from '@/libs'
+import { APP_HEADER, getInfoUser, getRolePathMap, notify } from '@/libs'
 import { reactive, ref, VueElement, onMounted } from 'vue'
 
 const { t } = useI18n()
 const router = useRouter()
 const route = useRoute()
 const authStore = useAuthStore()
-const username = ref()
 const isLogin = ref()
 const items: ItemType[] = reactive([])
 const selectedKeys = ref<string[]>([])
 
 const handleRoute = async () => {
-    for (const key in APP_SIDEBAR) {
-        const item = APP_SIDEBAR[key]
+    for (const key in APP_HEADER) {
+        const item = APP_HEADER[key]
         items.push(getItem(item.label, String(item.order)))
         if (route.name === item.name)
             selectedKeys.value.push(String(item.order))
@@ -41,7 +40,7 @@ const getItem = (
     }) as ItemType
 
 const handleMenuClick: MenuProps['onClick'] = (e) => {
-    const side: any = Object.values(APP_SIDEBAR).find(
+    const side: any = Object.values(APP_HEADER).find(
         (item: any) => String(item.order) === e.key
     )
     if (side) router.push(side.route)
@@ -49,22 +48,26 @@ const handleMenuClick: MenuProps['onClick'] = (e) => {
 }
 
 const handleClick: MenuProps['onClick'] = async (e) => {
-    const { key } = e
-    if (key == '1') {
-        authStore.token = null
-        localStorage.clear()
-        onLogin()
-        // const data = await authStore.logout()
-        // data && onLogin()
+    if (e.key == '1') {
+        router.push({ name: `${getRolePathMap()}-dashboard` })
+        return
     }
+
+    const messageLogout = await authStore.logout()
+    if (messageLogout) {
+        notify(messageLogout, '', 'success')
+        redirectToLogin()
+        return
+    }
+
+    notify(t('notify.error'), '', 'error')
 }
 
-const onLogin = () => router.push({ name: 'login', replace: true })
+const redirectToLogin = () => router.push({ name: 'login', replace: true })
 
 onMounted(async () => {
     await router.isReady()
     await handleRoute()
-    username.value = getInfoUser()?.name
     isLogin.value = !!getInfoUser()
 })
 </script>
@@ -86,18 +89,20 @@ onMounted(async () => {
             <a-dropdown :placement="'bottomRight'" v-if="isLogin">
                 <a-row justify="space-between" align="middle">
                     <img class="avatar" :src="Avatar" />
-                    <span> {{ username }} </span>
                 </a-row>
                 <template #overlay>
                     <a-menu @click="handleClick">
                         <a-menu-item key="1">
-                            {{ t('logout') }}
+                            {{ t('header.account') }}
+                        </a-menu-item>
+                        <a-menu-item key="2">
+                            {{ t('header.logout') }}
                         </a-menu-item>
                     </a-menu>
                 </template>
             </a-dropdown>
-            <a-button v-if="!isLogin" @click="onLogin">
-                {{ t('login') }}
+            <a-button v-else @click="redirectToLogin()">
+                {{ t('auth.login') }}
             </a-button>
         </a-col>
     </a-row>

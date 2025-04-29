@@ -1,8 +1,7 @@
-import { getInfoUser } from './../libs/utils/helper'
 import { useQueryStore, useAuthStore } from '@/stores'
 import { createRouter, createWebHistory } from 'vue-router'
 import * as Page from '@/views/index'
-import { ROLE_ADMIN, ROLE_APPLICANT, ROLE_COMPANY } from '@/libs'
+import { getRolePathMap } from '@/libs'
 
 const ifAuthenticated = (to: any, from: any, next: any) => {
     const authStore = useAuthStore()
@@ -11,17 +10,10 @@ const ifAuthenticated = (to: any, from: any, next: any) => {
         return
     }
 
-    const userRole = getInfoUser()?.role ?? ROLE_APPLICANT
-    const rolePathMap: Record<number, string> = {
-        [ROLE_ADMIN]: 'admin',
-        [ROLE_COMPANY]: 'company',
-        [ROLE_APPLICANT]: 'applicant',
-    }
-
-    const expectedPath = rolePathMap[userRole]
-    const isAuthorized = to.matched.some((record: Record<string, any>) => {
-        return record.path.startsWith(`/${expectedPath}`)
-    })
+    const expectedPath = getRolePathMap()
+    const isAuthorized = to.matched.some((record: Record<string, any>) =>
+        record.path.startsWith(`/${expectedPath}`)
+    )
 
     if (!isAuthorized) {
         return next({ name: `${expectedPath}-dashboard` })
@@ -63,23 +55,23 @@ const router = createRouter({
                     ],
                 },
                 {
-                    path: 'applicant',
-                    children: [
-                        {
-                            path: '',
-                            name: 'applicant-dashboard',
-                            component: Page.HomeViewApplicant,
-                            beforeEnter: ifAuthenticated,
-                        },
-                    ],
-                },
-                {
                     path: 'company',
                     children: [
                         {
                             path: '',
                             name: 'company-dashboard',
                             component: Page.HomeViewCompany,
+                            beforeEnter: ifAuthenticated,
+                        },
+                    ],
+                },
+                {
+                    path: 'applicant',
+                    children: [
+                        {
+                            path: '',
+                            name: 'applicant-dashboard',
+                            component: Page.HomeViewApplicant,
                             beforeEnter: ifAuthenticated,
                         },
                     ],
