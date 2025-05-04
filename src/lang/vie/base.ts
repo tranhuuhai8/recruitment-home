@@ -1,5 +1,5 @@
 export default {
-    title: 'Recruitment Home',
+    title: 'Recruitment',
     save: 'Lưu',
     back: 'Quay lại',
     cancel: 'Đóng',
@@ -32,15 +32,5 @@ export default {
         about: 'Giới thiệu',
         account: 'Tài khoản',
         logout: 'Đăng xuất',
-    },
-    sidebar: {
-        home: 'Trang chủ',
-        info: 'Thông tin',
-        user: 'Ngưởi dùng',
-        menu1: 'Menu1',
-        menu2: 'Menu2',
-        menu3: 'Menu3',
-        menu4: 'Menu4',
-        menu5: 'Menu5',
     },
 }

@@ -1,6 +1,11 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
-import { AppHeaderVue, AppFooterVue, AppSidebarVue, AppHeaderManager } from '.'
+import {
+    AppHeaderHomepage,
+    AppFooterVue,
+    AppSidebarVue,
+    AppHeaderManager,
+} from '.'
 import { useRoute } from 'vue-router'
 import { ROUTE_PATH_MANAGER, ROUTER_AUTH } from '@/libs'
 
@@ -33,7 +38,7 @@ watch(route, () => {
         </div>
     </a-layout>
     <a-layout class="ant-layout-body" v-if="!isRouteAuth && !isRouteManager">
-        <AppHeaderVue />
+        <AppHeaderHomepage />
         <a-layout-content>
             <slot />
         </a-layout-content>

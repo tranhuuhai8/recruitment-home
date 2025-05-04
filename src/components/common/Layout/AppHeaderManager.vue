@@ -9,6 +9,7 @@ import {
     LogoutOutlined,
 } from '@ant-design/icons-vue'
 import { useAuthStore } from '@/stores'
+import Logo from '@/assets/imgs/logo.png'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -35,11 +36,11 @@ const handleLogout = async () => {
 <template>
     <a-row justify="space-between" align="middle" class="header-manager">
         <a-col>
-            <h1 class="header-logo">{{ t('title') }}</h1>
+            <img class="logo" :src="Logo" />
         </a-col>
-        <a-col>
-            <BellOutlined />
+        <a-col class="col-icon">
             <HomeOutlined @click="() => router.push({ name: 'home' })" />
+            <BellOutlined />
             <LogoutOutlined @click="handleLogout" />
         </a-col>
     </a-row>

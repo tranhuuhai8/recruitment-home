@@ -6,7 +6,7 @@ import { ROUTER_AUTH } from './libs'
 
 const config = {
     token: {
-        colorPrimary: '#d98600',
+        colorPrimary: '#e08c04cd',
         borderRadius: 5,
         fontFamily: 'Noto Sans JP',
     },

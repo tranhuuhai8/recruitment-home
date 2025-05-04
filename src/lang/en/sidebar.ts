@@ -1,0 +1,15 @@
+export default {
+    home: 'Home',
+    info: 'Information',
+    user: 'User',
+    menu1: 'Menu1',
+    menu2: 'Menu2',
+    menu3: 'Menu3',
+    menu4: 'Menu4',
+    menu5: 'Menu5',
+    companies: 'Companies',
+    applicants: 'Applicants',
+    jobs: 'Jobs',
+    reviews: 'Reviews',
+    master_data: 'Master data',
+}

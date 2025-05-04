@@ -24,8 +24,12 @@ body {
     margin: 0;
 }
 
-.ant-layout-content {
-    height: 600px;
+#app {
+    height: 100vh;
+}
+
+.ant-layout.ant-layout-body {
+    height: 100%;
 }
 
 * {

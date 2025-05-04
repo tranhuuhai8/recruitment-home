@@ -1,5 +1,5 @@
 export default {
-    title: 'Recruitment Home',
+    title: 'Recruitment',
     save: 'Save',
     back: 'Back',
     cancel: 'Cancel',
@@ -32,15 +32,5 @@ export default {
         about: 'About',
         account: 'Account',
         logout: 'Log out',
-    },
-    sidebar: {
-        home: 'Home',
-        info: 'Information',
-        user: 'User',
-        menu1: 'Menu1',
-        menu2: 'Menu2',
-        menu3: 'Menu3',
-        menu4: 'Menu4',
-        menu5: 'Menu5',
     },
 }

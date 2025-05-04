@@ -6,7 +6,7 @@ export const APP_HEADER: any = {
     home: {
         order: 1,
         label: t('header.home'),
-        route: '/',
+        route: 'home',
         name: 'home',
         class: '',
         menu_childs: [],
@@ -14,8 +14,8 @@ export const APP_HEADER: any = {
     about: {
         order: 2,
         label: t('header.about'),
-        route: '/about',
-        name: 'about',
+        route: 'home',
+        name: 'home',
         class: '',
         menu_childs: [],
     },
@@ -25,50 +25,70 @@ export const APP_SIDEBAR_ADMIN: any = {
     home: {
         order: 1,
         label: t('sidebar.home'),
-        route: '/',
+        route: 'admin-dashboard',
         name: 'home',
         class: '',
         menu_childs: [],
     },
-    user: {
+    companies: {
         order: 2,
-        label: t('sidebar.user'),
-        route: '/user',
-        name: 'user',
+        label: t('sidebar.companies'),
+        route: 'admin-companies',
+        name: 'companies',
         class: '',
         menu_childs: [],
     },
-    menu1: {
+    applicants: {
         order: 3,
-        label: t('sidebar.menu1'),
-        route: '/menu1',
-        name: 'menu1',
+        label: t('sidebar.applicants'),
+        route: 'admin-applicants',
+        name: 'applicants',
         class: '',
         menu_childs: [],
     },
-    menu2: {
+    jobs: {
         order: 4,
-        label: t('sidebar.menu2'),
-        route: '/menu2',
-        name: 'menu2',
+        label: t('sidebar.jobs'),
+        route: 'admin-jobs',
+        name: 'jobs',
         class: '',
         menu_childs: [],
     },
-    menu3: {
+    reviews: {
         order: 5,
-        label: t('sidebar.menu3'),
-        route: '/menu3',
-        name: 'menu3',
+        label: t('sidebar.reviews'),
+        route: 'admin-reviews',
+        name: 'reviews',
         class: '',
         menu_childs: [],
     },
-    menu4: {
+    master_data: {
         order: 6,
-        label: t('sidebar.menu4'),
-        route: '/menu4',
-        name: 'menu4',
+        label: t('sidebar.master_data'),
         class: '',
-        menu_childs: [],
+        menu_childs: [
+            {
+                orderParent: 6,
+                order: 7,
+                label: 'Contact Type',
+                route: 'admin-contact-types',
+                name: 'contact-types',
+            },
+            {
+                orderParent: 6,
+                order: 8,
+                label: 'Cities',
+                route: 'admin-cities',
+                name: 'cities',
+            },
+            {
+                orderParent: 6,
+                order: 9,
+                label: 'Job Categories',
+                route: 'admin-job-categories',
+                name: 'job-categories',
+            },
+        ],
     },
 }
 
