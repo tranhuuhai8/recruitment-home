@@ -1,0 +1,55 @@
+.ant-modal-wrap {
+    .ant-modal {
+        .ant-modal-close {
+            top: 5px;
+            inset-inline-end: 5px;
+        }
+
+        .ant-modal-content {
+            padding: 30px 30px 20px;
+
+            .ant-modal-body {
+                .ant-space {
+                    width: 100%;
+                }
+
+                .ant-btn-link {
+                    background-color: var(--vt-c-gray-v1);
+                    color: var(--vt-c-white);
+                }
+            }
+        }
+    }
+
+    &.modal-mst-data {
+        .ant-space {
+            justify-content: space-between;
+
+            &:not(:has(.btn-delete)) {
+                justify-content: flex-end;
+            }
+        }
+    }
+
+    &.modal-delete {
+        .ant-modal-content {
+            padding: 20px 30px;
+
+            .ant-modal-body {
+                .ant-space {
+                    justify-content: flex-end;
+                }
+
+                .btn-delete {
+                    background-color: var(--vt-c-red);
+                    color: var(--vt-c-white);
+                    border-color: var(--vt-c-red);
+                }
+            }
+        }
+    }
+
+    .ant-modal-footer {
+        margin: 0;
+    }
+}

@@ -29,13 +29,11 @@ const emit = defineEmits([
     'clickCheckbox',
 ])
 
-const customRow = (record: any) => {
-    return {
-        onClick: (event: any) => {
-            emit('cellClick', event, record)
-        },
-    }
-}
+const customRow = (record: any) => ({
+    onClick: (event: any) => {
+        emit('cellClick', event, record)
+    },
+})
 
 const handleChangeTable = (pagination: any, filters: any, sorter: any) => {
     if (Object.keys(sorter).length) {
@@ -43,13 +41,9 @@ const handleChangeTable = (pagination: any, filters: any, sorter: any) => {
     }
 }
 
-const onChange = (pageNumber: number) => {
-    emit('changePage', pageNumber)
-}
+const onChangePage = (pageNumber: number) => emit('changePage', pageNumber)
 
-const handleCreate = () => {
-    router.push(props.createLink)
-}
+const handleCreate = () => router.push(props.createLink)
 </script>
 
 <template>
@@ -66,7 +60,7 @@ const handleCreate = () => {
         </div>
         <a-table
             :columns="columns"
-            :data-source="data.data"
+            :data-source="data?.data ?? []"
             :loading="loading"
             :pagination="false"
             :customRow="customRow"
@@ -80,7 +74,8 @@ const handleCreate = () => {
             :page-size="data.per_page"
             :current="data.current_page"
             show-less-items
-            @change="onChange"
+            :show-size-changer="false"
+            @change="onChangePage"
             class="tbl-pagination"
             v-if="props.showPagination && data.total"
         >
@@ -104,12 +99,10 @@ const handleCreate = () => {
 
         .title {
             margin: 0;
-            font-family: Noto Sans JP;
             font-size: 19px;
             font-weight: 700;
             line-height: 28px;
             letter-spacing: 0em;
-            color: var(--vt-c-gray-v10);
         }
 
         .ant-btn {
@@ -124,10 +117,11 @@ const handleCreate = () => {
     .tbl-pagination {
         text-align: center;
         margin-top: 16px;
-        padding-bottom: 16px;
+        padding-bottom: 5px;
+
         a {
             &:not([disabled]) {
-                color: var(--vt-c-gray-v9);
+                color: var(--vt-c-gray-v1);
             }
         }
 
@@ -151,12 +145,6 @@ const handleCreate = () => {
         .ant-table-thead {
             background-color: var(--vt-c-gray-v4);
 
-            .ant-table-column-sorters {
-                .ant-table-column-title {
-                    color: var(--vt-c-main-title);
-                }
-            }
-
             span {
                 svg {
                     display: none;
@@ -165,14 +153,18 @@ const handleCreate = () => {
 
             .ant-table-cell {
                 padding: 8px 12px;
-                font-family: 'Noto Sans JP';
                 font-size: 14px;
                 font-weight: 700;
                 line-height: 19px;
                 letter-spacing: 0em;
-                color: var(--vt-c-black-bold-v3);
                 background-color: var(--vt-c-white);
                 border-bottom: 1px solid var(--vt-c-black-bold);
+
+                .ant-table-column-sorters {
+                    span {
+                        font-weight: 700;
+                    }
+                }
             }
 
             tr:first-child {
@@ -188,55 +180,54 @@ const handleCreate = () => {
 
         .ant-table-tbody {
             .ant-table-column-sort {
-                background-color: inherit;
+                background-color: var(--vt-c-white);
             }
 
             .ant-table-cell {
                 padding: 8px 12px;
-                font-family: 'Noto Sans JP';
                 font-size: 14px;
                 font-weight: 400;
                 line-height: 19px;
                 letter-spacing: 0em;
-                color: var(--vt-c-black-bold-v3);
-                height: 60px;
+                height: 50px;
 
                 .active {
-                    background: var(--vt-c-main);
-                    font-family: 'Noto Sans JP';
+                    background-color: var(--vt-c-main);
+                }
+
+                .inactive {
+                    background-color: var(--vt-c-gray-v1);
+                }
+
+                .default {
+                    background-color: var(--vt-c-gray-v1);
+                }
+
+                .customize {
+                    background-color: var(--vt-c-primary);
+                }
+
+                .type-status {
+                    cursor: pointer;
                     font-size: 13px;
                     font-weight: 500;
                     line-height: 19px;
                     letter-spacing: 0em;
+                    border-radius: 5px;
                     text-align: center;
                     color: var(--vt-c-white);
-                }
 
-                .inactive {
-                    background: var(--vt-c-gray-v11);
-                    font-family: 'Noto Sans JP';
-                    font-size: 13px;
-                    font-weight: 500;
-                    line-height: 19px;
-                    letter-spacing: 0em;
-                    text-align: center;
-                    color: var(--vt-c-white);
-                }
-
-                .active,
-                .inactive {
-                    border-radius: 0;
-                    width: 70px;
-                    height: 24px;
+                    &:hover {
+                        opacity: 0.8;
+                    }
                 }
 
                 .update {
                     span {
-                        font-family: 'Noto Sans JP';
-                        color: var(--vt-c-blue-v3);
                         font-size: 13px;
                     }
                 }
+
                 .ant-btn-default {
                     border: none;
                 }
@@ -244,7 +235,10 @@ const handleCreate = () => {
 
             .ant-table-row {
                 &:hover {
-                    background-color: var(--vt-c-white-v5);
+                    .ant-table-cell,
+                    .ant-table-column-sort {
+                        background-color: var(--vt-c-white-v2);
+                    }
                 }
             }
         }
@@ -262,7 +256,6 @@ const handleCreate = () => {
         &:deep(.ant-table) {
             .ant-table-thead {
                 span {
-                    color: var(--vt-c-blue-v4);
                     &.ant-table-column-sorter-down {
                         svg {
                             display: block;

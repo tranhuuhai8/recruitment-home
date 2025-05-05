@@ -1,0 +1,22 @@
+.master-data {
+    .ant-tabs {
+        padding: 10px 20px;
+        background-color: var(--vt-c-white);
+
+        .ant-tabs-content-holder {
+            position: relative;
+
+            .ant-spin.ant-spin-spinning {
+                inset-inline-start: 50%;
+                top: 20px;
+            }
+        }
+    }
+
+    .btn-create {
+        position: absolute;
+        top: 23px;
+        right: 20px;
+        z-index: 1;
+    }
+}

@@ -64,31 +64,10 @@ export const APP_SIDEBAR_ADMIN: any = {
     },
     master_data: {
         order: 6,
-        label: t('sidebar.master_data.title'),
+        label: t('sidebar.master_data'),
+        route: 'admin-master-data',
         class: '',
-        menu_childs: [
-            {
-                orderParent: 6,
-                order: 7,
-                label: t('sidebar.master_data.category'),
-                route: 'admin-job-categories',
-                name: 'job-categories',
-            },
-            {
-                orderParent: 6,
-                order: 8,
-                label: t('sidebar.master_data.city'),
-                route: 'admin-cities',
-                name: 'cities',
-            },
-            {
-                orderParent: 6,
-                order: 9,
-                label: t('sidebar.master_data.contact_type'),
-                route: 'admin-contact-types',
-                name: 'contact-types',
-            },
-        ],
+        menu_childs: [],
     },
 }
 

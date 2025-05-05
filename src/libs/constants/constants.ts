@@ -5,10 +5,10 @@ import {
     APP_SIDEBAR_APPLICANT,
     APP_SIDEBAR_COMPANY,
 } from '../utils/links'
+import i18n from '@/lang'
 
-export const MONTHS = Array.from({ length: 12 }, (item, i) => {
-    return dayjs(new Date(0, i)).format('MM')
-})
+const { t } = i18n
+
 export const CURRENT_MONTH = dayjs(new Date()).format('MM')
 export const CURRENT_DAY = dayjs(new Date()).format('DD')
 export const IMAGE_EXTENSIONS = ['jpeg', 'png', 'jpg']
@@ -23,12 +23,19 @@ export const FORMAT_TIME = 'HH:mm:ss'
 export const FALSE_VALUE = 0
 export const PAGE_FIRST = 1
 export const PER_PAGE = 10
+export const PER_PAGE_MST = 8
 export const MAX_STRING = 255
 export const MIN_STRING = 8
 export const MAX_STRING_50 = 50
 
 export const STATUS_ACTIVE = 1
 export const STATUS_INACTIVE = 2
+
+export const STATUS_SHOW = 1
+export const STATUS_HIDE = 2
+
+export const TYPE_DEFAULT = 1
+export const TYPE_CUSTOMIZE = 2
 
 export const INITIAL_PAGINATE: PaginateParams = {
     page: PAGE_FIRST,
@@ -66,6 +73,39 @@ export const ALL_OPTION = {
     label: '全て',
     value: 'all',
 }
+
+export const STATUS_ACTIVE_OPTIONS = [
+    {
+        label: t('status.active'),
+        value: STATUS_ACTIVE,
+    },
+    {
+        label: t('status.inactive'),
+        value: STATUS_INACTIVE,
+    },
+]
+
+export const STATUS_DISPLAY_OPTIONS = [
+    {
+        label: t('status.show'),
+        value: STATUS_SHOW,
+    },
+    {
+        label: t('status.hide'),
+        value: STATUS_HIDE,
+    },
+]
+
+export const TYPE_OPTIONS = [
+    {
+        label: t('type.default'),
+        value: TYPE_DEFAULT,
+    },
+    {
+        label: t('type.customize'),
+        value: TYPE_CUSTOMIZE,
+    },
+]
 
 export const ROLE_ADMIN = 1
 export const ROLE_COMPANY = 2

@@ -33,4 +33,21 @@ export default {
         account: 'Account',
         logout: 'Log out',
     },
+    status: {
+        label: 'Status',
+        active: 'Active',
+        inactive: 'Inactive',
+        show: 'Show',
+        hide: 'Hide',
+    },
+    type: {
+        label: 'Type',
+        default: 'Default',
+        customize: 'Customize',
+    },
+    modal: {
+        delete: {
+            confirm: 'Are you sure you want to delete data?',
+        },
+    },
 }

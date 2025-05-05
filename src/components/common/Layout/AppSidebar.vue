@@ -17,12 +17,7 @@ const handleRoute = async () => {
     for (const key in menus) {
         const item = menus[key]
         items.push(
-            getItem(
-                item.label,
-                String(item.order),
-                h(getIcon(item.order)),
-                item.menu_childs.length ? item.menu_childs : null
-            )
+            getItem(item.label, String(item.order), h(getIcon(item.order)))
         )
         if (route.name === item.name)
             selectedKeys.value.push(String(item.order))
@@ -33,22 +28,13 @@ const getItem = (
     label: VueElement | string,
     key: string,
     icon: any,
-    children: ItemType[],
+    children?: ItemType[],
     type?: 'group'
 ): ItemType =>
     ({
         key,
         icon,
-        children: children
-            ? children.map((item: any) =>
-                  getItem(
-                      item?.label,
-                      String(item?.order),
-                      h(getIcon(item?.order)),
-                      item.menu_childs ?? null
-                  )
-              )
-            : null,
+        children,
         label,
         type,
     }) as ItemType
@@ -71,8 +57,6 @@ const getIcon = (order: number) => {
             return Icons.IconCategory
         case 8:
             return Icons.IconCity
-        case 9:
-            return Icons.IconContactType
         default:
             return Icons.IconCompany
     }
@@ -81,20 +65,9 @@ const getIcon = (order: number) => {
 const handleMenuClick: MenuProps['onClick'] = (e) => {
     const side: any = Object.values(
         SIDEBAR_BY_ROLE[getInfoUser()?.role ?? ROLE_APPLICANT]
-    ).find(
-        (item: any) =>
-            String(item.order) === e.key ||
-            e.keyPath?.includes(String(item.order))
-    )
+    ).find((item: any) => String(item.order) === e.key)
 
-    if (side) {
-        const sideNew = side.menu_childs.length
-            ? side.menu_childs.find(
-                  (child: Record<string, any>) => child.order === +e.key
-              )
-            : side
-        sideNew && router.push({ name: sideNew.route })
-    }
+    side && router.push({ name: side.route })
 
     selectedKeys.value.splice(0, 1, String(side?.order))
 }

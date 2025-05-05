@@ -54,7 +54,6 @@ export interface ImageResponse {
 export interface ColumnTable {
     key: string
     title: string
-    sortOrder?: 'ascend' | 'descend' | null
     width?: string | number
     align?: 'left' | 'right' | 'center'
     customCell?: (record: any, rowIndex: any, column: any) => void
@@ -62,7 +61,9 @@ export interface ColumnTable {
     className?: string
     ellipsis?: boolean
     fixed?: string
-    sorter?: boolean
+    sorter?: boolean | null
+    sortDirections?: string[]
+    defaultSortOrder?: 'ascend' | 'descend' | null
     customRender?: ({ text, record, index }: any) => any
 }
 

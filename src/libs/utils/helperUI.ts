@@ -6,7 +6,7 @@ import {
     WarningOutlined,
     CloseCircleOutlined,
 } from '@ant-design/icons-vue'
-import { MAX_STRING, REGEX_EMAIL } from '..'
+import { MAX_STRING, REGEX_EMAIL, STATUS_CODE_SUCCESS } from '..'
 import i18n from '@/lang'
 
 const { t } = i18n
@@ -30,6 +30,9 @@ export const notify = (
         icon: () => h(icon, { style: `color: ${color}` }),
     })
 }
+
+export const notifyStatus = (status: number, message: string) =>
+    notify(message, '', status === STATUS_CODE_SUCCESS ? 'success' : 'error')
 
 export const trim = (field: string, formState: any, trimAll = false) => {
     if (formState[field]) {
