@@ -11,5 +11,10 @@ export default {
     applicants: 'Applicants',
     jobs: 'Jobs',
     reviews: 'Reviews',
-    master_data: 'Master data',
+    master_data: {
+        title: 'Master data',
+        contact_type: 'Contact type',
+        city: 'Cities',
+        category: 'Categories',
+    },
 }

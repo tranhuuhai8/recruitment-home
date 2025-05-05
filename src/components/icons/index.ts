@@ -1,15 +1,21 @@
 import IconHome from './IconHome.vue'
-import IconSupport from './IconSupport.vue'
-import IconEcosystem from './IconEcosystem.vue'
-import IconCommunity from './IconCommunity.vue'
-import IconDocumentation from './IconDocumentation.vue'
-import IconTooling from './IconTooling.vue'
+import IconCompany from './IconCompany.vue'
+import IconUser from './IconUser.vue'
+import IconJob from './IconJob.vue'
+import IconFeedback from './IconFeedback.vue'
+import IconData from './IconData.vue'
+import IconContactType from './IconContactType.vue'
+import IconCity from './IconCity.vue'
+import IconCategory from './IconCategory.vue'
 
 export {
     IconHome,
-    IconSupport,
-    IconEcosystem,
-    IconCommunity,
-    IconDocumentation,
-    IconTooling,
+    IconCompany,
+    IconUser,
+    IconJob,
+    IconFeedback,
+    IconData,
+    IconContactType,
+    IconCity,
+    IconCategory,
 }

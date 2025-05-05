@@ -129,30 +129,70 @@
     height: 100vh;
     @include center_flex(start, space-between);
 
-    .sidebar-menu {
-        width: 200px;
+    #sidebar {
+        position: relative;
         height: 100%;
-        padding: 20px 12px;
-        border-inline-end: 1px solid #dedcdc;
 
-        .ant-menu-item {
-            margin: 0 0 8px;
-
-            &:hover,
-            &.ant-menu-item-active {
-                color: var(--vt-c-white) !important;
-                background-color: var(--vt-c-primary) !important;
+        .btn-collapsed {
+            position: absolute;
+            top: 0;
+            left: 100%;
+            z-index: 1;
+            padding: 2px 8px;
+            svg {
+                font-size: 14px;
             }
         }
 
-        .ant-menu-submenu {
-            .ant-menu-submenu-title {
-                margin: 0;
-            }
-        }
+        .sidebar-menu {
+            width: 200px;
+            height: 100%;
+            padding: 20px 12px;
+            transition: all 0.3s linear;
+            border-inline-end: 1px solid #dedcdc;
 
-        .ant-menu-item-icon {
-            vertical-align: middle;
+            .ant-menu-item {
+                margin: 0 0 8px;
+
+                &:hover,
+                &.ant-menu-item-active {
+                    color: var(--vt-c-white) !important;
+                    background-color: var(--vt-c-primary) !important;
+                }
+            }
+
+            .ant-menu-submenu {
+                .ant-menu-submenu-title {
+                    margin: 0;
+                }
+
+                .ant-menu-item {
+                    padding-left: 35px !important;
+                }
+            }
+
+            .ant-menu-item-icon {
+                vertical-align: middle;
+            }
+
+            &.sp {
+                padding: 20px 0;
+                width: 80px;
+
+                .ant-menu-item,
+                .ant-menu-submenu-title {
+                    justify-content: center;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    margin: 0 auto 8px;
+
+                    text-align: center;
+                }
+
+                .ant-menu-title-content {
+                    display: none !important;
+                }
+            }
         }
     }
 
