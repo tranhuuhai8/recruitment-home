@@ -78,26 +78,9 @@ const router = createRouter({
                         },
                         {
                             path: 'master-data',
-                            children: [
-                                {
-                                    path: 'contact-types',
-                                    name: 'admin-contact-types',
-                                    component: Page.HomeViewAdmin,
-                                    beforeEnter: ifAuthenticated,
-                                },
-                                {
-                                    path: 'cities',
-                                    name: 'admin-cities',
-                                    component: Page.HomeViewAdmin,
-                                    beforeEnter: ifAuthenticated,
-                                },
-                                {
-                                    path: 'job-categories',
-                                    name: 'admin-job-categories',
-                                    component: Page.HomeViewAdmin,
-                                    beforeEnter: ifAuthenticated,
-                                },
-                            ],
+                            name: 'admin-master-data',
+                            component: Page.MasterView,
+                            beforeEnter: ifAuthenticated,
                         },
                     ],
                 },

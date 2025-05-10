@@ -6,7 +6,7 @@ export default {
     create: 'Tạo mới',
     update: 'Cập nhật',
     delete: 'Xóa',
-    submit: 'Gửi',
+    submit: 'Xác nhận',
     search: 'Tìm kiếm',
     gender: {
         male: 'Nam',
@@ -32,5 +32,22 @@ export default {
         about: 'Giới thiệu',
         account: 'Tài khoản',
         logout: 'Đăng xuất',
+    },
+    status: {
+        label: 'Trạng thái',
+        active: 'Hoạt động',
+        inactive: 'Không hoạt động',
+        show: 'Hiển thị',
+        hide: 'Ẩn',
+    },
+    type: {
+        label: 'Loại',
+        default: 'Mặc định',
+        customize: 'Tùy chỉnh',
+    },
+    modal: {
+        delete: {
+            confirm: 'Bạn chắc chắn muốn xóa dữ liệu?',
+        },
     },
 }

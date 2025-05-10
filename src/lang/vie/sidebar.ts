@@ -11,10 +11,5 @@ export default {
     applicants: 'Ứng viên',
     jobs: 'Công việc',
     reviews: 'Đánh giá',
-    master_data: {
-        title: 'Dữ liệu',
-        contact_type: 'Loại liên hệ',
-        city: 'Thành phố',
-        category: 'Danh mục',
-    },
+    master_data: 'Dữ liệu',
 }

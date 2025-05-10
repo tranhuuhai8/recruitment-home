@@ -4,7 +4,6 @@ import IconUser from './IconUser.vue'
 import IconJob from './IconJob.vue'
 import IconFeedback from './IconFeedback.vue'
 import IconData from './IconData.vue'
-import IconContactType from './IconContactType.vue'
 import IconCity from './IconCity.vue'
 import IconCategory from './IconCategory.vue'
 
@@ -15,7 +14,6 @@ export {
     IconJob,
     IconFeedback,
     IconData,
-    IconContactType,
     IconCity,
     IconCategory,
 }

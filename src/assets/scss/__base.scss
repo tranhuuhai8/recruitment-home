@@ -55,6 +55,7 @@ body {
 
 .ant-form-item-explain {
     margin: 2px 0 10px;
+
     .ant-form-item-explain-error {
         font-size: 12px;
         text-align: left;
@@ -63,6 +64,16 @@ body {
 
 .ant-spin {
     @include center_pos;
+}
+
+.ant-btn {
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.ant-notification-notice-message {
+    margin-bottom: 0 !important;
 }
 
 .page-not-found {

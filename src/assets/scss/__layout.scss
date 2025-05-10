@@ -108,16 +108,17 @@
     }
 
     .header-manager {
-        padding: 5px 20px;
+        padding: 2px 20px;
         background-color: var(--vt-c-white);
         border-bottom: 1px solid #dedcdc;
 
         .logo {
-            width: 125px;
+            width: 120px;
         }
 
         .anticon {
             margin: 0 20px;
+
             svg {
                 font-size: 21px;
             }
@@ -135,10 +136,12 @@
 
         .btn-collapsed {
             position: absolute;
-            top: 0;
-            left: 100%;
+            bottom: 10px;
+            left: 50%;
             z-index: 1;
             padding: 2px 8px;
+            transform: translate(-50%);
+
             svg {
                 font-size: 14px;
             }
@@ -198,7 +201,50 @@
 
     .ant-layout-content {
         height: 100%;
-        padding: 40px;
+        padding: 20px 20px 20px 25px;
         background-color: var(--bg-main-admin);
+    }
+}
+
+.box {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+
+    &.full {
+        min-height: calc(100% - 20px);
+    }
+
+    &.no-border {
+        border: none;
+    }
+
+    .box-body {
+        padding: 0 20px;
+        overflow-y: auto;
+        height: calc(100vh - 100px);
+        position: relative;
+
+        &.no-pagination {
+            height: calc(100vh - 66px);
+        }
+
+        &:has(.form-create-chap) {
+            .ant-tabs {
+                overflow-y: auto;
+                height: calc(100vh - 235px);
+            }
+        }
+
+        &.no_padding {
+            padding: 0;
+        }
+
+        .btn-save-setting {
+            &:disabled {
+                border-color: var(--vt-c-gray-v2);
+                background-color: var(--vt-c-gray-v2);
+            }
+        }
     }
 }
