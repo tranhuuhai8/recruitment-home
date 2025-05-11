@@ -4,7 +4,8 @@
     flex-direction: column;
     width: 50%;
     max-width: 500px;
-    margin: 200px auto 0;
+    margin: 0 auto;
+    transform: translateY(200px);
     padding: 20px 40px 30px;
     border: 1px solid var(--vt-c-gray);
     border-radius: 10px;

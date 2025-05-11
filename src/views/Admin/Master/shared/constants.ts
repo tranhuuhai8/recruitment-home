@@ -1,6 +1,8 @@
 import {
+    FALSE_VALUE,
     INITIAL_QUERY,
     PER_PAGE_MST,
+    SORT_TYPE_ASC,
     STATUS_ACTIVE,
     TYPE_DEFAULT,
 } from '@/libs'
@@ -8,7 +10,13 @@ import {
 export const INITIAL_QUERY_MST = {
     ...INITIAL_QUERY,
     per_page: PER_PAGE_MST,
-    orders: [{ key: 'name', dir: 'ascending' }],
+    orders: [{ key: 'name', dir: SORT_TYPE_ASC }],
+    filters: [],
+}
+
+export const INITIAL_FORM_SEARCH = {
+    search: '',
+    status: FALSE_VALUE,
 }
 
 export const FORM_CITY = {

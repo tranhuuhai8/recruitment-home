@@ -2,17 +2,13 @@
 import { useI18n } from 'vue3-i18n'
 import { reactive, ref, watch, type UnwrapRef } from 'vue'
 import { useJobCategoryStore } from '@/stores'
+import { FORM_JOB_CATEGORY, categoryRules, INITIAL_QUERY_MST } from '../shared'
 import {
-    FORM_JOB_CATEGORY,
-    notifyDelete,
-    categoryRules,
-    INITIAL_QUERY_MST,
-} from '../shared'
-import {
-    notifyStatus,
-    STATUS_DISPLAY_OPTIONS,
     trim,
-    TYPE_OPTIONS,
+    notifyStatus,
+    notifyDelete,
+    TYPE_OPTIONS_FORM,
+    STATUS_DISPLAY_OPTIONS_FORM,
 } from '@/libs'
 import { DeleteOutlined } from '@ant-design/icons-vue'
 
@@ -45,13 +41,7 @@ const onSubmit = async () => {
     }
 }
 
-const resetForm = async (isFetchData: boolean) => {
-    formRef.value.resetFields()
-    emit('cancel')
-    isFetchData && (await jobCategoryStore.list(INITIAL_QUERY_MST))
-}
-
-const onSubmitDelete = async () => {
+const onDelete = async () => {
     try {
         loading.value = true
         const { message, status_code } = await jobCategoryStore.remove(
@@ -81,9 +71,18 @@ const getData = async (id: number) => {
     formState.parent_id = data.parent_id
 }
 
+const resetForm = async (isFetchData: boolean) => {
+    formRef.value.resetFields()
+    emit('cancel')
+    isFetchData && (await jobCategoryStore.list(INITIAL_QUERY_MST))
+}
+
 watch(
     () => props.id,
-    async () => await getData(props.id)
+    async (newId) => {
+        if (newId) await getData(newId)
+    },
+    { immediate: true }
 )
 </script>
 
@@ -116,7 +115,7 @@ watch(
                 ref="select"
                 v-model:value="formState.status"
                 style="width: 120px"
-                :options="STATUS_DISPLAY_OPTIONS"
+                :options="STATUS_DISPLAY_OPTIONS_FORM"
             />
         </a-form-item>
         <a-form-item name="type" :label="t('type.label')">
@@ -124,7 +123,7 @@ watch(
                 ref="select"
                 v-model:value="formState.type"
                 style="width: 120px"
-                :options="TYPE_OPTIONS"
+                :options="TYPE_OPTIONS_FORM"
             />
         </a-form-item>
 
@@ -150,7 +149,7 @@ watch(
         :open="openDelete"
         :loading="loading"
         @close="openDelete = false"
-        @on-delete="onSubmitDelete"
+        @on-delete="onDelete"
     />
 </template>
 

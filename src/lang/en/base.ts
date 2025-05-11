@@ -3,11 +3,13 @@ export default {
     save: 'Save',
     back: 'Back',
     cancel: 'Cancel',
+    reset: 'Reset',
     create: 'Create',
     update: 'Update',
     delete: 'Delete',
     submit: 'Submit',
     search: 'Search',
+    all: 'All',
     gender: {
         male: 'Male',
         female: 'Female',

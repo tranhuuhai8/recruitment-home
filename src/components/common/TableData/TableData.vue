@@ -10,24 +10,15 @@ const props = defineProps({
     columns: { type: Array<any>, required: true, default: [] },
     data: { type: Object, required: true },
     loading: { type: Boolean, required: true, default: true },
-    showIndex: { type: Boolean, required: false, default: true },
-    showCheckbox: { type: Boolean, required: false, default: true },
     showPagination: { type: Boolean, required: false, default: true },
-    hasCreate: { type: Boolean, required: false, default: true },
+    showTableHead: { type: Boolean, required: false, default: false },
+    hasCreate: { type: Boolean, required: false, default: false },
     createLink: { type: String, required: false, default: '' },
     title: { type: String, required: false, default: '' },
     sortType: { type: String, required: false, default: '' },
 })
 const { columns, data, loading, sortType } = toRefs(props)
-const emit = defineEmits([
-    'changePage',
-    'clickButton',
-    'sort',
-    'clickLink',
-    'handleRedirectCreate',
-    'cellClick',
-    'clickCheckbox',
-])
+const emit = defineEmits(['changePage', 'handleReset', 'sort', 'cellClick'])
 
 const customRow = (record: any) => ({
     onClick: (event: any) => {
@@ -48,7 +39,7 @@ const handleCreate = () => router.push(props.createLink)
 
 <template>
     <section id="tbl">
-        <div class="tbl-head">
+        <div class="tbl-head" v-if="props.showTableHead">
             <h3 class="title">{{ title }}</h3>
             <a-button
                 type="primary"

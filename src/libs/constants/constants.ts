@@ -22,20 +22,14 @@ export const FORMAT_TIME = 'HH:mm:ss'
 
 export const FALSE_VALUE = 0
 export const PAGE_FIRST = 1
-export const PER_PAGE = 10
-export const PER_PAGE_MST = 8
+export const PER_PAGE = 20
+export const PER_PAGE_MST = 10
 export const MAX_STRING = 255
 export const MIN_STRING = 8
 export const MAX_STRING_50 = 50
 
-export const STATUS_ACTIVE = 1
-export const STATUS_INACTIVE = 2
-
-export const STATUS_SHOW = 1
-export const STATUS_HIDE = 2
-
-export const TYPE_DEFAULT = 1
-export const TYPE_CUSTOMIZE = 2
+export const SORT_TYPE_ASC = 'ascending'
+export const SORT_TYPE_DESC = 'descending'
 
 export const INITIAL_PAGINATE: PaginateParams = {
     page: PAGE_FIRST,
@@ -70,22 +64,25 @@ export const DAY_LIST: {
 }
 
 export const ALL_OPTION = {
-    label: '全て',
-    value: 'all',
+    label: t('all'),
+    value: 0,
 }
 
-export const STATUS_ACTIVE_OPTIONS = [
-    {
-        label: t('status.active'),
-        value: STATUS_ACTIVE,
-    },
-    {
-        label: t('status.inactive'),
-        value: STATUS_INACTIVE,
-    },
-]
+export const STATUS_ACTIVE = 1
+export const STATUS_INACTIVE = 2
 
-export const STATUS_DISPLAY_OPTIONS = [
+export const STATUS_SHOW = 1
+export const STATUS_HIDE = 2
+
+export const TYPE_DEFAULT = 1
+export const TYPE_CUSTOMIZE = 2
+
+export const STATUS_DISPLAY_OPTIONS_SEARCH: Record<number, string> = {
+    1: t('status.show'),
+    2: t('status.hide'),
+}
+
+export const STATUS_DISPLAY_OPTIONS_FORM = [
     {
         label: t('status.show'),
         value: STATUS_SHOW,
@@ -96,7 +93,12 @@ export const STATUS_DISPLAY_OPTIONS = [
     },
 ]
 
-export const TYPE_OPTIONS = [
+export const TYPE_OPTIONS_SEARCH: Record<number, string> = {
+    1: t('type.default'),
+    2: t('type.customize'),
+}
+
+export const TYPE_OPTIONS_FORM = [
     {
         label: t('type.default'),
         value: TYPE_DEFAULT,
