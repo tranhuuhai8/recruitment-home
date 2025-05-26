@@ -39,17 +39,12 @@ export const isObjectNull = (object: object) => !!Object.keys(object).length
 export const getOptions = (array: any[], name = 'name') =>
     array?.map((item) => ({ label: item[name], value: item.id }))
 
-export const getObjOptions = (
-    obj: Record<number, string>,
-    hasAll = true,
-    end = true
-) => {
+export const getObjOptions = (obj: Record<number, string>, hasAll = true) => {
     const options = Object.entries(obj).map(([value, label]) => ({
         label,
         value: +value,
     }))
 
-    if (hasAll && end) return [...options, ALL_OPTION]
     if (hasAll) return [ALL_OPTION, ...options]
 
     return options
@@ -72,7 +67,18 @@ export const mapKeyToData = (value: any) => {
 export const mapSortQuery = (query: ParamsList, key: string, dir?: string) => ({
     ...query.value,
     page: PAGE_FIRST,
-    orders: [{ key, dir: dir ? `${dir}ing` : 'descending' }],
+    orders: [{ key, dir }],
+})
+
+export const mapFilterQuery = (
+    query: ParamsList,
+    search: string,
+    filters: Record<string, any>[],
+) => ({
+    ...query.value,
+    page: PAGE_FIRST,
+    search,
+    filters,
 })
 
 export const getFirstErrorMessage = (errors: Record<string, any>) =>

@@ -5,8 +5,8 @@ import { useSettingStore } from '@/stores'
 import {
     TabCity,
     TabJobCategory,
-    FormCity,
-    FormJobCategory,
+    CityForm,
+    JobCategoryForm,
 } from './components'
 import { changeButton } from './shared'
 
@@ -63,13 +63,13 @@ onMounted(async () => {
         @cancel="open = false"
     >
         <template #body>
-            <FormCity
+            <CityForm
                 v-if="activeKey === '1'"
                 :id="id"
                 @cancel="((open = false), (id = null))"
                 @submit="open = false"
             />
-            <FormJobCategory
+            <JobCategoryForm
                 v-else
                 :id="id"
                 @cancel="((open = false), (id = null))"

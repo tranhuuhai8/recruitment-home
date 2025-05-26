@@ -3,11 +3,13 @@ export default {
     save: 'Lưu',
     back: 'Quay lại',
     cancel: 'Đóng',
+    reset: 'Làm mới',
     create: 'Tạo mới',
     update: 'Cập nhật',
     delete: 'Xóa',
     submit: 'Xác nhận',
     search: 'Tìm kiếm',
+    all: 'Tất cả',
     gender: {
         male: 'Nam',
         female: 'Nữ',

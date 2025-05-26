@@ -1,6 +1,6 @@
 import TabCity from './TabCity.vue'
 import TabJobCategory from './TabJobCategory.vue'
-import FormCity from './FormCity.vue'
-import FormJobCategory from './FormJobCategory.vue'
+import CityForm from './CityForm.vue'
+import JobCategoryForm from './JobCategoryForm.vue'
 
-export { TabCity, TabJobCategory, FormCity, FormJobCategory }
+export { TabCity, TabJobCategory, CityForm, JobCategoryForm }

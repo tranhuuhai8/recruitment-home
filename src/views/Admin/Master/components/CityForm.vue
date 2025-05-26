@@ -2,13 +2,13 @@
 import { useI18n } from 'vue3-i18n'
 import { reactive, ref, watch, type UnwrapRef } from 'vue'
 import { useCityStore } from '@/stores'
+import { FORM_CITY, cityRules, INITIAL_QUERY_MST } from '../shared'
 import {
-    FORM_CITY,
+    trim,
+    notifyStatus,
     notifyDelete,
-    cityRules,
-    INITIAL_QUERY_MST,
-} from '../shared'
-import { notifyStatus, trim, STATUS_DISPLAY_OPTIONS } from '@/libs'
+    STATUS_DISPLAY_OPTIONS_FORM,
+} from '@/libs'
 import { DeleteOutlined } from '@ant-design/icons-vue'
 
 const { t } = useI18n()
@@ -40,13 +40,7 @@ const onSubmit = async () => {
     }
 }
 
-const resetForm = async (isFetchData: boolean) => {
-    formRef.value.resetFields()
-    emit('cancel')
-    isFetchData && (await cityStore.list(INITIAL_QUERY_MST))
-}
-
-const onSubmitDelete = async () => {
+const onDelete = async () => {
     try {
         loading.value = true
         const { message, status_code } = await cityStore.remove(+props.id)
@@ -72,9 +66,18 @@ const getData = async (id: number) => {
     formState.status = data.status
 }
 
+const resetForm = async (isFetchData: boolean) => {
+    formRef.value.resetFields()
+    emit('cancel')
+    isFetchData && (await cityStore.list(INITIAL_QUERY_MST))
+}
+
 watch(
     () => props.id,
-    async () => await getData(props.id)
+    async (newId) => {
+        if (newId) await getData(newId)
+    },
+    { immediate: true }
 )
 </script>
 
@@ -107,7 +110,7 @@ watch(
                 ref="select"
                 v-model:value="formState.status"
                 style="width: 120px"
-                :options="STATUS_DISPLAY_OPTIONS"
+                :options="STATUS_DISPLAY_OPTIONS_FORM"
             />
         </a-form-item>
 
@@ -133,7 +136,7 @@ watch(
         :open="openDelete"
         :loading="loading"
         @close="openDelete = false"
-        @on-delete="onSubmitDelete"
+        @on-delete="onDelete"
     />
 </template>
 

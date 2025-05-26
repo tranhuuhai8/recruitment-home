@@ -52,14 +52,6 @@ export const columnsJobCategory: ColumnTable[] = [
         align: 'center',
     },
     {
-        title: t('masterData.labels.type'),
-        dataIndex: 'type',
-        key: 'type',
-        width: 150,
-        align: 'center',
-        customRender: ({ record }) => <TypeColumn type={record.type} />,
-    },
-    {
         title: t('masterData.labels.status'),
         dataIndex: 'status',
         key: 'status',
@@ -68,5 +60,13 @@ export const columnsJobCategory: ColumnTable[] = [
         customRender: ({ record }) => (
             <StatusDisplayColumn status={record.status} />
         ),
+    },
+    {
+        title: t('masterData.labels.type'),
+        dataIndex: 'type',
+        key: 'type',
+        width: 150,
+        align: 'center',
+        customRender: ({ record }) => <TypeColumn type={record.type} />,
     },
 ]

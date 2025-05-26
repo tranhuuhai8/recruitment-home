@@ -35,7 +35,7 @@
             text-transform: uppercase;
 
             &::before {
-                content: '';
+                content: "";
                 position: absolute;
                 bottom: 0;
                 left: 50%;
@@ -108,12 +108,17 @@
     }
 
     .header-manager {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 2;
         padding: 2px 20px;
         background-color: var(--vt-c-white);
         border-bottom: 1px solid #dedcdc;
 
         .logo {
-            width: 120px;
+            width: 100px;
         }
 
         .anticon {
@@ -127,16 +132,19 @@
 }
 
 .content-manager {
-    height: 100vh;
-    @include center_flex(start, space-between);
+    margin-top: 50px;
+    min-height: 100%;
+    @include center_flex(stretch, space-between);
 
     #sidebar {
+        min-height: calc(100vh - 50px);
         position: relative;
-        height: 100%;
+        background-color: var(--vt-c-white);
+        border-inline-end: 1px solid #dedcdc;
 
         .btn-collapsed {
             position: absolute;
-            bottom: 10px;
+            bottom: 50px;
             left: 50%;
             z-index: 1;
             padding: 2px 8px;
@@ -149,10 +157,8 @@
 
         .sidebar-menu {
             width: 200px;
-            height: 100%;
-            padding: 20px 12px;
+            padding: 15px 12px;
             transition: all 0.3s linear;
-            border-inline-end: 1px solid #dedcdc;
 
             .ant-menu-item {
                 margin: 0 0 8px;
@@ -200,8 +206,7 @@
     }
 
     .ant-layout-content {
-        height: 100%;
-        padding: 20px 20px 20px 25px;
+        padding: 15px 15px 15px 20px;
         background-color: var(--bg-main-admin);
     }
 }
@@ -211,18 +216,33 @@
     overflow: hidden;
     position: relative;
 
-    &.full {
-        min-height: calc(100% - 20px);
-    }
-
     &.no-border {
         border: none;
     }
 
+    &.no-radius {
+        border-radius: 0;
+    }
+
+    &.box-search {
+        .ant-form {
+            display: flex;
+            align-items: center;
+
+            .ant-form-item {
+                width: auto;
+                margin-right: 10px;
+                margin-bottom: 15px;
+            }
+
+            .ant-space {
+                margin-bottom: 15px;
+            }
+        }
+    }
+
     .box-body {
         padding: 0 20px;
-        overflow-y: auto;
-        height: calc(100vh - 100px);
         position: relative;
 
         &.no-pagination {
