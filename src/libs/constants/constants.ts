@@ -3,6 +3,7 @@ import dayjs from 'dayjs'
 import {
     APP_SIDEBAR_ADMIN,
     APP_SIDEBAR_APPLICANT,
+    APP_SIDEBAR_BOTTOM,
     APP_SIDEBAR_COMPANY,
 } from '../utils/links'
 import i18n from '@/lang'
@@ -119,8 +120,31 @@ export const ROLE_PATH_PREFIX: Record<number, string> = {
     [ROLE_APPLICANT]: 'applicant',
 }
 
+const mergeSidebarWithBottom = (
+    baseSidebar: Record<string, any>,
+    bottomSidebar: Record<string, any>
+) => {
+    const merged = { ...baseSidebar }
+    const baseOrders = Object.values(merged).map((item: any) => item.order ?? 0)
+    const maxOrder = Math.max(...baseOrders, 0)
+
+    let orderOffset = 1
+    for (const [key, itemRaw] of Object.entries(bottomSidebar)) {
+        const item = itemRaw as Record<string, any>
+        merged[key] = {
+            ...item,
+            order: maxOrder + orderOffset++,
+        }
+    }
+
+    return merged
+}
+
 export const SIDEBAR_BY_ROLE: Record<number, any> = {
-    [ROLE_ADMIN]: APP_SIDEBAR_ADMIN,
-    [ROLE_COMPANY]: APP_SIDEBAR_COMPANY,
+    [ROLE_ADMIN]: mergeSidebarWithBottom(APP_SIDEBAR_ADMIN, APP_SIDEBAR_BOTTOM),
+    [ROLE_COMPANY]: mergeSidebarWithBottom(
+        APP_SIDEBAR_COMPANY,
+        APP_SIDEBAR_BOTTOM
+    ),
     [ROLE_APPLICANT]: APP_SIDEBAR_APPLICANT,
 }

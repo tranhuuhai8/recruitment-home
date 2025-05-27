@@ -27,3 +27,9 @@ export interface JobCategory {
 export interface JobCategoryResult extends Result {
     data?: JobCategory[]
 }
+
+export interface FormSearchMst {
+    search: string
+    status: number
+    type?: string | number | boolean
+}

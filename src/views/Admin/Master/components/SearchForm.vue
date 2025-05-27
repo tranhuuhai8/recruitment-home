@@ -38,15 +38,13 @@ const resetFields = () => {
 
         <a-form-item name="status">
             <a-select
-                style="width: 120px"
                 :options="getObjOptions(STATUS_DISPLAY_OPTIONS_SEARCH)"
                 v-model:value="formState.status"
             />
         </a-form-item>
 
-        <a-form-item name="type" v-if="hasType">
+        <a-form-item v-if="hasType" name="type">
             <a-select
-                style="width: 120px"
                 :options="getObjOptions(TYPE_OPTIONS_SEARCH)"
                 v-model:value="formState.type"
             />

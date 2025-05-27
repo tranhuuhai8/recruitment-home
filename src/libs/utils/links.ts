@@ -2,7 +2,7 @@ import i18n from '@/lang'
 
 const { t } = i18n
 
-export const APP_HEADER: any = {
+export const APP_HEADER: Record<string, any> = {
     home: {
         order: 1,
         label: t('header.home'),
@@ -21,12 +21,12 @@ export const APP_HEADER: any = {
     },
 }
 
-export const APP_SIDEBAR_ADMIN: any = {
-    home: {
+export const APP_SIDEBAR_ADMIN: Record<string, any> = {
+    dashboard: {
         order: 1,
-        label: t('sidebar.home'),
+        label: t('sidebar.dashboard'),
         route: 'admin-dashboard',
-        name: 'home',
+        name: 'dashboard',
         class: '',
         menu_childs: [],
     },
@@ -71,7 +71,7 @@ export const APP_SIDEBAR_ADMIN: any = {
     },
 }
 
-export const APP_SIDEBAR_COMPANY: any = {
+export const APP_SIDEBAR_COMPANY: Record<string, any> = {
     info: {
         order: 1,
         label: t('sidebar.info'),
@@ -122,7 +122,7 @@ export const APP_SIDEBAR_COMPANY: any = {
     },
 }
 
-export const APP_SIDEBAR_APPLICANT: any = {
+export const APP_SIDEBAR_APPLICANT: Record<string, any> = {
     info: {
         order: 1,
         label: t('sidebar.info'),
@@ -168,6 +168,23 @@ export const APP_SIDEBAR_APPLICANT: any = {
         label: t('sidebar.menu5'),
         route: '/menu5',
         name: 'menu5',
+        class: '',
+        menu_childs: [],
+    },
+}
+
+export const APP_SIDEBAR_BOTTOM: Record<string, any> = {
+    back_to_home: {
+        order: 1,
+        label: t('sidebar.back_to_home'),
+        route: 'home',
+        class: '',
+        menu_childs: [],
+    },
+    logout: {
+        order: 2,
+        label: t('sidebar.logout'),
+        route: 'logout',
         class: '',
         menu_childs: [],
     },

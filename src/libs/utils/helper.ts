@@ -64,8 +64,13 @@ export const mapKeyToData = (value: any) => {
     })
 }
 
-export const mapSortQuery = (query: ParamsList, key: string, dir?: string) => ({
-    ...query.value,
+export const mapSortQuery = (
+    query: Record<string, any>,
+    key: string,
+    dir: string,
+    isRef = true
+) => ({
+    ...(isRef ? query.value : query),
     page: PAGE_FIRST,
     orders: [{ key, dir }],
 })
@@ -73,7 +78,7 @@ export const mapSortQuery = (query: ParamsList, key: string, dir?: string) => ({
 export const mapFilterQuery = (
     query: ParamsList,
     search: string,
-    filters: Record<string, any>[],
+    filters: Record<string, any>[]
 ) => ({
     ...query.value,
     page: PAGE_FIRST,
