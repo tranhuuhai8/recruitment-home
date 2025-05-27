@@ -17,7 +17,7 @@ const loading = ref(false)
 const openDelete = ref(false)
 const cityStore = useCityStore()
 
-const props = defineProps(['id'])
+const props = defineProps(['id', 'query'])
 const emit = defineEmits(['cancel', 'submit'])
 
 const formState: UnwrapRef<any> = reactive({
@@ -69,7 +69,7 @@ const getData = async (id: number) => {
 const resetForm = async (isFetchData: boolean) => {
     formRef.value.resetFields()
     emit('cancel')
-    isFetchData && (await cityStore.list(INITIAL_QUERY_MST))
+    isFetchData && (await cityStore.list(props.query ?? INITIAL_QUERY_MST))
 }
 
 watch(
@@ -123,11 +123,16 @@ watch(
                 <DeleteOutlined />
             </a-button>
             <a-col>
-                <a-button type="link" class="mr-10" @click="resetForm(false)">
-                    {{ t('cancel') }}
-                </a-button>
-                <a-button type="primary" :loading="loading" @click="onSubmit">
+                <a-button
+                    type="primary"
+                    class="mr-10"
+                    :loading="loading"
+                    @click="onSubmit"
+                >
                     {{ t(`${props.id ? 'update' : 'create'}`) }}
+                </a-button>
+                <a-button type="link" @click="resetForm(false)">
+                    {{ t('cancel') }}
                 </a-button>
             </a-col>
         </a-space>

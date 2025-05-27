@@ -6,6 +6,8 @@ import IconFeedback from './IconFeedback.vue'
 import IconData from './IconData.vue'
 import IconCity from './IconCity.vue'
 import IconCategory from './IconCategory.vue'
+import IconDashboard from './IconDashboard.vue'
+import IconLogout from './IconLogout.vue'
 
 export {
     IconHome,
@@ -16,4 +18,6 @@ export {
     IconData,
     IconCity,
     IconCategory,
+    IconDashboard,
+    IconLogout,
 }

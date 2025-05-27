@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import type { MenuProps, ItemType } from 'ant-design-vue'
 import { useRouter, useRoute } from 'vue-router'
-import { getInfoUser, ROLE_APPLICANT, SIDEBAR_BY_ROLE } from '@/libs'
+import { useI18n } from 'vue3-i18n'
 import { reactive, ref, h, VueElement, onMounted } from 'vue'
 import * as Icons from '@/components/icons'
+import { useAuthStore } from '@/stores'
+import { getInfoUser, ROLE_APPLICANT, SIDEBAR_BY_ROLE, notify } from '@/libs'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
+import Logo from '@/assets/imgs/logo.png'
 
+const { t } = useI18n()
 const router = useRouter()
 const route = useRoute()
+const authStore = useAuthStore()
 const items: ItemType[] = reactive([])
 const selectedKeys = ref<string[]>([])
 const collapsed = ref(false)
@@ -42,7 +47,7 @@ const getItem = (
 const getIcon = (order: number) => {
     switch (order) {
         case 1:
-            return Icons.IconHome
+            return Icons.IconDashboard
         case 2:
             return Icons.IconCompany
         case 3:
@@ -54,12 +59,22 @@ const getIcon = (order: number) => {
         case 6:
             return Icons.IconData
         case 7:
-            return Icons.IconCategory
+            return Icons.IconHome
         case 8:
-            return Icons.IconCity
+            return Icons.IconLogout
         default:
             return Icons.IconCompany
     }
+}
+
+const handleLogout = async () => {
+    const messageLogout = await authStore.logout()
+    if (!messageLogout) {
+        return notify(t('notify.error'), '', 'error')
+    }
+
+    notify(messageLogout, '', 'success')
+    router.push({ name: 'login', replace: true })
 }
 
 const handleMenuClick: MenuProps['onClick'] = (e) => {
@@ -67,8 +82,11 @@ const handleMenuClick: MenuProps['onClick'] = (e) => {
         SIDEBAR_BY_ROLE[getInfoUser()?.role ?? ROLE_APPLICANT]
     ).find((item: any) => String(item.order) === e.key)
 
-    side && router.push({ name: side.route })
+    if (side?.route === 'logout') {
+        return handleLogout()
+    }
 
+    side && router.push({ name: side.route })
     selectedKeys.value.splice(0, 1, String(side?.order))
 }
 
@@ -82,6 +100,9 @@ onMounted(async () => {
 
 <template>
     <div id="sidebar">
+        <div class="logo">
+            <img :src="Logo" alt="Logo sidebar" />
+        </div>
         <a-menu
             class="sidebar-menu"
             :class="`${collapsed ? 'sp' : 'pc'}`"

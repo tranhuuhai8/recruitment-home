@@ -1,5 +1,5 @@
 export default {
-    home: 'Home',
+    dashboard: 'Dashboard',
     info: 'Information',
     user: 'User',
     menu1: 'Menu1',
@@ -12,4 +12,6 @@ export default {
     jobs: 'Jobs',
     reviews: 'Reviews',
     master_data: 'Master data',
+    back_to_home: 'Back to home',
+    logout: 'Logout',
 }

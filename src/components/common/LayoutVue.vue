@@ -1,11 +1,6 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
-import {
-    AppHeaderHomepage,
-    AppFooterVue,
-    AppSidebarVue,
-    AppHeaderManager,
-} from '.'
+import { AppHeaderHomepage, AppFooterVue, AppSidebarVue } from '.'
 import { useRoute } from 'vue-router'
 import { ROUTE_PATH_MANAGER, ROUTER_AUTH } from '@/libs'
 
@@ -29,7 +24,6 @@ watch(route, () => {
         </a-layout-content>
     </a-layout>
     <a-layout class="ant-layout-body" v-if="isRouteManager">
-        <AppHeaderManager />
         <div class="content-manager">
             <AppSidebarVue />
             <a-layout-content>

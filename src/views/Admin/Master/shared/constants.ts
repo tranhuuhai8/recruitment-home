@@ -14,6 +14,9 @@ export const INITIAL_QUERY_MST = {
     filters: [],
 }
 
+export const KEY_TAB_CITY = '1'
+export const KEY_TAB_CATEGORY = '2'
+
 export const INITIAL_FORM_SEARCH = {
     search: '',
     status: FALSE_VALUE,

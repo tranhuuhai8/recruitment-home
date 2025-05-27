@@ -35,7 +35,7 @@
             text-transform: uppercase;
 
             &::before {
-                content: "";
+                content: '';
                 position: absolute;
                 bottom: 0;
                 left: 50%;
@@ -132,19 +132,28 @@
 }
 
 .content-manager {
-    margin-top: 50px;
     min-height: 100%;
     @include center_flex(stretch, space-between);
 
     #sidebar {
+        width: fit-content;
         min-height: calc(100vh - 50px);
+        padding-top: 10px;
         position: relative;
         background-color: var(--vt-c-white);
         border-inline-end: 1px solid #dedcdc;
 
+        .logo {
+            text-align: center;
+            img {
+                width: 150px;
+                transition: width 0.3s linear;
+            }
+        }
+
         .btn-collapsed {
             position: absolute;
-            bottom: 50px;
+            bottom: 0;
             left: 50%;
             z-index: 1;
             padding: 2px 8px;
@@ -155,9 +164,19 @@
             }
         }
 
+        &:has(.sidebar-menu.sp) {
+            padding-top: 0;
+            .logo {
+                height: 0;
+                img {
+                    width: 0;
+                }
+            }
+        }
+
         .sidebar-menu {
-            width: 200px;
-            padding: 15px 12px;
+            width: 215px;
+            padding: 10px 12px 15px;
             transition: all 0.3s linear;
 
             .ant-menu-item {
@@ -212,9 +231,11 @@
 }
 
 .box {
-    border-radius: 20px;
+    border-radius: 10px;
+    padding: 20px 25px;
     overflow: hidden;
     position: relative;
+    background-color: var(--vt-c-white);
 
     &.no-border {
         border: none;
@@ -225,18 +246,35 @@
     }
 
     &.box-search {
+        margin-bottom: 10px;
+
         .ant-form {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
 
             .ant-form-item {
                 width: auto;
                 margin-right: 10px;
-                margin-bottom: 15px;
+                margin-bottom: 0;
+
+                .ant-input-affix-wrapper {
+                    width: 400px;
+                }
+
+                .ant-select {
+                    width: 120px;
+                }
             }
 
             .ant-space {
-                margin-bottom: 15px;
+                width: 100%;
+                margin-top: 15px;
+
+                .ant-btn-link {
+                    background-color: var(--vt-c-gray-v2);
+                    color: var(--vt-c-black);
+                }
             }
         }
     }

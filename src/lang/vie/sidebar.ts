@@ -1,5 +1,5 @@
 export default {
-    home: 'Trang chủ',
+    dashboard: 'Bảng điều khiển',
     info: 'Thông tin',
     user: 'Ngưởi dùng',
     menu1: 'Menu1',
@@ -12,4 +12,6 @@ export default {
     jobs: 'Công việc',
     reviews: 'Đánh giá',
     master_data: 'Dữ liệu',
+    back_to_home: 'Về trang chủ',
+    logout: 'Đăng xuất',
 }
