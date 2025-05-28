@@ -7,6 +7,13 @@ export const login = (payload: Record<string, any>, prefix: string) =>
         data: payload,
     })
 
+export const register = (payload: Record<string, any>, prefix: string) =>
+    request<any, any>({
+        url: `auth/${prefix}/register`,
+        method: 'POST',
+        data: payload,
+    })
+
 export const logout = (prefix: string) =>
     request<any, any>({
         url: `auth/${prefix}/logout`,

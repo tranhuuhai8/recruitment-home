@@ -47,8 +47,6 @@ export default {
         'Vui lòng chỉ nhập các ký tự chữ và số và dấu gạch nối cho số điện thoại. ',
     password: {
         format: 'Vui lòng nhập ít nhất 8 ký tự chữ và số cho mật khẩu của bạn. ',
-        confirm: 'Mật khẩu và mật khẩu (xác nhận lại) không khớp. ',
-        format_with_label:
-            'Vui lòng nhập ít nhất 8 ký tự chữ và số nửa độ rộng cho {0}. ',
+        confirm: 'Mật khẩu và mật khẩu xác nhận lại không khớp. ',
     },
 }

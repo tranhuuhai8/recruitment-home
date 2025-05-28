@@ -12,6 +12,11 @@
     box-shadow: var(--vt-box-shadow-1);
     background-color: var(--vt-c-white);
 
+    &.register {
+        max-width: 650px;
+        transform: translateY(100px);
+    }
+
     .back-to-home {
         position: absolute;
         top: 5px;
@@ -32,7 +37,7 @@
         .ant-form-item {
             width: 100%;
 
-            &:nth-child(3) {
+            &.role {
                 margin-bottom: 5px;
             }
 
@@ -50,6 +55,16 @@
             width: 100%;
             padding: 0;
             height: auto;
+        }
+    }
+
+    .suggest-auth {
+        margin-top: 15px;
+        text-align: center;
+
+        span {
+            color: var(--vt-c-blue);
+            cursor: pointer;
         }
     }
 

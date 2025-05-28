@@ -1,6 +1,6 @@
 import axios from 'axios'
 import router from '@/router'
-import { STATUS_CODE_SUCCESS } from '@/libs'
+import { notify, STATUS_CODE_SUCCESS } from '@/libs'
 
 axios.defaults.withCredentials = false
 
@@ -35,6 +35,11 @@ instance.interceptors.response.use(
     function (error) {
         if (error?.response?.data.message === 'Unauthenticated.') {
             localStorage.clear()
+            notify(
+                'Truy cập bị từ chối. Vui lòng đăng nhập để tiếp tục!',
+                '',
+                'error'
+            )
             return router.push({ name: 'login' })
         }
         if (error?.response?.data) {
