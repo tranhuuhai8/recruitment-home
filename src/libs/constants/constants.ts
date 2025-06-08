@@ -114,10 +114,14 @@ export const ROLE_ADMIN = 1
 export const ROLE_COMPANY = 2
 export const ROLE_APPLICANT = 3
 
+export const PREFIX_ROLE_ADMIN = 'admin'
+export const PREFIX_ROLE_COMPANY = 'company'
+export const PREFIX_ROLE_APPLICANT = 'applicant'
+
 export const ROLE_PATH_PREFIX: Record<number, string> = {
-    [ROLE_ADMIN]: 'admin',
-    [ROLE_COMPANY]: 'company',
-    [ROLE_APPLICANT]: 'applicant',
+    [ROLE_ADMIN]: PREFIX_ROLE_ADMIN,
+    [ROLE_COMPANY]: PREFIX_ROLE_COMPANY,
+    [ROLE_APPLICANT]: PREFIX_ROLE_APPLICANT,
 }
 
 const mergeSidebarWithBottom = (
@@ -146,5 +150,8 @@ export const SIDEBAR_BY_ROLE: Record<number, any> = {
         APP_SIDEBAR_COMPANY,
         APP_SIDEBAR_BOTTOM
     ),
-    [ROLE_APPLICANT]: APP_SIDEBAR_APPLICANT,
+    [ROLE_APPLICANT]: mergeSidebarWithBottom(
+        APP_SIDEBAR_APPLICANT,
+        APP_SIDEBAR_BOTTOM
+    ),
 }

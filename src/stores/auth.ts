@@ -29,6 +29,14 @@ export const useAuthStore = defineStore('auth', () => {
         }
     }
 
+    const register = async (payload: Record<string, any>, prefix: string) => {
+        try {
+            return await API.register(payload, prefix)
+        } catch (error: any) {
+            return error
+        }
+    }
+
     const logout = async () => {
         try {
             const { status_code, message } = await API.logout(
@@ -68,6 +76,7 @@ export const useAuthStore = defineStore('auth', () => {
         token,
         isAuthenticated,
         login,
+        register,
         setUserInformation,
         logout,
         getUser,

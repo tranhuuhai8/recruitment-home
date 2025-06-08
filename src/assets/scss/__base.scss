@@ -67,6 +67,10 @@ body {
     &:hover {
         opacity: 0.8;
     }
+
+    &.ant-btn-link {
+        color: var(--vt-c-blue);
+    }
 }
 
 .ant-notification-notice-message {

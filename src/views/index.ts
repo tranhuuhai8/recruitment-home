@@ -8,3 +8,4 @@ export const MasterView = () => import('@/views/Admin/Master/MasterView.vue')
 
 // Auth
 export const LoginView = () => import('@/views/Auth/LoginView.vue')
+export const RegisterView = () => import('@/views/Auth/RegisterView.vue')
