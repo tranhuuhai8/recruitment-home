@@ -85,10 +85,9 @@ export const parser = (value: string) => value!.replace(/\$\s?|(,*)/g, '')
 export const validateEmail = async (
     _: any,
     value: any,
-    text: string = t('auth.forgot.email'),
-    flag = false
+    text: string = t('auth.label.mail_address')
 ) => {
-    if (!value && flag) return Promise.resolve()
+    if (!value) return Promise.resolve()
     const regex = new RegExp(REGEX_EMAIL)
 
     if (value.length > MAX_STRING) {

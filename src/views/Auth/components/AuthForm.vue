@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router'
 import { trim } from '@/libs'
 import i18n from '@/lang'
 import type { FormInstance } from 'ant-design-vue'
-import { ROLE_OPTIONS } from '../shared'
+import { getRoleOptions, ROLE_OPTIONS } from '../shared'
 
 const { t } = i18n
 const formRef = ref<FormInstance>()
@@ -58,7 +58,7 @@ onUnmounted(() => formRef.value?.resetFields())
                 ref="select"
                 v-model:value="formState.role"
                 style="width: 120px"
-                :options="ROLE_OPTIONS"
+                :options="getRoleOptions(isLogin)"
             />
         </a-form-item>
         <a-button

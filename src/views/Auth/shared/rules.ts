@@ -11,8 +11,7 @@ export const rulesLogin = {
             trigger: 'blur',
         },
         {
-            validator: (_: any, value: any) =>
-                validateEmail(_, value, t('auth.label.mail_address'), true),
+            validator: (_: any, value: any) => validateEmail(_, value),
             trigger: 'blur',
         },
     ],
@@ -45,38 +44,7 @@ export const rulesLogin = {
     ],
 }
 
-export const ruleRegister = {
-    ...rulesLogin,
-    password_confirmation: [
-        {
-            required: true,
-            message: t('validation.required', [
-                t('auth.label.password_confirmation'),
-            ]),
-        },
-        {
-            max: MAX_STRING,
-            message: t('validation.max.string', [
-                t('auth.label.password_confirmation'),
-                MAX_STRING,
-            ]),
-        },
-        {
-            min: MIN_STRING,
-            message: t('validation.min.string', [
-                t('auth.label.password_confirmation'),
-                MIN_STRING,
-            ]),
-        },
-        {
-            validator: (_: any, value: any) =>
-                validateEmail(_, value, t('auth.label.mail_address'), true),
-            trigger: 'blur',
-        },
-    ],
-}
-
-export const getRuleRegister = (ruleForm: any) => ({
+export const getRuleRegister = (ruleForm: Record<string, any>) => ({
     ...rulesLogin,
     password_confirmation: [
         {
