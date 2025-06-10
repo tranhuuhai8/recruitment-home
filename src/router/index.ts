@@ -1,6 +1,6 @@
 import { useQueryStore, useAuthStore } from '@/stores'
 import { createRouter, createWebHistory } from 'vue-router'
-import * as Page from '@/views/index'
+import * as Pages from '@/views/index'
 import { getRolePathMap } from '@/libs'
 
 const ifAuthenticated = (to: any, from: any, next: any) => {
@@ -31,7 +31,7 @@ const router = createRouter({
                 {
                     path: '',
                     name: 'home',
-                    component: Page.HomeView,
+                    component: Pages.HomeView,
                 },
                 {
                     path: 'auth',
@@ -39,12 +39,12 @@ const router = createRouter({
                         {
                             path: 'login',
                             name: 'login',
-                            component: Page.LoginView,
+                            component: Pages.LoginView,
                         },
                         {
                             path: 'register',
                             name: 'register',
-                            component: Page.RegisterView,
+                            component: Pages.RegisterView,
                         },
                     ],
                 },
@@ -54,37 +54,59 @@ const router = createRouter({
                         {
                             path: 'dashboard',
                             name: 'admin-dashboard',
-                            component: Page.HomeViewAdmin,
+                            component: Pages.HomeViewAdmin,
                             beforeEnter: ifAuthenticated,
                         },
                         {
                             path: 'companies',
-                            name: 'admin-companies',
-                            component: Page.HomeViewAdmin,
-                            beforeEnter: ifAuthenticated,
+                            children: [
+                                {
+                                    path: '',
+                                    name: 'admin-companies',
+                                    component: Pages.CompanyView,
+                                    beforeEnter: ifAuthenticated,
+                                },
+                                {
+                                    path: ':id/edit',
+                                    name: 'admin-companies-edit',
+                                    component: Pages.CompanyDetail,
+                                    beforeEnter: ifAuthenticated,
+                                },
+                            ],
                         },
                         {
                             path: 'applicants',
-                            name: 'admin-applicants',
-                            component: Page.HomeViewAdmin,
-                            beforeEnter: ifAuthenticated,
+                            children: [
+                                {
+                                    path: '',
+                                    name: 'admin-applicants',
+                                    component: Pages.ApplicantView,
+                                    beforeEnter: ifAuthenticated,
+                                },
+                                {
+                                    path: ':id/edit',
+                                    name: 'admin-applicants-edit',
+                                    component: Pages.ApplicantDetail,
+                                    beforeEnter: ifAuthenticated,
+                                },
+                            ],
                         },
                         {
                             path: 'jobs',
                             name: 'admin-jobs',
-                            component: Page.HomeViewAdmin,
+                            component: Pages.HomeViewAdmin,
                             beforeEnter: ifAuthenticated,
                         },
                         {
                             path: 'reviews',
                             name: 'admin-reviews',
-                            component: Page.HomeViewAdmin,
+                            component: Pages.HomeViewAdmin,
                             beforeEnter: ifAuthenticated,
                         },
                         {
                             path: 'master-data',
                             name: 'admin-master-data',
-                            component: Page.MasterView,
+                            component: Pages.MasterView,
                             beforeEnter: ifAuthenticated,
                         },
                     ],
@@ -95,7 +117,7 @@ const router = createRouter({
                         {
                             path: '',
                             name: 'company-dashboard',
-                            component: Page.HomeViewCompany,
+                            component: Pages.HomeViewCompany,
                             beforeEnter: ifAuthenticated,
                         },
                     ],
@@ -106,7 +128,7 @@ const router = createRouter({
                         {
                             path: '',
                             name: 'applicant-dashboard',
-                            component: Page.HomeViewApplicant,
+                            component: Pages.HomeViewApplicant,
                             beforeEnter: ifAuthenticated,
                         },
                     ],

@@ -1,4 +1,5 @@
-import { REGEX_FLOAT, REGEX_NUMBER } from './regex'
+import { MAX_STRING } from '../constants/constants'
+import { REGEX_EMAIL, REGEX_FLOAT, REGEX_NUMBER, REGEX_TEL } from './regex'
 import i18n from '@/lang'
 
 const { t } = i18n
@@ -111,4 +112,44 @@ export const validateSize = async (
             )
         )
     }
+}
+
+export const validateEmail = async (
+    _: any,
+    value: any,
+    text: string = t('auth.labels.mail_address')
+) => {
+    if (!value) return Promise.resolve()
+    const regex = new RegExp(REGEX_EMAIL)
+
+    if (value.length > MAX_STRING) {
+        return Promise.reject(
+            new Error(
+                t('validation.max.string', {
+                    0: text,
+                    1: MAX_STRING,
+                }) as string
+            )
+        )
+    }
+    if (!regex.test(value)) {
+        return Promise.reject(
+            new Error(
+                t('validation.email', {
+                    0: text,
+                }) as string
+            )
+        )
+    }
+    return Promise.resolve()
+}
+
+export const validatePhoneNumber = async (_: any, value: any) => {
+    if (!value) return Promise.resolve()
+
+    if (!REGEX_TEL.test(value)) {
+        return Promise.reject(new Error(t('validation.tel_format') as string))
+    }
+
+    return Promise.resolve()
 }

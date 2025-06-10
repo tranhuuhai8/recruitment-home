@@ -11,6 +11,7 @@ export default {
     search: 'Tìm kiếm',
     all: 'Tất cả',
     gender: {
+        other: 'Khác',
         male: 'Nam',
         female: 'Nữ',
     },

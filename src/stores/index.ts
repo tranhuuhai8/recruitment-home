@@ -3,6 +3,8 @@ import { useAuthStore } from './auth'
 import { useQueryStore } from './query'
 import { useCityStore } from './city'
 import { useJobCategoryStore } from './jobCategory'
+import { useCompanyStore } from './admin/company'
+import { useApplicantStore } from './admin/applicant'
 
 export {
     useSettingStore,
@@ -10,4 +12,6 @@ export {
     useQueryStore,
     useCityStore,
     useJobCategoryStore,
+    useCompanyStore,
+    useApplicantStore,
 }

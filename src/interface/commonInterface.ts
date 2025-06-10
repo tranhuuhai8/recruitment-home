@@ -1,6 +1,6 @@
 export interface ParamsOrders {
     key: string
-    dir: 'desc' | 'asc'
+    dir: 'descending' | 'ascending'
 }
 
 export interface ParamsFilters {

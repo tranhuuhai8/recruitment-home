@@ -43,8 +43,7 @@ export default {
     timezone: '{0} must be a valid timezone',
     unique: '{0} already exists',
     already_exist: '{0} has already been registered',
-    tel_format:
-        'Please enter only alphanumeric characters and hyphens for the phone number.',
+    tel_format: 'Please enter only phone numbers in correct format',
     password: {
         format: 'Please enter at least 8 alphanumeric characters for your password.',
         confirm: 'Password and confirmation password do not match.',

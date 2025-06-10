@@ -3,7 +3,7 @@ export default {
     logout: 'Đăng xuất',
     forgot_password: 'Quên mật khẩu',
     register: 'Đăng ký',
-    label: {
+    labels: {
         name: 'Tên',
         role: 'Quyền',
         mail_address: 'Email',

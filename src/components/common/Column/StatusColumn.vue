@@ -17,7 +17,6 @@ const props = defineProps(['status'])
 <style scoped lang="scss">
 div {
     padding: 5px 8px;
-    max-width: 100px;
     margin: 0 auto;
 }
 </style>

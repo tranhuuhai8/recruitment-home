@@ -267,14 +267,8 @@
                 }
             }
 
-            .ant-space {
-                width: 100%;
+            .space-group-btn {
                 margin-top: 15px;
-
-                .ant-btn-link {
-                    background-color: var(--vt-c-gray-v2);
-                    color: var(--vt-c-black);
-                }
             }
         }
     }
@@ -304,5 +298,9 @@
                 background-color: var(--vt-c-gray-v2);
             }
         }
+    }
+
+    .ant-form-item {
+        width: 65%;
     }
 }

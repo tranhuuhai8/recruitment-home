@@ -3,7 +3,6 @@ import {
     formatter,
     PAGE_FIRST,
     REGEX_TEL,
-    REGEX_TEL_V2,
     ROLE_APPLICANT,
     ROLE_PATH_PREFIX,
     ROUTE_NAME_DASHBOARD,
@@ -136,12 +135,6 @@ export const filterOption = (input: any, option: Option) =>
 
 export const regexTel = (value: KeyboardEvent) => {
     if (!REGEX_TEL.test(value.key)) {
-        value.preventDefault()
-    }
-}
-
-export const checkRegex = (value: KeyboardEvent) => {
-    if (!REGEX_TEL_V2.test(value.key)) {
         value.preventDefault()
     }
 }

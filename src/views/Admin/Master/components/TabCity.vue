@@ -25,9 +25,7 @@ const handleSort = ({ field: key, order: dir }: SortProps) => {
     emits('sort', mapSortQuery(props.query, key, sortType.value, false))
 }
 
-const handleChangePage = (page: number) => {
-    emits('changePage', page)
-}
+const handleChangePage = (page: number) => emits('changePage', page)
 
 watch(
     () => props.query,

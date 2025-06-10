@@ -1,0 +1,46 @@
+import { defineStore } from 'pinia'
+import { ref, computed } from 'vue'
+import * as API from '@/api/admin/company'
+import type { Company, CompanyResult } from '@/interface'
+
+export const useCompanyStore = defineStore('company', () => {
+    const company = ref({} as Company)
+    const companies = ref({} as CompanyResult)
+
+    const list = async (payload: Record<string, any>) => {
+        try {
+            const response = await API.list(payload)
+            return (companies.value = response.data)
+        } catch (error: any) {
+            return error
+        }
+    }
+
+    const detail = async (id: number) => {
+        try {
+            const response = await API.detail(id)
+            return (company.value = response.data)
+        } catch (error: any) {
+            return error
+        }
+    }
+
+    const update = async (payload: Record<string, any>, id: number) => {
+        try {
+            return await API.update(payload, id)
+        } catch (error: any) {
+            return error
+        }
+    }
+
+    const getCompany = computed(() => company.value)
+    const getCompanies = computed(() => companies.value)
+
+    return {
+        getCompany,
+        getCompanies,
+        list,
+        detail,
+        update,
+    }
+})

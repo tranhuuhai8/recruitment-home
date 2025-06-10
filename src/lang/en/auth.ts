@@ -3,7 +3,7 @@ export default {
     logout: 'Logout',
     forgot_password: 'Forgot password',
     register: 'Register',
-    label: {
+    labels: {
         name: 'Name',
         role: 'Role',
         mail_address: 'Email',

@@ -13,6 +13,6 @@ export const getQuerySearch = (
         search,
         hasType
             ? mapKeyToData({ status, type: data?.type })
-            : mapKeyToData(status)
+            : mapKeyToData({ status })
     )
 }
