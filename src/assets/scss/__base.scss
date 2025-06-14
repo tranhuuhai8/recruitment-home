@@ -50,6 +50,11 @@ body {
     }
 }
 
+.title-page {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
 .ant-form-item-explain {
     margin: 2px 0 10px;
 
@@ -60,7 +65,8 @@ body {
 }
 
 .ant-spin {
-    @include center_pos;
+    top: 100px !important;
+    inset-inline-start: unset !important;
 }
 
 .ant-btn {
@@ -70,6 +76,19 @@ body {
 
     &.ant-btn-link {
         color: var(--vt-c-blue);
+    }
+}
+
+.space-group-btn {
+    width: 100%;
+
+    .ant-btn-link {
+        background-color: var(--vt-c-gray-v2);
+        color: var(--vt-c-black);
+
+        &:hover {
+            color: var(--vt-c-black);
+        }
     }
 }
 

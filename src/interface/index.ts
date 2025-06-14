@@ -1,3 +1,5 @@
 export * from './commonInterface'
 export * from './userInterface'
 export * from './masterDataInterface'
+export * from './companyInterface'
+export * from './applicantInterface'

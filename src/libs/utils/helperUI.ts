@@ -6,10 +6,8 @@ import {
     WarningOutlined,
     CloseCircleOutlined,
 } from '@ant-design/icons-vue'
-import { MAX_STRING, REGEX_EMAIL, STATUS_CODE_SUCCESS } from '..'
-import i18n from '@/lang'
+import { STATUS_CODE_SUCCESS } from '..'
 
-const { t } = i18n
 const typeIcon = {
     info: [InfoCircleOutlined, 'blue'],
     success: [CheckCircleOutlined, 'green'],
@@ -81,36 +79,6 @@ export const formatter = (value: string) =>
     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 
 export const parser = (value: string) => value!.replace(/\$\s?|(,*)/g, '')
-
-export const validateEmail = async (
-    _: any,
-    value: any,
-    text: string = t('auth.label.mail_address')
-) => {
-    if (!value) return Promise.resolve()
-    const regex = new RegExp(REGEX_EMAIL)
-
-    if (value.length > MAX_STRING) {
-        return Promise.reject(
-            new Error(
-                t('validation.max.string', {
-                    0: text,
-                    1: MAX_STRING,
-                }) as string
-            )
-        )
-    }
-    if (!regex.test(value)) {
-        return Promise.reject(
-            new Error(
-                t('validation.email', {
-                    0: text,
-                }) as string
-            )
-        )
-    }
-    return Promise.resolve()
-}
 
 export const toPascalCase = (text: string) =>
     text.toLowerCase().replace(/(^\w|\s+\w)/g, (match) => match.toUpperCase())

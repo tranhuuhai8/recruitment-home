@@ -43,8 +43,7 @@ export default {
     timezone: '{0}Chỉ các múi giờ hợp lệ mới hợp lệ',
     unique: '{0} đã tồn tại',
     already_exist: '{0} đã được đăng ký',
-    tel_format:
-        'Vui lòng chỉ nhập các ký tự chữ và số và dấu gạch nối cho số điện thoại. ',
+    tel_format: 'Vui lòng chỉ nhập số diện thoại đúng định dạng',
     password: {
         format: 'Vui lòng nhập ít nhất 8 ký tự chữ và số cho mật khẩu của bạn. ',
         confirm: 'Mật khẩu và mật khẩu xác nhận lại không khớp. ',

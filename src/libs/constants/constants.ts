@@ -27,6 +27,7 @@ export const PER_PAGE = 20
 export const PER_PAGE_MST = 10
 export const MAX_STRING = 255
 export const MIN_STRING = 8
+export const MAX_SHORT_NAME = 10
 export const MAX_STRING_50 = 50
 
 export const SORT_TYPE_ASC = 'ascending'
@@ -44,7 +45,7 @@ export const INITIAL_QUERY: ParamsList = {
     page: PAGE_FIRST,
     search: '',
     per_page: PER_PAGE,
-    orders: [{ key: 'id', dir: 'desc' }],
+    orders: [{ key: 'id', dir: SORT_TYPE_DESC }],
     filters: [],
 }
 
@@ -78,9 +79,39 @@ export const STATUS_HIDE = 2
 export const TYPE_DEFAULT = 1
 export const TYPE_CUSTOMIZE = 2
 
+export const GENDER_MALE = 1
+export const GENDER_FEMALE = 2
+export const GENDER_OTHER = 3
+
+export const GENDER_OPTIONS_FORM = [
+    {
+        label: t('gender.male'),
+        value: GENDER_MALE,
+    },
+    {
+        label: t('gender.female'),
+        value: GENDER_FEMALE,
+    },
+    {
+        label: t('gender.other'),
+        value: GENDER_OTHER,
+    },
+]
+
+export const GENDER_OPTIONS_SEARCH: Record<number, string> = {
+    1: t('gender.male'),
+    2: t('gender.female'),
+    3: t('gender.other'),
+}
+
 export const STATUS_DISPLAY_OPTIONS_SEARCH: Record<number, string> = {
     1: t('status.show'),
     2: t('status.hide'),
+}
+
+export const STATUS_OPTIONS_SEARCH: Record<number, string> = {
+    1: t('status.active'),
+    2: t('status.inactive'),
 }
 
 export const STATUS_DISPLAY_OPTIONS_FORM = [
@@ -91,6 +122,17 @@ export const STATUS_DISPLAY_OPTIONS_FORM = [
     {
         label: t('status.hide'),
         value: STATUS_HIDE,
+    },
+]
+
+export const STATUS_OPTIONS_FORM = [
+    {
+        label: t('status.active'),
+        value: STATUS_ACTIVE,
+    },
+    {
+        label: t('status.inactive'),
+        value: STATUS_INACTIVE,
     },
 ]
 

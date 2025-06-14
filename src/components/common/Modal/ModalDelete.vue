@@ -19,16 +19,16 @@ const props = defineProps(['open', 'loading'])
             <div class="content mb-20">
                 {{ t('modal.delete.confirm') }}
             </div>
-            <a-space>
-                <a-button type="link" @click="$emit('close')">
-                    {{ t('cancel') }}
-                </a-button>
+            <a-space class="space-group-btn">
                 <a-button
                     class="btn-delete"
                     :loading="props.loading"
                     @click="$emit('onDelete')"
                 >
                     {{ t('delete') }}
+                </a-button>
+                <a-button type="link" @click="$emit('close')">
+                    {{ t('cancel') }}
                 </a-button>
             </a-space>
         </template>

@@ -7,7 +7,7 @@ export const rulesLogin = {
     mail_address: [
         {
             required: true,
-            message: t('validation.required', [t('auth.label.mail_address')]),
+            message: t('validation.required', [t('auth.labels.mail_address')]),
             trigger: 'blur',
         },
         {
@@ -18,19 +18,19 @@ export const rulesLogin = {
     password: [
         {
             required: true,
-            message: t('validation.required', [t('auth.label.password')]),
+            message: t('validation.required', [t('auth.labels.password')]),
         },
         {
             max: MAX_STRING,
             message: t('validation.max.string', [
-                t('auth.label.password'),
+                t('auth.labels.password'),
                 MAX_STRING,
             ]),
         },
         {
             min: MIN_STRING,
             message: t('validation.min.string', [
-                t('auth.label.password'),
+                t('auth.labels.password'),
                 MIN_STRING,
             ]),
         },
@@ -38,7 +38,7 @@ export const rulesLogin = {
     role: [
         {
             required: true,
-            message: t('validation.required', [t('auth.label.role')]),
+            message: t('validation.required', [t('auth.labels.role')]),
             trigger: 'blur',
         },
     ],
@@ -50,20 +50,20 @@ export const getRuleRegister = (ruleForm: Record<string, any>) => ({
         {
             required: true,
             message: t('validation.required', [
-                t('auth.label.password_confirmation'),
+                t('auth.labels.password_confirmation'),
             ]),
         },
         {
             max: MAX_STRING,
             message: t('validation.max.string', [
-                t('auth.label.password_confirmation'),
+                t('auth.labels.password_confirmation'),
                 MAX_STRING,
             ]),
         },
         {
             min: MIN_STRING,
             message: t('validation.min.string', [
-                t('auth.label.password_confirmation'),
+                t('auth.labels.password_confirmation'),
                 MIN_STRING,
             ]),
         },
