@@ -300,7 +300,28 @@
         }
     }
 
-    .ant-form-item {
-        width: 65%;
+    .ant-form {
+        .ant-form-item {
+            width: 50%;
+        }
+
+        > .ant-row {
+            width: 50%;
+
+            .ant-col {
+                width: 48%;
+
+                .ant-form-item {
+                    width: 100%;
+
+                    .ant-select,
+                    .ant-picker,
+                    .ant-form-item-label,
+                    .ant-form-item-control {
+                        width: 100%;
+                    }
+                }
+            }
+        }
     }
 }

@@ -3,6 +3,10 @@ export default {
     logout: 'Logout',
     forgot_password: 'Forgot password',
     register: 'Register',
+    notify: {
+        token_failed: 'Your session has expired. Please log in again!',
+        permission_denied: 'Account does not have access',
+    },
     labels: {
         name: 'Name',
         role: 'Role',

@@ -6,7 +6,7 @@ import { getRolePathMap } from '@/libs'
 const ifAuthenticated = (to: any, from: any, next: any) => {
     const authStore = useAuthStore()
     if (!authStore.isAuthenticated) {
-        next('/auth/login')
+        next({ name: 'login' })
         return
     }
 
@@ -32,6 +32,11 @@ const router = createRouter({
                     path: '',
                     name: 'home',
                     component: Pages.HomeView,
+                },
+                {
+                    path: 'not-found',
+                    name: 'not-found',
+                    component: Pages.NotFound,
                 },
                 {
                     path: 'auth',
@@ -69,7 +74,7 @@ const router = createRouter({
                                 {
                                     path: ':id/edit',
                                     name: 'admin-companies-edit',
-                                    component: Pages.CompanyDetail,
+                                    component: Pages.CompanyUpdate,
                                     beforeEnter: ifAuthenticated,
                                 },
                             ],
@@ -86,7 +91,7 @@ const router = createRouter({
                                 {
                                     path: ':id/edit',
                                     name: 'admin-applicants-edit',
-                                    component: Pages.ApplicantDetail,
+                                    component: Pages.ApplicantUpdate,
                                     beforeEnter: ifAuthenticated,
                                 },
                             ],

@@ -5,7 +5,12 @@ import { useI18n } from 'vue3-i18n'
 import { reactive, ref, h, VueElement, onMounted } from 'vue'
 import * as Icons from '@/components/icons'
 import { useAuthStore } from '@/stores'
-import { getInfoUser, ROLE_APPLICANT, SIDEBAR_BY_ROLE, notify } from '@/libs'
+import {
+    getUserInformation,
+    ROLE_APPLICANT,
+    SIDEBAR_BY_ROLE,
+    notify,
+} from '@/libs'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
 import Logo from '@/assets/imgs/logo.png'
 
@@ -18,7 +23,7 @@ const selectedKeys = ref<string[]>([])
 const collapsed = ref(false)
 
 const handleRoute = async () => {
-    const menus = SIDEBAR_BY_ROLE[getInfoUser()?.role ?? ROLE_APPLICANT]
+    const menus = SIDEBAR_BY_ROLE[getUserInformation()?.role ?? ROLE_APPLICANT]
     for (const key in menus) {
         const item = menus[key]
         items.push(
@@ -79,7 +84,7 @@ const handleLogout = async () => {
 
 const handleMenuClick: MenuProps['onClick'] = (e) => {
     const side: any = Object.values(
-        SIDEBAR_BY_ROLE[getInfoUser()?.role ?? ROLE_APPLICANT]
+        SIDEBAR_BY_ROLE[getUserInformation()?.role ?? ROLE_APPLICANT]
     ).find((item: any) => String(item.order) === e.key)
 
     if (side?.route === 'logout') {

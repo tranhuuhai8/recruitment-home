@@ -1,8 +1,8 @@
 import { useSettingStore } from './setting'
 import { useAuthStore } from './auth'
 import { useQueryStore } from './query'
-import { useCityStore } from './city'
-import { useJobCategoryStore } from './jobCategory'
+import { useCityStore } from './admin/city'
+import { useJobCategoryStore } from './admin/jobCategory'
 import { useCompanyStore } from './admin/company'
 import { useApplicantStore } from './admin/applicant'
 

@@ -11,6 +11,10 @@
     }
 
     &.modal-mst-data {
+        .ant-modal {
+            width: 50%;
+            max-width: 600px;
+        }
         .ant-space {
             justify-content: space-between;
 

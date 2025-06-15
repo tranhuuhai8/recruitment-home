@@ -2,16 +2,17 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import * as API from '@/api/auth'
 import {
-    getInfoUser,
+    setAuth,
+    ACCESS_TOKEN,
     ROLE_APPLICANT,
     ROLE_PATH_PREFIX,
     STATUS_CODE_SUCCESS,
 } from '@/libs'
-const tokenKey = 'access_token'
+import type { User } from '@/interface'
 
 export const useAuthStore = defineStore('auth', () => {
-    const me = ref({})
-    const TOKEN_STR = localStorage.getItem(tokenKey)
+    const me = ref<User>()
+    const TOKEN_STR = localStorage.getItem(ACCESS_TOKEN)
     const token = ref(TOKEN_STR)
     const isAuthenticated = computed(() => !!token.value)
 
@@ -40,7 +41,7 @@ export const useAuthStore = defineStore('auth', () => {
     const logout = async () => {
         try {
             const { status_code, message } = await API.logout(
-                ROLE_PATH_PREFIX[getInfoUser()?.role ?? ROLE_APPLICANT]
+                ROLE_PATH_PREFIX[me.value?.role ?? ROLE_APPLICANT]
             )
             if (status_code === STATUS_CODE_SUCCESS) {
                 localStorage.clear()
@@ -53,9 +54,8 @@ export const useAuthStore = defineStore('auth', () => {
         }
     }
 
-    const setUserInformation = async (user: any, accessToken: string) => {
-        localStorage.setItem(tokenKey, accessToken)
-        localStorage.setItem('user', JSON.stringify(user))
+    const setUserInformation = async (user: User, accessToken: string) => {
+        setAuth(user, accessToken)
         token.value = accessToken
         me.value = user
     }
@@ -77,7 +77,6 @@ export const useAuthStore = defineStore('auth', () => {
         isAuthenticated,
         login,
         register,
-        setUserInformation,
         logout,
         getUser,
         getMe,

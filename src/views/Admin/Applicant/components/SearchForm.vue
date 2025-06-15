@@ -36,15 +36,15 @@ const resetFields = () => {
             />
         </a-form-item>
 
-        <a-form-item name="gender">
+        <a-form-item name="gender" :label="t('gender.label')">
             <a-select
                 v-model:value="formState.gender"
-                style="width: 200px"
+                style="width: 100px"
                 :options="getObjOptions(GENDER_OPTIONS_SEARCH)"
             />
         </a-form-item>
 
-        <a-form-item name="status">
+        <a-form-item name="status" :label="t('status.label')">
             <a-select
                 style="width: 200px"
                 :options="getObjOptions(STATUS_OPTIONS_SEARCH)"

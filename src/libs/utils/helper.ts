@@ -1,6 +1,7 @@
 import {
     ALL_OPTION,
     formatter,
+    getUserInformation,
     PAGE_FIRST,
     REGEX_TEL,
     ROLE_APPLICANT,
@@ -88,13 +89,11 @@ export const mapFilterQuery = (
 export const getFirstErrorMessage = (errors: Record<string, any>) =>
     Object.values(errors).flat().shift() as string
 
-export const getInfoUser = () => {
-    const info: any = localStorage.getItem('user')
-    return JSON.parse(info)
-}
-
 export const getRouterDashboard = () =>
-    ROUTE_NAME_DASHBOARD[getInfoUser()?.role ?? ROLE_APPLICANT]
+    ROUTE_NAME_DASHBOARD[getUserInformation()?.role ?? ROLE_APPLICANT]
+
+export const getRolePathMap = () =>
+    ROLE_PATH_PREFIX[getUserInformation()?.role ?? ROLE_APPLICANT]
 
 export const partition = (arr: any[], fn: any) =>
     arr.reduce(
@@ -138,6 +137,3 @@ export const regexTel = (value: KeyboardEvent) => {
         value.preventDefault()
     }
 }
-
-export const getRolePathMap = () =>
-    ROLE_PATH_PREFIX[getInfoUser()?.role ?? ROLE_APPLICANT]

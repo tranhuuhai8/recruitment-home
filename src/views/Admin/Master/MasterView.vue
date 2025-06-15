@@ -109,7 +109,6 @@ onMounted(async () => {
         centered
         wrapClassName="modal-mst-data"
         :open="open"
-        :width="500"
         :hasFooter="false"
         :closable="false"
         @cancel="open = false"

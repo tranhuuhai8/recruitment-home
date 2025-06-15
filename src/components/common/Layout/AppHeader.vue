@@ -4,7 +4,7 @@ import type { MenuProps, ItemType } from 'ant-design-vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores'
 import Avatar from '@/assets/imgs/avatar.png'
-import { APP_HEADER, getInfoUser, getRolePathMap, notify } from '@/libs'
+import { APP_HEADER, getUserInformation, getRolePathMap, notify } from '@/libs'
 import { reactive, ref, VueElement, onMounted } from 'vue'
 
 const { t } = useI18n()
@@ -68,7 +68,7 @@ const redirectToLogin = () => router.push({ name: 'login', replace: true })
 onMounted(async () => {
     await router.isReady()
     await handleRoute()
-    isLogin.value = !!getInfoUser()
+    isLogin.value = !!getUserInformation()
 })
 </script>
 
