@@ -31,7 +31,7 @@ const resetFields = () => {
             />
         </a-form-item>
 
-        <a-form-item name="status">
+        <a-form-item name="status" :label="t('status.label')">
             <a-select
                 style="width: 200px"
                 :options="getObjOptions(STATUS_OPTIONS_SEARCH)"

@@ -90,40 +90,43 @@ watch(
 <template>
     <a-form
         ref="formRef"
-        class="form-city"
+        class="form-job-category"
         :model="formState"
         :rules="categoryRules"
-        :label-col="{ span: 6 }"
-        :wrapper-col="{ span: 18 }"
+        :label-col="{ span: 4 }"
+        :wrapper-col="{ span: 20 }"
+        @finish="onSubmit"
     >
         <a-form-item name="name" :label="t('masterData.labels.name')">
             <a-input
-                @blur="trim('name', formState)"
                 v-model:value="formState.name"
+                @blur="trim('name', formState)"
             />
         </a-form-item>
         <a-form-item
             name="description"
             :label="t('masterData.labels.description')"
         >
-            <a-input
-                @blur="trim('description', formState)"
+            <a-textarea
                 v-model:value="formState.description"
+                :placeholder="t('masterData.labels.description')"
+                :autoSize="{ minRows: 4, maxRows: 10 }"
+                @blur="trim('description', formState)"
             />
         </a-form-item>
         <a-form-item name="status" :label="t('status.label')">
             <a-select
                 ref="select"
-                v-model:value="formState.status"
                 style="width: 120px"
+                v-model:value="formState.status"
                 :options="STATUS_DISPLAY_OPTIONS_FORM"
             />
         </a-form-item>
         <a-form-item name="type" :label="t('type.label')">
             <a-select
                 ref="select"
-                v-model:value="formState.type"
                 style="width: 120px"
+                v-model:value="formState.type"
                 :options="TYPE_OPTIONS_FORM"
             />
         </a-form-item>
@@ -138,10 +141,10 @@ watch(
             </a-button>
             <a-col>
                 <a-button
-                    type="primary"
                     class="mr-10"
+                    type="primary"
+                    html-type="submit"
                     :loading="loading"
-                    @click="onSubmit"
                 >
                     {{ t(`${props.id ? 'update' : 'create'}`) }}
                 </a-button>

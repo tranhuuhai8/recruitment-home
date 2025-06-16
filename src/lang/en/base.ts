@@ -11,6 +11,7 @@ export default {
     search: 'Search',
     all: 'All',
     gender: {
+        label: 'Gender',
         other: 'Other',
         male: 'Male',
         female: 'Female',

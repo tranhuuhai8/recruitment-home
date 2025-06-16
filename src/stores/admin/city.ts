@@ -1,16 +1,16 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import * as API from '@/api/jobCategory'
-import type { JobCategoryResult, ResponseList } from '@/interface'
+import * as API from '@/api/admin/city'
+import type { CityResult, ResponseList } from '@/interface'
 
-export const useJobCategoryStore = defineStore('jobCategory', () => {
-    const jobCategory = ref({} as ResponseList)
-    const jobCategories = ref({} as JobCategoryResult)
+export const useCityStore = defineStore('city', () => {
+    const city = ref({} as ResponseList)
+    const cities = ref({} as CityResult)
 
     const list = async (payload: Record<string, any>) => {
         try {
             const response = await API.list(payload)
-            return (jobCategories.value = response.data)
+            return (cities.value = response.data)
         } catch (error: any) {
             return error
         }
@@ -40,12 +40,12 @@ export const useJobCategoryStore = defineStore('jobCategory', () => {
         }
     }
 
-    const getJobCategory = computed(() => jobCategory.value)
-    const getJobCategories = computed(() => jobCategories.value)
+    const getCity = computed(() => city.value)
+    const getCities = computed(() => cities.value)
 
     return {
-        getJobCategory,
-        getJobCategories,
+        getCity,
+        getCities,
         list,
         create,
         update,

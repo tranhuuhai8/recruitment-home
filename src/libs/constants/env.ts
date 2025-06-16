@@ -1,3 +1,0 @@
-export const STRIPE_PUBLISHABLE_KEY =
-    import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY ||
-    'pk_test_51PNQdcHqv4OgSnWJX0XBqUo1aa1SqJ6Q9x5Lxs3eUbqgznzIbK9HCbEF0wMAaFlPYU05uTEVQR8IiwgTo5vXLxKJ00EDtti3jL'

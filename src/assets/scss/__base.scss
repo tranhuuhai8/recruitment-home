@@ -64,9 +64,32 @@ body {
     }
 }
 
-.ant-spin {
-    top: 100px !important;
-    inset-inline-start: unset !important;
+#app {
+    .ant-spin {
+        &:not(.spin-full) {
+            top: 100px !important;
+            inset-inline-start: unset !important;
+        }
+    }
+
+    &:has(.spin-full) {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+
+        .spin-full {
+            @include center_pos();
+
+            .ant-spin-dot {
+                font-size: 40px;
+
+                .ant-spin-dot-item {
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
+    }
 }
 
 .ant-btn {

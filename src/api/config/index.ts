@@ -1,8 +1,19 @@
 import axios from 'axios'
 import router from '@/router'
-import { notify, STATUS_CODE_SUCCESS } from '@/libs'
+import {
+    notify,
+    getToken,
+    getRolePathMap,
+    ACCESS_TOKEN,
+    STATUS_CODE_FORBIDDEN,
+    STATUS_CODE_SUCCESS,
+    setAuth,
+} from '@/libs'
+import * as API from '@/api/auth'
+import i18n from '@/lang'
 
 axios.defaults.withCredentials = false
+const { t } = i18n
 
 export const API_URL = import.meta.env.VITE_PUBLIC_APP_API
 const instance = axios.create({
@@ -12,7 +23,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
     function (config: any) {
         try {
-            const token = localStorage.getItem('access_token')
+            const token = getToken()
             if (token) {
                 config.headers['Authorization'] = `Bearer ${token}`
             }
@@ -28,18 +39,35 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
     function (response) {
-        if (response?.status !== STATUS_CODE_SUCCESS)
+        if (response?.data?.status_code === STATUS_CODE_FORBIDDEN) {
+            notify(t('auth.notify.permission_denied'), '', 'error')
+            return router.push({ name: 'not-found' })
+        }
+        if (response?.status !== STATUS_CODE_SUCCESS) {
             return Promise.reject(response?.data)
+        }
         return response.data
     },
-    function (error) {
-        if (error?.response?.data.message === 'Unauthenticated.') {
+    async function (error) {
+        const originalRequest = error.config
+
+        if (
+            error?.response?.data.message === 'Unauthenticated.' &&
+            !originalRequest._retry
+        ) {
+            originalRequest._retry = true
+
+            const { status_code, data } = await API.refresh(getRolePathMap())
+            if (status_code === STATUS_CODE_SUCCESS) {
+                setAuth(data.me, data.access_token)
+                originalRequest.headers['Authorization'] =
+                    `Bearer ${data.access_token}`
+
+                return instance(originalRequest)
+            }
+
             localStorage.clear()
-            notify(
-                'Truy cập bị từ chối. Vui lòng đăng nhập để tiếp tục!',
-                '',
-                'error'
-            )
+            notify(t('auth.notify.token_failed'), '', 'error')
             return router.push({ name: 'login' })
         }
         if (error?.response?.data) {

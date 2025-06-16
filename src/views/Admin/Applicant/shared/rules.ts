@@ -8,12 +8,12 @@ export const rules: Record<string, Rule[]> = {
     name: [
         {
             required: true,
-            message: t('validation.required', [t('company.labels.name')]),
+            message: t('validation.required', [t('applicant.labels.name')]),
         },
         {
             max: MAX_STRING,
             message: t('validation.max.string', {
-                0: t('company.labels.name'),
+                0: t('applicant.labels.name'),
                 1: MAX_STRING,
             }),
         },
@@ -32,22 +32,30 @@ export const rules: Record<string, Rule[]> = {
     telephone: [
         {
             required: true,
-            message: t('validation.required', [t('company.labels.telephone')]),
+            message: t('validation.required', [
+                t('applicant.labels.telephone'),
+            ]),
         },
         {
             validator: (_: any, value: any) => validatePhoneNumber(_, value),
             trigger: 'blur',
         },
     ],
+    birthday: [
+        {
+            required: true,
+            message: t('validation.required', [t('applicant.labels.birthday')]),
+        },
+    ],
     address: [
         {
             required: true,
-            message: t('validation.required', [t('company.labels.address')]),
+            message: t('validation.required', [t('applicant.labels.address')]),
         },
         {
             max: MAX_STRING,
             message: t('validation.max.string', {
-                0: t('company.labels.address'),
+                0: t('applicant.labels.address'),
                 1: MAX_STRING,
             }),
         },
