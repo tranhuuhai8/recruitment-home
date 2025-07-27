@@ -1,26 +1,26 @@
 name: Deploy action
 
 on:
-  push:
-    branches: [ "develop" ]
+    push:
+        branches: ['develop']
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
 
-    - name: Connect via SSH and execute script
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USER }}
-        key: ${{ secrets.SSH_KEY }}
-        allenvs: true
-        script: |
-          cd /home/services/recruitment-home
-          git pull origin develop
-          npm install
-          npm run build-only
-          pm2 reload 0
+            - name: Connect via SSH and execute script
+              uses: appleboy/ssh-action@master
+              with:
+                  host: ${{ secrets.SSH_HOST }}
+                  username: ${{ secrets.SSH_USER }}
+                  key: ${{ secrets.SSH_KEY }}
+                  allenvs: true
+                  script: |
+                      cd /var/www/recruitment-home
+                      git pull origin develop
+                      npm install
+                      npm run build-only
+                      pm2 reload 0

@@ -4,7 +4,6 @@ import {
     notify,
     getToken,
     getRolePathMap,
-    ACCESS_TOKEN,
     STATUS_CODE_FORBIDDEN,
     STATUS_CODE_SUCCESS,
     setAuth,
