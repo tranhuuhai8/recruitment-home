@@ -140,3 +140,14 @@ body {
         color: var(--vt-c-white);
     }
 }
+
+.icon-edit {
+    color: blue;
+    font-size: 20px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.6;
+        transform: scale(0.9);
+    }
+}

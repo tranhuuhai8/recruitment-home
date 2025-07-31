@@ -1,6 +1,7 @@
 import i18n from '@/lang'
 import type { ColumnTable } from '@/interface'
 import StatusColumn from '@/components/common/Column/StatusColumn.vue'
+import EditColumn from '@/components/common/TableData/EditColumn.vue'
 
 const { t } = i18n
 
@@ -41,6 +42,20 @@ export const columns: ColumnTable[] = [
         align: 'center',
         customRender: ({ record }) => (
             <StatusColumn status={record.user.status} />
+        ),
+    },
+    {
+        title: t('operation'),
+        key: 'action',
+        align: 'center',
+        width: 100,
+        customRender: ({ record }: any) => (
+            <EditColumn
+                url={{
+                    name: 'admin-companies-edit',
+                    params: { id: record.id },
+                }}
+            />
         ),
     },
 ]

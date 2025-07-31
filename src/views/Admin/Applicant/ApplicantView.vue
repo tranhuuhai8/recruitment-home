@@ -7,10 +7,8 @@ import type { FormSearchApplicant, SortProps } from '@/interface'
 import { INITIAL_QUERY, mapSortQuery, SORT_TYPE_DESC } from '@/libs'
 import { watch } from 'vue'
 import SearchForm from './components/SearchForm.vue'
-import { useRouter } from 'vue-router'
 
 const { t } = useI18n()
-const router = useRouter()
 const settingStore = useSettingStore()
 const applicantStore = useApplicantStore()
 const formState = ref<FormSearchApplicant>({ ...INITIAL_FORM_SEARCH })
@@ -36,9 +34,6 @@ const handleSearch = () =>
     (query.value = getQuerySearch(query, formState.value))
 
 const handleResetQuery = () => (query.value = { ...INITIAL_QUERY })
-
-const handleClick = (event: any, record: Record<string, any>) =>
-    router.push({ name: 'admin-applicants-edit', params: { id: record.id } })
 
 onMounted(async () => {
     await nextTick()
@@ -70,7 +65,6 @@ watch(
                 :sort-type="sortType"
                 :show-pagination="true"
                 @sort="handleSort"
-                @cell-click="handleClick"
                 @change-page="handleChangePage"
             />
         </div>

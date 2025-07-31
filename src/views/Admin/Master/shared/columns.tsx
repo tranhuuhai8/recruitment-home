@@ -2,6 +2,7 @@ import i18n from '@/lang'
 import type { ColumnTable } from '@/interface'
 import StatusDisplayColumn from '@/components/common/Column/StatusDisplayColumn.vue'
 import TypeColumn from '@/components/common/Column/TypeColumn.vue'
+import EditByModal from '@/components/common/TableData/EditByModal.vue'
 
 const { t } = i18n
 
@@ -31,6 +32,13 @@ export const columnsCity: ColumnTable[] = [
         customRender: ({ record }) => (
             <StatusDisplayColumn status={record.status} />
         ),
+    },
+    {
+        title: t('operation'),
+        key: 'action',
+        align: 'center',
+        width: 100,
+        customRender: ({ record }: any) => <EditByModal data={record} />,
     },
 ]
 
@@ -68,5 +76,12 @@ export const columnsJobCategory: ColumnTable[] = [
         width: 150,
         align: 'center',
         customRender: ({ record }) => <TypeColumn type={record.type} />,
+    },
+    {
+        title: t('operation'),
+        key: 'action',
+        align: 'center',
+        width: 100,
+        customRender: ({ record }: any) => <EditByModal data={record} />,
     },
 ]
