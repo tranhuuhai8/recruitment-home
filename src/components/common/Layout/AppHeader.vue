@@ -53,14 +53,16 @@ const handleClick: MenuProps['onClick'] = async (e) => {
         return
     }
 
-    const messageLogout = await authStore.logout()
-    if (messageLogout) {
-        notify(messageLogout, '', 'success')
-        redirectToLogin()
-        return
-    }
+    if (e.key == '2') {
+        const messageLogout = await authStore.logout()
+        if (messageLogout) {
+            notify(messageLogout, '', 'success')
+            redirectToLogin()
+            return
+        }
 
-    notify(t('notify.error'), '', 'error')
+        notify(t('notify.error'), '', 'error')
+    }
 }
 
 const redirectToLogin = () => router.push({ name: 'login', replace: true })

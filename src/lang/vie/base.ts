@@ -9,6 +9,7 @@ export default {
     delete: 'Xóa',
     submit: 'Xác nhận',
     search: 'Tìm kiếm',
+    operation: 'Thao tác',
     all: 'Tất cả',
     gender: {
         label: 'Giới tính',

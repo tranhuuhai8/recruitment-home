@@ -29,7 +29,7 @@ const handleRoute = async () => {
         items.push(
             getItem(item.label, String(item.order), h(getIcon(item.order)))
         )
-        if (route.name === item.name)
+        if (route.name === item.route)
             selectedKeys.value.push(String(item.order))
     }
 }

@@ -13,7 +13,7 @@ export const INITIAL_FORM_SEARCH = {
     gender: FALSE_VALUE,
 }
 
-export const INITIAL_FORM_COMPANY = {
+export const INITIAL_FORM_APPLICANT = {
     name: '',
     avatar: '',
     mail_address: '',
@@ -22,5 +22,4 @@ export const INITIAL_FORM_COMPANY = {
     telephone: '',
     address: '',
     description: '',
-    status: '',
 }

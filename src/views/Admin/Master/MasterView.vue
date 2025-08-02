@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue3-i18n'
-import { nextTick, onMounted, ref } from 'vue'
+import { nextTick, onMounted, onUnmounted, ref } from 'vue'
 import { useSettingStore } from '@/stores'
 import {
     TabCity,
@@ -62,6 +62,15 @@ const onTabChange = (key: string) => {
 onMounted(async () => {
     await nextTick()
     settingStore.setTitle(t('sidebar.master_data'))
+    window.addEventListener('editClick', (event: any) =>
+        cellClick(null, event.detail)
+    )
+})
+
+onUnmounted(() => {
+    window.removeEventListener('editClick', (event: any) =>
+        cellClick(null, event.detail)
+    )
 })
 </script>
 
@@ -89,7 +98,6 @@ onMounted(async () => {
                 <a-tab-pane key="1" :tab="t('masterData.tab.city')">
                     <TabCity
                         :query="query"
-                        @cell-click="cellClick"
                         @sort="handleSort"
                         @change-page="handleChangePage"
                     />
@@ -97,7 +105,6 @@ onMounted(async () => {
                 <a-tab-pane key="2" :tab="t('masterData.tab.category')">
                     <TabJobCategory
                         :query="query"
-                        @cell-click="cellClick"
                         @sort="handleSort"
                         @change-page="handleChangePage"
                     />

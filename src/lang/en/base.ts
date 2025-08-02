@@ -9,6 +9,7 @@ export default {
     delete: 'Delete',
     submit: 'Submit',
     search: 'Search',
+    operation: 'Operation',
     all: 'All',
     gender: {
         label: 'Gender',

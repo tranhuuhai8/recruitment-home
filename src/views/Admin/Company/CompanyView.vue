@@ -7,10 +7,8 @@ import type { FormSearchCompany, SortProps } from '@/interface'
 import { INITIAL_QUERY, mapSortQuery, SORT_TYPE_DESC } from '@/libs'
 import { watch } from 'vue'
 import SearchForm from './components/SearchForm.vue'
-import { useRouter } from 'vue-router'
 
 const { t } = useI18n()
-const router = useRouter()
 const settingStore = useSettingStore()
 const companyStore = useCompanyStore()
 const formState = ref<FormSearchCompany>({ ...INITIAL_FORM_SEARCH })
@@ -36,10 +34,6 @@ const handleSearch = () =>
     (query.value = getQuerySearch(query, formState.value))
 
 const handleResetQuery = () => (query.value = { ...INITIAL_QUERY })
-
-const handleClick = (event: any, record: Record<string, any>) => {
-    router.push({ name: 'admin-companies-edit', params: { id: record.id } })
-}
 
 onMounted(async () => {
     await nextTick()
@@ -71,7 +65,6 @@ watch(
                 :sort-type="sortType"
                 :show-pagination="true"
                 @sort="handleSort"
-                @cell-click="handleClick"
                 @change-page="handleChangePage"
             />
         </div>

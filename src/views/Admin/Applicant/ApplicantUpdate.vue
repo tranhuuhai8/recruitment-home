@@ -14,7 +14,7 @@ import {
     trim,
 } from '@/libs'
 import {
-    INITIAL_FORM_COMPANY,
+    INITIAL_FORM_APPLICANT,
     mapDataForm,
     mapDataUpdate,
     rules,
@@ -23,7 +23,7 @@ import {
 const { t } = useI18n()
 const router = useRouter()
 const applicantStore = useApplicantStore()
-const formState = reactive<FormDataApplicant>({ ...INITIAL_FORM_COMPANY })
+const formState = reactive<FormDataApplicant>({ ...INITIAL_FORM_APPLICANT })
 const loading = ref(false)
 const formRef = ref()
 const {

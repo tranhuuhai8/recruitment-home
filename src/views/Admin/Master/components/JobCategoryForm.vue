@@ -73,6 +73,7 @@ const getData = async (id: number) => {
 
 const resetForm = async (isFetchData: boolean) => {
     formRef.value.resetFields()
+    Object.assign(formState, FORM_JOB_CATEGORY)
     emit('cancel')
     isFetchData &&
         (await jobCategoryStore.list(props.query ?? INITIAL_QUERY_MST))
@@ -81,7 +82,7 @@ const resetForm = async (isFetchData: boolean) => {
 watch(
     () => props.id,
     async (newId) => {
-        if (newId) await getData(newId)
+        newId && (await getData(newId))
     },
     { immediate: true }
 )
@@ -100,6 +101,7 @@ watch(
         <a-form-item name="name" :label="t('masterData.labels.name')">
             <a-input
                 v-model:value="formState.name"
+                :placeholder="t('masterData.labels.name')"
                 @blur="trim('name', formState)"
             />
         </a-form-item>

@@ -8,7 +8,7 @@ import type { SortProps } from '@/interface'
 const loading = ref(false)
 const cityStore = useCityStore()
 const sortType = ref(SORT_TYPE_ASC)
-const emits = defineEmits(['cellClick', 'sort', 'changePage'])
+const emits = defineEmits(['sort', 'changePage'])
 const props = defineProps(['query'])
 
 const getData = async () => {
@@ -16,9 +16,6 @@ const getData = async () => {
     await cityStore.list(props.query)
     loading.value = false
 }
-
-const handleClick = (event: any, record: Record<string, any>) =>
-    emits('cellClick', event, record)
 
 const handleSort = ({ field: key, order: dir }: SortProps) => {
     sortType.value = dir ? `${dir}ing` : 'descending'
@@ -43,7 +40,6 @@ watch(
         :sort-type="sortType"
         :show-pagination="true"
         @sort="handleSort"
-        @cell-click="handleClick"
         @change-page="handleChangePage"
     />
 </template>
