@@ -125,6 +125,12 @@ const router = createRouter({
                             component: Pages.HomeViewCompany,
                             beforeEnter: ifAuthenticated,
                         },
+                        {
+                            path: 'info',
+                            name: 'company-info',
+                            component: Pages.InformationCompany,
+                            beforeEnter: ifAuthenticated,
+                        },
                     ],
                 },
                 {
@@ -134,6 +140,12 @@ const router = createRouter({
                             path: '',
                             name: 'applicant-dashboard',
                             component: Pages.HomeViewApplicant,
+                            beforeEnter: ifAuthenticated,
+                        },
+                        {
+                            path: 'info',
+                            name: 'applicant-info',
+                            component: Pages.InformationApplicant,
                             beforeEnter: ifAuthenticated,
                         },
                     ],

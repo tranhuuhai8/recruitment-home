@@ -1,4 +1,10 @@
-import { FALSE_VALUE, INITIAL_QUERY, PER_PAGE_MST, SORT_TYPE_ASC } from '@/libs'
+import {
+    GENDER_MALE,
+    INITIAL_QUERY,
+    PER_PAGE_MST,
+    SORT_TYPE_ASC,
+    FALSE_VALUE,
+} from '@/libs'
 
 export const INITIAL_QUERY_MST = {
     ...INITIAL_QUERY,
@@ -17,7 +23,7 @@ export const INITIAL_FORM_APPLICANT = {
     name: '',
     avatar: '',
     mail_address: '',
-    gender: FALSE_VALUE,
+    gender: GENDER_MALE,
     birthday: '',
     telephone: '',
     address: '',

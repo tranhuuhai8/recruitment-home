@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { useI18n } from 'vue3-i18n'
 import { onMounted, reactive, ref } from 'vue'
-import { useApplicantStore } from '@/stores/admin'
+import { useAuthStore } from '@/stores'
+import { useInfoStore } from '@/stores/applicant'
 import type { FormDataApplicant } from '@/interface'
-import { useRoute, useRouter } from 'vue-router'
 import {
     disabledDateFuture,
     FORMAT_DATE_DASH,
     GENDER_OPTIONS_FORM,
+    GUARD_APPLICANT,
     notify,
     STATUS_CODE_SUCCESS,
-    STATUS_OPTIONS_FORM,
     trim,
 } from '@/libs'
 import {
@@ -21,26 +21,21 @@ import {
 } from './shared'
 
 const { t } = useI18n()
-const router = useRouter()
-const applicantStore = useApplicantStore()
+const authStore = useAuthStore()
+const infoStore = useInfoStore()
 const formState = reactive<FormDataApplicant>({ ...INITIAL_FORM_APPLICANT })
 const loading = ref(false)
 const formRef = ref()
-const {
-    params: { id },
-} = useRoute()
 
 const onUpdate = async (values: Record<string, any>) => {
     loading.value = true
     try {
-        const { status_code, message } = await applicantStore.update(
-            mapDataUpdate(values),
-            +id
+        const { status_code, message } = await infoStore.update(
+            mapDataUpdate(values)
         )
 
         if (status_code === STATUS_CODE_SUCCESS) {
-            notify(message, '', 'success')
-            return backToList()
+            return notify(message, '', 'success')
         }
         notify(message, '', 'error')
     } catch (error) {
@@ -51,18 +46,16 @@ const onUpdate = async (values: Record<string, any>) => {
 }
 
 const getData = async () => {
-    loading.value = true
     try {
-        const data = await applicantStore.detail(+id)
-        Object.assign(formState, mapDataForm(data))
+        loading.value = true
+        const data = await authStore.getMe(GUARD_APPLICANT)
+        Object.assign(formState, mapDataForm(data, data.applicant))
     } catch (error) {
         console.error(error)
     } finally {
         loading.value = false
     }
 }
-
-const backToList = () => router.push({ name: 'admin-applicants' })
 
 onMounted(() => getData())
 </script>
@@ -86,8 +79,8 @@ onMounted(() => getData())
                         @blur="trim('name', formState)"
                     />
                 </a-form-item>
-                <a-row>
-                    <a-col class="mr-20">
+                <a-row justify="space-between">
+                    <a-col>
                         <a-form-item
                             name="gender"
                             :label="t('applicant.labels.gender')"
@@ -154,25 +147,10 @@ onMounted(() => getData())
                         @blur="trim('description', formState)"
                     />
                 </a-form-item>
-                <a-form-item
-                    name="status"
-                    class="status"
-                    :label="t('status.label')"
-                >
-                    <a-select
-                        v-model:value="formState.status"
-                        ref="select"
-                        style="width: 200px"
-                        :options="STATUS_OPTIONS_FORM"
-                    />
-                </a-form-item>
 
                 <a-space class="space-group-btn">
                     <a-button type="primary" html-type="submit">
                         {{ t('update') }}
-                    </a-button>
-                    <a-button type="link" @click="backToList">
-                        {{ t('back') }}
                     </a-button>
                 </a-space>
             </a-form>

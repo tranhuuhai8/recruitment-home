@@ -72,19 +72,19 @@ export const APP_SIDEBAR_ADMIN: Record<string, any> = {
 }
 
 export const APP_SIDEBAR_COMPANY: Record<string, any> = {
-    info: {
+    dashboard: {
         order: 1,
-        label: t('sidebar.info'),
-        route: '/info',
-        name: 'info',
+        label: t('sidebar.dashboard'),
+        route: 'company-dashboard',
+        name: 'dashboard',
         class: '',
         menu_childs: [],
     },
-    menu1: {
+    info: {
         order: 2,
-        label: t('sidebar.menu1'),
-        route: '/menu1',
-        name: 'menu1',
+        label: t('sidebar.info'),
+        route: 'company-info',
+        name: 'info',
         class: '',
         menu_childs: [],
     },
@@ -123,19 +123,19 @@ export const APP_SIDEBAR_COMPANY: Record<string, any> = {
 }
 
 export const APP_SIDEBAR_APPLICANT: Record<string, any> = {
-    info: {
+    dashboard: {
         order: 1,
-        label: t('sidebar.info'),
-        route: '/info',
-        name: 'info',
+        label: t('sidebar.dashboard'),
+        route: 'applicant-dashboard',
+        name: 'dashboard',
         class: '',
         menu_childs: [],
     },
-    menu1: {
+    info: {
         order: 2,
-        label: t('sidebar.menu1'),
-        route: '/menu1',
-        name: 'menu1',
+        label: t('sidebar.info'),
+        route: 'applicant-info',
+        name: 'info',
         class: '',
         menu_childs: [],
     },

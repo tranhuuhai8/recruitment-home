@@ -32,6 +32,7 @@ export interface FormDataCompany {
     mail_address: string
     short_name: string
     telephone: string
+    city_id: number | null
     address: string
     website: string
     status: number | string

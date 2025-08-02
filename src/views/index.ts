@@ -1,9 +1,16 @@
 export const HomeView = () => import('@/views/HomeView.vue')
 export const NotFound = () => import('@/views/NotFound.vue')
 
+// Page Applicant
 export const HomeViewApplicant = () =>
     import('@/views/Applicant/DashboardView.vue')
+export const InformationApplicant = () =>
+    import('@/views/Applicant/Information/UpdateView.vue')
+
+// Page Company
 export const HomeViewCompany = () => import('@/views/Company/DashboardView.vue')
+export const InformationCompany = () =>
+    import('@/views/Company/Information/UpdateView.vue')
 
 // Page Admin
 export const HomeViewAdmin = () => import('@/views/Admin/DashboardView.vue')

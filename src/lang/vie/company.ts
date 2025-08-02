@@ -8,6 +8,7 @@ export default {
         name: 'Tên',
         short_name: 'Tên viết tắt',
         telephone: 'Số điện thoại',
+        city: 'Thành phố',
         address: 'Địa chỉ',
         website: 'Website',
         description: 'Mô tả',

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue3-i18n'
 import { reactive, ref, watch, type UnwrapRef } from 'vue'
-import { useCityStore } from '@/stores'
+import { useCityStore } from '@/stores/admin'
 import { FORM_CITY, cityRules, INITIAL_QUERY_MST } from '../shared'
 import {
     trim,

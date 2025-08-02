@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { columnsCity } from '../shared'
-import { useCityStore } from '@/stores'
+import { useCityStore } from '@/stores/admin'
 import { mapSortQuery, SORT_TYPE_ASC } from '@/libs'
 import type { SortProps } from '@/interface'
 

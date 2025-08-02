@@ -8,6 +8,7 @@ export default {
         name: 'Name',
         short_name: 'Short name',
         telephone: 'Telephone',
+        city: 'City',
         address: 'Address',
         website: 'Website',
         description: 'Description',

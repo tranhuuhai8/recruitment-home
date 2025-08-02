@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { columnsJobCategory } from '../shared'
-import { useJobCategoryStore } from '@/stores'
+import { useJobCategoryStore } from '@/stores/admin'
 import type { SortProps } from '@/interface'
 import { mapSortQuery, SORT_TYPE_ASC } from '@/libs'
 
