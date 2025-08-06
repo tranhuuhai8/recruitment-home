@@ -9,6 +9,7 @@ import {
     ROUTE_NAME_DASHBOARD,
 } from '@/libs'
 import type { Option, ParamsList } from '@/interface'
+import type { TreeNodeProps } from 'ant-design-vue/es/vc-tree'
 
 export const hash = Math.floor(Math.random() * 90000) + 10000
 
@@ -132,8 +133,38 @@ export const generateUniqueCodes = (count: number, length: number) => {
 export const filterOption = (input: any, option: Option) =>
     (option?.label ?? '').toLocaleLowerCase().includes(input.toLowerCase())
 
+export const filterTreeSelect = (input: string, treeNode: TreeNodeProps) =>
+    (treeNode?.title ?? '').toLocaleLowerCase().includes(input.toLowerCase())
+
 export const regexTel = (value: KeyboardEvent) => {
     if (!REGEX_TEL.test(value.key)) {
         value.preventDefault()
     }
+}
+
+export const getTreeData = (data: Record<string, any>[]) => {
+    if (!data || !Array.isArray(data)) {
+        return []
+    }
+    const parentMap = new Map()
+
+    const parents = data.filter((item) => item.parent_id === null)
+    parents.forEach((parent) => {
+        parentMap.set(parent.id, {
+            title: parent.name,
+            value: parent.id,
+            children: [],
+        })
+    })
+
+    data.forEach((item) => {
+        if (item.parent_id !== null && parentMap.has(item.parent_id)) {
+            parentMap.get(item.parent_id).children.push({
+                title: item.name,
+                value: item.id,
+            })
+        }
+    })
+
+    return Array.from(parentMap.values())
 }

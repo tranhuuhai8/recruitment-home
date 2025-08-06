@@ -2,13 +2,24 @@
 import { useI18n } from 'vue3-i18n'
 import { onMounted, reactive, ref } from 'vue'
 import { useCompanyStore } from '@/stores/admin'
+import { useCityStore } from '@/stores/home/city'
 import type { FormDataCompany } from '@/interface'
 import { useRoute, useRouter } from 'vue-router'
-import { notify, STATUS_CODE_SUCCESS, STATUS_OPTIONS_FORM, trim } from '@/libs'
+import {
+    filterTreeSelect,
+    getTreeData,
+    INITIAL_QUERY,
+    notify,
+    PAYLOAD_ALL,
+    STATUS_CODE_SUCCESS,
+    STATUS_OPTIONS_FORM,
+    trim,
+} from '@/libs'
 import { INITIAL_FORM_COMPANY, rules } from './shared'
 
 const { t } = useI18n()
 const router = useRouter()
+const cityStore = useCityStore()
 const companyStore = useCompanyStore()
 const formState = reactive<FormDataCompany>({ ...INITIAL_FORM_COMPANY })
 const loading = ref(false)
@@ -50,7 +61,12 @@ const getData = async () => {
 
 const backToList = () => router.push({ name: 'admin-companies' })
 
-onMounted(() => getData())
+onMounted(async () => {
+    loading.value = true
+    await getData()
+    await cityStore.list({ ...INITIAL_QUERY, ...PAYLOAD_ALL })
+    loading.value = false
+})
 </script>
 
 <template>
@@ -109,6 +125,19 @@ onMounted(() => getData())
                         @blur="trim('mail_address', formState)"
                     />
                 </a-form-item>
+
+                <a-form-item name="city_id" :label="t('company.labels.city')">
+                    <a-tree-select
+                        allow-clear
+                        show-search
+                        tree-default-expand-all
+                        v-model:value="formState.city_id"
+                        :tree-data="getTreeData(cityStore.getCities.data)"
+                        :placeholder="t('company.labels.city')"
+                        :filterTreeNode="filterTreeSelect"
+                    />
+                </a-form-item>
+
                 <a-form-item
                     name="address"
                     :label="t('company.labels.address')"
