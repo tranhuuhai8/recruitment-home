@@ -34,5 +34,5 @@ export interface FormDataApplicant {
     telephone: string
     address: string
     description: string
-    status: number | string
+    status?: number | string
 }

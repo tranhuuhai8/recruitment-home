@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { useI18n } from 'vue3-i18n'
 import { nextTick, onMounted, ref } from 'vue'
-import { useCompanyStore, useSettingStore } from '@/stores'
+import { useSettingStore } from '@/stores'
 import { columns, getQuerySearch, INITIAL_FORM_SEARCH } from './shared'
 import type { FormSearchCompany, SortProps } from '@/interface'
 import { INITIAL_QUERY, mapSortQuery, SORT_TYPE_DESC } from '@/libs'
 import { watch } from 'vue'
 import SearchForm from './components/SearchForm.vue'
+import { useCompanyStore } from '@/stores/admin'
 
 const { t } = useI18n()
 const settingStore = useSettingStore()

@@ -1,32 +1,40 @@
 <script setup lang="ts">
 import { useI18n } from 'vue3-i18n'
 import { onMounted, reactive, ref } from 'vue'
-import { useCompanyStore } from '@/stores/admin'
+import { useAuthStore } from '@/stores'
+import { useInfoStore } from '@/stores/company'
+import { useCityStore } from '@/stores/home/city'
 import type { FormDataCompany } from '@/interface'
-import { useRoute, useRouter } from 'vue-router'
-import { notify, STATUS_CODE_SUCCESS, STATUS_OPTIONS_FORM, trim } from '@/libs'
-import { INITIAL_FORM_COMPANY, rules } from './shared'
+import {
+    filterOption,
+    getOptions,
+    GUARD_COMPANY,
+    INITIAL_QUERY,
+    notify,
+    notifyError,
+    PAYLOAD_ALL,
+    STATUS_CODE_SUCCESS,
+    trim,
+} from '@/libs'
+import { INITIAL_FORM_COMPANY, mapDataForm, rules } from './shared'
 
 const { t } = useI18n()
-const router = useRouter()
-const companyStore = useCompanyStore()
+const authStore = useAuthStore()
+const cityStore = useCityStore()
+const infoStore = useInfoStore()
 const formState = reactive<FormDataCompany>({ ...INITIAL_FORM_COMPANY })
 const loading = ref(false)
 const formRef = ref()
-const {
-    params: { id },
-} = useRoute()
 
 const onUpdate = async (values: Record<string, any>) => {
     loading.value = true
     try {
-        const { status_code, message } = await companyStore.update(values, +id)
+        const { status_code, message, errors } = await infoStore.update(values)
 
         if (status_code === STATUS_CODE_SUCCESS) {
-            notify(message, '', 'success')
-            return backToList()
+            return notify(message, '', 'success')
         }
-        notify(message, '', 'error')
+        notifyError(Object.values(errors || {}))
     } catch (error) {
         console.error(error)
     } finally {
@@ -35,22 +43,20 @@ const onUpdate = async (values: Record<string, any>) => {
 }
 
 const getData = async () => {
-    loading.value = true
     try {
-        const data = await companyStore.detail(+id)
-        Object.assign(formState, data)
-        formState.status = data.user.status
-        formState.mail_address = data.user.mail_address
+        const data = await authStore.getMe(GUARD_COMPANY)
+        Object.assign(formState, mapDataForm(data, data.company))
     } catch (error) {
         console.error(error)
-    } finally {
-        loading.value = false
     }
 }
 
-const backToList = () => router.push({ name: 'admin-companies' })
-
-onMounted(() => getData())
+onMounted(async () => {
+    loading.value = true
+    await getData()
+    await cityStore.list({ ...INITIAL_QUERY, ...PAYLOAD_ALL })
+    loading.value = false
+})
 </script>
 
 <template>
@@ -72,8 +78,8 @@ onMounted(() => getData())
                         @blur="trim('name', formState)"
                     />
                 </a-form-item>
-                <a-row>
-                    <a-col class="mr-20">
+                <a-row justify="space-between">
+                    <a-col>
                         <a-form-item
                             name="short_name"
                             :label="t('company.labels.short_name')"
@@ -109,6 +115,16 @@ onMounted(() => getData())
                         @blur="trim('mail_address', formState)"
                     />
                 </a-form-item>
+
+                <a-form-item name="city_id" :label="t('company.labels.city')">
+                    <a-select
+                        show-search
+                        :placeholder="t('company.labels.city')"
+                        v-model:value="formState.city_id"
+                        :options="getOptions(cityStore.getCities.data)"
+                        :filter-option="filterOption"
+                    />
+                </a-form-item>
                 <a-form-item
                     name="address"
                     :label="t('company.labels.address')"
@@ -140,30 +156,13 @@ onMounted(() => getData())
                         @blur="trim('description', formState)"
                     />
                 </a-form-item>
-                <a-form-item
-                    name="status"
-                    class="status"
-                    :label="t('status.label')"
-                >
-                    <a-select
-                        v-model:value="formState.status"
-                        ref="select"
-                        style="width: 200px"
-                        :options="STATUS_OPTIONS_FORM"
-                    />
-                </a-form-item>
 
                 <a-space class="space-group-btn">
                     <a-button type="primary" html-type="submit">
                         {{ t('update') }}
-                    </a-button>
-                    <a-button type="link" @click="backToList">
-                        {{ t('back') }}
                     </a-button>
                 </a-space>
             </a-form>
         </div>
     </a-spin>
 </template>
-
-<style lang="scss" scoped></style>

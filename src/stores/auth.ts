@@ -7,6 +7,7 @@ import {
     ROLE_APPLICANT,
     ROLE_PATH_PREFIX,
     STATUS_CODE_SUCCESS,
+    getUserInformation,
 } from '@/libs'
 import type { User } from '@/interface'
 
@@ -41,7 +42,7 @@ export const useAuthStore = defineStore('auth', () => {
     const logout = async () => {
         try {
             const { status_code, message } = await API.logout(
-                ROLE_PATH_PREFIX[me.value?.role ?? ROLE_APPLICANT]
+                ROLE_PATH_PREFIX[getUserInformation()?.role ?? ROLE_APPLICANT]
             )
             if (status_code === STATUS_CODE_SUCCESS) {
                 localStorage.clear()
