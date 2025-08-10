@@ -1,4 +1,4 @@
-import { MAX_STRING, MIN_STRING, validateEmail } from '@/libs'
+import { MAX_STRING, MIN_STRING, validateEmail, validatePassword } from '@/libs'
 import i18n from '@/lang'
 
 const { t } = i18n
@@ -33,6 +33,10 @@ export const rulesLogin = {
                 t('auth.labels.password'),
                 MIN_STRING,
             ]),
+        },
+        {
+            validator: (_: any, value: any) => validatePassword(_, value),
+            trigger: 'blur',
         },
     ],
     role: [

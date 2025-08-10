@@ -1,6 +1,8 @@
 import {
     FALSE_VALUE,
+    FILTER_PARENT,
     INITIAL_QUERY,
+    PAYLOAD_ALL,
     PER_PAGE_MST,
     SORT_TYPE_ASC,
     STATUS_ACTIVE,
@@ -14,6 +16,11 @@ export const INITIAL_QUERY_MST = {
     filters: [],
 }
 
+export const QUERY_MST_PARENT = {
+    ...PAYLOAD_ALL,
+    ...FILTER_PARENT,
+}
+
 export const KEY_TAB_CITY = '1'
 export const KEY_TAB_CATEGORY = '2'
 
@@ -24,6 +31,7 @@ export const INITIAL_FORM_SEARCH = {
 
 export const FORM_CITY = {
     name: '',
+    parent_id: null,
     description: '',
     status: STATUS_ACTIVE,
 }

@@ -1,5 +1,13 @@
 import { MAX_STRING } from '../constants/constants'
-import { REGEX_EMAIL, REGEX_FLOAT, REGEX_NUMBER, REGEX_TEL } from './regex'
+import {
+    REGEX_CHARACTER,
+    REGEX_EMAIL,
+    REGEX_FLOAT,
+    REGEX_LOWERCASE,
+    REGEX_NUMBER,
+    REGEX_TEL,
+    REGEX_UPPERCASE,
+} from './regex'
 import i18n from '@/lang'
 
 const { t } = i18n
@@ -152,4 +160,17 @@ export const validatePhoneNumber = async (_: any, value: any) => {
     }
 
     return Promise.resolve()
+}
+
+export const validatePassword = (_: any, password: string) => {
+    if (
+        REGEX_UPPERCASE.test(password) &&
+        REGEX_LOWERCASE.test(password) &&
+        REGEX_CHARACTER.test(password) &&
+        REGEX_NUMBER.test(password)
+    ) {
+        return Promise.resolve()
+    }
+
+    return Promise.reject(new Error(t('validation.password.format') as string))
 }

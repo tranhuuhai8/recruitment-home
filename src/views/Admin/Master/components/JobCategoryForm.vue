@@ -2,13 +2,21 @@
 import { useI18n } from 'vue3-i18n'
 import { reactive, ref, watch, type UnwrapRef } from 'vue'
 import { useJobCategoryStore } from '@/stores/admin'
-import { FORM_JOB_CATEGORY, categoryRules, INITIAL_QUERY_MST } from '../shared'
+import { useJobCategoryStore as useJobCategoryStoreHome } from '@/stores/home'
+import {
+    FORM_JOB_CATEGORY,
+    categoryRules,
+    INITIAL_QUERY_MST,
+    QUERY_MST_PARENT,
+} from '../shared'
 import {
     trim,
     notifyStatus,
     notifyDelete,
     TYPE_OPTIONS_FORM,
     STATUS_DISPLAY_OPTIONS_FORM,
+    getOptions,
+    filterOption,
 } from '@/libs'
 import { DeleteOutlined } from '@ant-design/icons-vue'
 
@@ -17,6 +25,7 @@ const formRef = ref()
 const loading = ref(false)
 const openDelete = ref(false)
 const jobCategoryStore = useJobCategoryStore()
+const jobCategoryStoreHome = useJobCategoryStoreHome()
 
 const props = defineProps(['id', 'query'])
 const emit = defineEmits(['cancel', 'submit'])
@@ -64,11 +73,7 @@ const getData = async (id: number) => {
     )
     if (!data) return resetForm(false)
 
-    formState.name = data.name
-    formState.description = data.description
-    formState.status = data.status
-    formState.type = data.type
-    formState.parent_id = data.parent_id
+    Object.assign(formState, data)
 }
 
 const resetForm = async (isFetchData: boolean) => {
@@ -82,7 +87,12 @@ const resetForm = async (isFetchData: boolean) => {
 watch(
     () => props.id,
     async (newId) => {
-        newId && (await getData(newId))
+        if (newId) {
+            loading.value = true
+            await getData(newId)
+            await jobCategoryStoreHome.listParent(QUERY_MST_PARENT)
+            loading.value = false
+        }
     },
     { immediate: true }
 )
@@ -94,17 +104,36 @@ watch(
         class="form-job-category"
         :model="formState"
         :rules="categoryRules"
-        :label-col="{ span: 4 }"
-        :wrapper-col="{ span: 20 }"
+        :label-col="{ span: 6 }"
+        :wrapper-col="{ span: 18 }"
         @finish="onSubmit"
     >
-        <a-form-item name="name" :label="t('masterData.labels.name')">
+        <a-form-item name="name" :label="t('masterData.labels.category_name')">
             <a-input
                 v-model:value="formState.name"
-                :placeholder="t('masterData.labels.name')"
+                :placeholder="t('masterData.labels.category_name')"
                 @blur="trim('name', formState)"
             />
         </a-form-item>
+
+        <a-form-item
+            name="parent_id"
+            :label="t('masterData.labels.parent_category_name')"
+        >
+            <a-select
+                allow-search
+                show-search
+                ref="select"
+                style="width: 200px"
+                :placeholder="t('select.placeholder')"
+                v-model:value="formState.parent_id"
+                :options="
+                    getOptions(jobCategoryStoreHome.getJobCategoriesParent.data)
+                "
+                :filter-option="filterOption"
+            />
+        </a-form-item>
+
         <a-form-item
             name="description"
             :label="t('masterData.labels.description')"

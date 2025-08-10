@@ -30,6 +30,7 @@ export interface JobCategoryResult extends Result {
 
 export interface FormSearchMst {
     search: string
+    parent_id?: number | null | Array<number>
     status: number
     type?: string | number | boolean
 }

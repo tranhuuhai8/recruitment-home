@@ -19,3 +19,21 @@
         z-index: 1;
     }
 }
+
+.box-search {
+    .form-search-master-data {
+        .form-item-select-parent-id {
+            flex: 1;
+
+            .ant-row {
+                align-items: center;
+            }
+
+            .ant-select {
+                width: auto !important;
+                min-width: 200px;
+                max-width: 100% !important;
+            }
+        }
+    }
+}

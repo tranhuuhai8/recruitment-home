@@ -11,6 +11,10 @@ export default {
     search: 'Search',
     operation: 'Operation',
     all: 'All',
+    select: {
+        placeholder: 'Please select',
+        no_data: 'No data',
+    },
     gender: {
         label: 'Gender',
         other: 'Other',

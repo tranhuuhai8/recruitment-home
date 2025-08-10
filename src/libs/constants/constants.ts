@@ -54,6 +54,11 @@ export const PAYLOAD_ALL: ParamsList = {
     all: 1,
 }
 
+export const FILTER_PARENT = {
+    key: 'parent_id',
+    value: null,
+}
+
 export const DAY_LIST: {
     [key: number]: string
 } = {

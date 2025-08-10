@@ -1,29 +1,47 @@
 <script setup lang="ts">
 import {
     getObjOptions,
+    filterOption,
     STATUS_DISPLAY_OPTIONS_SEARCH,
     trim,
     TYPE_OPTIONS_SEARCH,
+    getOptions,
 } from '@/libs'
-import { computed, ref } from 'vue'
+import { useCityStore, useJobCategoryStore } from '@/stores/home'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue3-i18n'
+import { QUERY_MST_PARENT } from '../shared'
 
 const { t } = useI18n()
 const formRef = ref()
 const props = defineProps(['formState', 'hasType'])
 const emits = defineEmits(['submit', 'reset'])
 const formState = computed(() => props.formState)
+const cityStore = useCityStore()
+const jobCategoryStore = useJobCategoryStore()
 
 const resetFields = () => {
     formRef.value.resetFields()
     emits('reset')
 }
+
+watch(
+    () => props.hasType,
+    async () => {
+        if (!props.hasType) {
+            await cityStore.listParent(QUERY_MST_PARENT)
+        } else {
+            await jobCategoryStore.listParent(QUERY_MST_PARENT)
+        }
+    },
+    { immediate: true }
+)
 </script>
 
 <template>
     <a-form
         ref="formRef"
-        class="form-search"
+        class="form-search form-search-master-data"
         :model="formState"
         @finish="emits('submit')"
     >
@@ -33,6 +51,46 @@ const resetFields = () => {
                 :placeholder="t('search')"
                 v-model:value="formState.search"
                 @blur="trim('search', formState)"
+            />
+        </a-form-item>
+
+        <a-form-item
+            v-if="hasType"
+            name="parent_id"
+            :label="t('masterData.labels.parent_category_name')"
+            class="form-item-select-parent-id"
+        >
+            <a-select
+                allow-search
+                show-search
+                ref="select"
+                mode="multiple"
+                :placeholder="t('select.placeholder')"
+                v-model:value="formState.parent_id"
+                :max-tag-count="2"
+                :options="
+                    getOptions(jobCategoryStore.getJobCategoriesParent.data)
+                "
+                :filter-option="filterOption"
+            />
+        </a-form-item>
+
+        <a-form-item
+            v-if="!hasType"
+            name="parent_id"
+            :label="t('masterData.labels.parent_city_name')"
+            class="form-item-select-parent-id"
+        >
+            <a-select
+                allow-search
+                show-search
+                ref="select"
+                mode="multiple"
+                :placeholder="t('select.placeholder')"
+                v-model:value="formState.parent_id"
+                :max-tag-count="3"
+                :options="getOptions(cityStore.getCitiesParent.data)"
+                :filter-option="filterOption"
             />
         </a-form-item>
 

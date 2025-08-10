@@ -8,7 +8,7 @@ const { t } = i18n
 
 export const columnsCity: ColumnTable[] = [
     {
-        title: t('masterData.labels.name'),
+        title: t('masterData.labels.city_name'),
         dataIndex: 'name',
         key: 'name',
         width: 200,
@@ -16,6 +16,14 @@ export const columnsCity: ColumnTable[] = [
         sortDirections: ['descend', 'ascend', 'descend'],
         defaultSortOrder: 'ascend',
         align: 'center',
+    },
+    {
+        title: t('masterData.labels.parent_city_name'),
+        dataIndex: 'parent_name',
+        key: 'parent_name',
+        width: 200,
+        align: 'center',
+        customRender: ({ record }) => <span>{record.parent?.name}</span>,
     },
     {
         title: t('masterData.labels.description'),
@@ -44,7 +52,7 @@ export const columnsCity: ColumnTable[] = [
 
 export const columnsJobCategory: ColumnTable[] = [
     {
-        title: t('masterData.labels.name'),
+        title: t('masterData.labels.category_name'),
         dataIndex: 'name',
         key: 'name',
         width: 200,
@@ -52,6 +60,14 @@ export const columnsJobCategory: ColumnTable[] = [
         align: 'center',
         sortDirections: ['descend', 'ascend', 'descend'],
         defaultSortOrder: 'ascend',
+    },
+    {
+        title: t('masterData.labels.parent_category_name'),
+        dataIndex: 'parent_name',
+        key: 'parent_name',
+        width: 200,
+        align: 'center',
+        customRender: ({ record }) => <span>{record.parent?.name}</span>,
     },
     {
         title: t('masterData.labels.description'),

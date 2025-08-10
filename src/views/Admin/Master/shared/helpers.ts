@@ -6,13 +6,13 @@ export const getQuerySearch = (
     data: Record<string, any>,
     hasType = false
 ) => {
-    const { status, search } = data
+    const { status, search, parent_id } = data
 
     return mapFilterQuery(
         query,
         search,
         hasType
-            ? mapKeyToData({ status, type: data?.type })
-            : mapKeyToData({ status })
+            ? mapKeyToData({ status, parent_id, type: data?.type })
+            : mapKeyToData({ status, parent_id })
     )
 }
