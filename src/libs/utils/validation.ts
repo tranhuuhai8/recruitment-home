@@ -5,6 +5,7 @@ import {
     REGEX_FLOAT,
     REGEX_LOWERCASE,
     REGEX_NUMBER,
+    REGEX_ONLY_NUMBER,
     REGEX_TEL,
     REGEX_UPPERCASE,
 } from './regex'
@@ -167,7 +168,7 @@ export const validatePassword = (_: any, password: string) => {
         REGEX_UPPERCASE.test(password) &&
         REGEX_LOWERCASE.test(password) &&
         REGEX_CHARACTER.test(password) &&
-        REGEX_NUMBER.test(password)
+        REGEX_ONLY_NUMBER.test(password)
     ) {
         return Promise.resolve()
     }
