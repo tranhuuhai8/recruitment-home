@@ -11,6 +11,10 @@ export default {
     search: 'Tìm kiếm',
     operation: 'Thao tác',
     all: 'Tất cả',
+    select: {
+        placeholder: 'Vui lòng chọn',
+        no_data: 'Không có dữ liệu',
+    },
     gender: {
         label: 'Giới tính',
         other: 'Khác',

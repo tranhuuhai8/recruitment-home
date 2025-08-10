@@ -45,7 +45,11 @@ const handleChangePage = (page: number) =>
     (query.value = { ...query.value, page })
 
 const handleSearch = () =>
-    (query.value = getQuerySearch(query, formState.value, true))
+    (query.value = getQuerySearch(
+        query,
+        formState.value,
+        activeKey.value === KEY_TAB_CATEGORY
+    ))
 
 const handleResetQuery = () => (query.value = { ...INITIAL_QUERY_MST })
 

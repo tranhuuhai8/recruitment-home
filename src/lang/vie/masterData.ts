@@ -1,10 +1,13 @@
 export default {
     tab: {
         city: 'Thành phố',
-        category: 'Danh mục',
+        category: 'Loại công việc',
     },
     labels: {
-        name: 'Tên',
+        category_name: 'Vị trí',
+        parent_category_name: 'Loại công việc',
+        city_name: 'Xã/ Phường',
+        parent_city_name: 'Tỉnh/ Thành phố',
         description: 'Mô tả',
         status: 'Trạng thái',
         type: 'Loại',

@@ -2,12 +2,20 @@
 import { useI18n } from 'vue3-i18n'
 import { reactive, ref, watch, type UnwrapRef } from 'vue'
 import { useCityStore } from '@/stores/admin'
-import { FORM_CITY, cityRules, INITIAL_QUERY_MST } from '../shared'
+import { useCityStore as useCityStoreHome } from '@/stores/home/city'
+import {
+    FORM_CITY,
+    cityRules,
+    INITIAL_QUERY_MST,
+    QUERY_MST_PARENT,
+} from '../shared'
 import {
     trim,
     notifyStatus,
     notifyDelete,
     STATUS_DISPLAY_OPTIONS_FORM,
+    getOptions,
+    filterOption,
 } from '@/libs'
 import { DeleteOutlined } from '@ant-design/icons-vue'
 
@@ -16,6 +24,7 @@ const formRef = ref()
 const loading = ref(false)
 const openDelete = ref(false)
 const cityStore = useCityStore()
+const cityStoreHome = useCityStoreHome()
 
 const props = defineProps(['id', 'query'])
 const emit = defineEmits(['cancel', 'submit'])
@@ -61,9 +70,7 @@ const getData = async (id: number) => {
     )
     if (!data) return resetForm(false)
 
-    formState.name = data.name
-    formState.description = data.description
-    formState.status = data.status
+    Object.assign(formState, data)
 }
 
 const resetForm = async (isFetchData: boolean) => {
@@ -76,7 +83,12 @@ const resetForm = async (isFetchData: boolean) => {
 watch(
     () => props.id,
     async (newId) => {
-        newId && (await getData(newId))
+        if (newId) {
+            loading.value = true
+            await cityStoreHome.listParent(QUERY_MST_PARENT)
+            await getData(newId)
+            loading.value = false
+        }
     },
     { immediate: true }
 )
@@ -88,17 +100,34 @@ watch(
         class="form-city"
         :model="formState"
         :rules="cityRules"
-        :label-col="{ span: 4 }"
-        :wrapper-col="{ span: 20 }"
+        :label-col="{ span: 6 }"
+        :wrapper-col="{ span: 18 }"
         @finish="onSubmit"
     >
-        <a-form-item name="name" :label="t('masterData.labels.name')">
+        <a-form-item name="name" :label="t('masterData.labels.city_name')">
             <a-input
                 v-model:value="formState.name"
-                :placeholder="t('masterData.labels.name')"
+                :placeholder="t('masterData.labels.city_name')"
                 @blur="trim('name', formState)"
             />
         </a-form-item>
+
+        <a-form-item
+            name="parent_id"
+            :label="t('masterData.labels.parent_city_name')"
+        >
+            <a-select
+                allow-search
+                show-search
+                ref="select"
+                style="width: 150px"
+                :placeholder="t('select.placeholder')"
+                v-model:value="formState.parent_id"
+                :options="getOptions(cityStoreHome.getCitiesParent.data)"
+                :filter-option="filterOption"
+            />
+        </a-form-item>
+
         <a-form-item
             name="description"
             :label="t('masterData.labels.description')"

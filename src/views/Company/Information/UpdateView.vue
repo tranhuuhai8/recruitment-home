@@ -3,7 +3,7 @@ import { useI18n } from 'vue3-i18n'
 import { onMounted, reactive, ref } from 'vue'
 import { useAuthStore } from '@/stores'
 import { useInfoStore } from '@/stores/company'
-import { useCityStore } from '@/stores/home/city'
+import { useCityStore } from '@/stores/home'
 import type { FormDataCompany } from '@/interface'
 import {
     filterTreeSelect,

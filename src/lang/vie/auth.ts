@@ -9,7 +9,7 @@ export default {
     },
     labels: {
         name: 'Tên',
-        role: 'Quyền',
+        role: 'Vai trò',
         mail_address: 'Email',
         password: 'Mật khẩu',
         password_confirmation: 'Xác nhận mật khẩu',
