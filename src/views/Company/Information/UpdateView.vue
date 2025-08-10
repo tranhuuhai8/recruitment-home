@@ -6,12 +6,11 @@ import { useInfoStore } from '@/stores/company'
 import { useCityStore } from '@/stores/home/city'
 import type { FormDataCompany } from '@/interface'
 import {
-    filterOption,
-    getOptions,
+    filterTreeSelect,
+    getTreeData,
     GUARD_COMPANY,
     INITIAL_QUERY,
     notify,
-    notifyError,
     PAYLOAD_ALL,
     STATUS_CODE_SUCCESS,
     trim,
@@ -29,12 +28,12 @@ const formRef = ref()
 const onUpdate = async (values: Record<string, any>) => {
     loading.value = true
     try {
-        const { status_code, message, errors } = await infoStore.update(values)
+        const { status_code, message } = await infoStore.update(values)
 
         if (status_code === STATUS_CODE_SUCCESS) {
             return notify(message, '', 'success')
         }
-        notifyError(Object.values(errors || {}))
+        notify(message, '', 'error')
     } catch (error) {
         console.error(error)
     } finally {
@@ -117,12 +116,14 @@ onMounted(async () => {
                 </a-form-item>
 
                 <a-form-item name="city_id" :label="t('company.labels.city')">
-                    <a-select
+                    <a-tree-select
+                        allow-clear
                         show-search
-                        :placeholder="t('company.labels.city')"
+                        tree-default-expand-all
                         v-model:value="formState.city_id"
-                        :options="getOptions(cityStore.getCities.data)"
-                        :filter-option="filterOption"
+                        :tree-data="getTreeData(cityStore.getCities.data)"
+                        :placeholder="t('company.labels.city')"
+                        :filterTreeNode="filterTreeSelect"
                     />
                 </a-form-item>
                 <a-form-item

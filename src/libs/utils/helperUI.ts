@@ -29,11 +29,6 @@ export const notify = (
     })
 }
 
-export const notifyError = (errors: string[]) =>
-    errors.length > 1
-        ? notify(errors[0][0], '', 'error')
-        : notify(errors[0], '', 'error')
-
 export const notifyStatus = (status: number, message: string) =>
     notify(message, '', status === STATUS_CODE_SUCCESS ? 'success' : 'error')
 

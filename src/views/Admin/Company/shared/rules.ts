@@ -57,6 +57,13 @@ export const rules: Record<string, Rule[]> = {
             trigger: 'blur',
         },
     ],
+    city_id: [
+        {
+            required: true,
+            message: t('validation.required', [t('company.labels.city')]),
+            trigger: 'blur',
+        },
+    ],
     address: [
         {
             required: true,

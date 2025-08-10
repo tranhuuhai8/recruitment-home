@@ -1,4 +1,10 @@
-import { FALSE_VALUE, INITIAL_QUERY, PER_PAGE_MST, SORT_TYPE_ASC } from '@/libs'
+import {
+    FALSE_VALUE,
+    INITIAL_QUERY,
+    PER_PAGE_MST,
+    SORT_TYPE_ASC,
+    TRUE_VALUE,
+} from '@/libs'
 
 export const INITIAL_QUERY_MST = {
     ...INITIAL_QUERY,
@@ -17,6 +23,7 @@ export const INITIAL_FORM_COMPANY = {
     short_name: '',
     mail_address: '',
     telephone: '',
+    city_id: TRUE_VALUE,
     address: '',
     website: '',
     status: '',
