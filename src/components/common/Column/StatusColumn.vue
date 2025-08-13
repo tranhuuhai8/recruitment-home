@@ -1,16 +1,14 @@
 <script lang="ts" setup>
 import i18n from '@/lang'
+import { STATUS_MAP } from '@/libs'
 
 const { t } = i18n
 const props = defineProps(['status'])
 </script>
 
 <template>
-    <div
-        class="type-status"
-        :class="props.status === 1 ? 'active' : 'inactive'"
-    >
-        {{ props.status === 1 ? t('status.active') : t('status.inactive') }}
+    <div :class="`type-status ${STATUS_MAP[props.status]}`">
+        {{ t(`status.${STATUS_MAP[props.status]}`) }}
     </div>
 </template>
 

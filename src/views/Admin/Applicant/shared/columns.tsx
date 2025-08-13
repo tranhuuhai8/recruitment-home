@@ -33,9 +33,9 @@ export const columns: ColumnTable[] = [
         align: 'center',
     },
     {
-        title: t('applicant.labels.description'),
-        dataIndex: 'description',
-        key: 'description',
+        title: t('auth.labels.mail_address'),
+        dataIndex: 'mail_address',
+        key: 'mail_address',
         align: 'center',
     },
     {
@@ -44,9 +44,7 @@ export const columns: ColumnTable[] = [
         key: 'status',
         width: 150,
         align: 'center',
-        customRender: ({ record }) => (
-            <StatusColumn status={record.user.status} />
-        ),
+        customRender: ({ record }) => <StatusColumn status={record.status} />,
     },
     {
         title: t('operation'),

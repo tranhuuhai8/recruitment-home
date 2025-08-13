@@ -48,7 +48,9 @@ watch(
         <a-form-item name="search">
             <a-input
                 allowClear
-                :placeholder="t('search')"
+                :placeholder="
+                    t(`masterData.placeholder.${hasType ? 'category' : 'city'}`)
+                "
                 v-model:value="formState.search"
                 @blur="trim('search', formState)"
             />

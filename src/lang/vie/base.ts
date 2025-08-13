@@ -45,7 +45,8 @@ export default {
     status: {
         label: 'Trạng thái',
         active: 'Hoạt động',
-        inactive: 'Không hoạt động',
+        unverified: 'Chưa xác thực',
+        locked: 'Khóa',
         show: 'Hiển thị',
         hide: 'Ẩn',
     },

@@ -45,7 +45,8 @@ export default {
     status: {
         label: 'Status',
         active: 'Active',
-        inactive: 'Inactive',
+        unverified: 'Inactive',
+        locked: 'Locked',
         show: 'Show',
         hide: 'Hide',
     },
