@@ -78,6 +78,7 @@ export const ALL_OPTION = {
 
 export const STATUS_ACTIVE = 1
 export const STATUS_INACTIVE = 2
+export const STATUS_LOCKED = 3
 
 export const STATUS_SHOW = 1
 export const STATUS_HIDE = 2
@@ -117,7 +118,8 @@ export const STATUS_DISPLAY_OPTIONS_SEARCH: Record<number, string> = {
 
 export const STATUS_OPTIONS_SEARCH: Record<number, string> = {
     1: t('status.active'),
-    2: t('status.inactive'),
+    2: t('status.unverified'),
+    3: t('status.locked'),
 }
 
 export const STATUS_DISPLAY_OPTIONS_FORM = [
@@ -137,10 +139,21 @@ export const STATUS_OPTIONS_FORM = [
         value: STATUS_ACTIVE,
     },
     {
-        label: t('status.inactive'),
+        label: t('status.unverified'),
         value: STATUS_INACTIVE,
+        disabled: true,
+    },
+    {
+        label: t('status.locked'),
+        value: STATUS_LOCKED,
     },
 ]
+
+export const STATUS_MAP: Record<number, string> = {
+    1: 'active',
+    2: 'unverified',
+    3: 'locked',
+}
 
 export const TYPE_OPTIONS_SEARCH: Record<number, string> = {
     1: t('type.default'),

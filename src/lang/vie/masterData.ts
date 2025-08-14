@@ -1,13 +1,17 @@
 export default {
     tab: {
-        city: 'Thành phố',
-        category: 'Loại công việc',
+        city: 'Khu vực',
+        category: 'Lĩnh vực',
+    },
+    placeholder: {
+        city: 'Tìm kiếm khu vực',
+        category: 'Tìm kiếm ngành/ nghề',
     },
     labels: {
-        category_name: 'Vị trí',
-        parent_category_name: 'Loại công việc',
-        city_name: 'Xã/ Phường',
-        parent_city_name: 'Tỉnh/ Thành phố',
+        category_name: 'Ngành/ nghề',
+        parent_category_name: 'Lĩnh vực',
+        city_name: 'Khu vực',
+        parent_city_name: 'Thuộc (Tỉnh/ TP)',
         description: 'Mô tả',
         status: 'Trạng thái',
         type: 'Loại',

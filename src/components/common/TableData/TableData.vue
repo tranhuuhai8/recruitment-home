@@ -186,8 +186,13 @@ const handleCreate = () => router.push(props.createLink)
                     background-color: var(--vt-c-main);
                 }
 
-                .inactive {
+                .inactive,
+                .unverified {
                     background-color: var(--vt-c-gray-v1);
+                }
+
+                .locked {
+                    background-color: var(--vt-c-primary);
                 }
 
                 .default {
