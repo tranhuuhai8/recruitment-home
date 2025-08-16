@@ -303,6 +303,10 @@
     .ant-form {
         .ant-form-item {
             width: 50%;
+
+            &:has(.upload-image) {
+                width: auto;
+            }
         }
 
         > .ant-row {

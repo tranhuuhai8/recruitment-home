@@ -142,12 +142,49 @@ body {
 }
 
 .icon-edit {
-    color: blue;
+    color: var(--vt-c-blue);
     font-size: 20px;
     cursor: pointer;
 
     &:hover {
         opacity: 0.6;
         transform: scale(0.9);
+    }
+}
+
+.upload-image {
+    .ant-upload {
+        &:has(.img-preview) {
+            border: none !important;
+        }
+
+        width: auto !important;
+        height: auto !important;
+        min-width: 100px;
+        min-height: 100px;
+        background-color: transparent !important;
+
+        .anticon-delete {
+            svg {
+                font-size: 18px;
+                color: var(--vt-c-red);
+            }
+        }
+    }
+
+    .img-preview {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        margin-right: 10px;
+        border-radius: 50%;
+    }
+
+    &.no-radius {
+        .img-preview {
+            border-radius: 5px;
+            width: 300px;
+            height: auto;
+        }
     }
 }

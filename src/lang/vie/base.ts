@@ -60,4 +60,7 @@ export default {
             confirm: 'Bạn chắc chắn muốn xóa dữ liệu?',
         },
     },
+    upload: {
+        image: 'Tải ảnh lên',
+    },
 }

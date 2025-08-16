@@ -5,6 +5,7 @@ import LayoutVue from './LayoutVue.vue'
 import TableDataVue from './TableData/TableData.vue'
 import ModalVue from './Modal/ModalVue.vue'
 import ModalDelete from './Modal/ModalDelete.vue'
+import UploadImg from './Upload/UploadImg.vue'
 
 export {
     AppHeaderHomepage,
@@ -14,4 +15,5 @@ export {
     TableDataVue,
     ModalVue,
     ModalDelete,
+    UploadImg,
 }

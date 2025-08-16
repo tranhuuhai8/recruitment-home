@@ -50,8 +50,8 @@ const getData = async () => {
     try {
         const data = await companyStore.detail(+id)
         Object.assign(formState, data)
-        formState.status = data.user.status
-        formState.mail_address = data.user.mail_address
+        formState.status = data.user?.status ?? data.status
+        formState.mail_address = data.user?.mail_address ?? data.mail_address
     } catch (error) {
         console.error(error)
     } finally {
@@ -81,6 +81,25 @@ onMounted(async () => {
                 :rules="rules"
                 @finish="onUpdate"
             >
+                <a-form-item
+                    name="logo"
+                    :label="t('company.labels.logo')"
+                    class="mb-5"
+                >
+                    <UploadImg v-model:url="formState.logo" />
+                </a-form-item>
+
+                <a-form-item
+                    name="cover_img"
+                    :label="t('company.labels.cover_img')"
+                    class="mb-5"
+                >
+                    <UploadImg
+                        :has-radius="false"
+                        v-model:url="formState.cover_img"
+                    />
+                </a-form-item>
+
                 <a-form-item name="name" :label="t('company.labels.name')">
                     <a-input
                         v-model:value="formState.name"

@@ -63,7 +63,7 @@ onMounted(() => getData())
 <template>
     <a-spin :spinning="loading">
         <div class="box">
-            <h1 class="title-page">{{ t('applicant.title_page.detail') }}</h1>
+            <h1 class="title-page">{{ t('applicant.title_page.info') }}</h1>
             <a-form
                 class="form-edit form-applicant"
                 ref="formRef"
@@ -72,6 +72,13 @@ onMounted(() => getData())
                 :rules="rules"
                 @finish="onUpdate"
             >
+                <a-form-item
+                    name="avatar"
+                    :label="t('applicant.labels.avatar')"
+                    class="mb-5"
+                >
+                    <UploadImg v-model:url="formState.avatar" />
+                </a-form-item>
                 <a-form-item name="name" :label="t('applicant.labels.name')">
                     <a-input
                         v-model:value="formState.name"

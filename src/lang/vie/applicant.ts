@@ -1,6 +1,7 @@
 export default {
     title_page: {
         detail: 'Thông tin ứng viên',
+        info: 'Thông tin cá nhân',
     },
     labels: {
         avatar: 'Ảnh đại diện',

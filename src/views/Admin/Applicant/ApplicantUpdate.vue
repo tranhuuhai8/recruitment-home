@@ -79,6 +79,13 @@ onMounted(() => getData())
                 :rules="rules"
                 @finish="onUpdate"
             >
+                <a-form-item
+                    name="avatar"
+                    :label="t('applicant.labels.avatar')"
+                    class="mb-5"
+                >
+                    <UploadImg v-model:url="formState.avatar" />
+                </a-form-item>
                 <a-form-item name="name" :label="t('applicant.labels.name')">
                     <a-input
                         v-model:value="formState.name"
