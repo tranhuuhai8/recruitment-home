@@ -12,7 +12,7 @@ const { t } = i18n
 
 export const CURRENT_MONTH = dayjs(new Date()).format('MM')
 export const CURRENT_DAY = dayjs(new Date()).format('DD')
-export const IMAGE_EXTENSIONS = ['jpeg', 'png', 'jpg']
+export const IMAGE_EXTENSIONS = ['image/jpeg', 'image/png', 'image/jpg']
 
 export const FORMAT_DATE_DASH = 'YYYY-MM-DD'
 export const FORMAT_DATE_SLASH = 'YYYY/MM/DD'
@@ -30,6 +30,9 @@ export const MAX_STRING = 255
 export const MIN_STRING = 8
 export const MAX_SHORT_NAME = 10
 export const MAX_STRING_50 = 50
+
+export const API_URL = import.meta.env.VITE_PUBLIC_APP_API
+export const MAX_SIZE_IMAGE = +import.meta.env.VITE_MAX_SIZE_IMAGE
 
 export const SORT_TYPE_ASC = 'ascending'
 export const SORT_TYPE_DESC = 'descending'

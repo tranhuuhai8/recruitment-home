@@ -60,4 +60,7 @@ export default {
             confirm: 'Are you sure you want to delete data?',
         },
     },
+    upload: {
+        image: 'Upload image',
+    },
 }

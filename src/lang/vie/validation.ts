@@ -13,8 +13,8 @@ export default {
     email: 'Email phải đúng định dạng',
     exists: '{0}Giá trị không hợp lệ',
     image: {
-        type: 'Chỉ jpg, png và jpeg là hợp lệ cho hình ảnh',
-        max: '{0} chỉ hợp lệ đối với các tệp nhỏ hơn {1}MB',
+        type: 'Vui lòng chỉ tải lên các tệp hình ảnh jpg, png và jpeg',
+        max: 'Vui lòng tải lên hình ảnh có dung lượng nhỏ hơn {0}!',
     },
     in_array: '{0} phải khớp với {1}',
     integer: '{0} chỉ là số nguyên hợp lệ',

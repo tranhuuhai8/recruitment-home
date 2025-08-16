@@ -168,3 +168,14 @@ export const getTreeData = (data: Record<string, any>[]) => {
 
     return Array.from(parentMap.values())
 }
+
+export const formatBytes = (bytes: number = 0, decimals = 2, indexUnit = 2) => {
+    const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
+
+    let i = 0
+    for (i; i < indexUnit; i++) {
+        bytes /= 1024
+    }
+
+    return parseFloat(bytes.toFixed(decimals)) + ' ' + units[i]
+}

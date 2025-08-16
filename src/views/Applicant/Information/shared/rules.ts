@@ -5,6 +5,12 @@ import type { Rule } from 'ant-design-vue/es/form'
 const { t } = i18n
 
 export const rules: Record<string, Rule[]> = {
+    avatar: [
+        {
+            required: true,
+            message: t('validation.required', [t('applicant.labels.avatar')]),
+        },
+    ],
     name: [
         {
             required: true,

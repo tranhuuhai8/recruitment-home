@@ -13,8 +13,8 @@ export default {
     email: 'Email must be a valid format',
     exists: '{0} contains an invalid value',
     image: {
-        type: 'Only jpg, png, and jpeg image types are allowed',
-        max: '{0} must be smaller than {1}MB',
+        type: 'Please upload only jpg, png, and jpeg image files.',
+        max: 'Please upload an image smaller than {0}!',
     },
     in_array: '{0} must match one of {1}',
     integer: '{0} must be a valid integer',

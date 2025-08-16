@@ -70,6 +70,25 @@ onMounted(async () => {
                 :rules="rules"
                 @finish="onUpdate"
             >
+                <a-form-item
+                    name="logo"
+                    :label="t('company.labels.logo')"
+                    class="mb-5"
+                >
+                    <UploadImg v-model:url="formState.logo" />
+                </a-form-item>
+
+                <a-form-item
+                    name="cover_img"
+                    :label="t('company.labels.cover_img')"
+                    class="mb-5"
+                >
+                    <UploadImg
+                        :has-radius="false"
+                        v-model:url="formState.cover_img"
+                    />
+                </a-form-item>
+
                 <a-form-item name="name" :label="t('company.labels.name')">
                     <a-input
                         v-model:value="formState.name"
