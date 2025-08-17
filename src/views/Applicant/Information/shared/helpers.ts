@@ -1,8 +1,8 @@
-import type { Applicant } from '@/interface'
+import type { Applicant, FormDataApplicant } from '@/interface'
 import { formatDay, GENDER_MALE } from '@/libs'
 import dayjs from 'dayjs'
 
-export const mapDataUpdate = (data: Record<string, any>) => ({
+export const mapDataUpdate = (data: FormDataApplicant) => ({
     ...data,
     birthday: formatDay(data.birthday),
 })

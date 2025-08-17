@@ -25,7 +25,7 @@ const formState = reactive<FormDataCompany>({ ...INITIAL_FORM_COMPANY })
 const loading = ref(false)
 const formRef = ref()
 
-const onUpdate = async (values: Record<string, any>) => {
+const onUpdate = async (values: FormDataCompany) => {
     loading.value = true
     try {
         const { status_code, message } = await infoStore.update(values)
@@ -140,7 +140,9 @@ onMounted(async () => {
                         show-search
                         tree-default-expand-all
                         v-model:value="formState.city_id"
-                        :tree-data="getTreeData(cityStore.getCities.data)"
+                        :tree-data="
+                            getTreeData(cityStore.getCities?.data ?? [])
+                        "
                         :placeholder="t('company.labels.city')"
                         :filterTreeNode="filterTreeSelect"
                     />

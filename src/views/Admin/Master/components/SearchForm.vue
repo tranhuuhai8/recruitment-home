@@ -85,7 +85,9 @@ watch(
                 v-model:value="formState.parent_id"
                 :max-tag-count="2"
                 :options="
-                    getOptions(jobCategoryStore.getJobCategoriesParent.data)
+                    getOptions(
+                        jobCategoryStore.getJobCategoriesParent?.data ?? []
+                    )
                 "
                 :filter-option="filterOption"
             />
@@ -105,7 +107,7 @@ watch(
                 :placeholder="t('select.placeholder')"
                 v-model:value="formState.parent_id"
                 :max-tag-count="3"
-                :options="getOptions(cityStore.getCitiesParent.data)"
+                :options="getOptions(cityStore.getCitiesParent?.data ?? [])"
                 :filter-option="filterOption"
             />
         </a-form-item>

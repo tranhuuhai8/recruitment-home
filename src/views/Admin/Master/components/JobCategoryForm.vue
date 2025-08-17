@@ -128,7 +128,9 @@ watch(
                 :placeholder="t('select.placeholder')"
                 v-model:value="formState.parent_id"
                 :options="
-                    getOptions(jobCategoryStoreHome.getJobCategoriesParent.data)
+                    getOptions(
+                        jobCategoryStoreHome.getJobCategoriesParent?.data ?? []
+                    )
                 "
                 :filter-option="filterOption"
             />
