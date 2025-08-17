@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons-vue'
 import {
     API_URL,
@@ -17,7 +17,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['update:url'])
 
-const handleChange = (info) => {
+const handleChange = (info: Record<string, any>) => {
     const { status, response, error } = info.file
     if (status === 'done') {
         emit('update:url', response.data.url)
@@ -26,7 +26,7 @@ const handleChange = (info) => {
     }
 }
 
-const beforeUpload = (info) => {
+const beforeUpload = (info: Record<string, any>) => {
     const isJpgOrPng = IMAGE_EXTENSIONS.includes(info.type)
     if (!isJpgOrPng) {
         notify(t('validation.image.type'), '', 'error')
