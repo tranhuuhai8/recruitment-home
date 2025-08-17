@@ -9,7 +9,14 @@ import {
     STATUS_CODE_SUCCESS,
     getUserInformation,
 } from '@/libs'
-import type { User } from '@/interface'
+import type {
+    ChangePasswordDto,
+    ForgotPasswordDto,
+    LoginDto,
+    RegisterDto,
+    ResetPasswordDto,
+    User,
+} from '@/interface'
 
 export const useAuthStore = defineStore('auth', () => {
     const me = ref<User>()
@@ -17,7 +24,7 @@ export const useAuthStore = defineStore('auth', () => {
     const token = ref(TOKEN_STR)
     const isAuthenticated = computed(() => !!token.value)
 
-    const login = async (payload: Record<string, any>, prefix: string) => {
+    const login = async (payload: LoginDto, prefix: string) => {
         try {
             const result = await API.login(payload, prefix)
             if (result.status_code === STATUS_CODE_SUCCESS) {
@@ -31,9 +38,33 @@ export const useAuthStore = defineStore('auth', () => {
         }
     }
 
-    const register = async (payload: Record<string, any>, prefix: string) => {
+    const register = async (payload: RegisterDto, prefix: string) => {
         try {
             return await API.register(payload, prefix)
+        } catch (error: any) {
+            return error
+        }
+    }
+
+    const changePassword = async (data: ChangePasswordDto, prefix: string) => {
+        try {
+            return await API.changePassword(data, prefix)
+        } catch (error: any) {
+            return error
+        }
+    }
+
+    const forgotPassword = async (data: ForgotPasswordDto) => {
+        try {
+            return await API.forgotPassword(data)
+        } catch (error: any) {
+            return error
+        }
+    }
+
+    const resetPassword = async (token: string, data: ResetPasswordDto) => {
+        try {
+            return await API.resetPassword(token, data)
         } catch (error: any) {
             return error
         }
@@ -78,6 +109,9 @@ export const useAuthStore = defineStore('auth', () => {
         isAuthenticated,
         login,
         register,
+        changePassword,
+        forgotPassword,
+        resetPassword,
         logout,
         getUser,
         getMe,

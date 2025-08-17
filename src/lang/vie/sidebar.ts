@@ -12,6 +12,7 @@ export default {
     jobs: 'Công việc',
     reviews: 'Đánh giá',
     master_data: 'Dữ liệu',
+    change_password: 'Đổi mật khẩu',
     back_to_home: 'Về trang chủ',
     logout: 'Đăng xuất',
 }

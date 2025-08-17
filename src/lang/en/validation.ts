@@ -47,5 +47,6 @@ export default {
     password: {
         format: 'The password must be strong (include at least 8 characters, uppercase letters, lowercase letters, numbers, and special characters).',
         confirm: 'Password and confirmation password do not match.',
+        confirm_update: 'New password and confirmation password do not match',
     },
 }

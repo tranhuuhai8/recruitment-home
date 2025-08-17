@@ -64,7 +64,7 @@ onUnmounted(() => formRef.value?.resetFields())
         <a-button
             v-if="isLogin"
             type="link"
-            @click="() => router.push('/auth/login')"
+            @click="() => router.push({ name: 'forgot-password' })"
         >
             {{ t('auth.forgot_password') }}
         </a-button>

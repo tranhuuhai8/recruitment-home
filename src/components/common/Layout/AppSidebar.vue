@@ -64,8 +64,10 @@ const getIcon = (order: number) => {
         case 6:
             return Icons.IconData
         case 7:
-            return Icons.IconHome
+            return Icons.IconKey
         case 8:
+            return Icons.IconHome
+        case 9:
             return Icons.IconLogout
         default:
             return Icons.IconCompany
@@ -78,7 +80,6 @@ const handleLogout = async () => {
         return notify(t('notify.error'), '', 'error')
     }
 
-    notify(messageLogout, '', 'success')
     router.push({ name: 'login', replace: true })
 }
 

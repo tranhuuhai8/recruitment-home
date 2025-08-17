@@ -174,15 +174,23 @@ export const APP_SIDEBAR_APPLICANT: Record<string, any> = {
 }
 
 export const APP_SIDEBAR_BOTTOM: Record<string, any> = {
-    back_to_home: {
+    change_password: {
         order: 1,
+        label: t('sidebar.change_password'),
+        route: 'change-password',
+        name: 'change-password',
+        class: '',
+        menu_childs: [],
+    },
+    back_to_home: {
+        order: 2,
         label: t('sidebar.back_to_home'),
         route: 'home',
         class: '',
         menu_childs: [],
     },
     logout: {
-        order: 2,
+        order: 3,
         label: t('sidebar.logout'),
         route: 'logout',
         class: '',

@@ -9,6 +9,8 @@ export const ROUTER_AUTH = [
     'reset-password',
 ]
 
+export const ROUTE_CHANGE_PASSWORD = 'change-password'
+
 export const PREFIX_ROLE_ADMIN = 'admin'
 export const PREFIX_ROLE_COMPANY = 'company'
 export const PREFIX_ROLE_APPLICANT = 'applicant'

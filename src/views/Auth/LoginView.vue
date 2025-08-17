@@ -2,24 +2,24 @@
 import { reactive, ref } from 'vue'
 import { INITIAL_LOGIN, rulesLogin } from './shared'
 import { useAuthStore } from '@/stores'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { STATUS_CODE_SUCCESS, getRouterDashboard, notify } from '@/libs'
 import i18n from '@/lang'
 import { ArrowLeftOutlined } from '@ant-design/icons-vue'
 import AuthForm from './components/AuthForm.vue'
+import type { LoginDto } from '@/interface'
 
 const loading = ref(false)
 const { t } = i18n
 const router = useRouter()
-const route = useRoute()
 const authStore = useAuthStore()
-const formState = reactive<any>({ ...INITIAL_LOGIN })
+const formState = reactive<LoginDto>({ ...INITIAL_LOGIN })
 
-const onFinish = async (values: Record<string, any>) => {
+const onFinish = async (values: LoginDto) => {
     try {
         loading.value = true
         const { status_code, message } = await authStore.login(
-            { ...values, token: route.query.token },
+            values,
             values.role
         )
 
@@ -51,7 +51,7 @@ const onFinish = async (values: Record<string, any>) => {
         />
         <div class="suggest-auth">
             {{ t('auth.btn.suggest_register') }}
-            <span @click="() => router.push('/auth/register')">
+            <span @click="() => router.push({ name: 'register' })">
                 {{ t('auth.register') }}
             </span>
         </div>
