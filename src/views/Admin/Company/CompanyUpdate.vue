@@ -151,7 +151,9 @@ onMounted(async () => {
                         show-search
                         tree-default-expand-all
                         v-model:value="formState.city_id"
-                        :tree-data="getTreeData(cityStore.getCities.data)"
+                        :tree-data="
+                            getTreeData(cityStore.getCities?.data ?? [])
+                        "
                         :placeholder="t('company.labels.city')"
                         :filterTreeNode="filterTreeSelect"
                     />

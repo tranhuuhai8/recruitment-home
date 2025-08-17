@@ -27,7 +27,7 @@ const formState = reactive<FormDataApplicant>({ ...INITIAL_FORM_APPLICANT })
 const loading = ref(false)
 const formRef = ref()
 
-const onUpdate = async (values: Record<string, any>) => {
+const onUpdate = async (values: FormDataApplicant) => {
     loading.value = true
     try {
         const { status_code, message } = await infoStore.update(

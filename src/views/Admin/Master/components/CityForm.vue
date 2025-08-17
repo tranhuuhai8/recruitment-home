@@ -123,7 +123,7 @@ watch(
                 style="width: 150px"
                 :placeholder="t('select.placeholder')"
                 v-model:value="formState.parent_id"
-                :options="getOptions(cityStoreHome.getCitiesParent.data)"
+                :options="getOptions(cityStoreHome.getCitiesParent?.data ?? [])"
                 :filter-option="filterOption"
             />
         </a-form-item>
