@@ -14,6 +14,10 @@ export default defineConfig({
     vue(),
     vueJsx(),
   ],
+  build: {
+    sourcemap: false,
+    minify: 'terser'
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
