@@ -1,0 +1,114 @@
+.box-banner {
+    position: relative;
+    height: auto;
+
+    .bg-banner {
+        width: 100%;
+    }
+
+    .body-banner {
+        @include center_pos;
+        width: 90%;
+
+        .title,
+        .subtitle {
+            text-align: center;
+            color: var(--vt-c-white);
+            margin-bottom: 5px;
+        }
+
+        .form-search-home {
+            @extend .flex-center-between;
+            background-color: var(--vt-c-white);
+            padding: 20px 30px;
+            border-radius: 50px;
+            margin: 20px auto 0;
+
+            .ant-form-item {
+                margin: 0 10px;
+
+                &.search-all {
+                    flex: 1;
+                }
+
+                .ant-select-selector {
+                    min-width: 220px;
+                    max-width: 350px;
+                }
+            }
+        }
+    }
+}
+
+.box-company {
+    .title-box {
+        font-size: 25px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .subtitle-box {
+        font-size: 18px;
+    }
+}
+
+.company-list {
+    .swiper {
+        padding: 40px 0 50px;
+
+        .swiper-wrapper {
+            width: var(--max-width-pc);
+            align-items: stretch;
+
+            .swiper-slide {
+                height: 100%;
+                @extend .flex-center;
+                flex-direction: column;
+                padding: 30px 20px;
+                cursor: pointer;
+                border-radius: 5px;
+                border-radius: var(--vt-br-box);
+                border: 1px solid transparent;
+                background-color: var(--bg-box-item);
+
+                &:hover {
+                    border-color: var(--vt-c-main);
+                    background-color: var(--vt-c-white);
+                    box-shadow: var(--vt-box-shadow-box);
+                }
+
+                .logo {
+                    width: 100%;
+                    height: 120px;
+                    object-fit: contain;
+                }
+
+                .name {
+                    font-weight: bold;
+                    font-size: 18px;
+                    margin: 8px auto;
+                }
+
+                .ant-row {
+                    @extend .flex-center;
+                    margin: 3px 0;
+
+                    span {
+                        margin-left: 5px;
+                        line-height: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.company-marquee {
+    margin: 60px auto;
+
+    .marquee-item {
+        width: 100px;
+        height: auto;
+        margin: 0 30px;
+    }
+}

@@ -5,6 +5,7 @@ import sidebar from './sidebar'
 import masterData from './masterData'
 import company from './company'
 import applicant from './applicant'
+import home from './home'
 
 export const en = {
     ...base,
@@ -14,4 +15,5 @@ export const en = {
     masterData,
     company,
     applicant,
+    home,
 }

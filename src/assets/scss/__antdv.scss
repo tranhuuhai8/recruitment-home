@@ -1,0 +1,122 @@
+.ant-form-item-explain {
+    margin: 2px 0 10px;
+
+    .ant-form-item-explain-error {
+        font-size: 12px;
+        text-align: left;
+    }
+}
+
+.ant-btn {
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &.ant-btn-link {
+        color: var(--vt-c-blue);
+    }
+}
+
+.space-group-btn {
+    width: 100%;
+
+    .ant-btn-link {
+        background-color: var(--vt-c-gray-v2);
+        color: var(--vt-c-black);
+
+        &:hover {
+            color: var(--vt-c-black);
+        }
+    }
+}
+
+.icon-edit {
+    color: var(--vt-c-blue);
+    font-size: 20px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.6;
+        transform: scale(0.9);
+    }
+}
+
+.upload-image {
+    .ant-upload {
+        &:has(.img-preview) {
+            border: none !important;
+        }
+
+        width: auto !important;
+        height: auto !important;
+        min-width: 100px;
+        min-height: 100px;
+        background-color: transparent !important;
+
+        .anticon-delete {
+            svg {
+                font-size: 18px;
+                color: var(--vt-c-red);
+            }
+        }
+    }
+
+    .img-preview {
+        max-width: 200px;
+        object-fit: cover;
+        margin-right: 10px;
+    }
+
+    &.no-radius {
+        .img-preview {
+            border-radius: 5px;
+            width: 300px;
+            max-width: 400px;
+            height: auto;
+        }
+    }
+}
+
+.ant-notification-notice-message {
+    margin-bottom: 0 !important;
+}
+
+.ant-layout {
+    display: block;
+    height: 100vh;
+    position: relative;
+}
+
+#app {
+    .ant-spin-blur {
+        z-index: 1001;
+    }
+
+    .ant-spin {
+        &:not(.spin-full) {
+            top: 300px !important;
+            inset-inline-start: unset !important;
+        }
+    }
+
+    &:has(.spin-full) {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+
+        .spin-full {
+            @include center_pos();
+        }
+    }
+
+    &:has(.spin-up-size) {
+        .ant-spin-dot {
+            font-size: 40px;
+
+            .ant-spin-dot-item {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+}

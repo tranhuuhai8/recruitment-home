@@ -6,6 +6,7 @@ import { useAuthStore } from '@/stores'
 import Avatar from '@/assets/imgs/avatar.png'
 import { APP_HEADER, getUserInformation, getRolePathMap, notify } from '@/libs'
 import { reactive, ref, VueElement, onMounted } from 'vue'
+import Logo from '@/assets/imgs/logo.png'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -43,7 +44,7 @@ const handleMenuClick: MenuProps['onClick'] = (e) => {
     const side: any = Object.values(APP_HEADER).find(
         (item: any) => String(item.order) === e.key
     )
-    if (side) router.push(side.route)
+    if (side) router.push({ name: side.name })
     selectedKeys.value.splice(0, 1, String(side?.order))
 }
 
@@ -77,7 +78,7 @@ onMounted(async () => {
 <template>
     <a-row justify="space-between" align="middle" class="header">
         <a-col>
-            <h1 class="header-logo">{{ t('title') }}</h1>
+            <img :src="Logo" alt="" class="header-logo" />
         </a-col>
         <a-col>
             <a-menu
@@ -89,11 +90,9 @@ onMounted(async () => {
         </a-col>
         <a-col class="header-auth">
             <a-dropdown :placement="'bottomRight'" v-if="isLogin">
-                <a-row justify="space-between" align="middle">
-                    <img class="avatar" :src="Avatar" />
-                </a-row>
+                <img class="avatar" :src="Avatar" />
                 <template #overlay>
-                    <a-menu @click="handleClick">
+                    <a-menu @click="handleClick" class="drop-down-header">
                         <a-menu-item key="1">
                             {{ t('header.account') }}
                         </a-menu-item>

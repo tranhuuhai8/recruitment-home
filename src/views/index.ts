@@ -1,4 +1,5 @@
-export const HomeView = () => import('@/views/HomeView.vue')
+export const HomeView = () => import('@/views/Home/HomeView.vue')
+export const AboutView = () => import('@/views/Home/AboutView.vue')
 export const NotFound = () => import('@/views/NotFound.vue')
 
 // Page Applicant
