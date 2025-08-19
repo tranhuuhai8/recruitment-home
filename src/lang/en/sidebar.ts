@@ -12,6 +12,7 @@ export default {
     jobs: 'Jobs',
     reviews: 'Reviews',
     master_data: 'Master data',
+    change_password: 'Change password',
     back_to_home: 'Back to home',
     logout: 'Logout',
 }

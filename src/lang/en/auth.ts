@@ -2,15 +2,25 @@ export default {
     login: 'Login',
     logout: 'Logout',
     forgot_password: 'Forgot password',
+    change_password: 'Change password',
+    reset_password: 'Update password',
     register: 'Register',
     notify: {
         token_failed: 'Your session has expired. Please log in again!',
         permission_denied: 'Account does not have access',
+        change_password: {
+            success: 'Password changed successfully. Please log in again!',
+        },
+        forgot_password: {
+            success: 'Please check your email',
+        },
     },
     labels: {
         name: 'Name',
         role: 'Role',
         mail_address: 'Email',
+        old_password: 'Old password',
+        new_password: 'New password',
         password: 'Password',
         password_confirmation: 'Confirm password',
     },

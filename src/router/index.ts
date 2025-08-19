@@ -1,7 +1,7 @@
 import { useQueryStore, useAuthStore } from '@/stores'
 import { createRouter, createWebHistory } from 'vue-router'
 import * as Pages from '@/views/index'
-import { getRolePathMap } from '@/libs'
+import { getRolePathMap, ROUTE_CHANGE_PASSWORD } from '@/libs'
 
 const ifAuthenticated = (to: any, from: any, next: any) => {
     const authStore = useAuthStore()
@@ -15,7 +15,7 @@ const ifAuthenticated = (to: any, from: any, next: any) => {
         record.path.startsWith(`/${expectedPath}`)
     )
 
-    if (!isAuthorized) {
+    if (!isAuthorized && to.name != ROUTE_CHANGE_PASSWORD) {
         return next({ name: `${expectedPath}-dashboard` })
     }
 
@@ -34,11 +34,6 @@ const router = createRouter({
                     component: Pages.HomeView,
                 },
                 {
-                    path: 'not-found',
-                    name: 'not-found',
-                    component: Pages.NotFound,
-                },
-                {
                     path: 'auth',
                     children: [
                         {
@@ -50,6 +45,22 @@ const router = createRouter({
                             path: 'register',
                             name: 'register',
                             component: Pages.RegisterView,
+                        },
+                        {
+                            path: 'change-password',
+                            name: 'change-password',
+                            component: Pages.ChangePasswordView,
+                            beforeEnter: ifAuthenticated,
+                        },
+                        {
+                            path: 'forgot-password',
+                            name: 'forgot-password',
+                            component: Pages.ForgotPasswordView,
+                        },
+                        {
+                            path: 'reset-password',
+                            name: 'reset-password',
+                            component: Pages.ResetPasswordView,
                         },
                     ],
                 },
@@ -149,6 +160,11 @@ const router = createRouter({
                             beforeEnter: ifAuthenticated,
                         },
                     ],
+                },
+                {
+                    path: ':pathMatch(.*)*',
+                    name: 'not-found',
+                    component: Pages.NotFound,
                 },
             ],
         },

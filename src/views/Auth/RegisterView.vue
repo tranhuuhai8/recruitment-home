@@ -7,14 +7,15 @@ import { ArrowLeftOutlined } from '@ant-design/icons-vue'
 import AuthForm from './components/AuthForm.vue'
 import { useAuthStore } from '@/stores'
 import { notify, STATUS_CODE_SUCCESS } from '@/libs'
+import type { RegisterDto } from '@/interface'
 
 const loading = ref(false)
 const { t } = i18n
 const router = useRouter()
 const authStore = useAuthStore()
-const formState = reactive<any>({ ...INITIAL_REGISTER })
+const formState = reactive<RegisterDto>({ ...INITIAL_REGISTER })
 
-const onFinish = async (values: Record<string, any>) => {
+const onFinish = async (values: RegisterDto) => {
     try {
         loading.value = true
         const { status_code, message } = await authStore.register(

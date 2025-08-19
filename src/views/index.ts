@@ -26,3 +26,9 @@ export const ApplicantUpdate = () =>
 // Auth
 export const LoginView = () => import('@/views/Auth/LoginView.vue')
 export const RegisterView = () => import('@/views/Auth/RegisterView.vue')
+export const ChangePasswordView = () =>
+    import('@/views/Auth/ChangePasswordView.vue')
+export const ForgotPasswordView = () =>
+    import('@/views/Auth/ForgotPasswordView.vue')
+export const ResetPasswordView = () =>
+    import('@/views/Auth/ResetPasswordView.vue')
