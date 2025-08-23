@@ -3,7 +3,7 @@ import { useI18n } from 'vue3-i18n'
 import { nextTick, onMounted, ref } from 'vue'
 import { useSettingStore } from '@/stores'
 import { columns, getQuerySearch, INITIAL_FORM_SEARCH } from './shared'
-import type { FormSearchApplicant, SortProps } from '@/interface'
+import type { FormSearchApplicant, ParamsList, SortProps } from '@/interface'
 import { INITIAL_QUERY, mapSortQuery, SORT_TYPE_DESC } from '@/libs'
 import { watch } from 'vue'
 import SearchForm from './components/SearchForm.vue'
@@ -13,7 +13,7 @@ const { t } = useI18n()
 const settingStore = useSettingStore()
 const applicantStore = useApplicantStore()
 const formState = ref<FormSearchApplicant>({ ...INITIAL_FORM_SEARCH })
-const query = ref<Record<string, any>>({ ...INITIAL_QUERY })
+const query = ref<ParamsList>({ ...INITIAL_QUERY })
 const loading = ref(false)
 const sortType = ref(SORT_TYPE_DESC)
 

@@ -28,9 +28,6 @@ export default {
         prev: 'Previous',
         next: 'Next',
     },
-    home: {
-        title: 'Homepage',
-    },
     page_not_found: {
         not_found: 'Not Found',
         status: '404',
@@ -38,7 +35,10 @@ export default {
     },
     header: {
         home: 'Home',
-        about: 'About',
+        introduce: 'Introduce',
+        job: 'Jobs',
+        news: 'News',
+        contact: 'Contact',
         account: 'Account',
         logout: 'Log out',
     },

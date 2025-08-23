@@ -1,4 +1,5 @@
 import type { Result } from './commonInterface'
+import type { City } from './masterDataInterface'
 import type { User } from './userInterface'
 
 export interface Company {
@@ -12,6 +13,9 @@ export interface Company {
     city_id?: number
     website: string
     user?: User
+    city?: City
+    city_name?: string
+    jobs_count?: number
     description: string
     created_at: string
     updated_at?: string

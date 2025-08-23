@@ -3,8 +3,8 @@ export default {
         detail: 'Thông tin công ty',
     },
     labels: {
-        logo: 'Ảnh đại diện',
-        cover_img: 'Ảnh bìa',
+        logo: 'Logo',
+        cover_img: 'Ảnh nền',
         name: 'Tên',
         short_name: 'Tên viết tắt',
         telephone: 'Số điện thoại',

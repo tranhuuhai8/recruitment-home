@@ -28,9 +28,6 @@ export default {
         prev: 'Trước',
         next: 'Sau',
     },
-    home: {
-        title: 'Trang chủ',
-    },
     page_not_found: {
         not_found: 'Not Found',
         status: '404',
@@ -38,7 +35,10 @@ export default {
     },
     header: {
         home: 'Trang chủ',
-        about: 'Giới thiệu',
+        introduce: 'Giới thiệu',
+        job: 'Việc làm',
+        news: 'Tin tức',
+        contact: 'Liên hệ',
         account: 'Tài khoản',
         logout: 'Đăng xuất',
     },

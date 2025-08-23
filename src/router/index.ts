@@ -34,6 +34,11 @@ const router = createRouter({
                     component: Pages.HomeView,
                 },
                 {
+                    path: 'introduce',
+                    name: 'introduce',
+                    component: Pages.AboutView,
+                },
+                {
                     path: 'auth',
                     children: [
                         {

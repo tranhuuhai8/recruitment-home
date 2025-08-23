@@ -58,5 +58,5 @@ watch(route, async () => {
             <AppFooterVue />
         </a-layout>
     </div>
-    <a-spin v-else :spinning="loading" class="spin-full"></a-spin>
+    <a-spin v-else :spinning="loading" class="spin-full spin-up-size"></a-spin>
 </template>

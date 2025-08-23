@@ -12,6 +12,7 @@ import {
 } from '@/components/common'
 import App from './App.vue'
 import router from './router'
+import Vue3Marquee from 'vue3-marquee'
 
 const app = createApp(App)
 
@@ -19,6 +20,7 @@ app.use(i18n)
 app.use(Antd)
 app.use(createPinia())
 app.use(router)
+app.use(Vue3Marquee)
 
 app.component('TableData', TableDataVue)
 app.component('UploadImg', UploadImg)
