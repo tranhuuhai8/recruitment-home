@@ -39,6 +39,22 @@ const router = createRouter({
                     component: Pages.AboutView,
                 },
                 {
+                    path: 'job',
+                    name: 'job',
+                    component: Pages.JobView,
+                },
+                {
+                    path: 'news',
+                    name: 'news',
+                    component: Pages.NewView,
+                },
+                {
+                    path: 'contact',
+                    name: 'contact',
+                    component: Pages.ContactView,
+                },
+
+                {
                     path: 'auth',
                     children: [
                         {

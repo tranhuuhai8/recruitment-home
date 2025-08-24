@@ -23,6 +23,7 @@ export const FORMAT_TIME = 'HH:mm:ss'
 
 export const FALSE_VALUE = 0
 export const TRUE_VALUE = 1
+export const KEY_LOGOUT = 999
 export const PAGE_FIRST = 1
 export const PER_PAGE = 20
 export const PER_PAGE_MST = 10

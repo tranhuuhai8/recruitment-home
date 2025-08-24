@@ -7,22 +7,29 @@ import Avatar from '@/assets/imgs/avatar.png'
 import { APP_HEADER, getUserInformation, getRolePathMap, notify } from '@/libs'
 import { reactive, ref, VueElement, onMounted } from 'vue'
 import Logo from '@/assets/imgs/logo.png'
+import { KEY_LOGOUT } from '@/libs'
 
 const { t } = useI18n()
 const router = useRouter()
 const route = useRoute()
 const authStore = useAuthStore()
 const isLogin = ref()
-const items: ItemType[] = reactive([])
+const isShowNavMobile = ref(false)
+const items = reactive<ItemType[]>([])
+const itemsMobile = reactive<ItemType[]>([])
 const selectedKeys = ref<string[]>([])
 
 const handleRoute = async () => {
+    itemsMobile.push(getItem(t('header.account'), '0'))
     for (const key in APP_HEADER) {
         const item = APP_HEADER[key]
         items.push(getItem(item.label, String(item.order)))
+        itemsMobile.push(getItem(item.label, String(item.order)))
         if (route.name === item.name)
             selectedKeys.value.push(String(item.order))
     }
+    isLogin.value &&
+        itemsMobile.push(getItem(t('header.logout'), String(KEY_LOGOUT)))
 }
 
 const getItem = (
@@ -48,13 +55,13 @@ const handleMenuClick: MenuProps['onClick'] = (e) => {
     selectedKeys.value.splice(0, 1, String(side?.order))
 }
 
-const handleClick: MenuProps['onClick'] = async (e) => {
-    if (e.key == '1') {
+const handleClick = async (e: any, isMobile: Boolean = false) => {
+    if ((e.key == '1' && !isMobile) || !+e.key) {
         router.push({ name: `${getRolePathMap()}-dashboard` })
         return
     }
 
-    if (e.key == '2') {
+    if ((e.key == '2' && !isMobile) || +e.key === KEY_LOGOUT) {
         const messageLogout = await authStore.logout()
         if (messageLogout) {
             notify(messageLogout, '', 'success')
@@ -64,6 +71,8 @@ const handleClick: MenuProps['onClick'] = async (e) => {
 
         notify(t('notify.error'), '', 'error')
     }
+
+    handleMenuClick(e)
 }
 
 const redirectToLogin = () => router.push({ name: 'login', replace: true })
@@ -106,5 +115,24 @@ onMounted(async () => {
                 {{ t('auth.login') }}
             </a-button>
         </a-col>
+
+        <div
+            :class="`icon-nav-mobile ${isShowNavMobile ? 'open' : ''}`"
+            @click="isShowNavMobile = !isShowNavMobile"
+        >
+            <span class="line"></span>
+            <span class="line"></span>
+        </div>
+        <div
+            :class="`nav-mobile ${isShowNavMobile ? 'active' : ''}`"
+            v-if="items"
+        >
+            <a-menu
+                class="header-menu-mobile"
+                :items="itemsMobile"
+                :selectedKeys="selectedKeys"
+                @click="(e: any) => handleClick(e, true)"
+            />
+        </div>
     </a-row>
 </template>

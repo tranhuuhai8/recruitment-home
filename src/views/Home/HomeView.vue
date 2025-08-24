@@ -32,13 +32,15 @@ onMounted(async () => {
 
 <template>
     <a-spin :spinning="loading" class="spin-up-size">
-        <BannerBox :form-state="formSearch" @search="getData" />
-        <CompanyBox />
-        <div
-            class="content-1"
-            style="height: 500px; text-align: center; margin-top: 50px"
-        >
-            Hello Haudau
+        <div class="home-page">
+            <BannerBox :form-state="formSearch" @search="getData" />
+            <CompanyBox />
+            <div
+                class="content-1"
+                style="height: 1000px; text-align: center; margin-top: 50px"
+            >
+                Hello Haudau
+            </div>
         </div>
     </a-spin>
 </template>

@@ -17,12 +17,12 @@ const jobCategoryStore = useJobCategoryStore()
 <template>
     <div class="box-banner">
         <img :src="Banner" alt="" class="bg-banner" />
-        <div class="body-banner">
-            <h1 class="title fz-25 fw-700">{{ t('home.title') }}</h1>
-            <p class="subtitle fz-18">{{ t('home.sub_title') }}</p>
+        <div class="body-banner container">
+            <h1 class="title">{{ t('home.title') }}</h1>
+            <p class="subtitle">{{ t('home.sub_title') }}</p>
             <a-form
                 ref="formRef"
-                class="form-search-home container"
+                class="form-search-home"
                 :model="formState"
                 @finish="emits('search')"
             >
