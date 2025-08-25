@@ -8,8 +8,8 @@ const { t } = useI18n()
 
 <template>
     <div class="box-company">
-        <h1 class="title-box center">{{ t('home.company.title') }}</h1>
-        <p class="subtitle-box center">
+        <h1 class="title">{{ t('home.company.title') }}</h1>
+        <p class="subtitle">
             {{ t('home.company.subtitle') }}
         </p>
         <CompanyList />

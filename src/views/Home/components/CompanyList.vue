@@ -15,11 +15,13 @@ const companyStore = useCompanyStore()
 <template>
     <div class="container company-list">
         <swiper
-            :slidesPerView="4"
-            :spaceBetween="30"
             :loop="true"
             :pagination="{
                 clickable: true,
+            }"
+            :breakpoints="{
+                0: { slidesPerView: 2, spaceBetween: 10 },
+                768: { slidesPerView: 4, spaceBetween: 30 },
             }"
             :scrollbar="{ draggable: true }"
             :modules="[Pagination]"
@@ -41,7 +43,7 @@ const companyStore = useCompanyStore()
                         {{ company.jobs_count + ' ' + t('home.company.job') }}
                     </span>
                 </a-row>
-                <a-row>
+                <a-row class="location">
                     <IconLocation />
                     <span>{{ company.city_name }}</span>
                 </a-row>

@@ -20,7 +20,7 @@ export const APP_HEADER: Record<string, any> = {
         menu_childs: [],
     },
     job: {
-        order: 2,
+        order: 3,
         label: t('header.job'),
         route: 'job',
         name: 'job',
@@ -28,7 +28,7 @@ export const APP_HEADER: Record<string, any> = {
         menu_childs: [],
     },
     news: {
-        order: 2,
+        order: 4,
         label: t('header.news'),
         route: 'news',
         name: 'news',
@@ -36,7 +36,7 @@ export const APP_HEADER: Record<string, any> = {
         menu_childs: [],
     },
     contact: {
-        order: 2,
+        order: 5,
         label: t('header.contact'),
         route: 'contact',
         name: 'contact',
