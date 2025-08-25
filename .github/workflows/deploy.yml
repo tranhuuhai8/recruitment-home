@@ -21,5 +21,5 @@ jobs:
                   script: |
                       cd /var/www/recruitment-home
                       git pull origin develop
-                      npm run build-only
+                      npm install
                       NODE_OPTIONS="--max-old-space-size=512" npm run build-only
