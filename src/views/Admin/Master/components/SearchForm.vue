@@ -45,12 +45,21 @@ watch(
         :model="formState"
         @finish="emits('submit')"
     >
-        <a-form-item name="search">
+        <a-form-item v-if="hasType" name="search">
             <a-input
                 allowClear
-                :placeholder="
-                    t(`masterData.placeholder.${hasType ? 'category' : 'city'}`)
-                "
+                name="search_category"
+                :placeholder="t('masterData.placeholder.category')"
+                v-model:value="formState.search"
+                @blur="trim('search', formState)"
+            />
+        </a-form-item>
+
+        <a-form-item v-else name="search">
+            <a-input
+                allowClear
+                name="search_city"
+                :placeholder="t('masterData.placeholder.city')"
                 v-model:value="formState.search"
                 @blur="trim('search', formState)"
             />
@@ -58,6 +67,7 @@ watch(
 
         <a-form-item name="status" :label="t('status.label')">
             <a-select
+                show-arrow
                 :options="getObjOptions(STATUS_DISPLAY_OPTIONS_SEARCH)"
                 v-model:value="formState.status"
             />
@@ -65,6 +75,7 @@ watch(
 
         <a-form-item v-if="hasType" name="type" :label="t('type.label')">
             <a-select
+                show-arrow
                 :options="getObjOptions(TYPE_OPTIONS_SEARCH)"
                 v-model:value="formState.type"
             />
@@ -79,6 +90,7 @@ watch(
             <a-select
                 allow-search
                 show-search
+                show-arrow
                 ref="select"
                 mode="multiple"
                 :placeholder="t('select.placeholder')"
@@ -102,6 +114,7 @@ watch(
             <a-select
                 allow-search
                 show-search
+                show-arrow
                 ref="select"
                 mode="multiple"
                 :placeholder="t('select.placeholder')"

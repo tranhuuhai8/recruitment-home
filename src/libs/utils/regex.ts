@@ -10,3 +10,5 @@ export const REGEX_ONLY_NUMBER = /[0-9]/
 export const REGEX_UPPERCASE = /[A-Z]/
 export const REGEX_LOWERCASE = /[a-z]/
 export const REGEX_CHARACTER = /[!@#$%^&*()_+{}[\]:<>,.?~\\/-]/
+
+export const REGEX_NO_SPECIAL_CHARS = /^[\p{L}\p{M}0-9\s]+$/u
