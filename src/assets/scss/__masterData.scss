@@ -22,9 +22,10 @@
 
 .box-search {
     .form-search-master-data {
+        .ant-form-item {
+            margin-bottom: 8px !important;
+        }
         .form-item-select-parent-id {
-            flex: 1;
-
             .ant-row {
                 align-items: center;
             }

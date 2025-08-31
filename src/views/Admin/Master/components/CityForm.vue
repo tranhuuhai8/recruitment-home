@@ -36,10 +36,10 @@ const formState: UnwrapRef<any> = reactive({
 const onSubmit = async () => {
     try {
         loading.value = true
-        const data = props.id
+        const { status_code, message } = props.id
             ? await cityStore.update(formState, +props.id)
             : await cityStore.create(formState)
-        notifyStatus(data.status_code, data.message)
+        notifyStatus(status_code, message)
         emit('submit')
         resetForm(true)
     } catch (error) {

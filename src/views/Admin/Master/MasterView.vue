@@ -7,6 +7,7 @@ import {
     TabJobCategory,
     CityForm,
     JobCategoryForm,
+    SearchForm,
 } from './components'
 import {
     changeButton,
@@ -16,7 +17,6 @@ import {
     KEY_TAB_CITY,
     KEY_TAB_CATEGORY,
 } from './shared'
-import SearchForm from './components/SearchForm.vue'
 import { FALSE_VALUE } from '@/libs'
 import type { FormSearchMst } from '@/interface'
 

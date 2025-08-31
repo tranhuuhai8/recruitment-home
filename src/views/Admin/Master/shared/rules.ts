@@ -1,5 +1,5 @@
 import i18n from '@/lang'
-import { MAX_STRING } from '@/libs'
+import { MAX_STRING, REGEX_NO_SPECIAL_CHARS } from '@/libs'
 import type { Rule } from 'ant-design-vue/es/form'
 
 const { t } = i18n
@@ -18,6 +18,12 @@ export const cityRules: Record<string, Rule[]> = {
                 0: t('masterData.labels.city_name'),
                 1: MAX_STRING,
             }),
+        },
+        {
+            pattern: REGEX_NO_SPECIAL_CHARS,
+            message: t('validation.no_special_chars', [
+                t('masterData.labels.city_name'),
+            ]),
         },
     ],
     description: [
@@ -45,6 +51,12 @@ export const categoryRules: Record<string, Rule[]> = {
                 0: t('masterData.labels.category_name'),
                 1: MAX_STRING,
             }),
+        },
+        {
+            pattern: REGEX_NO_SPECIAL_CHARS,
+            message: t('validation.no_special_chars', [
+                t('masterData.labels.city_name'),
+            ]),
         },
     ],
     description: [

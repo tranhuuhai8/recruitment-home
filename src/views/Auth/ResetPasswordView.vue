@@ -64,7 +64,7 @@ onUnmounted(() => formRef.value?.resetFields())
                     type="password"
                     v-model:value="formState.password"
                     :placeholder="t('auth.labels.password')"
-                    @blur="trim('password', formState)"
+                    @blur="trim('password', formState, true)"
                 />
             </a-form-item>
 
@@ -76,7 +76,7 @@ onUnmounted(() => formRef.value?.resetFields())
                     type="password"
                     v-model:value="formState.password_confirmation"
                     :placeholder="t('auth.labels.password_confirmation')"
-                    @blur="trim('password_confirmation', formState)"
+                    @blur="trim('password_confirmation', formState, true)"
                 />
             </a-form-item>
 
