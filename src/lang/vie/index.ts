@@ -6,6 +6,7 @@ import masterData from './masterData'
 import company from './company'
 import applicant from './applicant'
 import home from './home'
+import job from './job'
 
 export const vie = {
     ...base,
@@ -16,4 +17,5 @@ export const vie = {
     company,
     applicant,
     home,
+    job,
 }

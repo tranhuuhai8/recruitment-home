@@ -3,12 +3,7 @@ import { useI18n } from 'vue3-i18n'
 import { reactive, ref, watch, type UnwrapRef } from 'vue'
 import { useJobCategoryStore } from '@/stores/admin'
 import { useJobCategoryStore as useJobCategoryStoreHome } from '@/stores/home'
-import {
-    FORM_JOB_CATEGORY,
-    categoryRules,
-    INITIAL_QUERY_MST,
-    QUERY_MST_PARENT,
-} from '../shared'
+import { FORM_JOB_CATEGORY, categoryRules, INITIAL_QUERY_MST } from '../shared'
 import {
     trim,
     notifyStatus,
@@ -17,6 +12,7 @@ import {
     STATUS_DISPLAY_OPTIONS_FORM,
     getOptions,
     filterOption,
+    QUERY_MST_PARENT,
 } from '@/libs'
 import { DeleteOutlined } from '@ant-design/icons-vue'
 

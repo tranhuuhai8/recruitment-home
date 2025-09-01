@@ -6,11 +6,11 @@ import {
     trim,
     TYPE_OPTIONS_SEARCH,
     getOptions,
+    QUERY_MST_PARENT,
 } from '@/libs'
 import { useCityStore, useJobCategoryStore } from '@/stores/home'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue3-i18n'
-import { QUERY_MST_PARENT } from '../shared'
 
 const { t } = useI18n()
 const formRef = ref()

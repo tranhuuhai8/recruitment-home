@@ -49,28 +49,45 @@ const getItem = (
         type,
     }) as ItemType
 
+const roleIconMap: Record<string, Record<number, any>> = {
+    1: {
+        2: Icons.IconCompany,
+        3: Icons.IconUser,
+        4: Icons.IconJob,
+        5: Icons.IconFeedback,
+        6: Icons.IconData,
+        7: Icons.IconKey,
+    },
+    2: {
+        2: Icons.IconUser,
+        3: Icons.IconJob,
+        4: Icons.IconData,
+        5: Icons.IconData,
+        6: Icons.IconData,
+        7: Icons.IconData,
+    },
+    3: {
+        2: Icons.IconData,
+        3: Icons.IconData,
+        4: Icons.IconData,
+        5: Icons.IconData,
+        6: Icons.IconData,
+        7: Icons.IconData,
+    },
+}
+
 const getIcon = (order: number) => {
+    const role = getUserInformation()?.role ?? ROLE_APPLICANT
+
     switch (order) {
         case 1:
             return Icons.IconDashboard
-        case 2:
-            return Icons.IconCompany
-        case 3:
-            return Icons.IconUser
-        case 4:
-            return Icons.IconJob
-        case 5:
-            return Icons.IconFeedback
-        case 6:
-            return Icons.IconData
-        case 7:
-            return Icons.IconKey
         case 8:
             return Icons.IconHome
         case 9:
             return Icons.IconLogout
         default:
-            return Icons.IconCompany
+            return roleIconMap[role]?.[order] ?? Icons.IconCompany
     }
 }
 

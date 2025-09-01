@@ -63,6 +63,11 @@ export const FILTER_PARENT = {
     value: null,
 }
 
+export const QUERY_MST_PARENT = {
+    ...PAYLOAD_ALL,
+    ...FILTER_PARENT,
+}
+
 export const DAY_LIST: {
     [key: number]: string
 } = {
@@ -77,6 +82,11 @@ export const DAY_LIST: {
 
 export const ALL_OPTION = {
     label: t('all'),
+    value: 0,
+}
+
+export const OPTION_TREE_FIRST = {
+    title: t('all'),
     value: 0,
 }
 
@@ -126,6 +136,12 @@ export const STATUS_OPTIONS_SEARCH: Record<number, string> = {
     3: t('status.locked'),
 }
 
+export const STATUS_JOB_OPTIONS_SEARCH: Record<number, string> = {
+    1: t('status.draft'),
+    2: t('status.open'),
+    3: t('status.closed'),
+}
+
 export const STATUS_DISPLAY_OPTIONS_FORM = [
     {
         label: t('status.show'),
@@ -159,9 +175,25 @@ export const STATUS_MAP: Record<number, string> = {
     3: 'locked',
 }
 
+export const STATUS_JOB_MAP: Record<number, string> = {
+    1: 'draft',
+    2: 'open',
+    3: 'closed',
+}
+
+export const TYPE_JOB_MAP: Record<number, string> = {
+    1: 'full_time',
+    2: 'part_time',
+}
+
 export const TYPE_OPTIONS_SEARCH: Record<number, string> = {
     1: t('type.default'),
     2: t('type.customize'),
+}
+
+export const TYPE_JOB_OPTIONS_SEARCH: Record<number, string> = {
+    1: t('type.full_time'),
+    2: t('type.part_time'),
 }
 
 export const TYPE_OPTIONS_FORM = [

@@ -29,6 +29,7 @@ export const columnsCity: ColumnTable[] = [
         title: t('masterData.labels.description'),
         dataIndex: 'description',
         key: 'description',
+        className: 'description',
         align: 'center',
     },
     {
@@ -73,6 +74,7 @@ export const columnsJobCategory: ColumnTable[] = [
         title: t('masterData.labels.description'),
         dataIndex: 'description',
         key: 'description',
+        className: 'description',
         align: 'center',
     },
     {

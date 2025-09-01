@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { FORM_SEARCH_HOME, getQuerySearch, QUERY_MST_PARENT } from './shared'
+import { FORM_SEARCH_HOME, getQuerySearch } from './shared'
 import { useCityStore, useJobCategoryStore } from '@/stores/home'
 import { useCompanyStore } from '@/stores/home/company'
-import { INITIAL_QUERY } from '@/libs'
+import { INITIAL_QUERY, QUERY_MST_PARENT } from '@/libs'
 import type { ParamsList } from '@/interface'
 import CompanyBox from './components/CompanyBox.vue'
 import BannerBox from './components/BannerBox.vue'
