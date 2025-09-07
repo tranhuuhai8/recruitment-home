@@ -49,11 +49,16 @@ export default {
         locked: 'Locked',
         show: 'Show',
         hide: 'Hide',
+        draft: 'Draft',
+        open: 'Open',
+        closed: 'Closed',
     },
     type: {
         label: 'Type',
         default: 'Default',
         customize: 'Customize',
+        full_time: 'Full-time',
+        part_time: 'Part-time',
     },
     modal: {
         delete: {

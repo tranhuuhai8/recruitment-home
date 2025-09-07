@@ -112,11 +112,11 @@ export const APP_SIDEBAR_COMPANY: Record<string, any> = {
         class: '',
         menu_childs: [],
     },
-    menu2: {
+    jobs: {
         order: 3,
-        label: t('sidebar.menu2'),
-        route: '/menu2',
-        name: 'menu2',
+        label: t('sidebar.jobs'),
+        route: 'company-jobs',
+        name: 'jobs',
         class: '',
         menu_childs: [],
     },

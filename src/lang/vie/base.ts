@@ -49,11 +49,16 @@ export default {
         locked: 'Khóa',
         show: 'Hiển thị',
         hide: 'Ẩn',
+        draft: 'Bản Nháp',
+        open: 'Mở',
+        closed: 'Đóng',
     },
     type: {
         label: 'Loại',
         default: 'Mặc định',
         customize: 'Tùy chỉnh',
+        full_time: 'Toàn thời gian',
+        part_time: 'Bán thời gian',
     },
     modal: {
         delete: {

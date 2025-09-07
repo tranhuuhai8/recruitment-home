@@ -1,8 +1,6 @@
 import {
     FALSE_VALUE,
-    FILTER_PARENT,
     INITIAL_QUERY,
-    PAYLOAD_ALL,
     PER_PAGE_MST,
     SORT_TYPE_ASC,
     STATUS_ACTIVE,
@@ -14,11 +12,6 @@ export const INITIAL_QUERY_MST = {
     per_page: PER_PAGE_MST,
     orders: [{ key: 'name', dir: SORT_TYPE_ASC }],
     filters: [],
-}
-
-export const QUERY_MST_PARENT = {
-    ...PAYLOAD_ALL,
-    ...FILTER_PARENT,
 }
 
 export const KEY_TAB_CITY = '1'

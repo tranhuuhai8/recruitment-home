@@ -163,6 +163,17 @@ const router = createRouter({
                             component: Pages.InformationCompany,
                             beforeEnter: ifAuthenticated,
                         },
+                        {
+                            path: 'jobs',
+                            children: [
+                                {
+                                    path: '',
+                                    name: 'company-jobs',
+                                    component: Pages.JobViewCompany,
+                                    beforeEnter: ifAuthenticated,
+                                },
+                            ],
+                        },
                     ],
                 },
                 {

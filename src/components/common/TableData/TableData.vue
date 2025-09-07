@@ -191,11 +191,13 @@ const handleCreate = () => router.push(props.createLink)
                     background-color: var(--vt-c-gray-v1);
                 }
 
-                .locked {
+                .locked,
+                .part_time {
                     background-color: var(--vt-c-primary);
                 }
 
-                .default {
+                .default,
+                .draft {
                     background-color: var(--vt-c-gray-v1);
                 }
 
@@ -203,8 +205,21 @@ const handleCreate = () => router.push(props.createLink)
                     background-color: var(--vt-c-primary);
                 }
 
+                .full_time {
+                    background-color: var(--vt-c-blue);
+                }
+
+                .open {
+                    background-color: var(--vt-c-green);
+                }
+
+                .closed {
+                    background-color: var(--vt-c-red);
+                }
+
                 .type-status {
                     cursor: pointer;
+                    max-width: unset;
                     font-size: 13px;
                     font-weight: 500;
                     line-height: 19px;

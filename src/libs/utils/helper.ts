@@ -2,6 +2,7 @@ import {
     ALL_OPTION,
     formatter,
     getUserInformation,
+    OPTION_TREE_FIRST,
     PAGE_FIRST,
     REGEX_TEL,
     ROLE_APPLICANT,
@@ -142,9 +143,9 @@ export const regexTel = (value: KeyboardEvent) => {
     }
 }
 
-export const getTreeData = (data: Record<string, any>[]) => {
+export const getTreeData = (data: Record<string, any>[], hasAll = false) => {
     if (!data || !Array.isArray(data)) {
-        return []
+        return hasAll ? [OPTION_TREE_FIRST] : []
     }
     const parentMap = new Map()
 
@@ -166,7 +167,9 @@ export const getTreeData = (data: Record<string, any>[]) => {
         }
     })
 
-    return Array.from(parentMap.values())
+    const tree = Array.from(parentMap.values())
+
+    return hasAll ? [OPTION_TREE_FIRST, ...tree] : tree
 }
 
 export const formatBytes = (bytes: number = 0, decimals = 2, indexUnit = 2) => {
