@@ -60,7 +60,7 @@ const removeImage = () => emit('update:url', null)
         @change="handleChange"
     >
         <div v-if="props.url" class="flex-center">
-            <img :src="props.url" alt="avatar" class="img-preview" />
+            <img :src="props.url" alt="preview" class="img-preview" />
             <DeleteOutlined @click.stop="removeImage" />
         </div>
         <div v-else>

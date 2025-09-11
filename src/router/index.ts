@@ -1,7 +1,16 @@
 import { useQueryStore, useAuthStore } from '@/stores'
 import { createRouter, createWebHistory } from 'vue-router'
 import * as Pages from '@/views/index'
-import { getRolePathMap, ROUTE_CHANGE_PASSWORD } from '@/libs'
+import {
+    getRolePathMap,
+    getUserInformation,
+    notify,
+    ROLE_COMPANY,
+    ROUTE_CHANGE_PASSWORD,
+} from '@/libs'
+import i18n from '@/lang'
+
+const { t } = i18n
 
 const ifAuthenticated = (to: any, from: any, next: any) => {
     const authStore = useAuthStore()
@@ -20,6 +29,33 @@ const ifAuthenticated = (to: any, from: any, next: any) => {
     }
 
     next()
+}
+
+const ifInfoCompleted = (to: any, from: any, next: any) => {
+    const me = getUserInformation()
+
+    if (me?.role === ROLE_COMPANY) {
+        const company = me?.company
+        const requiredFields = [
+            'name',
+            'short_name',
+            'telephone',
+            'address',
+            'city_id',
+        ]
+        const isCompleted = requiredFields.every((field) =>
+            Boolean(company?.[field])
+        )
+
+        if (isCompleted) {
+            return next()
+        }
+
+        notify(t('notify.missing_info.company'), '', 'warning')
+        return next({ name: `${getRolePathMap()}-info` })
+    }
+
+    return next()
 }
 
 const router = createRouter({
@@ -170,6 +206,21 @@ const router = createRouter({
                                     path: '',
                                     name: 'company-jobs',
                                     component: Pages.JobViewCompany,
+                                    beforeEnter: ifAuthenticated,
+                                },
+                                {
+                                    path: 'create',
+                                    name: 'company-jobs-create',
+                                    component: Pages.JobCreateViewCompany,
+                                    beforeEnter: [
+                                        ifAuthenticated,
+                                        ifInfoCompleted,
+                                    ],
+                                },
+                                {
+                                    path: ':id/edit',
+                                    name: 'company-jobs-edit',
+                                    component: Pages.JobUpdateViewCompany,
                                     beforeEnter: ifAuthenticated,
                                 },
                             ],

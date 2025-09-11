@@ -23,6 +23,17 @@ export default {
     },
     notify: {
         error: 'Có lỗi xảy ra',
+        missing_info: {
+            company:
+                'Vui lòng hoàn thành thông tin doanh nghiệp của bạn trước khi thực hiện chức năng',
+            applicant:
+                'Vui lòng cập nhật đầy đủ thông tin cá nhân của bạn trước khi thực hiện chức năng',
+        },
+    },
+    placeholder: {
+        salary: '0',
+        date: 'YYYY-MM-DD',
+        number: 'Nhập số lượng',
     },
     pagination: {
         prev: 'Trước',

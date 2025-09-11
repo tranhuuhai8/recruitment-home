@@ -68,6 +68,8 @@ export const QUERY_MST_PARENT = {
     ...FILTER_PARENT,
 }
 
+export const QUERY_GET_TREE = { ...INITIAL_QUERY, ...PAYLOAD_ALL }
+
 export const DAY_LIST: {
     [key: number]: string
 } = {

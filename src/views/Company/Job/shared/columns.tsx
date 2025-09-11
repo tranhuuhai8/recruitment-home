@@ -1,6 +1,6 @@
 import i18n from '@/lang'
 import type { ColumnTable } from '@/interface'
-import EditColumn from '@/components/common/TableData/EditColumn.vue'
+import DetailColumn from '@/components/common/TableData/DetailColumn.vue'
 import TypeColumn from '../components/TypeColumn.vue'
 import StatusColumn from '../components/StatusColumn.vue'
 
@@ -8,10 +8,17 @@ const { t } = i18n
 
 export const columns: ColumnTable[] = [
     {
-        title: t('job.labels.name'),
-        dataIndex: 'name',
-        key: 'name',
-        width: 200,
+        title: t('job.labels.id'),
+        dataIndex: 'id',
+        key: 'id',
+        width: 50,
+        align: 'center',
+    },
+    {
+        title: t('job.labels.title'),
+        dataIndex: 'title',
+        key: 'title',
+        width: 250,
         sorter: true,
         sortDirections: ['descend', 'ascend', 'descend'],
         defaultSortOrder: 'descend',
@@ -22,6 +29,7 @@ export const columns: ColumnTable[] = [
         dataIndex: 'job_category_name',
         key: 'job_category_name',
         align: 'center',
+        width: 200,
         customRender: ({ record }) => (
             <span>
                 {record.job_category_name} <br />{' '}
@@ -46,6 +54,7 @@ export const columns: ColumnTable[] = [
         dataIndex: 'city_name',
         key: 'city_name',
         align: 'center',
+        width: 200,
         customRender: ({ record }) => (
             <span>
                 {record.city_name} <br /> {record.city_parent_name}
@@ -74,11 +83,12 @@ export const columns: ColumnTable[] = [
         align: 'center',
         width: 90,
         customRender: ({ record }: any) => (
-            <EditColumn
+            <DetailColumn
                 url={{
                     name: 'company-jobs-edit',
                     params: { id: record.id },
                 }}
+                id={record.id}
             />
         ),
     },

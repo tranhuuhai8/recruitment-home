@@ -9,5 +9,7 @@ const handleClick = () => router.push(props.url)
 </script>
 
 <template>
-    <div class="icon-edit" @click="handleClick"><EditOutlined /></div>
+    <div class="icon-operation icon-edit" @click="handleClick">
+        <EditOutlined />
+    </div>
 </template>

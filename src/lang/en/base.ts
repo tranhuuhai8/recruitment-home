@@ -23,6 +23,17 @@ export default {
     },
     notify: {
         error: 'An error occurred',
+        missing_info: {
+            company:
+                'Please complete your business information before performing the function.',
+            applicant:
+                'Please update your personal information completely before performing the function',
+        },
+    },
+    placeholder: {
+        salary: '0',
+        date: 'YYYY-MM-DD',
+        number: 'Enter number',
     },
     pagination: {
         prev: 'Previous',

@@ -4,15 +4,12 @@ import type { City, JobCategory } from './masterDataInterface'
 
 export interface Job {
     id: number
-    name: string
+    title: string
     banner?: string
     number_of_recruitment: number | string
-    address_detail: string
     start_date: string
     end_date: string
     description: string
-    request_detail: string
-    contact_detail: string
     city_id: number
     company_id: number
     job_category_id: number
@@ -41,18 +38,17 @@ export interface FormSearchJob {
 }
 
 export interface FormDataJob {
-    name: string
-    banner?: string
-    number_of_recruitment: number | string
-    address_detail: string
-    start_date: string
-    end_date: string
+    title: string
+    banner: string | null
+    number_of_recruitment: number | string | null
+    start_date: string | Date | null
+    end_date: string | Date | null
     description: string
-    request_detail: string
-    contact_detail: string
-    city_id: number
-    company_id: number
-    job_category_id: number
+    city_id: number | null
+    job_category_id: number | null
     status: number
     type: number
+    salary_min: number | null
+    salary_max: number | null
+    salary_type: number | null
 }

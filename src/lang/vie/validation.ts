@@ -50,4 +50,5 @@ export default {
         confirm_update: 'Mật khẩu mới và mật khẩu xác nhận lại không khớp.',
     },
     no_special_chars: '{0} không được chứa ký tự đặc biệt.',
+    compare: '{0} phải nhỏ hơn {1}',
 }

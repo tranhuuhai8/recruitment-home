@@ -2,7 +2,7 @@
 import { useI18n } from 'vue3-i18n'
 
 const { t } = useI18n()
-const props = defineProps(['open', 'loading'])
+const props = defineProps(['open', 'loading', 'title'])
 </script>
 
 <template>
@@ -17,7 +17,7 @@ const props = defineProps(['open', 'loading'])
     >
         <template #body>
             <div class="content mb-20">
-                {{ t('modal.delete.confirm') }}
+                {{ props.title ?? t('modal.delete.confirm') }}
             </div>
             <a-space class="space-group-btn">
                 <a-button
@@ -27,7 +27,11 @@ const props = defineProps(['open', 'loading'])
                 >
                     {{ t('delete') }}
                 </a-button>
-                <a-button type="link" @click="$emit('close')">
+                <a-button
+                    type="link"
+                    :loading="props.loading"
+                    @click="$emit('close')"
+                >
                     {{ t('cancel') }}
                 </a-button>
             </a-space>

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import * as API from '@/api/company/job'
-import type { Job, JobResult } from '@/interface'
+import type { FormDataJob, Job, JobResult } from '@/interface'
 
 export const useJobStore = defineStore('job', () => {
     const job = ref({} as Job)
@@ -25,9 +25,25 @@ export const useJobStore = defineStore('job', () => {
         }
     }
 
-    const update = async (payload: Record<string, any>, id: number) => {
+    const create = async (payload: FormDataJob) => {
+        try {
+            return await API.create(payload)
+        } catch (error: any) {
+            return error
+        }
+    }
+
+    const update = async (payload: FormDataJob, id: number) => {
         try {
             return await API.update(payload, id)
+        } catch (error: any) {
+            return error
+        }
+    }
+
+    const remove = async (id: number) => {
+        try {
+            return await API.remove(id)
         } catch (error: any) {
             return error
         }
@@ -42,5 +58,7 @@ export const useJobStore = defineStore('job', () => {
         list,
         detail,
         update,
+        create,
+        remove,
     }
 })

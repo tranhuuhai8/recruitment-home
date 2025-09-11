@@ -105,10 +105,6 @@ export const disabledDatePast = (currentDate: Dayjs) =>
 export const disabledDateFuture = (currentDate: Dayjs) =>
     currentDate.isAfter(dayjs())
 
-// export const disabledDateFuture = (date: Dayjs) => {
-//   return date.isAfter(dayjs(), 'day') // vô hiệu hóa ngày sau hôm nay
-// }
-
 export const addTime = (
     date: string | Dayjs,
     number = 1,

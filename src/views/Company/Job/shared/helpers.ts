@@ -1,5 +1,11 @@
-import type { ParamsList } from '@/interface'
-import { formatDay, mapFilterQuery, mapKeyToData } from '@/libs'
+import type { FormDataJob, ParamsList } from '@/interface'
+import {
+    formatDay,
+    getUserInformation,
+    mapFilterQuery,
+    mapKeyToData,
+} from '@/libs'
+import dayjs from 'dayjs'
 
 export const getQuerySearch = (
     query: ParamsList,
@@ -28,3 +34,16 @@ export const getQuerySearch = (
         })
     )
 }
+
+export const mapDataForm = (data: Record<string, any>) => ({
+    ...data,
+    start_date: dayjs(data.start_date),
+    end_date: dayjs(data.end_date),
+})
+
+export const makeDataUpsert = (data: FormDataJob) => ({
+    ...data,
+    start_date: formatDay(data.start_date),
+    end_date: formatDay(data.end_date),
+    company_id: getUserInformation()?.company.id,
+})

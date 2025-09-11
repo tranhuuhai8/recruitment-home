@@ -9,6 +9,7 @@ import {
     ModalVue,
     ModalDelete,
     UploadImg,
+    TreeSelect,
 } from '@/components/common'
 import App from './App.vue'
 import router from './router'
@@ -26,5 +27,6 @@ app.component('TableData', TableDataVue)
 app.component('UploadImg', UploadImg)
 app.component('ModalVue', ModalVue)
 app.component('ModalDelete', ModalDelete)
+app.component('TreeSelect', TreeSelect)
 
 app.mount('#app')

@@ -50,4 +50,5 @@ export default {
         confirm_update: 'New password and confirmation password do not match',
     },
     no_special_chars: '{0} must not contain special characters.',
+    compare: '{0} must be less than {1}',
 }

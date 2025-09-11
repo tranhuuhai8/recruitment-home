@@ -2,8 +2,7 @@
 import {
     FORMAT_DATE_DASH,
     getObjOptions,
-    INITIAL_QUERY,
-    PAYLOAD_ALL,
+    QUERY_GET_TREE,
     STATUS_JOB_OPTIONS_SEARCH,
     trim,
     TYPE_JOB_OPTIONS_SEARCH,
@@ -11,7 +10,6 @@ import {
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue3-i18n'
 import { useCityStore, useJobCategoryStore } from '@/stores/home'
-import TreeSelect from '@/components/common/Select/TreeSelect.vue'
 
 const { t } = useI18n()
 const formRef = ref()
@@ -27,8 +25,8 @@ const resetFields = () => {
 }
 
 onMounted(async () => {
-    await cityStore.list({ ...INITIAL_QUERY, ...PAYLOAD_ALL })
-    await jobCategoryStore.list({ ...INITIAL_QUERY, ...PAYLOAD_ALL })
+    await cityStore.list(QUERY_GET_TREE)
+    await jobCategoryStore.list(QUERY_GET_TREE)
 })
 </script>
 

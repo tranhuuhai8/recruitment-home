@@ -6,6 +6,7 @@ import TableDataVue from './TableData/TableData.vue'
 import ModalVue from './Modal/ModalVue.vue'
 import ModalDelete from './Modal/ModalDelete.vue'
 import UploadImg from './Upload/UploadImg.vue'
+import TreeSelect from './Select/TreeSelect.vue'
 
 export {
     AppHeaderHomepage,
@@ -16,4 +17,5 @@ export {
     ModalVue,
     ModalDelete,
     UploadImg,
+    TreeSelect,
 }
