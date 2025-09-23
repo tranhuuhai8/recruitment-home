@@ -7,6 +7,16 @@
     }
 }
 
+.ant-form {
+    .ant-input-number {
+        width: 100%;
+
+        .ant-input-number-handler-wrap {
+            z-index: 1;
+        }
+    }
+}
+
 .ant-btn {
     &:hover {
         opacity: 0.8;
@@ -30,10 +40,14 @@
     }
 }
 
-.icon-edit {
+.icon-operation {
     color: var(--vt-c-blue);
     font-size: 20px;
     cursor: pointer;
+
+    &.icon-delete {
+        color: var(--vt-c-red);
+    }
 
     &:hover {
         opacity: 0.6;
@@ -119,4 +133,8 @@
             }
         }
     }
+}
+
+.ql-editor {
+    min-height: 250px;
 }

@@ -10,20 +10,6 @@ import type { Rule } from 'ant-design-vue/es/form'
 const { t } = i18n
 
 export const rules: Record<string, Rule[]> = {
-    logo: [
-        {
-            required: true,
-            message: t('validation.required', [t('company.labels.logo')]),
-            trigger: 'blur',
-        },
-    ],
-    cover_img: [
-        {
-            required: true,
-            message: t('validation.required', [t('company.labels.cover_img')]),
-            trigger: 'blur',
-        },
-    ],
     name: [
         {
             required: true,

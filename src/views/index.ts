@@ -17,6 +17,10 @@ export const HomeViewCompany = () => import('@/views/Company/DashboardView.vue')
 export const InformationCompany = () =>
     import('@/views/Company/Information/UpdateView.vue')
 export const JobViewCompany = () => import('@/views/Company/Job/JobView.vue')
+export const JobCreateViewCompany = () =>
+    import('@/views/Company/Job/JobCreateView.vue')
+export const JobUpdateViewCompany = () =>
+    import('@/views/Company/Job/JobUpdateView.vue')
 
 // Page Admin
 export const HomeViewAdmin = () => import('@/views/Admin/DashboardView.vue')

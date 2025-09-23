@@ -6,6 +6,8 @@ import {
     TRUE_VALUE,
 } from '@/libs'
 
+export const SALARY_TYPE_EXCHANGE = 3
+
 export const INITIAL_QUERY_MST = {
     ...INITIAL_QUERY,
     per_page: PER_PAGE_MST,
@@ -21,14 +23,18 @@ export const INITIAL_FORM_SEARCH = {
     end_date: null,
 }
 
-export const INITIAL_FORM_COMPANY = {
-    name: '',
-    short_name: '',
-    mail_address: '',
-    telephone: '',
-    city_id: TRUE_VALUE,
-    address: '',
-    website: '',
-    status: '',
+export const INITIAL_FORM_JOB = {
+    title: '',
+    banner: null,
+    job_category_id: null,
+    number_of_recruitment: null,
+    start_date: null,
+    end_date: null,
+    status: TRUE_VALUE,
+    type: TRUE_VALUE,
+    city_id: null,
     description: '',
+    salary_min: null,
+    salary_max: null,
+    salary_type: SALARY_TYPE_EXCHANGE,
 }

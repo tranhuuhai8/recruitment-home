@@ -386,6 +386,15 @@
                 max-width: 100%;
             }
         }
+
+        &:has(.search-job) {
+            .btn-create {
+                position: absolute;
+                bottom: 20px;
+                right: 25px;
+                z-index: 1;
+            }
+        }
     }
 
     .box-body {
@@ -442,6 +451,13 @@
                 }
             }
         }
+
+        &.form-job {
+            > .ant-row,
+            .ant-form-item {
+                width: 80%;
+            }
+        }
     }
 }
 
@@ -464,5 +480,16 @@
         font-size: 16px;
         padding: 12px 15px !important;
         color: var(--vt-c-white);
+    }
+}
+
+.btn-delete {
+    background-color: var(--vt-c-red);
+    color: var(--vt-c-white);
+    border-color: var(--vt-c-red);
+
+    &:hover {
+        color: var(--vt-c-white) !important;
+        border-color: var(--vt-c-red) !important;
     }
 }

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { toRefs } from 'vue'
+import { toRefs, provide } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue3-i18n'
 
@@ -18,7 +18,13 @@ const props = defineProps({
     sortType: { type: String, required: false, default: '' },
 })
 const { columns, data, loading, sortType } = toRefs(props)
-const emit = defineEmits(['changePage', 'handleReset', 'sort', 'cellClick'])
+const emit = defineEmits([
+    'changePage',
+    'handleReset',
+    'sort',
+    'cellClick',
+    'handle-delete',
+])
 
 const customRow = (record: any) => ({
     onClick: (event: any) => {
@@ -35,6 +41,10 @@ const handleChangeTable = (pagination: any, filters: any, sorter: any) => {
 const onChangePage = (pageNumber: number) => emit('changePage', pageNumber)
 
 const handleCreate = () => router.push(props.createLink)
+
+const handleDelete = (id: number) => emit('handle-delete', id)
+
+provide('handleDelete', handleDelete)
 </script>
 
 <template>
