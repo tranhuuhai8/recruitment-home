@@ -9,9 +9,8 @@ import {
     filterTreeSelect,
     getTreeData,
     GUARD_COMPANY,
-    INITIAL_QUERY,
     notify,
-    PAYLOAD_ALL,
+    QUERY_GET_TREE,
     STATUS_CODE_SUCCESS,
     trim,
 } from '@/libs'
@@ -53,7 +52,7 @@ const getData = async () => {
 onMounted(async () => {
     loading.value = true
     await getData()
-    await cityStore.list({ ...INITIAL_QUERY, ...PAYLOAD_ALL })
+    await cityStore.list(QUERY_GET_TREE)
     loading.value = false
 })
 </script>

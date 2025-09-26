@@ -15,6 +15,7 @@ export default {
     image: {
         type: 'Please upload only jpg, png, and jpeg image files.',
         max: 'Please upload an image smaller than {0}!',
+        error: 'Please upload a valid image',
     },
     in_array: '{0} must match one of {1}',
     integer: '{0} must be a valid integer',

@@ -129,6 +129,7 @@ onUnmounted(() => {
                 v-if="activeKey === KEY_TAB_CITY"
                 :id="id"
                 :query="query"
+                :open="open"
                 @cancel="((open = false), (id = null))"
                 @submit="open = false"
             />
@@ -136,6 +137,7 @@ onUnmounted(() => {
                 v-else
                 :id="id"
                 :query="query"
+                :open="open"
                 @cancel="((open = false), (id = null))"
                 @submit="open = false"
             />

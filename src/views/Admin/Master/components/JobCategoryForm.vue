@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { useI18n } from 'vue3-i18n'
-import { reactive, ref, watch, type UnwrapRef } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import { useJobCategoryStore } from '@/stores/admin'
 import { useJobCategoryStore as useJobCategoryStoreHome } from '@/stores/home'
-import { FORM_JOB_CATEGORY, categoryRules, INITIAL_QUERY_MST } from '../shared'
+import {
+    FORM_JOB_CATEGORY,
+    categoryRules,
+    INITIAL_QUERY_MST,
+    makeDataJobCategory,
+} from '../shared'
 import {
     trim,
     notifyStatus,
@@ -13,8 +18,10 @@ import {
     getOptions,
     filterOption,
     QUERY_MST_PARENT,
+    STATUS_CODE_SUCCESS,
 } from '@/libs'
 import { DeleteOutlined } from '@ant-design/icons-vue'
+import type { JobCategoryForm } from '@/interface'
 
 const { t } = useI18n()
 const formRef = ref()
@@ -23,22 +30,25 @@ const openDelete = ref(false)
 const jobCategoryStore = useJobCategoryStore()
 const jobCategoryStoreHome = useJobCategoryStoreHome()
 
-const props = defineProps(['id', 'query'])
+const props = defineProps(['id', 'query', 'open'])
 const emit = defineEmits(['cancel', 'submit'])
 
-const formState: UnwrapRef<any> = reactive({
-    ...FORM_JOB_CATEGORY,
-})
+const formState = reactive<JobCategoryForm>({ ...FORM_JOB_CATEGORY })
 
 const onSubmit = async () => {
     try {
         loading.value = true
         const { status_code, message } = props.id
-            ? await jobCategoryStore.update(formState, +props.id)
-            : await jobCategoryStore.create(formState)
+            ? await jobCategoryStore.update(
+                  makeDataJobCategory(formState),
+                  +props.id
+              )
+            : await jobCategoryStore.create(makeDataJobCategory(formState))
         notifyStatus(status_code, message)
-        emit('submit')
-        resetForm(true)
+        if (status_code === STATUS_CODE_SUCCESS) {
+            emit('submit')
+            resetForm(true)
+        }
     } catch (error) {
         console.error(error)
     } finally {
@@ -83,12 +93,17 @@ const resetForm = async (isFetchData: boolean) => {
 watch(
     () => props.id,
     async (newId) => {
-        if (newId) {
-            loading.value = true
-            await getData(newId)
-            await jobCategoryStoreHome.listParent(QUERY_MST_PARENT)
-            loading.value = false
-        }
+        loading.value = true
+        newId && (await getData(newId))
+        loading.value = false
+    },
+    { immediate: true }
+)
+
+watch(
+    () => props.open,
+    async (newOpen) => {
+        newOpen && (await jobCategoryStoreHome.listParent(QUERY_MST_PARENT))
     },
     { immediate: true }
 )
@@ -119,6 +134,7 @@ watch(
             <a-select
                 allow-search
                 show-search
+                allow-clear
                 ref="select"
                 style="width: 200px"
                 :placeholder="t('select.placeholder')"

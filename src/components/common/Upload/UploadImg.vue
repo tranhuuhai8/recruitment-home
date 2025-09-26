@@ -31,6 +31,10 @@ const beforeUpload = (info: Record<string, any>) => {
     if (!isJpgOrPng) {
         notify(t('validation.image.type'), '', 'error')
     }
+
+    if (!info.size) {
+        notify(t('validation.image.error'), '', 'error')
+    }
     const isLetterMaxSize = info.size < MAX_SIZE_IMAGE
     if (!isLetterMaxSize) {
         notify(
@@ -39,7 +43,7 @@ const beforeUpload = (info: Record<string, any>) => {
             'error'
         )
     }
-    return isJpgOrPng && isLetterMaxSize
+    return isJpgOrPng && isLetterMaxSize && info.size
 }
 
 const removeImage = () => emit('update:url', null)

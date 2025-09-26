@@ -8,9 +8,8 @@ import { useRoute, useRouter } from 'vue-router'
 import {
     filterTreeSelect,
     getTreeData,
-    INITIAL_QUERY,
     notify,
-    PAYLOAD_ALL,
+    QUERY_GET_TREE,
     STATUS_CODE_SUCCESS,
     STATUS_OPTIONS_FORM,
     trim,
@@ -64,7 +63,7 @@ const backToList = () => router.push({ name: 'admin-companies' })
 onMounted(async () => {
     loading.value = true
     await getData()
-    await cityStore.list({ ...INITIAL_QUERY, ...PAYLOAD_ALL })
+    await cityStore.list(QUERY_GET_TREE)
     loading.value = false
 })
 </script>
