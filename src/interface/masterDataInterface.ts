@@ -9,6 +9,13 @@ export interface City {
     updated_at?: string
 }
 
+export interface CityForm {
+    name: string
+    parent_id: number | null
+    description: string
+    status: number
+}
+
 export interface CityResult extends Result {
     data?: City[]
 }
@@ -22,6 +29,14 @@ export interface JobCategory {
     parent_id: number
     created_at: string
     updated_at?: string
+}
+
+export interface JobCategoryForm {
+    name: string
+    parent_id: number | null
+    description: string
+    status: number
+    type: number
 }
 
 export interface JobCategoryResult extends Result {

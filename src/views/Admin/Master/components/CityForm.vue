@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { useI18n } from 'vue3-i18n'
-import { reactive, ref, watch, type UnwrapRef } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import { useCityStore } from '@/stores/admin'
 import { useCityStore as useCityStoreHome } from '@/stores/home/city'
-import { FORM_CITY, cityRules, INITIAL_QUERY_MST } from '../shared'
+import {
+    FORM_CITY,
+    cityRules,
+    INITIAL_QUERY_MST,
+    makeDataCity,
+} from '../shared'
 import {
     trim,
     notifyStatus,
@@ -12,8 +17,10 @@ import {
     getOptions,
     filterOption,
     QUERY_MST_PARENT,
+    STATUS_CODE_SUCCESS,
 } from '@/libs'
 import { DeleteOutlined } from '@ant-design/icons-vue'
+import type { CityForm } from '@/interface'
 
 const { t } = useI18n()
 const formRef = ref()
@@ -22,22 +29,22 @@ const openDelete = ref(false)
 const cityStore = useCityStore()
 const cityStoreHome = useCityStoreHome()
 
-const props = defineProps(['id', 'query'])
+const props = defineProps(['id', 'query', 'open'])
 const emit = defineEmits(['cancel', 'submit'])
 
-const formState: UnwrapRef<any> = reactive({
-    ...FORM_CITY,
-})
+const formState = reactive<CityForm>({ ...FORM_CITY })
 
 const onSubmit = async () => {
     try {
         loading.value = true
         const { status_code, message } = props.id
-            ? await cityStore.update(formState, +props.id)
-            : await cityStore.create(formState)
+            ? await cityStore.update(makeDataCity(formState), +props.id)
+            : await cityStore.create(makeDataCity(formState))
         notifyStatus(status_code, message)
-        emit('submit')
-        resetForm(true)
+        if (status_code === STATUS_CODE_SUCCESS) {
+            emit('submit')
+            resetForm(true)
+        }
     } catch (error) {
         console.error(error)
     } finally {
@@ -79,12 +86,17 @@ const resetForm = async (isFetchData: boolean) => {
 watch(
     () => props.id,
     async (newId) => {
-        if (newId) {
-            loading.value = true
-            await cityStoreHome.listParent(QUERY_MST_PARENT)
-            await getData(newId)
-            loading.value = false
-        }
+        loading.value = true
+        newId && (await getData(newId))
+        loading.value = false
+    },
+    { immediate: true }
+)
+
+watch(
+    () => props.open,
+    async (newOpen) => {
+        newOpen && (await cityStoreHome.listParent(QUERY_MST_PARENT))
     },
     { immediate: true }
 )
@@ -115,6 +127,7 @@ watch(
             <a-select
                 allow-search
                 show-search
+                allow-clear
                 ref="select"
                 style="width: 150px"
                 :placeholder="t('select.placeholder')"

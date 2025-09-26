@@ -15,6 +15,7 @@ export default {
     image: {
         type: 'Vui lòng chỉ tải lên các tệp hình ảnh jpg, png và jpeg',
         max: 'Vui lòng tải lên hình ảnh có dung lượng nhỏ hơn {0}!',
+        error: 'Vui lòng tải lên hình ảnh hợp lệ',
     },
     in_array: '{0} phải khớp với {1}',
     integer: '{0} chỉ là số nguyên hợp lệ',
