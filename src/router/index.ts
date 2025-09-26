@@ -166,9 +166,14 @@ const router = createRouter({
                         },
                         {
                             path: 'jobs',
-                            name: 'admin-jobs',
-                            component: Pages.HomeViewAdmin,
-                            beforeEnter: ifAuthenticated,
+                            children: [
+                                {
+                                    path: '',
+                                    name: 'admin-jobs',
+                                    component: Pages.JobViewAdmin,
+                                    beforeEnter: ifAuthenticated,
+                                },
+                            ],
                         },
                         {
                             path: 'reviews',

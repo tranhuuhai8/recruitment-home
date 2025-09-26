@@ -17,24 +17,18 @@ export const columns: ColumnTable[] = [
         title: t('job.labels.title'),
         dataIndex: 'title',
         key: 'title',
-        width: 250,
         sorter: true,
         sortDirections: ['descend', 'ascend', 'descend'],
         defaultSortOrder: 'descend',
         align: 'center',
     },
     {
-        title: t('job.labels.category'),
-        dataIndex: 'job_category_name',
-        key: 'job_category_name',
+        title: t('job.labels.company'),
+        dataIndex: 'company_name',
+        key: 'company_name',
         align: 'center',
-        width: 200,
-        customRender: ({ record }) => (
-            <span>
-                {record.job_category_name} <br />{' '}
-                {record.job_category_parent_name}
-            </span>
-        ),
+        width: 250,
+        customRender: ({ record }) => <span>{record.company?.name}</span>,
     },
     {
         title: t('job.labels.start_date'),
@@ -47,18 +41,6 @@ export const columns: ColumnTable[] = [
         dataIndex: 'end_date',
         key: 'end_date',
         align: 'center',
-    },
-    {
-        title: t('job.labels.city'),
-        dataIndex: 'city_name',
-        key: 'city_name',
-        align: 'center',
-        width: 200,
-        customRender: ({ record }) => (
-            <span>
-                {record.city_name} <br /> {record.city_parent_name}
-            </span>
-        ),
     },
     {
         title: t('job.labels.type'),
@@ -84,7 +66,7 @@ export const columns: ColumnTable[] = [
         customRender: ({ record }: any) => (
             <DetailColumn
                 url={{
-                    name: 'company-jobs-edit',
+                    name: 'admin-jobs-edit',
                     params: { id: record.id },
                 }}
                 id={record.id}

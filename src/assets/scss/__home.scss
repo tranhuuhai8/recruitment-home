@@ -109,6 +109,7 @@
                 border-radius: var(--vt-br-box);
                 border: 1px solid transparent;
                 background-color: var(--bg-box-item);
+                transition: all 0.3s linear;
 
                 &:hover {
                     border-color: var(--vt-c-main);

@@ -16,6 +16,15 @@ export const useCompanyStore = defineStore('company', () => {
         }
     }
 
+    const getSelect = async (payload: Record<string, any>) => {
+        try {
+            const { data } = await API.getSelect(payload)
+            return (companies.value = data)
+        } catch (error: any) {
+            return error
+        }
+    }
+
     const detail = async (id: number) => {
         try {
             const response = await API.detail(id)
@@ -40,6 +49,7 @@ export const useCompanyStore = defineStore('company', () => {
         getCompany,
         getCompanies,
         list,
+        getSelect,
         detail,
         update,
     }
