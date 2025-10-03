@@ -9,6 +9,7 @@ export default {
         id: 'ID',
         title: 'Title',
         banner: 'Banner',
+        company: 'Company name',
         category: 'Category',
         number_of_recruitment: 'Number of recruitment',
         city: 'City',

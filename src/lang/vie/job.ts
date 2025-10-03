@@ -10,6 +10,7 @@ export default {
         title: 'Tiêu đề',
         banner: 'Ảnh mô tả',
         category: 'Loại công việc',
+        company: 'Tên công ty',
         number_of_recruitment: 'Số lượng tuyển dụng',
         city: 'Khu vực',
         start_date: 'Ngày bắt đầu',
@@ -25,5 +26,5 @@ export default {
             name: 'Tiêu đề',
         },
     },
-    confirm_delete: 'Bạn có chắc chắn muốn xóa công việc mã {0}?',
+    confirm_delete: 'Bạn có chắc chắn muốn xóa công việc ID {0}?',
 }

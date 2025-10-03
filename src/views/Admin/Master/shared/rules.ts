@@ -1,5 +1,9 @@
 import i18n from '@/lang'
-import { MAX_STRING, REGEX_NO_SPECIAL_CHARS, REGEX_NO_SPECIAL_CHARS_DES } from '@/libs'
+import {
+    MAX_STRING,
+    REGEX_NO_SPECIAL_CHARS,
+    REGEX_NO_SPECIAL_CHARS_DES,
+} from '@/libs'
 import type { Rule } from 'ant-design-vue/es/form'
 
 const { t } = i18n

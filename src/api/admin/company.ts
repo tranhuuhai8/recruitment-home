@@ -8,6 +8,13 @@ export const list = (payload: Record<string, any>) =>
         params: payload,
     })
 
+export const getSelect = (payload: Record<string, any>) =>
+    request<ResponseList, ResponseList>({
+        url: `admin/company/get-select`,
+        method: 'GET',
+        params: payload,
+    })
+
 export const detail = (id: number) =>
     request<any, any>({
         url: `admin/company/${id}`,
