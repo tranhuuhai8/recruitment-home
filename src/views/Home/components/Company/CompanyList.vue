@@ -2,7 +2,7 @@
 import { useI18n } from 'vue3-i18n'
 import { Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { useCompanyStore } from '@/stores/home/company'
+import { useCompanyStore } from '@/stores/home'
 import { IconLocation, IconJob } from '@/components/icons'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -15,13 +15,26 @@ const companyStore = useCompanyStore()
 <template>
     <div class="container company-list">
         <swiper
-            :loop="true"
             :pagination="{
                 clickable: true,
             }"
             :breakpoints="{
-                0: { slidesPerView: 2, spaceBetween: 10 },
-                768: { slidesPerView: 4, spaceBetween: 30 },
+                320: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                },
+                640: {
+                    slidesPerView: 3,
+                    spaceBetween: 20,
+                },
+                990: {
+                    slidesPerView: 4,
+                    spaceBetween: 30,
+                },
+                1340: {
+                    slidesPerView: 5,
+                    spaceBetween: 30,
+                },
             }"
             :scrollbar="{ draggable: true }"
             :modules="[Pagination]"

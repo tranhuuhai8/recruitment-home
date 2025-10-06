@@ -70,6 +70,7 @@ export default {
         customize: 'Tùy chỉnh',
         full_time: 'Toàn thời gian',
         part_time: 'Bán thời gian',
+        salary_exchange: 'Thỏa thuận',
     },
     modal: {
         delete: {

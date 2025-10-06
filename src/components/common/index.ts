@@ -21,5 +21,5 @@ export {
     UploadImg,
     TreeSelect,
     TypeColumnJob,
-    StatusColumnJob
+    StatusColumnJob,
 }

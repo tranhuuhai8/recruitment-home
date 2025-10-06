@@ -3,6 +3,7 @@
         text-align: center;
         font-size: var(--fz-title-pc);
         margin-bottom: 8px;
+        font-weight: bold;
     }
 
     .subtitle {
@@ -44,11 +45,15 @@
             width: 95%;
             background-color: var(--vt-c-white);
             padding: 20px 30px;
-            border-radius: 50px;
+            border-radius: 15px;
             margin: 20px auto 0;
 
             .ant-form-item {
                 margin: 0 10px;
+
+                &:first-child {
+                    margin-left: 0;
+                }
 
                 &.search-all {
                     flex: 1;
@@ -72,7 +77,9 @@
 
         .body-banner {
             top: 45%;
+
             .form-search-home {
+                width: 75%;
                 flex-wrap: wrap;
                 flex-direction: column;
                 margin-top: 10px;
@@ -82,6 +89,10 @@
                 .ant-form-item {
                     margin: 5px 0;
                     width: 95%;
+
+                    .ant-select-selector {
+                        max-width: 100%;
+                    }
                 }
 
                 .ant-btn {
@@ -105,17 +116,7 @@
                 @extend .flex-center;
                 flex-direction: column;
                 padding: 30px 20px;
-                cursor: pointer;
-                border-radius: var(--vt-br-box);
-                border: 1px solid transparent;
-                background-color: var(--bg-box-item);
-                transition: all 0.3s linear;
-
-                &:hover {
-                    border-color: var(--vt-c-main);
-                    background-color: var(--vt-c-white);
-                    box-shadow: var(--vt-box-shadow-box);
-                }
+                @extend .box-item;
 
                 .logo {
                     width: 100%;
@@ -170,6 +171,115 @@
     @include media(mobile) {
         .marquee-item {
             margin: 0 10px;
+        }
+    }
+}
+
+.box-job {
+    .filter-tabs {
+        margin: 20px auto;
+        gap: 12px;
+        flex-wrap: wrap;
+        @extend .flex-center;
+    }
+
+    .job-list {
+        margin-top: 40px;
+
+        .ant-row {
+            align-items: stretch;
+            gap: 20px 0;
+
+            .ant-col {
+                height: 100%;
+            }
+        }
+
+        .ant-list-item {
+            padding: 20px 20px 8px;
+            height: 100%;
+            position: relative;
+            @extend .box-item;
+
+            .job-item-header {
+                @extend .flex-start;
+                gap: 12px;
+                flex: 1;
+
+                .company-logo {
+                    @include box_square(50px);
+
+                    img {
+                        object-fit: cover;
+                        width: 100%;
+                    }
+                }
+
+                .job-title {
+                    font-size: 18px;
+                    font-weight: bold;
+                    @include line_clamp(2);
+                }
+            }
+
+            .job-item-body {
+                @extend .flex-start;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 20px;
+                margin: 15px 0;
+
+                .meta-item {
+                    @extend .flex-center;
+                    gap: 3px;
+                    font-size: 14px;
+                    color: var(--vt-c-gray-v4);
+                }
+            }
+
+            .bookmark-btn {
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                z-index: 1;
+                border: none;
+                cursor: pointer;
+                background-color: transparent;
+                color: var(--vt-c-gray-v1);
+                font-size: 20px;
+                transition: all 0.5s linear;
+
+                &.active {
+                    color: var(--vt-c-red);
+                }
+
+                &:hover {
+                    color: var(--vt-c-red);
+                    transform: scale(1.2);
+                }
+            }
+
+            .job-item-footer {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                margin-top: 12px;
+
+                .job-tag {
+                    border-radius: 6px;
+                    font-size: 12px;
+                    padding: 4px 12px;
+                    margin: 0;
+                    border: none;
+                    background: var(--vt-c-blue-v2);
+                    color: var(--vt-c-blue-bg);
+
+                    &.category {
+                        background: var(--vt-c-yellow-bg);
+                        color: var(--vt-c-yellow);
+                    }
+                }
+            }
         }
     }
 }

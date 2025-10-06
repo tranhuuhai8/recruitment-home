@@ -1,5 +1,5 @@
 export const FORM_SEARCH_HOME = {
     search: '',
     city_id: [],
-    category_id: [],
+    job_category_id: [],
 }

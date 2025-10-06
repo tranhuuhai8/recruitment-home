@@ -50,6 +50,14 @@ body {
     margin: 0 auto;
     max-width: var(--max-width-pc);
 
+    @include media(tablet) {
+        max-width: 98%;
+    }
+
+    @include media(desktop-custom) {
+        max-width: 98%;
+    }
+
     @include media(mobile) {
         max-width: 95%;
     }

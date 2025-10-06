@@ -14,8 +14,10 @@ import {
 import { useCityStore, useJobCategoryStore } from '@/stores/home'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import { useRouter } from 'vue-router'
 
 const { t } = useI18n()
+const router = useRouter()
 const props = defineProps({
     data: { type: Object, required: true },
     id: { type: Number, required: false },
@@ -26,6 +28,8 @@ const { data, id } = toRefs(props)
 const formRef = ref()
 const cityStore = useCityStore()
 const jobCategoryStore = useJobCategoryStore()
+
+const backToList = () => router.push({ name: 'company-jobs' })
 </script>
 
 <template>
@@ -176,6 +180,9 @@ const jobCategoryStore = useJobCategoryStore()
             </a-button>
             <a-button v-if="id" class="btn-delete" @click="emits('delete')">
                 {{ t('delete') }}
+            </a-button>
+            <a-button type="link" @click="backToList">
+                {{ t('back') }}
             </a-button>
         </a-space>
     </a-form>

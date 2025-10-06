@@ -18,6 +18,11 @@
 }
 
 .ant-btn {
+    &.active {
+        border-color: var(--vt-c-primary);
+        color: var(--vt-c-primary);
+    }
+
     &:hover {
         opacity: 0.8;
     }

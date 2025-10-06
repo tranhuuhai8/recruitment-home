@@ -13,4 +13,8 @@ export default {
             'Một số công ty mà chúng tôi đã hỗ trợ tuyển dụng những ứng viên xuất sắc trong nhiều năm qua.',
         job: 'việc làm',
     },
+    job: {
+        title: 'Công việc phổ biến nhất',
+        subtitle: 'Biết giá trị của bạn và tìm được công việc đủ điều kiện cuộc sống của bạn',
+    },
 }
