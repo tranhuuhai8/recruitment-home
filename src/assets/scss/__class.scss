@@ -6,6 +6,14 @@
     @include center_flex(center, space-between);
 }
 
+.flex-center-start {
+    @include center_flex(center, start);
+}
+
+.flex-start-between {
+    @include center_flex(start, space-between);
+}
+
 .flex-start {
     @include center_flex(start, start);
 }
@@ -34,4 +42,9 @@
         background-color: var(--vt-c-white);
         box-shadow: var(--vt-box-shadow-box);
     }
+}
+
+.box-title {
+    color: var(--vt-c-white);
+    background: var(--bg-head-linear);
 }

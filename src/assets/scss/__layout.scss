@@ -432,6 +432,10 @@
         .ant-form-item {
             width: 50%;
 
+            &.form-item-description {
+                width: 80%;
+            }
+
             &:has(.upload-image) {
                 width: auto;
             }

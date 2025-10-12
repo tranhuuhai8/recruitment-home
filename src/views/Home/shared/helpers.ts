@@ -4,7 +4,7 @@ import { formatMoney, mapFilterQuery, mapKeyToData } from '@/libs'
 export const getQuerySearch = (
     query: ParamsList,
     data: Record<string, any>,
-    categoryId?: number
+    categoryIds?: Array<number>
 ) => {
     const { search, city_id, job_category_id } = data
 
@@ -13,7 +13,25 @@ export const getQuerySearch = (
         search,
         mapKeyToData({
             city_id,
-            job_category_id: categoryId ?? job_category_id,
+            job_category_id: categoryIds ?? job_category_id,
+        })
+    )
+}
+
+export const getQuerySearchJob = (
+    query: ParamsList,
+    data: Record<string, any>,
+    company_id?: number
+) => {
+    const { search, type, job_category_id } = data
+
+    return mapFilterQuery(
+        query,
+        search,
+        mapKeyToData({
+            type,
+            job_category_id,
+            company_id,
         })
     )
 }

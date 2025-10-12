@@ -4,6 +4,10 @@ export const AboutView = () => import('@/views/Home/AboutView.vue')
 export const JobView = () => import('@/views/Home/JobView.vue')
 export const NewView = () => import('@/views/Home/NewView.vue')
 export const ContactView = () => import('@/views/Home/ContactView.vue')
+
+export const CompanyDetailView = () =>
+    import('@/views/Home/components/Company/CompanyDetail.vue')
+
 export const NotFound = () => import('@/views/NotFound.vue')
 
 // Page Applicant

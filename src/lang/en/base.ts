@@ -9,6 +9,7 @@ export default {
     delete: 'Delete',
     submit: 'Submit',
     search: 'Search',
+    copy: 'Copy',
     operation: 'Operation',
     all: 'All',
     select: {
