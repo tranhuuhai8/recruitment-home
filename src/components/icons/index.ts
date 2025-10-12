@@ -10,6 +10,7 @@ import IconDashboard from './IconDashboard.vue'
 import IconLogout from './IconLogout.vue'
 import IconKey from './IconKey.vue'
 import IconLocation from './IconLocation.vue'
+import IconMoney from './IconMoney.vue'
 
 export {
     IconHome,
@@ -24,4 +25,5 @@ export {
     IconLogout,
     IconKey,
     IconLocation,
+    IconMoney,
 }

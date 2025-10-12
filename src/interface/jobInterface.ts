@@ -50,5 +50,4 @@ export interface FormDataJob {
     type: number
     salary_min: number | null
     salary_max: number | null
-    salary_type: number | null
 }

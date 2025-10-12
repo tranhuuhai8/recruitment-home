@@ -13,4 +13,8 @@ export default {
             'Some of the companies we’ve helped recruit excellent applicants over the years.',
         job: 'job',
     },
+    job: {
+        title: 'Most Popular Jobs',
+        subtitle: 'Know your worth and find the job that qualify your life',
+    },
 }

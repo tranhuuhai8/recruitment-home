@@ -35,7 +35,7 @@ const jobCategoryStore = useJobCategoryStore()
                     />
                 </a-form-item>
 
-                <a-form-item name="category_id">
+                <a-form-item name="job_category_id">
                     <a-select
                         allow-search
                         show-search
@@ -43,7 +43,7 @@ const jobCategoryStore = useJobCategoryStore()
                         ref="select"
                         mode="multiple"
                         :placeholder="t('home.search.category')"
-                        v-model:value="formState.category_id"
+                        v-model:value="formState.job_category_id"
                         :max-tag-count="2"
                         :options="
                             getOptions(

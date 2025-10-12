@@ -70,6 +70,7 @@ export default {
         customize: 'Customize',
         full_time: 'Full-time',
         part_time: 'Part-time',
+        salary_exchange: 'Negotiable',
     },
     modal: {
         delete: {

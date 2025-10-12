@@ -178,3 +178,8 @@ $fw: 100;
     border-radius: $borderRadius;
     box-shadow: unset;
 }
+
+@mixin box_square($size) {
+    width: $size;
+    height: $size;
+}

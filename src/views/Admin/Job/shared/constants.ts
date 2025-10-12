@@ -6,7 +6,6 @@ import {
     TRUE_VALUE,
 } from '@/libs'
 
-export const SALARY_TYPE_EXCHANGE = 3
 
 export const INITIAL_QUERY_MST = {
     ...INITIAL_QUERY,
@@ -36,5 +35,4 @@ export const INITIAL_FORM_JOB = {
     description: '',
     salary_min: null,
     salary_max: null,
-    salary_type: SALARY_TYPE_EXCHANGE,
 }

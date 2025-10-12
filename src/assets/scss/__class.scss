@@ -6,8 +6,8 @@
     @include center_flex(center, space-between);
 }
 
-.flex-center-all {
-    @include center_flex(end);
+.flex-start {
+    @include center_flex(start, start);
 }
 
 .hidden {
@@ -20,4 +20,18 @@
 
 .center {
     text-align: center;
+}
+
+.box-item {
+    cursor: pointer;
+    border-radius: var(--vt-br-box);
+    border: 1px solid transparent;
+    background-color: var(--bg-box-item);
+    transition: all 0.3s linear;
+
+    &:hover {
+        border-color: var(--vt-c-main);
+        background-color: var(--vt-c-white);
+        box-shadow: var(--vt-box-shadow-box);
+    }
 }

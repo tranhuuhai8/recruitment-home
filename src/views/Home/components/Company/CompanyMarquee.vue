@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useCompanyStore } from '@/stores/home/company'
+import { useCompanyStore } from '@/stores/home'
 import { Vue3Marquee } from 'vue3-marquee'
 
 const companyStore = useCompanyStore()
