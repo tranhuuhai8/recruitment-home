@@ -9,6 +9,7 @@ export default {
     delete: 'Xóa',
     submit: 'Xác nhận',
     search: 'Tìm kiếm',
+    copy: 'Sao chép',
     operation: 'Thao tác',
     all: 'Tất cả',
     select: {

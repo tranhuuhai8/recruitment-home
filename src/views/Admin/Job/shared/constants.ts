@@ -6,7 +6,6 @@ import {
     TRUE_VALUE,
 } from '@/libs'
 
-
 export const INITIAL_QUERY_MST = {
     ...INITIAL_QUERY,
     per_page: PER_PAGE_MST,

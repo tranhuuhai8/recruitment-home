@@ -15,6 +15,8 @@ import {
     trim,
 } from '@/libs'
 import { INITIAL_FORM_COMPANY, mapDataForm, rules } from './shared'
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
 
 const { t } = useI18n()
 const authStore = useAuthStore()
@@ -168,13 +170,13 @@ onMounted(async () => {
                 </a-form-item>
                 <a-form-item
                     name="description"
+                    class="form-item-description"
                     :label="t('company.labels.description')"
                 >
-                    <a-textarea
-                        v-model:value="formState.description"
-                        :placeholder="t('company.labels.description')"
-                        :autoSize="{ minRows: 4, maxRows: 10 }"
-                        @blur="trim('description', formState)"
+                    <QuillEditor
+                        v-model:content="formState.description"
+                        contentType="html"
+                        theme="snow"
                     />
                 </a-form-item>
 

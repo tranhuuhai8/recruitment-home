@@ -70,6 +70,16 @@ const router = createRouter({
                     component: Pages.HomeView,
                 },
                 {
+                    path: 'page-company',
+                    children: [
+                        {
+                            path: ':id',
+                            name: 'company-home-detail',
+                            component: Pages.CompanyDetailView,
+                        },
+                    ],
+                },
+                {
                     path: 'introduce',
                     name: 'introduce',
                     component: Pages.AboutView,
@@ -89,7 +99,6 @@ const router = createRouter({
                     name: 'contact',
                     component: Pages.ContactView,
                 },
-
                 {
                     path: 'auth',
                     children: [

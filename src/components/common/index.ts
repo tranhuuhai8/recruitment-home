@@ -9,6 +9,7 @@ import UploadImg from './Upload/UploadImg.vue'
 import TreeSelect from './Select/TreeSelect.vue'
 import TypeColumnJob from './Column/Job/TypeColumn.vue'
 import StatusColumnJob from './Column/Job/StatusColumn.vue'
+import PaginationHome from './TableData/PaginationHome.vue'
 
 export {
     AppHeaderHomepage,
@@ -22,4 +23,5 @@ export {
     TreeSelect,
     TypeColumnJob,
     StatusColumnJob,
+    PaginationHome,
 }

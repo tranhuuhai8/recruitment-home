@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue3-i18n'
+import { useRouter } from 'vue-router'
 import { Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { useCompanyStore } from '@/stores/home'
@@ -9,7 +10,12 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
 const { t } = useI18n()
+const router = useRouter()
 const companyStore = useCompanyStore()
+
+const handleDetail = (id: number) => {
+    router.push({ name: 'company-home-detail', params: { id } })
+}
 </script>
 
 <template>
@@ -31,10 +37,6 @@ const companyStore = useCompanyStore()
                     slidesPerView: 4,
                     spaceBetween: 30,
                 },
-                1340: {
-                    slidesPerView: 5,
-                    spaceBetween: 30,
-                },
             }"
             :scrollbar="{ draggable: true }"
             :modules="[Pagination]"
@@ -42,8 +44,9 @@ const companyStore = useCompanyStore()
         >
             <swiper-slide
                 v-for="company in companyStore.getCompanies.data"
-                :key="company.id"
                 class="company-item"
+                :key="company.id"
+                @click="handleDetail(company.id)"
             >
                 <img :src="company.logo" alt="" class="logo" />
                 <a-tooltip>

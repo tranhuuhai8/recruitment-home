@@ -33,8 +33,13 @@ const getJobs = (params: Record<string, any>) => jobStore.list(params)
 
 const filterJobByCategory = async (id: number) => {
     loading.value = true
-    const paramSearch = getQuerySearch(querySearch, formSearch.value, id)
-    await getJobs(paramSearch)
+    await getJobs(
+        getQuerySearch(querySearch, formSearch.value, [
+            ...formSearch.value.job_category_id,
+            id,
+        ])
+    )
+    Object.assign(formSearch.value, { ...formSearch.value, city_id: [] })
     loading.value = false
 }
 
@@ -52,7 +57,10 @@ onMounted(async () => {
         <div class="home-page">
             <BannerBox :form-state="formSearch" @search="getData" />
             <CompanyBox />
-            <JobBox @filter-category="filterJobByCategory" />
+            <JobBox
+                :categories="formSearch.job_category_id"
+                @filter-category="filterJobByCategory"
+            />
             <div
                 class="content-1"
                 style="height: 1000px; text-align: center; margin-top: 50px"

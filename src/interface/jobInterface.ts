@@ -31,10 +31,10 @@ export interface JobResult extends Result {
 
 export interface FormSearchJob {
     search: string
-    city_id?: number
-    job_category_id?: number
-    start_date: string | null
-    end_date: string | null
+    city_id?: number | number[]
+    job_category_id?: number | number[]
+    start_date?: string | null
+    end_date?: string | null
 }
 
 export interface FormDataJob {

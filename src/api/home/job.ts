@@ -3,7 +3,7 @@ import type { ResponseList } from '@/interface'
 
 export const list = (payload: Record<string, any>) =>
     request<ResponseList, ResponseList>({
-        url: `home/jobs`,
+        url: `home/job`,
         method: 'GET',
         params: payload,
     })

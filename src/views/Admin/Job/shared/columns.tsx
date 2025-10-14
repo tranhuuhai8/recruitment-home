@@ -56,7 +56,9 @@ export const columns: ColumnTable[] = [
         key: 'status',
         width: 120,
         align: 'center',
-        customRender: ({ record }) => <StatusColumnJob status={record.status} />,
+        customRender: ({ record }) => (
+            <StatusColumnJob status={record.status} />
+        ),
     },
     {
         title: t('operation'),
