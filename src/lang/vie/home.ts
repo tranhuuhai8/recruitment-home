@@ -46,5 +46,24 @@ export default {
         title: 'Công việc phổ biến nhất',
         subtitle:
             'Biết giá trị của bạn và tìm được công việc đủ điều kiện cuộc sống của bạn',
+        detail: {
+            title: {
+                info: 'Thông tin chung',
+                description: 'Mô tả công việc',
+                company: 'Thông tin công ty',
+            },
+            number_of_recruitment: 'Số lượng',
+            address: 'Địa điểm',
+            job_category: 'Lĩnh vực',
+            salary: 'Mức lương',
+            start_date: 'Ngày bắt đầu',
+            end_date: 'Ngày kết thúc',
+            deadline: 'Hạn nộp hồ sơ',
+            job_description: 'Mô tả công việc',
+            btn: {
+                apply: 'Ứng tuyển ngay',
+                applied: 'Đã ứng tuyển',
+            },
+        }
     },
 }

@@ -10,6 +10,7 @@ export default {
     submit: 'Submit',
     search: 'Search',
     copy: 'Copy',
+    detail: 'Detail',
     operation: 'Operation',
     all: 'All',
     select: {

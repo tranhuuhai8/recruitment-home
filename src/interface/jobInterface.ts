@@ -3,16 +3,16 @@ import type { Company } from './companyInterface'
 import type { City, JobCategory } from './masterDataInterface'
 
 export interface Job {
-    id: number
+    id: number | null
     title: string
     banner?: string
     number_of_recruitment: number | string
     start_date: string
     end_date: string
     description: string
-    city_id: number
-    company_id: number
-    job_category_id: number
+    city_id: number | null
+    company_id: number | null
+    job_category_id: number | null
     city?: City
     company?: Company
     job_category?: JobCategory

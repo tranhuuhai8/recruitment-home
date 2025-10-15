@@ -7,3 +7,9 @@ export const list = (payload: Record<string, any>) =>
         method: 'GET',
         params: payload,
     })
+
+export const detail = (id: number) =>
+    request<any, any>({
+        url: `home/job/${id}`,
+        method: 'GET',
+    })

@@ -8,6 +8,9 @@ export const ContactView = () => import('@/views/Home/ContactView.vue')
 export const CompanyDetailView = () =>
     import('@/views/Home/Company/CompanyDetail.vue')
 
+export const JobDetailView = () =>
+    import('@/views/Home/Job/JobDetail.vue')
+
 export const NotFound = () => import('@/views/NotFound.vue')
 
 // Page Applicant
