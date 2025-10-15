@@ -10,7 +10,7 @@ export default {
     company: {
         title: 'Top Công ty tuyển dụng',
         subtitle:
-            'Một số công ty mà chúng tôi đã hỗ trợ tuyển dụng những ứng viên xuất sắc trong nhiều năm qua.',
+            'Một số công ty mà chúng tôi đã hỗ trợ tuyển dụng những ứng viên xuất sắc trong nhiều năm qua',
         job: 'việc làm',
         detail: {
             title: 'Chi tiết công ty',

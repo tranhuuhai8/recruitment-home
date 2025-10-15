@@ -27,6 +27,7 @@ export const KEY_LOGOUT = 999
 export const PAGE_FIRST = 1
 export const PER_PAGE = 20
 export const PER_PAGE_MST = 10
+export const PER_PAGE_HOME = 12
 export const MAX_STRING = 255
 export const MIN_STRING = 8
 export const MAX_SHORT_NAME = 10

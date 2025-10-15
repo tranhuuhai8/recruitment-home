@@ -6,9 +6,8 @@ import { onMounted, reactive, ref, watch } from 'vue'
 import type { Company } from '@/interface'
 import { useCompanyStore } from '@/stores/home'
 import { IconUser, IconJob } from '@/components/icons'
-import BoxContact from '../common/BoxContact.vue'
-import BoxShare from '../common/BoxShare.vue'
-import CompanyListJob from '../common/CompanyListJob.vue'
+import { BoxContact, BoxShare, CompanyListJob } from '../components'
+import { INITIAL_COMPANY_INFO_NULL } from '../shared'
 
 const { t } = useI18n()
 const {
@@ -17,7 +16,9 @@ const {
 const currentUrl = window.location.href
 const companyStore = useCompanyStore()
 const loading = ref(false)
-const company = reactive<Company | Record<string, any>>({})
+const company = reactive<Company | Record<string, any>>(
+    INITIAL_COMPANY_INFO_NULL
+)
 
 const handleFollow = (id: number) => {
     console.log('Follow company id:', id)
@@ -51,18 +52,21 @@ watch(
 
 <template>
     <a-spin :spinning="loading" size="large">
-        <div v-if="company.id" class="container detail company-detail">
+        <div class="container detail company-detail">
             <div class="box-cover-img" v-if="company.cover_img">
                 <img :src="company.cover_img" alt="" />
             </div>
             <div class="box-header">
                 <img :src="company.logo" alt="" class="logo" />
                 <div class="info">
-                    <h1 class="company-name">
+                    <h1 class="company-name" v-if="company.name">
                         {{ company.name + ' (' + company.short_name + ')' }}
                     </h1>
                     <div class="flex-start mt-12">
-                        <div class="company-meta mr-20">
+                        <div
+                            class="company-meta mr-20"
+                            v-if="company.jobs_count"
+                        >
                             <IconJob />
                             <span>
                                 {{

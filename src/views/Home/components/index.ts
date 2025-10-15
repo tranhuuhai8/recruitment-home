@@ -1,7 +1,7 @@
-import BannerBox from './BannerBox.vue'
-import CompanyBox from './Company/CompanyBox.vue'
-import CompanyList from './Company/CompanyList.vue'
-import CompanyMarquee from './Company/CompanyMarquee.vue'
-import JobBox from './Job/JobBox.vue'
+import BoxBanner from './BoxBanner.vue'
+import BoxContact from './BoxContact.vue'
+import BoxShare from './BoxShare.vue'
+import CompanyListJob from './CompanyListJob.vue'
+import CompanySearchJob from './CompanySearchJob.vue'
 
-export { BannerBox, CompanyBox, CompanyList, CompanyMarquee, JobBox }
+export { BoxBanner, BoxContact, BoxShare, CompanyListJob, CompanySearchJob }

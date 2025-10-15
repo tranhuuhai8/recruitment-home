@@ -3,8 +3,8 @@ import { useI18n } from 'vue3-i18n'
 import { TYPE_JOB_MAP } from '@/libs'
 import { IconLocation, IconMoney } from '@/components/icons'
 import { HeartOutlined } from '@ant-design/icons-vue'
-import { getSalaryText } from '../../shared'
 import { useJobStore } from '@/stores/home'
+import { getSalaryText } from '../shared'
 
 const { t } = useI18n()
 const jobStore = useJobStore()

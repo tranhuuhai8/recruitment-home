@@ -3,19 +3,22 @@ import { ref, watch } from 'vue'
 import { useI18n } from 'vue3-i18n'
 import JobList from './JobList.vue'
 import { useJobCategoryStore, useJobStore } from '@/stores/home'
+import { PaginationHome } from '@/components/common'
 
 const { t } = useI18n()
 const jobStore = useJobStore()
 const jobCategoryStore = useJobCategoryStore()
 const topCategories = ref()
 const tabIdCurrent = ref<number | null>(null)
-const emit = defineEmits(['filterCategory'])
+const emit = defineEmits(['filterCategory', 'changePage'])
 const props = defineProps(['categories'])
 
 const handleChangeTab = (id: number | null) => {
     tabIdCurrent.value = id
     emit('filterCategory', id)
 }
+
+const onChangePage = async (page: number) => emit('changePage', page)
 
 watch(
     () => jobCategoryStore.getJobCategoriesParent,
@@ -61,6 +64,14 @@ watch(
 
         <div v-if="jobStore.getJobs?.data?.length" class="container job-list">
             <JobList />
+            <PaginationHome
+                :data="jobStore.getJobs"
+                @changePage="onChangePage"
+                v-if="
+                    jobStore.getJobs?.total &&
+                    jobStore.getJobs.total > jobStore.getJobs.per_page
+                "
+            />
         </div>
     </div>
 </template>

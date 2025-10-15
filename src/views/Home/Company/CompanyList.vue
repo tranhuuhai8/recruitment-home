@@ -40,7 +40,6 @@ const handleDetail = (id: number) => {
             }"
             :scrollbar="{ draggable: true }"
             :modules="[Pagination]"
-            class="mySwiper"
         >
             <swiper-slide
                 v-for="company in companyStore.getCompanies.data"

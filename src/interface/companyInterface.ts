@@ -3,7 +3,7 @@ import type { City } from './masterDataInterface'
 import type { User } from './userInterface'
 
 export interface Company {
-    id: number
+    id: number | null
     logo?: string
     cover_img?: string
     name: string

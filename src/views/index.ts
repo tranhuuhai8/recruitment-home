@@ -6,7 +6,7 @@ export const NewView = () => import('@/views/Home/NewView.vue')
 export const ContactView = () => import('@/views/Home/ContactView.vue')
 
 export const CompanyDetailView = () =>
-    import('@/views/Home/components/Company/CompanyDetail.vue')
+    import('@/views/Home/Company/CompanyDetail.vue')
 
 export const NotFound = () => import('@/views/NotFound.vue')
 

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue3-i18n'
-import { CompanyList, CompanyMarquee } from '../'
+import CompanyList from './CompanyList.vue'
+import CompanyMarquee from './CompanyMarquee.vue'
 
 const { t } = useI18n()
 </script>
