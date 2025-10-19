@@ -5,9 +5,14 @@ import { IconLocation, IconMoney } from '@/components/icons'
 import { HeartOutlined } from '@ant-design/icons-vue'
 import { useJobStore } from '@/stores/home'
 import { getSalaryText } from '../shared'
+import { useRouter } from 'vue-router'
 
 const { t } = useI18n()
 const jobStore = useJobStore()
+const router = useRouter()
+
+const redirectToDetail = (id: number) =>
+    router.push({ name: 'job-home-detail', params: { id } })
 </script>
 
 <template>
@@ -24,7 +29,7 @@ const jobStore = useJobStore()
         :data-source="jobStore.getJobs.data"
     >
         <template #renderItem="{ item }">
-            <a-list-item>
+            <a-list-item @click="redirectToDetail(item.id)">
                 <div class="job-item-header">
                     <div class="company-logo" :title="item.company_name">
                         <img class="avatar" :src="item?.company_logo" />

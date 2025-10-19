@@ -56,7 +56,7 @@ body {
         max-width: 95%;
     }
 
-    &.detail {
+    &.page-detail {
         margin: 120px auto;
     }
 }
@@ -66,4 +66,17 @@ body {
         margin-bottom: 20px;
         font-weight: bold;
     }
+}
+
+.card-loading-page {
+    min-height: 100vh;
+    margin-top: 150px;
+
+    &:has(.container) {
+        margin-top: 0;
+    }
+}
+
+.card-loading-box {
+    min-height: 400px;
 }

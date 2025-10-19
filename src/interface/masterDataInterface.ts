@@ -5,6 +5,7 @@ export interface City {
     name: string
     description: string
     status: number
+    parent?: City
     created_at: string
     updated_at?: string
 }

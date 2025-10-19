@@ -10,6 +10,7 @@ export default {
     submit: 'Xác nhận',
     search: 'Tìm kiếm',
     copy: 'Sao chép',
+    detail: 'Chi tiết',
     operation: 'Thao tác',
     all: 'Tất cả',
     select: {

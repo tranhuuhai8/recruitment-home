@@ -1,24 +1,24 @@
 <script setup lang="ts">
 import { useI18n } from 'vue3-i18n'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useHead } from '@vueuse/head'
 import { onMounted, reactive, ref, watch } from 'vue'
 import type { Company } from '@/interface'
+import { STATUS_CODE_SUCCESS } from '@/libs'
 import { useCompanyStore } from '@/stores/home'
 import { IconUser, IconJob } from '@/components/icons'
-import { BoxContact, BoxShare, CompanyListJob } from '../components'
-import { INITIAL_COMPANY_INFO_NULL } from '../shared'
+import { getCompanyName, INITIAL_COMPANY_INFO_NULL } from '../shared'
+import { BoxContactCompany, BoxShare, CompanyListJob } from '../components'
 
 const { t } = useI18n()
 const {
     params: { id },
 } = useRoute()
+const router = useRouter()
 const currentUrl = window.location.href
 const companyStore = useCompanyStore()
 const loading = ref(false)
-const company = reactive<Company | Record<string, any>>(
-    INITIAL_COMPANY_INFO_NULL
-)
+const company = reactive<Company>(INITIAL_COMPANY_INFO_NULL)
 
 const handleFollow = (id: number) => {
     console.log('Follow company id:', id)
@@ -27,6 +27,9 @@ const handleFollow = (id: number) => {
 onMounted(async () => {
     loading.value = true
     const data = await companyStore.detail(+id)
+    if (!data || (!data.id && data.status_code !== STATUS_CODE_SUCCESS)) {
+        return router.push({ name: 'not-found' })
+    }
     Object.assign(company, data)
     loading.value = false
 })
@@ -51,22 +54,19 @@ watch(
 </script>
 
 <template>
-    <a-spin :spinning="loading" size="large">
-        <div class="container detail company-detail">
+    <a-card :loading="loading" class="card-loading-page">
+        <div class="container page-detail company-detail" v-if="company.id">
             <div class="box-cover-img" v-if="company.cover_img">
                 <img :src="company.cover_img" alt="" />
             </div>
             <div class="box-header">
                 <img :src="company.logo" alt="" class="logo" />
                 <div class="info">
-                    <h1 class="company-name" v-if="company.name">
-                        {{ company.name + ' (' + company.short_name + ')' }}
+                    <h1 class="title" v-if="company.name">
+                        {{ getCompanyName(company) }}
                     </h1>
                     <div class="flex-start mt-12">
-                        <div
-                            class="company-meta mr-20"
-                            v-if="company.jobs_count"
-                        >
+                        <div class="info-meta mr-20" v-if="company.jobs_count">
                             <IconJob />
                             <span>
                                 {{
@@ -76,7 +76,7 @@ watch(
                                 }}
                             </span>
                         </div>
-                        <div class="company-meta">
+                        <div class="info-meta">
                             <IconUser />
                             <span>
                                 {{
@@ -114,12 +114,12 @@ watch(
                     </div>
                 </div>
                 <div class="right">
-                    <div class="box-body-item contact">
+                    <div class="box-body-item contact-company">
                         <h2 class="title">
                             {{ t('home.company.detail.title_box.contact') }}
                         </h2>
                         <div class="content">
-                            <BoxContact :company="company" />
+                            <BoxContactCompany :company="company" />
                         </div>
                     </div>
 
@@ -134,5 +134,5 @@ watch(
                 </div>
             </div>
         </div>
-    </a-spin>
+    </a-card>
 </template>

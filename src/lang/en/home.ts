@@ -45,5 +45,24 @@ export default {
     job: {
         title: 'Most Popular Jobs',
         subtitle: 'Know your worth and find the job that qualify your life',
+        detail: {
+            title: {
+                info: 'General information',
+                description: 'Description job',
+                company: 'Company info',
+            },
+            number_of_recruitment: 'Quantity',
+            address: 'Address',
+            job_category: 'Category',
+            salary: 'Salary',
+            start_date: 'Start Date',
+            end_date: 'End Date',
+            deadline: 'Application deadline',
+            job_description: 'Job Description',
+            btn: {
+                apply: 'Apply Now',
+                applied: 'Applied',
+            },
+        },
     },
 }

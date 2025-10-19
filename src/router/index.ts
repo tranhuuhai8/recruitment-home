@@ -85,9 +85,19 @@ const router = createRouter({
                     component: Pages.AboutView,
                 },
                 {
-                    path: 'job',
-                    name: 'job',
-                    component: Pages.JobView,
+                    path: 'page-job',
+                    children: [
+                        {
+                            path: '',
+                            name: 'job-home-list',
+                            component: Pages.JobView,
+                        },
+                        {
+                            path: ':id',
+                            name: 'job-home-detail',
+                            component: Pages.JobDetailView,
+                        }
+                    ],
                 },
                 {
                     path: 'news',

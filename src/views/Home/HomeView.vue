@@ -10,8 +10,8 @@ import type { ParamsList } from '@/interface'
 import { INITIAL_QUERY, PER_PAGE_HOME, QUERY_MST_PARENT } from '@/libs'
 import { FORM_SEARCH_HOME, getQuerySearch } from './shared'
 import { BoxBanner } from './components'
-import CompanyView from './Company/CompanyView.vue'
-import JobView from './Job/JobView.vue'
+import CompanyBoxHome from './Company/CompanyBoxHome.vue'
+import JobBoxHome from './Job/JobBoxHome.vue'
 
 const loading = ref(false)
 const formSearch = ref<any>({ ...FORM_SEARCH_HOME })
@@ -41,6 +41,9 @@ const getJobs = async (params: Record<string, any>) => {
 }
 
 const filterJobByCategory = (id: number) => {
+    if (!id) {
+        return getJobs(querySearch.value)
+    }
     getJobs(
         getQuerySearch(querySearch, formSearch.value, [
             ...formSearch.value.job_category_id,
@@ -66,8 +69,8 @@ onMounted(async () => {
     <a-spin :spinning="loading" class="spin-up-size">
         <div class="home-page">
             <BoxBanner :form-state="formSearch" @search="getData" />
-            <CompanyView />
-            <JobView
+            <CompanyBoxHome />
+            <JobBoxHome
                 :categories="formSearch.job_category_id"
                 @filter-category="filterJobByCategory"
                 @change-page="handleChangePageJob"

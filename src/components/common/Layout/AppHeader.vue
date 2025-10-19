@@ -76,6 +76,7 @@ const handleClick = async (e: any, isMobile: Boolean = false) => {
 }
 
 const redirectToLogin = () => router.push({ name: 'login', replace: true })
+const redirectToHome = () => router.push({ name: 'home' })
 
 onMounted(async () => {
     await router.isReady()
@@ -86,7 +87,7 @@ onMounted(async () => {
 
 <template>
     <a-row justify="space-between" align="middle" class="header">
-        <a-col>
+        <a-col @click="redirectToHome">
             <img :src="Logo" alt="" class="header-logo" />
         </a-col>
         <a-col>

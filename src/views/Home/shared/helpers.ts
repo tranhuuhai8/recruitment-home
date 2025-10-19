@@ -1,4 +1,4 @@
-import type { ParamsList } from '@/interface'
+import type { City, Company, ParamsList } from '@/interface'
 import { formatMoney, mapFilterQuery, mapKeyToData } from '@/libs'
 
 export const getQuerySearch = (
@@ -47,4 +47,14 @@ export const getSalaryText = ({
     if (salary_min && !salary_max) return `>= ${min}`
     if (salary_min && salary_max) return `${min} ~ ${max}`
     return 'Thỏa thuận'
+}
+
+export const getCompanyName = (company: Company) =>
+    company.name + ' (' + company.short_name + ')'
+
+export const getCityName = (city: City) => {
+    if (!city) return ''
+    if (!city.parent) return city.name
+
+    return city.name + ' (' + city.parent.name + ')'
 }
