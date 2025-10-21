@@ -471,24 +471,132 @@
 }
 
 .page-not-found {
-    width: 100%;
-    height: 80vh;
-    @include center_flex;
-    flex-direction: column;
+    background: url('http://salehriaz.com/404Page/img/bg_purple.png');
+    background-repeat: repeat-x;
+    background-size: cover;
+    background-position: left top;
+    height: 100vh;
+    overflow: hidden;
 
-    p {
-        margin-bottom: 25px;
-        font-weight: 500;
-        font-size: 35px;
-    }
+    .stars {
+        position: relative;
+        height: 100%;
+        background: url('http://salehriaz.com/404Page/img/overlay_stars.svg');
+        background-repeat: repeat;
 
-    .ant-btn {
-        width: 200px;
-        height: auto;
-        border-radius: 10px;
-        font-size: 16px;
-        padding: 12px 15px !important;
-        color: var(--vt-c-white);
+        .central-body {
+            padding: 17% 5% 10% 5%;
+            text-align: center;
+
+            .text-404 {
+                position: relative;
+                font-size: 150px;
+                font-weight: bold;
+                line-height: normal;
+                color: var(--vt-c-white);
+            }
+
+            .btn-go-home {
+                margin: 10px auto 0;
+                width: max-content;
+                padding: 10px 30px;
+                border: 1px solid var(--vt-c-main);
+                border-radius: 100px;
+                color: var(--vt-c-white);
+                text-align: center;
+                letter-spacing: 2px;
+                cursor: pointer;
+                -webkit-transition: all 0.3s ease-in;
+                -moz-transition: all 0.3s ease-in;
+                -ms-transition: all 0.3s ease-in;
+                -o-transition: all 0.3s ease-in;
+                transition: all 0.3s ease-in;
+
+                &:hover {
+                    background-color: var(--vt-c-main);
+                    transform: scale(1.05);
+                    box-shadow: var(--vt-box-shadow-1);
+                }
+            }
+        }
+
+        .objects {
+            position: unset;
+
+            img {
+                z-index: 90;
+                pointer-events: none;
+
+                &.object_rocket {
+                    z-index: 95;
+                    position: absolute;
+                    transform: translateX(-50px);
+                    top: 75%;
+                    pointer-events: none;
+                    animation: rocket-movement 200s linear infinite both running;
+                }
+
+                &.object_earth {
+                    position: absolute;
+                    top: 20%;
+                    left: 15%;
+                    z-index: 90;
+                }
+
+                &.object_moon {
+                    position: absolute;
+                    top: 12%;
+                    left: 25%;
+                }
+            }
+
+            .earth-moon {
+                position: unset;
+            }
+
+            .box_astronaut {
+                z-index: 110 !important;
+                position: absolute;
+                top: 60%;
+                right: 20%;
+                will-change: transform;
+                animation: move-astronaut 50s infinite linear both alternate;
+
+                .object_astronaut {
+                    animation: rotate-astronaut 200s infinite linear both
+                        alternate;
+                }
+            }
+        }
+
+        .glowing_stars {
+            .star {
+                position: absolute;
+                border-radius: 100%;
+                background-color: var(--vt-c-white);
+                @include box_square(3px);
+                opacity: 0.3;
+                will-change: opacity;
+
+                &:nth-child(1) {
+                    top: 80%;
+                    left: 25%;
+                    animation: glow-star 2s infinite ease-in-out alternate 1s;
+                }
+
+                &:nth-child(3) {
+                    top: 25%;
+                    left: 25%;
+                    animation: glow-star 2s infinite ease-in-out alternate 5s;
+                }
+
+                &:nth-child(5) {
+                    top: 90%;
+                    left: 50%;
+                    animation: glow-star 2s infinite ease-in-out alternate 9s;
+                }
+            }
+        }
     }
 }
 
