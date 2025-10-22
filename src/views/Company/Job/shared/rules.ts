@@ -33,7 +33,9 @@ export const rules: Record<string, Rule[]> = {
     number_of_recruitment: [
         {
             required: true,
-            message: t('validation.required', [t('job.labels.number_of_recruitment')]),
+            message: t('validation.required', [
+                t('job.labels.number_of_recruitment'),
+            ]),
         },
         {
             validator: (_: any, value: any) =>

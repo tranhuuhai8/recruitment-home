@@ -4,6 +4,7 @@ import CompanyList from './CompanyList.vue'
 import CompanyMarquee from './CompanyMarquee.vue'
 
 const { t } = useI18n()
+const props = defineProps(['loading'])
 </script>
 
 <template>
@@ -12,7 +13,9 @@ const { t } = useI18n()
         <p class="subtitle">
             {{ t('home.company.subtitle') }}
         </p>
-        <CompanyList />
-        <CompanyMarquee />
+        <a-card :loading="props.loading">
+            <CompanyList />
+            <CompanyMarquee />
+        </a-card>
     </div>
 </template>

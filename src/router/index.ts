@@ -96,7 +96,7 @@ const router = createRouter({
                             path: ':id',
                             name: 'job-home-detail',
                             component: Pages.JobDetailView,
-                        }
+                        },
                     ],
                 },
                 {

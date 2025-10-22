@@ -96,6 +96,7 @@ export const useAuthStore = defineStore('auth', () => {
         try {
             const { data } = await API.me(prefix)
             me.value = data
+            setAuth(data, token.value ?? '')
             return data
         } catch (error: any) {
             return error

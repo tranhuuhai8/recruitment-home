@@ -7,6 +7,7 @@ import type { Company } from '@/interface'
 import { STATUS_CODE_SUCCESS } from '@/libs'
 import { useCompanyStore } from '@/stores/home'
 import { IconUser, IconJob } from '@/components/icons'
+import ImgDefault from '@/assets/imgs/img-default.png'
 import { getCompanyName, INITIAL_COMPANY_INFO_NULL } from '../shared'
 import { BoxContactCompany, BoxShare, CompanyListJob } from '../components'
 
@@ -60,7 +61,7 @@ watch(
                 <img :src="company.cover_img" alt="" />
             </div>
             <div class="box-header">
-                <img :src="company.logo" alt="" class="logo" />
+                <img :src="company.logo ?? ImgDefault" alt="" class="logo" />
                 <div class="info">
                     <h1 class="title" v-if="company.name">
                         {{ getCompanyName(company) }}

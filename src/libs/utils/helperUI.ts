@@ -6,7 +6,12 @@ import {
     WarningOutlined,
     CloseCircleOutlined,
 } from '@ant-design/icons-vue'
-import { STATUS_CODE_SUCCESS } from '..'
+import {
+    getUserInformation,
+    ROLE_ADMIN,
+    ROLE_COMPANY,
+    STATUS_CODE_SUCCESS,
+} from '..'
 
 const typeIcon = {
     info: [InfoCircleOutlined, 'blue'],
@@ -82,3 +87,13 @@ export const parser = (value: string) => value!.replace(/\$\s?|(,*)/g, '')
 
 export const toPascalCase = (text: string) =>
     text.toLowerCase().replace(/(^\w|\s+\w)/g, (match) => match.toUpperCase())
+
+export const getAvatarUser = () => {
+    const info = getUserInformation()
+    console.log('info  :>> ', info)
+
+    if (info.role === ROLE_ADMIN) return null
+    if (info.role === ROLE_COMPANY) return info.company?.logo
+
+    return info.applicant?.avatar
+}

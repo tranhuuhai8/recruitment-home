@@ -64,6 +64,6 @@ export default {
                 apply: 'Ứng tuyển ngay',
                 applied: 'Đã ứng tuyển',
             },
-        }
+        },
     },
 }

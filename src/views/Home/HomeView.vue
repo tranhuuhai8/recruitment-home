@@ -66,21 +66,17 @@ onMounted(async () => {
 </script>
 
 <template>
-    <a-spin :spinning="loading" class="spin-up-size">
-        <div class="home-page">
-            <BoxBanner :form-state="formSearch" @search="getData" />
-            <CompanyBoxHome />
-            <JobBoxHome
-                :categories="formSearch.job_category_id"
-                @filter-category="filterJobByCategory"
-                @change-page="handleChangePageJob"
-            />
-            <div
-                class="content-1"
-                style="height: 1000px; text-align: center; margin-top: 50px"
-            >
-                Helloworld
-            </div>
+    <div class="home-page">
+        <BoxBanner :form-state="formSearch" @search="getData" />
+        <CompanyBoxHome :loading="loading" />
+        <JobBoxHome
+            :loading="loading"
+            :categories="formSearch.job_category_id"
+            @filter-category="filterJobByCategory"
+            @change-page="handleChangePageJob"
+        />
+        <div style="height: 500px; text-align: center; margin-top: 50px">
+            ...
         </div>
-    </a-spin>
+    </div>
 </template>

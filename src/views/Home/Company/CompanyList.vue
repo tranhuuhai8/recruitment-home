@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { useCompanyStore } from '@/stores/home'
+import ImgDefault from '@/assets/imgs/img-default.png'
 import { IconLocation, IconJob } from '@/components/icons'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -13,9 +14,8 @@ const { t } = useI18n()
 const router = useRouter()
 const companyStore = useCompanyStore()
 
-const handleDetail = (id: number) => {
+const handleDetail = (id: number) =>
     router.push({ name: 'company-home-detail', params: { id } })
-}
 </script>
 
 <template>
@@ -47,7 +47,7 @@ const handleDetail = (id: number) => {
                 :key="company.id"
                 @click="handleDetail(company.id)"
             >
-                <img :src="company.logo" alt="" class="logo" />
+                <img :src="company.logo ?? ImgDefault" alt="" class="logo" />
                 <a-tooltip>
                     <template #title>{{ company.name }}</template>
                     <p class="name">{{ company.short_name }}</p>

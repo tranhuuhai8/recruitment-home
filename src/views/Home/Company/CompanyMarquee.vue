@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useCompanyStore } from '@/stores/home'
 import { Vue3Marquee } from 'vue3-marquee'
+import ImgDefault from '@/assets/imgs/img-default.png'
 
 const companyStore = useCompanyStore()
 </script>
@@ -16,7 +17,7 @@ const companyStore = useCompanyStore()
             <img
                 v-for="company in companyStore.getCompanies.data"
                 :key="company.id"
-                :src="company.logo"
+                :src="company.logo ?? ImgDefault"
                 class="marquee-item"
             />
         </Vue3Marquee>

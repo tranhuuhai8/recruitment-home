@@ -35,6 +35,7 @@ const onUpdate = async (values: FormDataApplicant) => {
         )
 
         if (status_code === STATUS_CODE_SUCCESS) {
+            await getData()
             return notify(message, '', 'success')
         }
         notify(message, '', 'error')

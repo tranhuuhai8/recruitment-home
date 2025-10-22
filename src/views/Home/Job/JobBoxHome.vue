@@ -11,7 +11,7 @@ const jobCategoryStore = useJobCategoryStore()
 const topCategories = ref()
 const tabIdCurrent = ref<number | null>(null)
 const emit = defineEmits(['filterCategory', 'changePage'])
-const props = defineProps(['categories'])
+const props = defineProps(['categories', 'loading'])
 
 const handleChangeTab = (id: number | null) => {
     tabIdCurrent.value = id
@@ -62,16 +62,21 @@ watch(
             </div>
         </div>
 
-        <div v-if="jobStore.getJobs?.data?.length" class="container job-list">
-            <JobList />
-            <PaginationHome
-                :data="jobStore.getJobs"
-                @changePage="onChangePage"
-                v-if="
-                    jobStore.getJobs?.total &&
-                    jobStore.getJobs.total > jobStore.getJobs.per_page
-                "
-            />
-        </div>
+        <a-card :loading="props.loading">
+            <div
+                v-if="jobStore.getJobs?.data?.length"
+                class="container job-list"
+            >
+                <JobList />
+                <PaginationHome
+                    :data="jobStore.getJobs"
+                    @changePage="onChangePage"
+                    v-if="
+                        jobStore.getJobs?.total &&
+                        jobStore.getJobs.total > jobStore.getJobs.per_page
+                    "
+                />
+            </div>
+        </a-card>
     </div>
 </template>

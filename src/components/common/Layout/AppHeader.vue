@@ -4,7 +4,13 @@ import type { MenuProps, ItemType } from 'ant-design-vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores'
 import Avatar from '@/assets/imgs/avatar.png'
-import { APP_HEADER, getUserInformation, getRolePathMap, notify } from '@/libs'
+import {
+    APP_HEADER,
+    getUserInformation,
+    getRolePathMap,
+    notify,
+    getAvatarUser,
+} from '@/libs'
 import { reactive, ref, VueElement, onMounted } from 'vue'
 import Logo from '@/assets/imgs/logo.png'
 import { KEY_LOGOUT } from '@/libs'
@@ -100,7 +106,7 @@ onMounted(async () => {
         </a-col>
         <a-col class="header-auth">
             <a-dropdown :placement="'bottomRight'" v-if="isLogin">
-                <img class="avatar" :src="Avatar" />
+                <img class="avatar" :src="getAvatarUser() ?? Avatar" />
                 <template #overlay>
                     <a-menu @click="handleClick" class="drop-down-header">
                         <a-menu-item key="1">

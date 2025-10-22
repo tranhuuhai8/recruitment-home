@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { useI18n } from 'vue3-i18n'
-import { TYPE_JOB_MAP } from '@/libs'
-import { IconLocation, IconMoney } from '@/components/icons'
-import { HeartOutlined } from '@ant-design/icons-vue'
-import { useJobStore } from '@/stores/home'
-import { getSalaryText } from '../shared'
 import { useRouter } from 'vue-router'
+import { TYPE_JOB_MAP } from '@/libs'
+import { getSalaryText } from '../shared'
+import { useJobStore } from '@/stores/home'
+import { HeartOutlined } from '@ant-design/icons-vue'
+import ImgDefault from '@/assets/imgs/img-default.png'
+import { IconLocation, IconMoney } from '@/components/icons'
 
 const { t } = useI18n()
 const jobStore = useJobStore()
@@ -32,7 +33,10 @@ const redirectToDetail = (id: number) =>
             <a-list-item @click="redirectToDetail(item.id)">
                 <div class="job-item-header">
                     <div class="company-logo" :title="item.company_name">
-                        <img class="avatar" :src="item?.company_logo" />
+                        <img
+                            class="avatar"
+                            :src="item?.company_logo ?? ImgDefault"
+                        />
                     </div>
                     <p class="job-title">{{ item?.title }}</p>
                 </div>

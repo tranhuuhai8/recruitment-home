@@ -32,6 +32,7 @@ const onUpdate = async (values: FormDataCompany) => {
         const { status_code, message } = await infoStore.update(values)
 
         if (status_code === STATUS_CODE_SUCCESS) {
+            await getData()
             return notify(message, '', 'success')
         }
         notify(message, '', 'error')
