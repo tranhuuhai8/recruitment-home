@@ -19,39 +19,37 @@ const {
 </script>
 
 <template>
-    <div>
-        <a-modal
-            :wrapClassName="wrapClassName"
-            :open="open"
-            :title="title"
-            :width="width"
-            :centered="centered"
-            :closable="closable"
-            :maskClosable="maskClosable"
-            @cancel="$emit('cancel')"
-            @ok="$emit('submit')"
-        >
-            <template #footer>
-                <div :class="buttonDirection" v-if="hasFooter">
-                    <a-button
-                        html-type="submit"
-                        key="submit"
-                        type="primary"
-                        :form="formId"
-                        :loading="loading"
-                        @click="$emit('submit')"
-                    >
-                        {{ okText || t('submit') }}
-                    </a-button>
-                    <a-button key="back" @click="$emit('cancel')">
-                        {{ t('cancel') }}
-                    </a-button>
-                </div>
-            </template>
-            <slot name="body" />
-            <slot name="footer" />
-        </a-modal>
-    </div>
+    <a-modal
+        :wrapClassName="wrapClassName"
+        :open="open"
+        :title="title"
+        :width="width"
+        :centered="centered"
+        :closable="closable"
+        :maskClosable="maskClosable"
+        @cancel="$emit('cancel')"
+        @ok="$emit('submit')"
+    >
+        <template #footer>
+            <div :class="buttonDirection" v-if="hasFooter">
+                <a-button
+                    html-type="submit"
+                    key="submit"
+                    type="primary"
+                    :form="formId"
+                    :loading="loading"
+                    @click="$emit('submit')"
+                >
+                    {{ okText || t('submit') }}
+                </a-button>
+                <a-button key="back" @click="$emit('cancel')">
+                    {{ t('cancel') }}
+                </a-button>
+            </div>
+        </template>
+        <slot name="body" />
+        <slot name="footer" />
+    </a-modal>
 </template>
 
 <style lang="scss" scoped>

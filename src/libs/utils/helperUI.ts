@@ -90,8 +90,6 @@ export const toPascalCase = (text: string) =>
 
 export const getAvatarUser = () => {
     const info = getUserInformation()
-    console.log('info  :>> ', info)
-
     if (info.role === ROLE_ADMIN) return null
     if (info.role === ROLE_COMPANY) return info.company?.logo
 

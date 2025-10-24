@@ -73,6 +73,7 @@
             @include box_square(30px);
             object-fit: contain;
             border-radius: 50%;
+            border: 1px solid var(--vt-c-border);
         }
     }
 
@@ -154,7 +155,7 @@
             position: fixed;
             left: 0;
             right: 0;
-            top: 65px;
+            top: 50px;
             border-top: 1px solid var(--vt-c-gray);
             border-bottom: 1px solid var(--vt-c-gray);
             opacity: 0;

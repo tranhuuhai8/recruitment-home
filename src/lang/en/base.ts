@@ -16,6 +16,7 @@ export default {
     select: {
         placeholder: 'Please select',
         no_data: 'No data',
+        job_category: 'Search by job category',
     },
     gender: {
         label: 'Gender',
@@ -80,6 +81,10 @@ export default {
         },
     },
     upload: {
+        btn: 'Upload',
         image: 'Upload image',
+        success: 'Upload successfully',
+        failed: 'Upload failed, please try again!',
     },
+    people: 'people',
 }

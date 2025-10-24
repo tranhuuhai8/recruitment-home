@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import * as API from '@/api/home/job'
 import { computed, ref } from 'vue'
-import type { Job, JobResult } from '@/interface'
+import type { Job, JobApplication, JobResult } from '@/interface'
 
 export const useJobStore = defineStore('jobHome', () => {
     const jobs = ref({} as JobResult)
@@ -25,12 +25,24 @@ export const useJobStore = defineStore('jobHome', () => {
         }
     }
 
+    const apply = async (payload: JobApplication) => {
+        try {
+            return await API.apply(payload)
+        } catch (error: any) {
+            return error
+        }
+    }
+
+    const getCv = () => API.getCv()
+
     const getJob = computed(() => job.value)
     const getJobs = computed(() => jobs.value)
 
     return {
         list,
         detail,
+        apply,
+        getCv,
         getJob,
         getJobs,
     }

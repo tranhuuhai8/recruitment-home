@@ -43,6 +43,7 @@ onMounted(async () => {
         <a-form-item name="job_category_id">
             <TreeSelect
                 v-model="formState.job_category_id"
+                :placeholder="t('select.job_category')"
                 :data="jobCategoryStore.getJobCategories?.data"
             />
         </a-form-item>

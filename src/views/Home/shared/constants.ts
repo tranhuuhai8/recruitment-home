@@ -1,4 +1,4 @@
-import type { Company, Job } from '@/interface'
+import type { Company, Job, JobApplication } from '@/interface'
 import { FALSE_VALUE } from '@/libs'
 
 export const FORM_SEARCH_HOME = {
@@ -36,4 +36,17 @@ export const INITIAL_JOB_INFO_NULL: Job = {
     status: 0,
     type: 0,
     created_at: '',
+}
+
+export const INITIAL_FORM_APPLY: JobApplication = {
+    applicant_id: null,
+    job_id: FALSE_VALUE,
+    file_name: '',
+    file_path: '',
+    file_size: FALSE_VALUE,
+    application_file_id: null,
+    cover_letter: '',
+    guest_name: '',
+    guest_email: '',
+    guest_telephone: '',
 }

@@ -51,3 +51,33 @@ export interface FormDataJob {
     salary_min: number | null
     salary_max: number | null
 }
+
+export interface JobApplication {
+    id?: number
+    applicant_id: number | null
+    job_id: number
+    file_name: string
+    file_path: string
+    file_size?: number
+    application_file_id: number | null
+    cover_letter: string
+    guest_name: string
+    guest_email: string
+    guest_telephone: string
+    application_file?: ApplicationFile
+    status?: number
+    created_at?: string
+    updated_at?: string
+    source_cv?: string
+}
+
+export interface ApplicationFile {
+    id: number
+    applicant_id: number | null
+    file_name: string
+    file_path: string
+    file_type: string
+    file_size: number
+    created_at?: string
+    updated_at?: string
+}

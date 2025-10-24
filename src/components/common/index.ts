@@ -6,6 +6,7 @@ import TableDataVue from './TableData/TableData.vue'
 import ModalVue from './Modal/ModalVue.vue'
 import ModalDelete from './Modal/ModalDelete.vue'
 import UploadImg from './Upload/UploadImg.vue'
+import UploadPdf from './Upload/UploadPdf.vue'
 import TreeSelect from './Select/TreeSelect.vue'
 import TypeColumnJob from './Column/Job/TypeColumn.vue'
 import StatusColumnJob from './Column/Job/StatusColumn.vue'
@@ -20,6 +21,7 @@ export {
     ModalVue,
     ModalDelete,
     UploadImg,
+    UploadPdf,
     TreeSelect,
     TypeColumnJob,
     StatusColumnJob,

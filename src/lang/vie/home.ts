@@ -4,7 +4,7 @@ export default {
         'Tiếp cận 60.000+ tin tuyển dụng việc làm mỗi ngày từ hàng nghìn doanh nghiệp uy tín tại Việt Nam',
     search: {
         all: 'Tìm kiếm việc làm, công ty',
-        category: 'Tìm kiếm theo danh mục',
+        category: 'Tìm kiếm theo lĩnh vực',
         city: 'Tìm kiếm theo địa điểm',
     },
     company: {
@@ -63,6 +63,25 @@ export default {
             btn: {
                 apply: 'Ứng tuyển ngay',
                 applied: 'Đã ứng tuyển',
+            },
+        },
+        modal: {
+            title: 'Ứng tuyển ',
+            labels: {
+                guest_name: 'Họ và tên',
+                guest_email: 'Email',
+                guest_telephone: 'Số điện thoại',
+                cover_letter: 'Thư giới thiệu',
+                application_file_id: 'File CV',
+            },
+            upload: {
+                radio: {
+                    library: 'Chọn CV trong thư viện của tôi',
+                    upload: 'Tải lên CV từ máy tính, chọn hoặc kéo thả',
+                },
+                uploading: 'Đang tải lên...',
+                title: 'Tải lên CV từ máy tính, chọn hoặc kéo thả',
+                subtitle: 'Hỗ trợ định dạng pdf có kích thước dưới {0}MB',
             },
         },
     },

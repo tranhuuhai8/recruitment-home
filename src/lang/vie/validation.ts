@@ -17,6 +17,10 @@ export default {
         max: 'Vui lòng tải lên hình ảnh có dung lượng nhỏ hơn {0}!',
         error: 'Vui lòng tải lên hình ảnh hợp lệ',
     },
+    pdf: {
+        type: 'Vui lòng chỉ tải lên tệp có định dạng pdf',
+        max: 'Vui lòng tải lên tệp có dung lượng nhỏ hơn {0}!',
+    },
     in_array: '{0} phải khớp với {1}',
     integer: '{0} chỉ là số nguyên hợp lệ',
     max: {

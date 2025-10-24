@@ -1,5 +1,11 @@
 import type { City, Company, ParamsList } from '@/interface'
-import { formatMoney, mapFilterQuery, mapKeyToData } from '@/libs'
+import {
+    formatMoney,
+    getUserInformation,
+    mapFilterQuery,
+    mapKeyToData,
+} from '@/libs'
+import { INITIAL_FORM_APPLY } from './constants'
 
 export const getQuerySearch = (
     query: ParamsList,
@@ -58,3 +64,10 @@ export const getCityName = (city: City) => {
 
     return city.name + ' (' + city.parent.name + ')'
 }
+
+export const getInitValueFormApply = (id: number) => ({
+    ...INITIAL_FORM_APPLY,
+    source_cv: 'upload',
+    applicant_id: getUserInformation()?.applicant?.id ?? null,
+    job_id: id,
+})

@@ -35,6 +35,10 @@
 .space-group-btn {
     width: 100%;
 
+    &.justify-end {
+        justify-content: end;
+    }
+
     .ant-btn-link {
         background-color: var(--vt-c-gray-v2);
         color: var(--vt-c-black);

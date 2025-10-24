@@ -17,6 +17,10 @@ export default {
         max: 'Please upload an image smaller than {0}!',
         error: 'Please upload a valid image',
     },
+    pdf: {
+        type: 'Please upload files in pdf format only',
+        max: 'Please upload a smaller file {0}',
+    },
     in_array: '{0} must match one of {1}',
     integer: '{0} must be a valid integer',
     max: {

@@ -24,6 +24,7 @@ const handleDetail = (id: number) =>
             :pagination="{
                 clickable: true,
             }"
+            :loop="true"
             :breakpoints="{
                 320: {
                     slidesPerView: 2,
