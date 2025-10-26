@@ -36,6 +36,191 @@
         }
     }
 
+    &.modal-apply-job {
+        .ant-modal {
+            min-width: 600px;
+            max-width: 90%;
+
+            .ant-modal-content {
+                padding: 20px 30px;
+                max-height: 95vh;
+                overflow-y: scroll;
+            }
+        }
+
+        .ant-form {
+            margin-top: 20px;
+
+            .ant-form-item {
+                margin-bottom: 10px;
+            }
+
+            .row-guest-info {
+                justify-content: space-between;
+
+                > .ant-col {
+                    width: 48%;
+
+                    .ant-form-item {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .upload-pdf {
+                .ant-upload {
+                    width: 100%;
+                }
+
+                .upload-box {
+                    border: 1px dashed var(--vt-c-main);
+                    border-radius: 6px;
+                    text-align: center;
+                    padding: 15px;
+                    cursor: pointer;
+                    transition: all 0.3s;
+
+                    &:hover {
+                        background-color: var(--vt-c-white-v3);
+                    }
+
+                    .upload-cloud {
+                        font-size: 26px;
+                        color: var(--vt-c-main);
+                    }
+
+                    .upload-title {
+                        font-weight: 600;
+                        font-size: 16px;
+                    }
+
+                    .upload-sub {
+                        color: var(--vt-c-gray);
+                        font-size: 13px;
+                        margin: 4px 0 12px 0;
+                    }
+                }
+
+                .upload-progress-box {
+                    border: 1px dashed var(--vt-c-green-v2);
+                    border-radius: 6px;
+                    background: var(--vt-c-white);
+                    text-align: center;
+                    padding: 24px;
+
+                    .progress-text {
+                        font-weight: 600;
+                        margin-bottom: 8px;
+                    }
+
+                    .progress-bar {
+                        width: 100%;
+                        height: 8px;
+                        background: var(--vt-c-gray-v2);
+                        border-radius: 4px;
+                        overflow: hidden;
+                    }
+
+                    .progress-inner {
+                        height: 100%;
+                        background: var(--vt-c-green-v2);
+                        transition: width 1s ease;
+                    }
+
+                    .progress-percent {
+                        margin-top: 6px;
+                        font-size: 13px;
+                    }
+                }
+            }
+
+            .uploaded-box {
+                @extend .flex-center-between;
+                border: 1px solid var(--vt-c-gray-v5);
+                border-radius: 6px;
+                padding: 10px 14px;
+                background-color: var(--vt-c-white-v3);
+
+                .uploaded-info {
+                    @extend .flex-center;
+                    gap: 8px;
+
+                    .file-name {
+                        font-weight: 500;
+                    }
+
+                    .anticon {
+                        font-size: 20px;
+                        color: var(--vt-c-red);
+                    }
+                }
+
+                .uploaded-actions {
+                    @extend .flex-center;
+                    gap: 10px;
+
+                    color: var(--vt-c-blue);
+                    cursor: pointer;
+                }
+
+                .delete-icon {
+                    color: var(--vt-c-red);
+                    font-size: 16px;
+                    cursor: pointer;
+                }
+            }
+
+            .list-file-uploaded {
+                position: relative;
+                padding: 10px;
+                margin-bottom: 10px;
+                @extend .border-input-form;
+
+                .ant-radio-group {
+                    width: 100%;
+                    max-height: 225px;
+                    overflow-y: scroll;
+                    padding: 10px 0;
+
+                    .ant-radio-wrapper {
+                        > span {
+                            &:not(.ant-radio) {
+                                flex: 1;
+                                @extend .flex-center-between;
+                            }
+                        }
+
+                        .ant-radio {
+                            margin-right: 5px;
+                        }
+
+                        &.uploaded-item {
+                            cursor: pointer;
+                            width: 95%;
+                            margin: 0 auto 10px;
+
+                            &:last-child {
+                                margin-bottom: 0;
+                            }
+
+                            &.active {
+                                border-color: var(--vt-c-main);
+                            }
+                        }
+                    }
+                }
+
+                .ant-form-item-explain {
+                    margin-bottom: 5px;
+                }
+            }
+
+            .space-group-btn {
+                margin-top: 10px;
+            }
+        }
+    }
+
     .ant-modal-footer {
         margin: 0;
     }

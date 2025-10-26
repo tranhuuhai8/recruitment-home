@@ -68,7 +68,7 @@
     }
 
     @include media(mobile) {
-        margin-top: 65px;
+        margin-top: 50px;
 
         .bg-banner {
             height: 500px;
@@ -184,8 +184,6 @@
     }
 
     .job-list {
-        margin-top: 40px;
-
         .ant-row {
             align-items: stretch;
             gap: 20px 0;

@@ -30,6 +30,11 @@
     text-align: center;
 }
 
+.border-input-form {
+    border-radius: 5px;
+    border: 1px solid var(--vt-c-gray-v5);
+}
+
 .box-item {
     cursor: pointer;
     border-radius: var(--vt-br-box);

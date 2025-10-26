@@ -4,7 +4,7 @@ export default {
         'Access 60,000+ job postings daily from thousands of trusted companies in Vietnam',
     search: {
         all: 'Search Jobs, Companies',
-        category: 'Search by Category',
+        category: 'Search by Job Category',
         city: 'Search by Location',
     },
     company: {
@@ -62,6 +62,25 @@ export default {
             btn: {
                 apply: 'Apply Now',
                 applied: 'Applied',
+            },
+        },
+        modal: {
+            title: 'Apply to ',
+            labels: {
+                guest_name: 'Name',
+                guest_email: 'Email',
+                guest_telephone: 'Telephone',
+                cover_letter: 'Cover letter',
+                application_file_id: 'File CV',
+            },
+            upload: {
+                radio: {
+                    library: 'Select CV from my library',
+                    upload: 'Upload CV from computer, select or drag and drop',
+                },
+                uploading: 'Uploading...',
+                title: 'Upload CV from computer, select or drag and drop',
+                subtitle: 'Supports pdf format with size under {0}MB',
             },
         },
     },

@@ -16,6 +16,7 @@ export default {
     select: {
         placeholder: 'Vui lòng chọn',
         no_data: 'Không có dữ liệu',
+        job_category: 'Tìm kiếm theo lĩnh vực',
     },
     gender: {
         label: 'Giới tính',
@@ -80,6 +81,10 @@ export default {
         },
     },
     upload: {
+        btn: 'Tải lên',
         image: 'Tải ảnh lên',
+        success: 'Tải lên thành công',
+        failed: 'Tải lên thất bại, vui lòng thử lại!',
     },
+    people: 'người',
 }

@@ -25,17 +25,15 @@ body {
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: var(--vt-c-main-gray-v1);
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: var(--vt-c-main-gray-v2);
+        background-color: var(--vt-c-primary);
         border-radius: 10px;
         transition: all 0.2s ease-in-out;
     }
 
     &::-webkit-scrollbar-track {
         border-radius: 10px;
+        background-color: var(--vt-c-gray-v2);
+        margin-block: 15px;
     }
 }
 
@@ -57,7 +55,7 @@ body {
     }
 
     &.page-detail {
-        margin: 120px auto;
+        margin: 100px auto;
     }
 }
 
