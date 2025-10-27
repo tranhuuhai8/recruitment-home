@@ -242,9 +242,27 @@ const router = createRouter({
                                     ],
                                 },
                                 {
+                                    path: ':id',
+                                    name: 'company-jobs-detail',
+                                    component: Pages.JobDetailViewCompany,
+                                    beforeEnter: ifAuthenticated,
+                                },
+                                {
                                     path: ':id/edit',
                                     name: 'company-jobs-edit',
                                     component: Pages.JobUpdateViewCompany,
+                                    beforeEnter: ifAuthenticated,
+                                },
+                            ],
+                        },
+
+                        {
+                            path: 'applications',
+                            children: [
+                                {
+                                    path: '',
+                                    name: 'company-applications',
+                                    component: Pages.JobApplicationsViewCompany,
                                     beforeEnter: ifAuthenticated,
                                 },
                             ],

@@ -85,7 +85,7 @@ onMounted(async () => {
         <modal-delete
             :open="openDelete"
             :loading="loadingDelete"
-            :title="t('job.confirm_delete', [id])"
+            :title="t('job.confirm_delete_id', [id])"
             @close="openDelete = false"
             @on-delete="onDelete"
         />

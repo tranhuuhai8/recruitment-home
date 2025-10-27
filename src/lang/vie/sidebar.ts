@@ -10,6 +10,7 @@ export default {
     companies: 'Công ty',
     applicants: 'Ứng viên',
     jobs: 'Công việc',
+    applications: 'Hồ sơ ứng tuyển',
     reviews: 'Đánh giá',
     master_data: 'Dữ liệu',
     change_password: 'Đổi mật khẩu',

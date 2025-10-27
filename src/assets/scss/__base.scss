@@ -18,7 +18,11 @@ body {
     margin: 0;
 }
 
-* {
+a {
+    color: var(--vt-c-blue);
+}
+
+.scroll-container {
     &::-webkit-scrollbar {
         width: 6px;
         height: 6px;
@@ -35,6 +39,10 @@ body {
         background-color: var(--vt-c-gray-v2);
         margin-block: 15px;
     }
+}
+
+.ant-input {
+    @extend .scroll-container;
 }
 
 .container {

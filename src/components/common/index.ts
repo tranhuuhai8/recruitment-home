@@ -10,6 +10,7 @@ import UploadPdf from './Upload/UploadPdf.vue'
 import TreeSelect from './Select/TreeSelect.vue'
 import TypeColumnJob from './Column/Job/TypeColumn.vue'
 import StatusColumnJob from './Column/Job/StatusColumn.vue'
+import StatusColumnApply from './Column/Apply/StatusColumn.vue'
 import PaginationHome from './TableData/PaginationHome.vue'
 
 export {
@@ -25,5 +26,6 @@ export {
     TreeSelect,
     TypeColumnJob,
     StatusColumnJob,
+    StatusColumnApply,
     PaginationHome,
 }

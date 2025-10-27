@@ -24,6 +24,12 @@
         }
     }
 
+    &.modal-apply-form {
+        .ant-modal {
+            width: 400px;
+        }
+    }
+
     &.modal-delete {
         .ant-modal-content {
             padding: 20px 30px;
@@ -32,6 +38,12 @@
                 .ant-space {
                     justify-content: flex-end;
                 }
+            }
+        }
+
+        &.delete-job {
+            .ant-modal {
+                width: 500px !important;
             }
         }
     }
@@ -45,6 +57,7 @@
                 padding: 20px 30px;
                 max-height: 95vh;
                 overflow-y: scroll;
+                @extend .scroll-container;
             }
         }
 
@@ -180,6 +193,7 @@
                     width: 100%;
                     max-height: 225px;
                     overflow-y: scroll;
+                    @extend .scroll-container;
                     padding: 10px 0;
 
                     .ant-radio-wrapper {

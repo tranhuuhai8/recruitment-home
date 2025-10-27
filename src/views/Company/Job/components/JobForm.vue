@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref, toRefs } from 'vue'
 import { useI18n } from 'vue3-i18n'
+import { useRouter } from 'vue-router'
 import { getRuleJob } from '../shared'
 import {
     FORMAT_DATE_DASH,
     formatter,
     getObjOptions,
+    NOTIFY_FREQUENCY_OPTIONS,
     parser,
     STATUS_JOB_OPTIONS_SEARCH,
     trim,
@@ -14,7 +16,6 @@ import {
 import { useCityStore, useJobCategoryStore } from '@/stores/home'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
-import { useRouter } from 'vue-router'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -41,9 +42,9 @@ const backToList = () => router.push({ name: 'company-jobs' })
         :rules="getRuleJob(data)"
         @finish="emits('submit', data)"
     >
-        <a-form-item name="banner" :label="t('job.labels.banner')" class="mb-5">
+        <!-- <a-form-item name="banner" :label="t('job.labels.banner')" class="mb-5">
             <UploadImg v-model:url="data.banner" />
-        </a-form-item>
+        </a-form-item> -->
 
         <a-form-item name="title" :label="t('job.labels.title')">
             <a-input
@@ -152,6 +153,22 @@ const backToList = () => router.push({ name: 'company-jobs' })
                 theme="snow"
             />
         </a-form-item>
+
+        <a-row justify="space-between">
+            <a-col>
+                <a-form-item
+                    name="notify_frequency"
+                    :label="t('job.labels.notify_frequency')"
+                >
+                    <a-select
+                        :options="
+                            getObjOptions(NOTIFY_FREQUENCY_OPTIONS, false)
+                        "
+                        v-model:value="data.notify_frequency"
+                    />
+                </a-form-item>
+            </a-col>
+        </a-row>
 
         <a-row justify="space-between">
             <a-col>

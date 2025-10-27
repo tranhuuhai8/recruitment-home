@@ -12,6 +12,7 @@ export default {
     copy: 'Sao chép',
     detail: 'Chi tiết',
     operation: 'Thao tác',
+    management: 'Quản lý',
     all: 'Tất cả',
     select: {
         placeholder: 'Vui lòng chọn',
@@ -66,6 +67,10 @@ export default {
         draft: 'Bản Nháp',
         open: 'Mở',
         closed: 'Đóng',
+        pending: 'Chờ xem xét',
+        reviewed: 'Đã xem',
+        accepted: 'Đã chấp nhận',
+        rejected: 'Đã từ chối',
     },
     type: {
         label: 'Loại',
@@ -74,6 +79,13 @@ export default {
         full_time: 'Toàn thời gian',
         part_time: 'Bán thời gian',
         salary_exchange: 'Thỏa thuận',
+    },
+    option: {
+        notify_frequency: {
+            off: 'Tắt',
+            daily: 'Hàng ngày',
+            weekly: 'Hàng tuần',
+        },
     },
     modal: {
         delete: {

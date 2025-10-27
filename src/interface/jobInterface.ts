@@ -19,6 +19,8 @@ export interface Job {
     city_name?: string
     job_category_name?: string
     company_name?: string
+    last_sent_notify?: string
+    notify_frequency?: number
     status: number
     type: number
     created_at: string
@@ -31,6 +33,8 @@ export interface JobResult extends Result {
 
 export interface FormSearchJob {
     search: string
+    status?: number
+    type?: number
     city_id?: number | number[]
     job_category_id?: number | number[]
     start_date?: string | null
@@ -69,6 +73,16 @@ export interface JobApplication {
     created_at?: string
     updated_at?: string
     source_cv?: string
+}
+
+export interface FormSearchJobApply {
+    search: string
+    status: number
+    created_at: string | null
+}
+
+export interface JobApplicationResult extends Result {
+    data?: JobApplication[]
 }
 
 export interface ApplicationFile {

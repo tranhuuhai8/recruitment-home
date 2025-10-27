@@ -64,13 +64,11 @@ export const columns: ColumnTable[] = [
         title: t('operation'),
         key: 'action',
         align: 'center',
-        width: 90,
+        width: 100,
         customRender: ({ record }: any) => (
             <DetailColumn
-                url={{
-                    name: 'admin-jobs-edit',
-                    params: { id: record.id },
-                }}
+                routeEdit={'admin-jobs-edit'}
+                routeDetail={'admin-jobs-edit'}
                 id={record.id}
             />
         ),
