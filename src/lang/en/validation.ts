@@ -49,6 +49,7 @@ export default {
     unique: '{0} already exists',
     already_exist: '{0} has already been registered',
     tel_format: 'Please enter only phone numbers in correct format',
+    url_format: 'Please enter the website address in the correct format',
     password: {
         format: 'The password must be strong (include at least 8 characters, uppercase letters, lowercase letters, numbers, and special characters).',
         confirm: 'Password and confirmation password do not match.',

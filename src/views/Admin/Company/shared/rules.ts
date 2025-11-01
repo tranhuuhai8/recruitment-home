@@ -2,6 +2,9 @@ import i18n from '@/lang'
 import {
     MAX_SHORT_NAME,
     MAX_STRING,
+    REGEX_NO_SPECIAL_CHARS,
+    REGEX_NO_SPECIAL_CHARS_DES,
+    REGEX_WEBSITE,
     validateEmail,
     validatePhoneNumber,
 } from '@/libs'
@@ -22,6 +25,12 @@ export const rules: Record<string, Rule[]> = {
                 1: MAX_STRING,
             }),
         },
+        {
+            pattern: REGEX_NO_SPECIAL_CHARS,
+            message: t('validation.no_special_chars', [
+                t('company.labels.name'),
+            ]),
+        },
     ],
     short_name: [
         {
@@ -34,6 +43,12 @@ export const rules: Record<string, Rule[]> = {
                 0: t('company.labels.short_name'),
                 1: MAX_SHORT_NAME,
             }),
+        },
+        {
+            pattern: REGEX_NO_SPECIAL_CHARS,
+            message: t('validation.no_special_chars', [
+                t('company.labels.short_name'),
+            ]),
         },
     ],
     mail_address: [
@@ -76,6 +91,12 @@ export const rules: Record<string, Rule[]> = {
                 1: MAX_STRING,
             }),
         },
+        {
+            pattern: REGEX_NO_SPECIAL_CHARS_DES,
+            message: t('validation.no_special_chars', [
+                t('company.labels.address'),
+            ]),
+        },
     ],
     website: [
         {
@@ -84,6 +105,10 @@ export const rules: Record<string, Rule[]> = {
                 0: t('company.labels.website'),
                 1: MAX_STRING,
             }),
+        },
+        {
+            pattern: REGEX_WEBSITE,
+            message: t('validation.url_format', [t('company.labels.website')]),
         },
     ],
 }

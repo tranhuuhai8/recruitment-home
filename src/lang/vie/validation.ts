@@ -49,6 +49,7 @@ export default {
     unique: '{0} đã tồn tại',
     already_exist: '{0} đã được đăng ký',
     tel_format: 'Vui lòng chỉ nhập số điện thoại đúng định dạng',
+    url_format: 'Vui lòng nhập địa chỉ website đúng định dạng',
     password: {
         format: 'Mật khẩu phải đủ mạnh (bao gồm ít nhất 8 ký tự, chữ viết hoa, viết thường, số và ký tự đặc biệt).',
         confirm: 'Mật khẩu và mật khẩu xác nhận lại không khớp.',
