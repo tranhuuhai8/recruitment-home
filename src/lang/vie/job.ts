@@ -20,11 +20,8 @@ export default {
         status: 'Trạng thái',
         type: 'Hình thức',
         description: 'Mô tả',
+        notify_frequency: 'Tần suất nhận thông báo ứng tuyển',
     },
-    search: {
-        labels: {
-            name: 'Tiêu đề',
-        },
-    },
-    confirm_delete: 'Bạn có chắc chắn muốn xóa công việc ID {0}?',
+    confirm_delete_id: 'Bạn có chắc chắn muốn xóa công việc ID {0}?',
+    confirm_delete_title: 'Bạn có chắc chắn muốn xóa công việc: {0}?',
 }

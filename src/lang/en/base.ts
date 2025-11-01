@@ -12,6 +12,7 @@ export default {
     copy: 'Copy',
     detail: 'Detail',
     operation: 'Operation',
+    management: 'Management',
     all: 'All',
     select: {
         placeholder: 'Please select',
@@ -31,6 +32,13 @@ export default {
                 'Please complete your business information before performing the function.',
             applicant:
                 'Please update your personal information completely before performing the function',
+        },
+    },
+    option: {
+        notify_frequency: {
+            off: 'Off',
+            daily: 'Daily',
+            weekly: 'Weekly',
         },
     },
     placeholder: {
@@ -66,6 +74,10 @@ export default {
         draft: 'Draft',
         open: 'Open',
         closed: 'Closed',
+        pending: 'Pending Review',
+        reviewed: 'Reviewed',
+        accepted: 'Accepted',
+        rejected: 'Rejected',
     },
     type: {
         label: 'Type',

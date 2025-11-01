@@ -18,7 +18,6 @@ import {
 } from '../shared'
 import { useJobStore } from '@/stores/home'
 import { useAuthStore } from '@/stores'
-import { UploadPdf } from '@/components/common'
 import { BoxContactCompany } from '../components'
 import { IconLocation, IconMoney, IconUser } from '@/components/icons'
 import type { ApplicationFile, Job, JobApplication } from '@/interface'
@@ -26,6 +25,7 @@ import {
     getUserInformation,
     notify,
     ROLE_APPLICANT,
+    ROLE_COMPANY,
     STATUS_CODE_SUCCESS,
     trim,
 } from '@/libs'
@@ -65,9 +65,12 @@ const onApply = async () => {
 const detailCompany = (id: number | null) =>
     router.push({ name: 'company-home-detail', params: { id } })
 
-const handleSaveJob = (id: number) => {
+const handleSaveJob = () => {
     console.log('id :>> ', id)
 }
+
+const handleManagement = () =>
+    router.push({ name: 'company-jobs-detail', params: { id } })
 
 const handlePreview = (url: string) => url && window.open(url, '_blank')
 
@@ -161,6 +164,17 @@ watch(
                 <div
                     class="box-header-btn"
                     v-if="
+                        getUserInformation()?.role === ROLE_COMPANY &&
+                        job.company_id === getUserInformation()?.company?.id
+                    "
+                >
+                    <a-button class="btn-apply" @click="handleManagement">
+                        {{ t('management') }}
+                    </a-button>
+                </div>
+                <div
+                    class="box-header-btn"
+                    v-if="
                         getUserInformation()?.role === ROLE_APPLICANT ||
                         !authStore.isAuthenticated
                     "
@@ -168,7 +182,7 @@ watch(
                     <a-button class="btn-apply" @click="handleApply">
                         {{ t('home.job.detail.btn.apply') }}
                     </a-button>
-                    <a-button class="btn-save" @click="handleSaveJob(job.id)">
+                    <a-button class="btn-save" @click="handleSaveJob">
                         {{ t('save') }}
                     </a-button>
                 </div>

@@ -1,28 +1,64 @@
 <script lang="ts" setup>
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons-vue'
+import {
+    EditOutlined,
+    DeleteOutlined,
+    EyeOutlined,
+} from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
 import { inject } from 'vue'
 
 const props = defineProps<{
-    url: Record<string, any>
+    isUpdate?: boolean
+    routeEdit?: string | null
+    routeDetail?: string | null
     id: number
 }>()
 const router = useRouter()
 const handleDelete = inject('handleDelete') as (id: number) => void
+const handleUpdate = inject('handleUpdate') as (id: number) => void
 
-const handleClick = () => router.push(props.url)
+const handleDetail = () =>
+    router.push({
+        name: props.routeDetail ?? '',
+        params: { id: props.id },
+    })
+
+const handleEdit = (event: Event) => {
+    if (props.isUpdate) {
+        return onUpdate(event)
+    }
+
+    router.push({
+        name: props.routeEdit ?? '',
+        params: { id: props.id },
+    })
+}
+
+const onUpdate = (event: Event) => {
+    event.stopPropagation()
+    handleUpdate && handleUpdate(props.id)
+}
 
 const onDelete = (event: Event) => {
     event.stopPropagation()
-    if (handleDelete) {
-        handleDelete(props.id)
-    }
+    handleDelete && handleDelete(props.id)
 }
 </script>
 
 <template>
     <a-row justify="space-between">
-        <div class="icon-operation icon-edit" @click="handleClick">
+        <div
+            v-if="routeDetail"
+            class="icon-operation icon-detail"
+            @click="handleDetail"
+        >
+            <EyeOutlined />
+        </div>
+        <div
+            v-if="routeEdit || isUpdate"
+            class="icon-operation icon-edit"
+            @click="handleEdit"
+        >
             <EditOutlined />
         </div>
         <div class="icon-operation icon-delete" @click="onDelete">

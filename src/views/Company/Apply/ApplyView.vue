@@ -1,34 +1,41 @@
 <script setup lang="ts">
+import { watch } from 'vue'
 import { useI18n } from 'vue3-i18n'
 import { nextTick, onMounted, ref } from 'vue'
 import { useSettingStore } from '@/stores'
-import { columns, getQuerySearch, INITIAL_FORM_SEARCH } from './shared'
-import type { FormSearchJob, SortProps } from '@/interface'
 import {
-    INITIAL_QUERY,
+    columns,
+    getQuerySearch,
+    INITIAL_FORM_SEARCH,
+    INITIAL_QUERY_APPLY,
+} from './shared'
+import type { FormSearchJobApply, SortProps } from '@/interface'
+import {
     mapSortQuery,
     notify,
     SORT_TYPE_DESC,
     STATUS_CODE_SUCCESS,
 } from '@/libs'
-import { watch } from 'vue'
+import { useJobApplyStore } from '@/stores/company'
 import SearchForm from './components/SearchForm.vue'
-import { useJobStore } from '@/stores/admin'
+import ApplyForm from './components/ApplyForm.vue'
 
 const { t } = useI18n()
-const jobStore = useJobStore()
+const jobApplyStore = useJobApplyStore()
 const settingStore = useSettingStore()
-const formState = ref<FormSearchJob>({ ...INITIAL_FORM_SEARCH })
-const query = ref<Record<string, any>>({ ...INITIAL_QUERY })
 const loading = ref(false)
 const openDelete = ref(false)
-const loadingDelete = ref(false)
+const openUpdate = ref(false)
+const loadingModal = ref(false)
 const deleteId = ref<number | null>(null)
+const updateId = ref<number | null>(null)
 const sortType = ref(SORT_TYPE_DESC)
+const formState = ref<FormSearchJobApply>({ ...INITIAL_FORM_SEARCH })
+const query = ref<Record<string, any>>({ ...INITIAL_QUERY_APPLY })
 
 const getData = async () => {
     loading.value = true
-    await jobStore.list(query.value)
+    await jobApplyStore.list(query.value)
     loading.value = false
 }
 
@@ -37,11 +44,16 @@ const onDelete = (id: number) => {
     openDelete.value = true
 }
 
-const handleDelete = async () => {
+const onUpdate = (id: number) => {
+    updateId.value = id
+    openUpdate.value = true
+}
+
+const submitDelete = async () => {
     if (deleteId.value) {
         try {
-            loadingDelete.value = true
-            const { status_code, message } = await jobStore.remove(
+            loadingModal.value = true
+            const { status_code, message } = await jobApplyStore.remove(
                 +deleteId.value
             )
             if (status_code === STATUS_CODE_SUCCESS) {
@@ -52,7 +64,7 @@ const handleDelete = async () => {
         } catch (error) {
             console.error(error)
         } finally {
-            loadingDelete.value = false
+            loadingModal.value = false
             openDelete.value = false
             deleteId.value = null
             await getData()
@@ -71,11 +83,11 @@ const handleChangePage = (page: number) =>
 const handleSearch = () =>
     (query.value = getQuerySearch(query, formState.value))
 
-const handleResetQuery = () => (query.value = { ...INITIAL_QUERY })
+const handleResetQuery = () => (query.value = { ...INITIAL_QUERY_APPLY })
 
 onMounted(async () => {
     await nextTick()
-    settingStore.setTitle(t('sidebar.jobs'))
+    settingStore.setTitle(t('sidebar.applications'))
 })
 
 watch(
@@ -87,7 +99,7 @@ watch(
 
 <template>
     <div class="box box-search">
-        <h1 class="title-page">{{ t('job.title_page.list') }}</h1>
+        <h1 class="title-page">{{ t('apply.title_page.list') }}</h1>
         <SearchForm
             :form-state="formState"
             @submit="handleSearch"
@@ -97,29 +109,46 @@ watch(
     <div class="box job-view">
         <div class="box-body no_padding">
             <table-data
-                class="job-list"
+                class="job-apply-list"
                 :loading="loading"
                 :columns="columns"
-                :data="jobStore.getJobs"
+                :data="jobApplyStore.getJobApplications"
                 :sort-type="sortType"
                 :show-pagination="true"
                 @sort="handleSort"
                 @change-page="handleChangePage"
                 @handle-delete="onDelete"
+                @handle-update="onUpdate"
             />
         </div>
     </div>
 
     <modal-delete
         :open="openDelete"
-        :loading="loadingDelete"
-        :title="t('job.confirm_delete_id', [deleteId])"
-        @close="
-            () => {
-                openDelete = false
-                deleteId = null
-            }
-        "
-        @on-delete="handleDelete"
+        :loading="loadingModal"
+        :title="t('apply.confirm_delete_id', [deleteId])"
+        @close="((openDelete = false), (deleteId = null))"
+        @on-delete="submitDelete"
     />
+
+    <modal-vue
+        centered
+        wrapClassName="modal-apply-form"
+        :open="openUpdate"
+        :hasFooter="false"
+        :closable="false"
+        :title="t('apply.confirm_update_id', [updateId])"
+        @cancel="openUpdate = false"
+    >
+        <template #body>
+            <ApplyForm
+                :id="updateId"
+                :query="query"
+                :open="openUpdate"
+                @cancel="((openUpdate = false), (updateId = null))"
+                @submit="openUpdate = false"
+                @reset-data="handleResetQuery"
+            />
+        </template>
+    </modal-vue>
 </template>

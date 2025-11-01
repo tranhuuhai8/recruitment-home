@@ -24,6 +24,7 @@ const emit = defineEmits([
     'sort',
     'cellClick',
     'handle-delete',
+    'handle-update',
 ])
 
 const customRow = (record: any) => ({
@@ -42,8 +43,10 @@ const onChangePage = (pageNumber: number) => emit('changePage', pageNumber)
 
 const handleCreate = () => router.push(props.createLink)
 
+const handleUpdate = (id: number) => emit('handle-update', id)
 const handleDelete = (id: number) => emit('handle-delete', id)
 
+provide('handleUpdate', handleUpdate)
 provide('handleDelete', handleDelete)
 </script>
 
@@ -207,11 +210,13 @@ provide('handleDelete', handleDelete)
                 }
 
                 .default,
-                .draft {
+                .draft,
+                .pending {
                     background-color: var(--vt-c-gray-v1);
                 }
 
-                .customize {
+                .customize,
+                .reviewed {
                     background-color: var(--vt-c-primary);
                 }
 
@@ -219,11 +224,13 @@ provide('handleDelete', handleDelete)
                     background-color: var(--vt-c-blue);
                 }
 
-                .open {
+                .open,
+                .accepted {
                     background-color: var(--vt-c-green);
                 }
 
-                .closed {
+                .closed,
+                .rejected {
                     background-color: var(--vt-c-red);
                 }
 

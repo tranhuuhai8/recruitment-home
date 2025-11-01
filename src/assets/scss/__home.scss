@@ -563,6 +563,12 @@
         }
     }
 
+    &.management {
+        .box-body {
+            margin-top: 10px;
+        }
+    }
+
     .box-body-item {
         .info-company {
             .info-item {

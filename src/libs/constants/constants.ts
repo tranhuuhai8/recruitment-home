@@ -61,6 +61,11 @@ export const PAYLOAD_ALL: ParamsList = {
     all: 1,
 }
 
+export const ORDER_CREATED_DESC = {
+    key: 'created_at',
+    dir: SORT_TYPE_DESC,
+}
+
 export const FILTER_PARENT = {
     key: 'parent_id',
     value: null,
@@ -98,6 +103,11 @@ export const OPTION_TREE_FIRST = {
 export const STATUS_ACTIVE = 1
 export const STATUS_INACTIVE = 2
 export const STATUS_LOCKED = 3
+
+export const STATUS_PENDING = 1
+export const STATUS_REVIEWED = 2
+export const STATUS_ACCEPTED = 3
+export const STATUS_REJECTED = 4
 
 export const STATUS_SHOW = 1
 export const STATUS_HIDE = 2
@@ -147,6 +157,13 @@ export const STATUS_JOB_OPTIONS_SEARCH: Record<number, string> = {
     3: t('status.closed'),
 }
 
+export const STATUS_APPLY_OPTIONS_SEARCH: Record<number, string> = {
+    1: t('status.pending'),
+    2: t('status.reviewed'),
+    3: t('status.accepted'),
+    4: t('status.rejected'),
+}
+
 export const STATUS_DISPLAY_OPTIONS_FORM = [
     {
         label: t('status.show'),
@@ -174,6 +191,25 @@ export const STATUS_OPTIONS_FORM = [
     },
 ]
 
+export const STATUS_APPLY_FORM = [
+    {
+        label: t('status.pending'),
+        value: STATUS_PENDING,
+    },
+    {
+        label: t('status.reviewed'),
+        value: STATUS_REVIEWED,
+    },
+    {
+        label: t('status.accepted'),
+        value: STATUS_ACCEPTED,
+    },
+    {
+        label: t('status.rejected'),
+        value: STATUS_REJECTED,
+    },
+]
+
 export const STATUS_MAP: Record<number, string> = {
     1: 'active',
     2: 'unverified',
@@ -184,6 +220,13 @@ export const STATUS_JOB_MAP: Record<number, string> = {
     1: 'draft',
     2: 'open',
     3: 'closed',
+}
+
+export const STATUS_APPLY_MAP: Record<number, string> = {
+    1: 'pending',
+    2: 'reviewed',
+    3: 'accepted',
+    4: 'rejected',
 }
 
 export const TYPE_JOB_MAP: Record<number, string> = {
@@ -199,6 +242,12 @@ export const TYPE_OPTIONS_SEARCH: Record<number, string> = {
 export const TYPE_JOB_OPTIONS_SEARCH: Record<number, string> = {
     1: t('type.full_time'),
     2: t('type.part_time'),
+}
+
+export const NOTIFY_FREQUENCY_OPTIONS: Record<number, string> = {
+    0: t('option.notify_frequency.off'),
+    1: t('option.notify_frequency.daily'),
+    7: t('option.notify_frequency.weekly'),
 }
 
 export const TYPE_OPTIONS_FORM = [

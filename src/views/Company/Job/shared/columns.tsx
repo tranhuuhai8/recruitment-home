@@ -17,7 +17,7 @@ export const columns: ColumnTable[] = [
         title: t('job.labels.title'),
         dataIndex: 'title',
         key: 'title',
-        width: 250,
+        width: 300,
         sorter: true,
         sortDirections: ['descend', 'ascend', 'descend'],
         defaultSortOrder: 'descend',
@@ -82,13 +82,11 @@ export const columns: ColumnTable[] = [
         title: t('operation'),
         key: 'action',
         align: 'center',
-        width: 90,
+        width: 100,
         customRender: ({ record }: any) => (
             <DetailColumn
-                url={{
-                    name: 'company-jobs-edit',
-                    params: { id: record.id },
-                }}
+                routeDetail={'company-jobs-detail'}
+                routeEdit={'company-jobs-edit'}
                 id={record.id}
             />
         ),

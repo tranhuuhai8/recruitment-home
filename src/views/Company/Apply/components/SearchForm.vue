@@ -2,32 +2,22 @@
 import {
     FORMAT_DATE_DASH,
     getObjOptions,
-    QUERY_GET_TREE,
-    STATUS_JOB_OPTIONS_SEARCH,
+    STATUS_APPLY_OPTIONS_SEARCH,
     trim,
-    TYPE_JOB_OPTIONS_SEARCH,
 } from '@/libs'
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue3-i18n'
-import { useCityStore, useJobCategoryStore } from '@/stores/home'
 
 const { t } = useI18n()
 const formRef = ref()
 const props = defineProps(['formState'])
 const emits = defineEmits(['submit', 'reset'])
 const formState = computed(() => props.formState)
-const cityStore = useCityStore()
-const jobCategoryStore = useJobCategoryStore()
 
 const resetFields = () => {
     formRef.value.resetFields()
     emits('reset')
 }
-
-onMounted(async () => {
-    await cityStore.list(QUERY_GET_TREE)
-    await jobCategoryStore.list(QUERY_GET_TREE)
-})
 </script>
 
 <template>
@@ -49,46 +39,18 @@ onMounted(async () => {
             />
         </a-form-item>
 
-        <a-form-item name="start_date" :label="t('job.labels.start_date')">
+        <a-form-item name="created_at" :label="t('apply.labels.created_at')">
             <a-date-picker
                 :format="FORMAT_DATE_DASH"
-                v-model:value="formState.start_date"
+                v-model:value="formState.created_at"
                 :placeholder="t('placeholder.date')"
-            />
-        </a-form-item>
-
-        <a-form-item name="end_date" :label="t('job.labels.end_date')">
-            <a-date-picker
-                :format="FORMAT_DATE_DASH"
-                v-model:value="formState.end_date"
-                :placeholder="t('placeholder.date')"
-            />
-        </a-form-item>
-
-        <a-form-item name="type" :label="t('job.labels.type')">
-            <a-select
-                :options="getObjOptions(TYPE_JOB_OPTIONS_SEARCH)"
-                v-model:value="formState.type"
             />
         </a-form-item>
 
         <a-form-item name="status" :label="t('status.label')">
             <a-select
-                :options="getObjOptions(STATUS_JOB_OPTIONS_SEARCH)"
+                :options="getObjOptions(STATUS_APPLY_OPTIONS_SEARCH)"
                 v-model:value="formState.status"
-            />
-        </a-form-item>
-
-        <a-form-item name="city_id" :label="t('job.labels.city')">
-            <TreeSelect
-                v-model="formState.city_id"
-                :data="cityStore.getCities?.data"
-            />
-        </a-form-item>
-        <a-form-item name="job_category_id" :label="t('job.labels.category')">
-            <TreeSelect
-                v-model="formState.job_category_id"
-                :data="jobCategoryStore.getJobCategories?.data"
             />
         </a-form-item>
 

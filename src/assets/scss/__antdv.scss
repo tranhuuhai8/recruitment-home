@@ -54,12 +54,16 @@
     font-size: 20px;
     cursor: pointer;
 
+    &.icon-detail {
+        color: var(--vt-c-primary);
+    }
+
     &.icon-delete {
         color: var(--vt-c-red);
     }
 
     &:hover {
-        opacity: 0.6;
+        opacity: 0.8;
         transform: scale(0.9);
     }
 }

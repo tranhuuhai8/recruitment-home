@@ -2,13 +2,13 @@
 import { useI18n } from 'vue3-i18n'
 
 const { t } = useI18n()
-const props = defineProps(['open', 'loading', 'title'])
+const props = defineProps(['open', 'loading', 'title', 'className'])
 </script>
 
 <template>
     <modal-vue
         :open="props.open"
-        wrapClassName="modal-delete"
+        :wrapClassName="`modal-delete ${props.className}`"
         :centered="true"
         :width="400"
         :hasFooter="false"

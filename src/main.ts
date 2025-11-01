@@ -10,6 +10,7 @@ import {
     ModalVue,
     ModalDelete,
     UploadImg,
+    UploadPdf,
     TreeSelect,
 } from '@/components/common'
 import App from './App.vue'
@@ -28,6 +29,7 @@ app.use(Vue3Marquee)
 
 app.component('TableData', TableDataVue)
 app.component('UploadImg', UploadImg)
+app.component('UploadPdf', UploadPdf)
 app.component('ModalVue', ModalVue)
 app.component('ModalDelete', ModalDelete)
 app.component('TreeSelect', TreeSelect)

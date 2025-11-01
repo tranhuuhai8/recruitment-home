@@ -20,11 +20,8 @@ export default {
         status: 'Status',
         type: 'Type',
         description: 'Description',
+        notify_frequency: 'Frequency of receiving application notifications',
     },
-    search: {
-        labels: {
-            name: 'Title',
-        },
-    },
-    confirm_delete: 'Are you sure you want to delete job id {0}?',
+    confirm_delete_id: 'Are you sure you want to delete job id {0}?',
+    confirm_delete_title: 'Are you sure you want to delete job: ',
 }
