@@ -52,6 +52,7 @@ export interface FormDataJob {
     job_category_id: number | null
     status: number
     type: number
+    notify_frequency?: number
     salary_min: number | null
     salary_max: number | null
 }

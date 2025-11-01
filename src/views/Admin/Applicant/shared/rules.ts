@@ -1,5 +1,11 @@
 import i18n from '@/lang'
-import { MAX_STRING, validateEmail, validatePhoneNumber } from '@/libs'
+import {
+    MAX_STRING,
+    REGEX_NO_SPECIAL_CHARS,
+    REGEX_NO_SPECIAL_CHARS_DES,
+    validateEmail,
+    validatePhoneNumber,
+} from '@/libs'
 import type { Rule } from 'ant-design-vue/es/form'
 
 const { t } = i18n
@@ -16,6 +22,12 @@ export const rules: Record<string, Rule[]> = {
                 0: t('applicant.labels.name'),
                 1: MAX_STRING,
             }),
+        },
+        {
+            pattern: REGEX_NO_SPECIAL_CHARS,
+            message: t('validation.no_special_chars', [
+                t('applicant.labels.name'),
+            ]),
         },
     ],
     mail_address: [
@@ -58,6 +70,12 @@ export const rules: Record<string, Rule[]> = {
                 0: t('applicant.labels.address'),
                 1: MAX_STRING,
             }),
+        },
+        {
+            pattern: REGEX_NO_SPECIAL_CHARS_DES,
+            message: t('validation.no_special_chars', [
+                t('applicant.labels.address'),
+            ]),
         },
     ],
 }

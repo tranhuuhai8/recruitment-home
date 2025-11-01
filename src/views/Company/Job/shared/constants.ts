@@ -34,4 +34,5 @@ export const INITIAL_FORM_JOB = {
     description: '',
     salary_min: null,
     salary_max: null,
+    notify_frequency: FALSE_VALUE,
 }
