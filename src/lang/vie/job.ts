@@ -9,7 +9,7 @@ export default {
         id: 'ID',
         title: 'Tiêu đề',
         banner: 'Ảnh mô tả',
-        category: 'Loại công việc',
+        category: 'Ngành/ nghề',
         company: 'Tên công ty',
         number_of_recruitment: 'Số lượng tuyển dụng',
         city: 'Khu vực',

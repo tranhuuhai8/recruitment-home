@@ -110,7 +110,7 @@ onMounted(async () => {
                 <template #overlay>
                     <a-menu @click="handleClick" class="drop-down-header">
                         <a-menu-item key="1">
-                            {{ t('header.account') }}
+                            {{ t('header.management') }}
                         </a-menu-item>
                         <a-menu-item key="2">
                             {{ t('header.logout') }}

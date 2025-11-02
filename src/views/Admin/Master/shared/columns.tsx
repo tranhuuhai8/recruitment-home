@@ -8,12 +8,21 @@ const { t } = i18n
 
 export const columnsCity: ColumnTable[] = [
     {
+        title: t('columns.id'),
+        dataIndex: 'id',
+        key: 'id',
+        align: 'center',
+        className: 'cel-id',
+        fixed: 'left',
+        sorter: true,
+        sortDirections: ['descend', 'ascend', 'descend'],
+    },
+    {
         title: t('masterData.labels.city_name'),
         dataIndex: 'name',
         key: 'name',
-        width: 200,
         sorter: true,
-        sortDirections: ['descend', 'ascend', 'descend'],
+        sortDirections: ['ascend', 'descend', 'ascend'],
         defaultSortOrder: 'ascend',
         align: 'center',
     },
@@ -21,7 +30,6 @@ export const columnsCity: ColumnTable[] = [
         title: t('masterData.labels.parent_city_name'),
         dataIndex: 'parent_name',
         key: 'parent_name',
-        width: 200,
         align: 'center',
         customRender: ({ record }) => <span>{record.parent?.name}</span>,
     },
@@ -36,7 +44,6 @@ export const columnsCity: ColumnTable[] = [
         title: t('masterData.labels.status'),
         dataIndex: 'status',
         key: 'status',
-        width: 150,
         align: 'center',
         customRender: ({ record }) => (
             <StatusDisplayColumn status={record.status} />
@@ -46,27 +53,36 @@ export const columnsCity: ColumnTable[] = [
         title: t('operation'),
         key: 'action',
         align: 'center',
-        width: 100,
+        fixed: 'right',
+        className: 'cel-action',
         customRender: ({ record }: any) => <EditByModal data={record} />,
     },
 ]
 
 export const columnsJobCategory: ColumnTable[] = [
     {
+        title: t('columns.id'),
+        dataIndex: 'id',
+        key: 'id',
+        align: 'center',
+        className: 'cel-id',
+        fixed: 'left',
+        sorter: true,
+        sortDirections: ['descend', 'ascend', 'descend'],
+    },
+    {
         title: t('masterData.labels.category_name'),
         dataIndex: 'name',
         key: 'name',
-        width: 200,
         sorter: true,
         align: 'center',
-        sortDirections: ['descend', 'ascend', 'descend'],
+        sortDirections: ['ascend', 'descend', 'ascend'],
         defaultSortOrder: 'ascend',
     },
     {
         title: t('masterData.labels.parent_category_name'),
         dataIndex: 'parent_name',
         key: 'parent_name',
-        width: 200,
         align: 'center',
         customRender: ({ record }) => <span>{record.parent?.name}</span>,
     },
@@ -81,7 +97,6 @@ export const columnsJobCategory: ColumnTable[] = [
         title: t('masterData.labels.status'),
         dataIndex: 'status',
         key: 'status',
-        width: 150,
         align: 'center',
         customRender: ({ record }) => (
             <StatusDisplayColumn status={record.status} />
@@ -91,7 +106,6 @@ export const columnsJobCategory: ColumnTable[] = [
         title: t('masterData.labels.type'),
         dataIndex: 'type',
         key: 'type',
-        width: 150,
         align: 'center',
         customRender: ({ record }) => <TypeColumn type={record.type} />,
     },
@@ -99,7 +113,8 @@ export const columnsJobCategory: ColumnTable[] = [
         title: t('operation'),
         key: 'action',
         align: 'center',
-        width: 100,
+        fixed: 'right',
+        className: 'cel-action',
         customRender: ({ record }: any) => <EditByModal data={record} />,
     },
 ]

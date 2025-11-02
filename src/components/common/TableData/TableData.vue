@@ -15,9 +15,9 @@ const props = defineProps({
     hasCreate: { type: Boolean, required: false, default: false },
     createLink: { type: String, required: false, default: '' },
     title: { type: String, required: false, default: '' },
-    sortType: { type: String, required: false, default: '' },
+    tableKey: { type: Number, required: false, default: 0 },
 })
-const { columns, data, loading, sortType } = toRefs(props)
+const { columns, data, loading } = toRefs(props)
 const emit = defineEmits([
     'changePage',
     'handleReset',
@@ -63,12 +63,13 @@ provide('handleDelete', handleDelete)
             </a-button>
         </div>
         <a-table
+            :key="props.tableKey"
             :columns="columns"
             :data-source="data?.data ?? []"
             :loading="loading"
             :pagination="false"
             :customRow="customRow"
-            :class="sortType"
+            :scroll="{ x: 'max-content' }"
             @change="handleChangeTable"
         >
             <template #bodyCell="{}" />
@@ -95,6 +96,7 @@ provide('handleDelete', handleDelete)
 <style scoped lang="scss">
 #tbl {
     margin: 0 10px;
+
     .tbl-head {
         display: flex;
         align-items: center;
@@ -130,8 +132,6 @@ provide('handleDelete', handleDelete)
         }
 
         &:deep(.ant-pagination-item) {
-            font-weight: 700;
-
             &.ant-pagination-item-active {
                 background: var(--vt-c-main);
                 border: var(--vt-c-main);
@@ -149,13 +149,8 @@ provide('handleDelete', handleDelete)
         .ant-table-thead {
             background-color: var(--vt-c-gray-v4);
 
-            span {
-                svg {
-                    display: none;
-                }
-            }
-
             .ant-table-cell {
+                min-width: 130px;
                 padding: 8px 12px;
                 font-size: 14px;
                 font-weight: 700;
@@ -163,6 +158,24 @@ provide('handleDelete', handleDelete)
                 letter-spacing: 0em;
                 background-color: var(--vt-c-white);
                 border-bottom: 1px solid var(--vt-c-black-bold);
+
+                &.cel-id {
+                    min-width: 120px;
+                }
+
+                &.cel-action {
+                    min-width: 50px;
+                }
+
+                &.cel-logo {
+                    min-width: unset;
+                    width: 120px;
+                }
+
+                &.cel-avatar {
+                    min-width: unset;
+                    width: 110px;
+                }
 
                 .ant-table-column-sorters {
                     span {
@@ -188,12 +201,40 @@ provide('handleDelete', handleDelete)
             }
 
             .ant-table-cell {
+                min-width: 130px;
+                max-width: 520px !important;
                 padding: 8px 12px;
                 font-size: 14px;
                 font-weight: 400;
                 line-height: 19px;
                 letter-spacing: 0em;
                 height: 50px;
+
+                &.cel-id {
+                    min-width: 120px;
+                }
+
+                &.cel-action {
+                    min-width: 50px;
+                }
+
+                &.cel-logo {
+                    min-width: unset;
+                    width: 120px;
+
+                    img {
+                        width: 100%;
+                    }
+                }
+
+                &.cel-avatar {
+                    min-width: unset;
+                    width: 110px;
+
+                    img {
+                        width: 100%;
+                    }
+                }
 
                 .active {
                     background-color: var(--vt-c-main);
@@ -276,46 +317,6 @@ provide('handleDelete', handleDelete)
 
             .ant-table-container {
                 width: 700px;
-            }
-        }
-    }
-
-    .descending {
-        &:deep(.ant-table) {
-            .ant-table-thead {
-                span {
-                    &.ant-table-column-sorter-down {
-                        svg {
-                            display: block;
-                        }
-                    }
-
-                    &.ant-table-column-sorter-up {
-                        svg {
-                            display: none;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .ascending {
-        &:deep(.ant-table) {
-            .ant-table-thead {
-                span {
-                    &.ant-table-column-sorter-up {
-                        svg {
-                            display: block;
-                        }
-                    }
-
-                    &.ant-table-column-sorter-down {
-                        svg {
-                            display: none;
-                        }
-                    }
-                }
             }
         }
     }

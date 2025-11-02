@@ -8,8 +8,8 @@ import {
     INITIAL_QUERY,
     mapSortQuery,
     notify,
-    SORT_TYPE_DESC,
     STATUS_CODE_SUCCESS,
+    TRUE_VALUE,
 } from '@/libs'
 import { watch } from 'vue'
 import SearchForm from './components/SearchForm.vue'
@@ -26,7 +26,7 @@ const loading = ref(false)
 const openDelete = ref(false)
 const loadingDelete = ref(false)
 const deleteId = ref<number | null>(null)
-const sortType = ref(SORT_TYPE_DESC)
+const tableKey = ref(TRUE_VALUE)
 
 const getData = async () => {
     loading.value = true
@@ -64,10 +64,8 @@ const handleDelete = async () => {
 
 const handleCreate = () => router.push({ name: 'company-jobs-create' })
 
-const handleSort = ({ field: key, order: dir }: SortProps) => {
-    sortType.value = dir ? `${dir}ing` : 'descending'
-    query.value = mapSortQuery(query, key, sortType.value)
-}
+const handleSort = ({ field: key, order: dir }: SortProps) =>
+    (query.value = mapSortQuery(query, key, dir ? `${dir}ing` : 'descending'))
 
 const handleChangePage = (page: number) =>
     (query.value = { ...query.value, page })
@@ -75,7 +73,10 @@ const handleChangePage = (page: number) =>
 const handleSearch = () =>
     (query.value = getQuerySearch(query, formState.value))
 
-const handleResetQuery = () => (query.value = { ...INITIAL_QUERY })
+const handleResetQuery = () => {
+    query.value = { ...INITIAL_QUERY }
+    tableKey.value++
+}
 
 onMounted(async () => {
     await nextTick()
@@ -108,7 +109,7 @@ watch(
                 :loading="loading"
                 :columns="columns"
                 :data="jobStore.getJobs"
-                :sort-type="sortType"
+                :table-key="tableKey"
                 :show-pagination="true"
                 @sort="handleSort"
                 @change-page="handleChangePage"

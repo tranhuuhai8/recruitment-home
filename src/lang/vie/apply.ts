@@ -2,6 +2,9 @@ export default {
     title_page: {
         list: 'Danh sách hồ sơ ứng tuyển',
     },
+    placeholder: {
+        search: 'Tìm kiếm tên ứng viên, vị trí, email, số điện thoại...',
+    },
     labels: {
         id: 'ID',
         full_name: 'Tên ứng viên',

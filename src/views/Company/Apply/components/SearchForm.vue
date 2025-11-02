@@ -33,7 +33,7 @@ const resetFields = () => {
         <a-form-item name="search" :label="t('search')">
             <a-input
                 allowClear
-                :placeholder="t('search')"
+                :placeholder="t('apply.placeholder.search')"
                 v-model:value="formState.search"
                 @blur="trim('search', formState)"
             />

@@ -1,14 +1,7 @@
-import {
-    FALSE_VALUE,
-    INITIAL_QUERY,
-    PER_PAGE_MST,
-    SORT_TYPE_ASC,
-    TRUE_VALUE,
-} from '@/libs'
+import { FALSE_VALUE, INITIAL_QUERY, SORT_TYPE_ASC, TRUE_VALUE } from '@/libs'
 
-export const INITIAL_QUERY_MST = {
+export const INITIAL_QUERY_COMPANY = {
     ...INITIAL_QUERY,
-    per_page: PER_PAGE_MST,
     orders: [{ key: 'name', dir: SORT_TYPE_ASC }],
     filters: [],
 }

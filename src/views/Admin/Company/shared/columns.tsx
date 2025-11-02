@@ -2,19 +2,51 @@ import i18n from '@/lang'
 import type { ColumnTable } from '@/interface'
 import StatusColumn from '@/components/common/Column/StatusColumn.vue'
 import EditColumn from '@/components/common/TableData/EditColumn.vue'
+import router from '@/router'
 
 const { t } = i18n
 
 export const columns: ColumnTable[] = [
     {
+        title: t('columns.id'),
+        dataIndex: 'id',
+        key: 'id',
+        align: 'center',
+        className: 'cel-id',
+        fixed: 'left',
+        sorter: true,
+        sortDirections: ['descend', 'ascend', 'descend'],
+    },
+    {
+        title: t('company.labels.logo'),
+        dataIndex: 'logo',
+        key: 'logo',
+        align: 'center',
+        className: 'cel-logo',
+        customRender: ({ record }) => <img src={record.logo} alt="" />,
+    },
+    {
         title: t('company.labels.name'),
         dataIndex: 'name',
         key: 'name',
-        width: 200,
         sorter: true,
-        sortDirections: ['descend', 'ascend', 'descend'],
-        defaultSortOrder: 'descend',
+        sortDirections: ['ascend', 'descend', 'ascend'],
+        defaultSortOrder: 'ascend',
         align: 'center',
+        customRender: ({ record }) => (
+            <a
+                href={
+                    router.resolve({
+                        name: 'company-home-detail',
+                        params: { id: record.company_id },
+                    }).href
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                {record.name}
+            </a>
+        ),
     },
     {
         title: t('company.labels.short_name'),
@@ -27,6 +59,8 @@ export const columns: ColumnTable[] = [
         dataIndex: 'telephone',
         key: 'telephone',
         align: 'center',
+        sorter: true,
+        sortDirections: ['descend', 'ascend', 'descend'],
     },
     {
         title: t('auth.labels.mail_address'),
@@ -35,10 +69,9 @@ export const columns: ColumnTable[] = [
         align: 'center',
     },
     {
-        title: t('masterData.labels.status'),
+        title: t('status.label'),
         dataIndex: 'status',
         key: 'status',
-        width: 150,
         align: 'center',
         customRender: ({ record }) => <StatusColumn status={record.status} />,
     },
@@ -46,7 +79,8 @@ export const columns: ColumnTable[] = [
         title: t('operation'),
         key: 'action',
         align: 'center',
-        width: 100,
+        fixed: 'right',
+        className: 'cel-action',
         customRender: ({ record }: any) => (
             <EditColumn
                 url={{

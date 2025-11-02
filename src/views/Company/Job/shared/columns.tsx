@@ -7,20 +7,22 @@ const { t } = i18n
 
 export const columns: ColumnTable[] = [
     {
-        title: t('job.labels.id'),
+        title: t('columns.id'),
         dataIndex: 'id',
         key: 'id',
-        width: 50,
         align: 'center',
+        className: 'cel-id',
+        fixed: 'left',
+        sorter: true,
+        sortDirections: ['descend', 'ascend', 'descend'],
+        defaultSortOrder: 'descend',
     },
     {
         title: t('job.labels.title'),
         dataIndex: 'title',
         key: 'title',
-        width: 300,
         sorter: true,
         sortDirections: ['descend', 'ascend', 'descend'],
-        defaultSortOrder: 'descend',
         align: 'center',
     },
     {
@@ -28,7 +30,6 @@ export const columns: ColumnTable[] = [
         dataIndex: 'job_category_name',
         key: 'job_category_name',
         align: 'center',
-        width: 200,
         customRender: ({ record }) => (
             <span>
                 {record.job_category_name} <br />{' '}
@@ -37,23 +38,10 @@ export const columns: ColumnTable[] = [
         ),
     },
     {
-        title: t('job.labels.start_date'),
-        dataIndex: 'start_date',
-        key: 'start_date',
-        align: 'center',
-    },
-    {
-        title: t('job.labels.end_date'),
-        dataIndex: 'end_date',
-        key: 'end_date',
-        align: 'center',
-    },
-    {
         title: t('job.labels.city'),
         dataIndex: 'city_name',
         key: 'city_name',
         align: 'center',
-        width: 200,
         customRender: ({ record }) => (
             <span>
                 {record.city_name} <br /> {record.city_parent_name}
@@ -61,10 +49,25 @@ export const columns: ColumnTable[] = [
         ),
     },
     {
+        title: t('job.labels.start_date'),
+        dataIndex: 'start_date',
+        key: 'start_date',
+        align: 'center',
+        sorter: true,
+        sortDirections: ['descend', 'ascend', 'descend'],
+    },
+    {
+        title: t('job.labels.end_date'),
+        dataIndex: 'end_date',
+        key: 'end_date',
+        align: 'center',
+        sorter: true,
+        sortDirections: ['descend', 'ascend', 'descend'],
+    },
+    {
         title: t('job.labels.type'),
         dataIndex: 'type',
         key: 'type',
-        width: 150,
         align: 'center',
         customRender: ({ record }) => <TypeColumnJob type={record.type} />,
     },
@@ -72,7 +75,6 @@ export const columns: ColumnTable[] = [
         title: t('job.labels.status'),
         dataIndex: 'status',
         key: 'status',
-        width: 120,
         align: 'center',
         customRender: ({ record }) => (
             <StatusColumnJob status={record.status} />
@@ -82,7 +84,8 @@ export const columns: ColumnTable[] = [
         title: t('operation'),
         key: 'action',
         align: 'center',
-        width: 100,
+        fixed: 'right',
+        className: 'cel-action',
         customRender: ({ record }: any) => (
             <DetailColumn
                 routeDetail={'company-jobs-detail'}

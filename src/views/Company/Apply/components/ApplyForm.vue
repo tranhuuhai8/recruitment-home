@@ -79,12 +79,7 @@ watch(
         </a-form-item>
 
         <a-space class="space-group-btn">
-            <a-button
-                type="primary"
-                html-type="submit"
-                class="mr-10"
-                :loading="loading"
-            >
+            <a-button type="primary" html-type="submit" :loading="loading">
                 {{ t('update') }}
             </a-button>
             <a-button type="link" @click="resetForm(false)">

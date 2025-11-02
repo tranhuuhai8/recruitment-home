@@ -233,7 +233,7 @@
     @include center_flex(stretch, space-between);
 
     #sidebar {
-        width: fit-content;
+        width: var(--width-sidebar);
         min-height: calc(100vh - 50px);
         padding-top: 10px;
         position: relative;
@@ -242,6 +242,8 @@
 
         .logo {
             text-align: center;
+            cursor: pointer;
+
             img {
                 width: 150px;
                 transition: width 0.3s linear;
@@ -277,7 +279,9 @@
             transition: all 0.3s linear;
 
             .ant-menu-item {
-                margin: 0 0 8px;
+                margin: 0 auto 8px;
+                padding-right: 10px;
+                padding-left: 15px !important;
 
                 &:hover,
                 &.ant-menu-item-active {
@@ -322,6 +326,7 @@
     }
 
     .ant-layout-content {
+        width: calc(100% - var(--width-sidebar));
         padding: 15px 15px 15px 20px;
         background-color: var(--bg-body);
     }

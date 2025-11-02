@@ -10,12 +10,7 @@ import {
     INITIAL_QUERY_APPLY,
 } from './shared'
 import type { FormSearchJobApply, SortProps } from '@/interface'
-import {
-    mapSortQuery,
-    notify,
-    SORT_TYPE_DESC,
-    STATUS_CODE_SUCCESS,
-} from '@/libs'
+import { mapSortQuery, notify, STATUS_CODE_SUCCESS, TRUE_VALUE } from '@/libs'
 import { useJobApplyStore } from '@/stores/company'
 import SearchForm from './components/SearchForm.vue'
 import ApplyForm from './components/ApplyForm.vue'
@@ -29,7 +24,7 @@ const openUpdate = ref(false)
 const loadingModal = ref(false)
 const deleteId = ref<number | null>(null)
 const updateId = ref<number | null>(null)
-const sortType = ref(SORT_TYPE_DESC)
+const tableKey = ref(TRUE_VALUE)
 const formState = ref<FormSearchJobApply>({ ...INITIAL_FORM_SEARCH })
 const query = ref<Record<string, any>>({ ...INITIAL_QUERY_APPLY })
 
@@ -72,10 +67,8 @@ const submitDelete = async () => {
     }
 }
 
-const handleSort = ({ field: key, order: dir }: SortProps) => {
-    sortType.value = dir ? `${dir}ing` : 'descending'
-    query.value = mapSortQuery(query, key, sortType.value)
-}
+const handleSort = ({ field: key, order: dir }: SortProps) =>
+    (query.value = mapSortQuery(query, key, dir ? `${dir}ing` : 'descending'))
 
 const handleChangePage = (page: number) =>
     (query.value = { ...query.value, page })
@@ -83,7 +76,10 @@ const handleChangePage = (page: number) =>
 const handleSearch = () =>
     (query.value = getQuerySearch(query, formState.value))
 
-const handleResetQuery = () => (query.value = { ...INITIAL_QUERY_APPLY })
+const handleResetQuery = () => {
+    query.value = { ...INITIAL_QUERY_APPLY }
+    tableKey.value++
+}
 
 onMounted(async () => {
     await nextTick()
@@ -113,7 +109,7 @@ watch(
                 :loading="loading"
                 :columns="columns"
                 :data="jobApplyStore.getJobApplications"
-                :sort-type="sortType"
+                :table-key="tableKey"
                 :show-pagination="true"
                 @sort="handleSort"
                 @change-page="handleChangePage"

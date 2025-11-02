@@ -17,7 +17,7 @@ import {
     KEY_TAB_CITY,
     KEY_TAB_CATEGORY,
 } from './shared'
-import { FALSE_VALUE } from '@/libs'
+import { FALSE_VALUE, TRUE_VALUE } from '@/libs'
 import type { FormSearchMst } from '@/interface'
 
 const { t } = useI18n()
@@ -27,6 +27,7 @@ const formState = ref<FormSearchMst>({ ...INITIAL_FORM_SEARCH })
 const query = ref<Record<string, any>>({ ...INITIAL_QUERY_MST })
 const open = ref(false)
 const id = ref()
+const tableKey = ref(TRUE_VALUE)
 
 const cellClick = (e: any, b: Record<string, any>) => {
     id.value = b.id
@@ -51,7 +52,10 @@ const handleSearch = () =>
         activeKey.value === KEY_TAB_CATEGORY
     ))
 
-const handleResetQuery = () => (query.value = { ...INITIAL_QUERY_MST })
+const handleResetQuery = () => {
+    query.value = { ...INITIAL_QUERY_MST }
+    tableKey.value++
+}
 
 const onTabChange = (key: string) => {
     handleResetQuery()
@@ -102,6 +106,7 @@ onUnmounted(() => {
                 <a-tab-pane key="1" :tab="t('masterData.tab.city')">
                     <TabCity
                         :query="query"
+                        :table-key="tableKey"
                         @sort="handleSort"
                         @change-page="handleChangePage"
                     />
@@ -109,6 +114,7 @@ onUnmounted(() => {
                 <a-tab-pane key="2" :tab="t('masterData.tab.category')">
                     <TabJobCategory
                         :query="query"
+                        :table-key="tableKey"
                         @sort="handleSort"
                         @change-page="handleChangePage"
                     />

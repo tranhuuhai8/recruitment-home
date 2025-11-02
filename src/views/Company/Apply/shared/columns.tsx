@@ -11,8 +11,11 @@ export const columns: ColumnTable[] = [
         title: t('apply.labels.id'),
         dataIndex: 'id',
         key: 'id',
-        width: 50,
         align: 'center',
+        className: 'cel-id',
+        fixed: 'left',
+        sorter: true,
+        sortDirections: ['descend', 'ascend', 'descend'],
     },
     {
         title: t('apply.labels.full_name'),
@@ -73,7 +76,6 @@ export const columns: ColumnTable[] = [
         title: t('apply.labels.status'),
         dataIndex: 'status',
         key: 'status',
-        width: 130,
         align: 'center',
         customRender: ({ record }) => (
             <StatusColumnApply status={record.status} />
@@ -83,7 +85,8 @@ export const columns: ColumnTable[] = [
         title: t('operation'),
         key: 'action',
         align: 'center',
-        width: 90,
+        fixed: 'right',
+        className: 'cel-action',
         customRender: ({ record }: any) => (
             <DetailColumn id={record.id} isUpdate={true} />
         ),

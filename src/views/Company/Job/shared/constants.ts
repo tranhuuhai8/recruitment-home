@@ -1,17 +1,4 @@
-import {
-    FALSE_VALUE,
-    INITIAL_QUERY,
-    PER_PAGE_MST,
-    SORT_TYPE_ASC,
-    TRUE_VALUE,
-} from '@/libs'
-
-export const INITIAL_QUERY_MST = {
-    ...INITIAL_QUERY,
-    per_page: PER_PAGE_MST,
-    orders: [{ key: 'name', dir: SORT_TYPE_ASC }],
-    filters: [],
-}
+import { FALSE_VALUE, TRUE_VALUE } from '@/libs'
 
 export const INITIAL_FORM_SEARCH = {
     search: '',

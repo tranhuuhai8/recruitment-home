@@ -46,7 +46,7 @@ const onDelete = (event: Event) => {
 </script>
 
 <template>
-    <a-row justify="space-between">
+    <a-row justify="center" class="col-action">
         <div
             v-if="routeDetail"
             class="icon-operation icon-detail"
@@ -66,3 +66,9 @@ const onDelete = (event: Event) => {
         </div>
     </a-row>
 </template>
+
+<style lang="scss">
+.col-action {
+    gap: 10px;
+}
+</style>
