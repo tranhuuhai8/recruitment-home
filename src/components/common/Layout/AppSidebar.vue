@@ -123,7 +123,7 @@ onMounted(async () => {
 
 <template>
     <div id="sidebar">
-        <div class="logo">
+        <div class="logo" @click="() => router.push({ name: 'home' })">
             <img :src="Logo" alt="Logo sidebar" />
         </div>
         <a-menu

@@ -2,6 +2,9 @@ export default {
     title_page: {
         list: 'Job List',
     },
+    placeholder: {
+        search: 'Search by candidate name, job title, email, telephone...',
+    },
     labels: {
         id: 'ID',
         full_name: 'Name',

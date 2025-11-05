@@ -1,21 +1,21 @@
 <script setup lang="ts">
+import { watch } from 'vue'
 import { useI18n } from 'vue3-i18n'
 import { nextTick, onMounted, ref } from 'vue'
 import { useSettingStore } from '@/stores'
-import { columns, getQuerySearch, INITIAL_FORM_SEARCH } from './shared'
-import type { FormSearchCompany, SortProps } from '@/interface'
-import { INITIAL_QUERY, mapSortQuery, SORT_TYPE_DESC } from '@/libs'
-import { watch } from 'vue'
-import SearchForm from './components/SearchForm.vue'
 import { useCompanyStore } from '@/stores/admin'
+import {  mapSortQuery, TRUE_VALUE } from '@/libs'
+import SearchForm from './components/SearchForm.vue'
+import type { FormSearchCompany, SortProps } from '@/interface'
+import { columns, getQuerySearch, INITIAL_FORM_SEARCH, INITIAL_QUERY_COMPANY } from './shared'
 
 const { t } = useI18n()
 const settingStore = useSettingStore()
 const companyStore = useCompanyStore()
 const formState = ref<FormSearchCompany>({ ...INITIAL_FORM_SEARCH })
-const query = ref<Record<string, any>>({ ...INITIAL_QUERY })
+const query = ref<Record<string, any>>({ ...INITIAL_QUERY_COMPANY })
 const loading = ref(false)
-const sortType = ref(SORT_TYPE_DESC)
+const tableKey = ref(TRUE_VALUE)
 
 const getData = async () => {
     loading.value = true
@@ -23,10 +23,8 @@ const getData = async () => {
     loading.value = false
 }
 
-const handleSort = ({ field: key, order: dir }: SortProps) => {
-    sortType.value = dir ? `${dir}ing` : 'descending'
-    query.value = mapSortQuery(query, key, sortType.value)
-}
+const handleSort = ({ field: key, order: dir }: SortProps) =>
+    (query.value = mapSortQuery(query, key, dir ? `${dir}ing` : 'descending'))
 
 const handleChangePage = (page: number) =>
     (query.value = { ...query.value, page })
@@ -34,7 +32,10 @@ const handleChangePage = (page: number) =>
 const handleSearch = () =>
     (query.value = getQuerySearch(query, formState.value))
 
-const handleResetQuery = () => (query.value = { ...INITIAL_QUERY })
+const handleResetQuery = () => {
+    query.value = { ...INITIAL_QUERY_COMPANY }
+    tableKey.value++
+}
 
 onMounted(async () => {
     await nextTick()
@@ -63,8 +64,8 @@ watch(
                 :loading="loading"
                 :columns="columns"
                 :data="companyStore.getCompanies"
-                :sort-type="sortType"
                 :show-pagination="true"
+                :table-key="tableKey"
                 @sort="handleSort"
                 @change-page="handleChangePage"
             />

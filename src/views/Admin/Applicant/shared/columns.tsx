@@ -8,14 +8,31 @@ const { t } = i18n
 
 export const columns: ColumnTable[] = [
     {
+        title: t('columns.id'),
+        dataIndex: 'id',
+        key: 'id',
+        align: 'center',
+        className: 'cel-id',
+        fixed: 'left',
+        sorter: true,
+        sortDirections: ['descend', 'ascend', 'descend'],
+    },
+    {
+        title: t('applicant.labels.avatar'),
+        dataIndex: 'avatar',
+        key: 'avatar',
+        align: 'center',
+        className: 'cel-avatar',
+        customRender: ({ record }) => <img src={record.avatar} alt="" />,
+    },
+    {
         title: t('applicant.labels.name'),
         dataIndex: 'name',
         key: 'name',
-        width: 200,
         sorter: true,
         sortDirections: ['descend', 'ascend', 'descend'],
-        defaultSortOrder: 'descend',
         align: 'center',
+        defaultSortOrder: 'ascend',
     },
     {
         title: t('applicant.labels.gender'),
@@ -27,10 +44,18 @@ export const columns: ColumnTable[] = [
         ),
     },
     {
+        title: t('applicant.labels.birthday'),
+        dataIndex: 'birthday',
+        key: 'birthday',
+        align: 'center',
+    },
+    {
         title: t('applicant.labels.telephone'),
         dataIndex: 'telephone',
         key: 'telephone',
         align: 'center',
+        sorter: true,
+        sortDirections: ['descend', 'ascend', 'descend'],
     },
     {
         title: t('auth.labels.mail_address'),
@@ -39,10 +64,15 @@ export const columns: ColumnTable[] = [
         align: 'center',
     },
     {
-        title: t('masterData.labels.status'),
+        title: t('applicant.labels.address'),
+        dataIndex: 'address',
+        key: 'address',
+        align: 'center',
+    },
+    {
+        title: t('status.label'),
         dataIndex: 'status',
         key: 'status',
-        width: 150,
         align: 'center',
         customRender: ({ record }) => <StatusColumn status={record.status} />,
     },
@@ -50,7 +80,8 @@ export const columns: ColumnTable[] = [
         title: t('operation'),
         key: 'action',
         align: 'center',
-        width: 100,
+        fixed: 'right',
+        className: 'cel-action',
         customRender: ({ record }: any) => (
             <EditColumn
                 url={{

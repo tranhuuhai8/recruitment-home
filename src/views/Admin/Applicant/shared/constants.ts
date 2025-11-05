@@ -1,14 +1,7 @@
-import {
-    GENDER_MALE,
-    INITIAL_QUERY,
-    PER_PAGE_MST,
-    SORT_TYPE_ASC,
-    FALSE_VALUE,
-} from '@/libs'
+import { GENDER_MALE, FALSE_VALUE, INITIAL_QUERY, SORT_TYPE_ASC } from '@/libs'
 
-export const INITIAL_QUERY_MST = {
+export const INITIAL_QUERY_APPLICANT = {
     ...INITIAL_QUERY,
-    per_page: PER_PAGE_MST,
     orders: [{ key: 'name', dir: SORT_TYPE_ASC }],
     filters: [],
 }

@@ -54,7 +54,7 @@ export default {
         job: 'Việc làm',
         news: 'Tin tức',
         contact: 'Liên hệ',
-        account: 'Tài khoản',
+        management: 'Quản lý',
         logout: 'Đăng xuất',
     },
     status: {
@@ -97,6 +97,9 @@ export default {
         image: 'Tải ảnh lên',
         success: 'Tải lên thành công',
         failed: 'Tải lên thất bại, vui lòng thử lại!',
+    },
+    columns: {
+        id: 'ID',
     },
     people: 'người',
 }

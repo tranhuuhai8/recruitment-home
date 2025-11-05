@@ -61,7 +61,7 @@ export default {
         job: 'Jobs',
         news: 'News',
         contact: 'Contact',
-        account: 'Account',
+        management: 'Management',
         logout: 'Log out',
     },
     status: {
@@ -97,6 +97,9 @@ export default {
         image: 'Upload image',
         success: 'Upload successfully',
         failed: 'Upload failed, please try again!',
+    },
+    columns: {
+        id: 'ID',
     },
     people: 'people',
 }

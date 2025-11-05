@@ -2,16 +2,21 @@ import i18n from '@/lang'
 import type { ColumnTable } from '@/interface'
 import DetailColumn from '@/components/common/TableData/DetailColumn.vue'
 import { StatusColumnJob, TypeColumnJob } from '@/components/common'
+import router from '@/router'
 
 const { t } = i18n
 
 export const columns: ColumnTable[] = [
     {
-        title: t('job.labels.id'),
+        title: t('columns.id'),
         dataIndex: 'id',
         key: 'id',
-        width: 50,
         align: 'center',
+        className: 'cel-id',
+        fixed: 'left',
+        sorter: true,
+        sortDirections: ['descend', 'ascend', 'descend'],
+        defaultSortOrder: 'descend',
     },
     {
         title: t('job.labels.title'),
@@ -19,7 +24,18 @@ export const columns: ColumnTable[] = [
         key: 'title',
         sorter: true,
         sortDirections: ['descend', 'ascend', 'descend'],
-        defaultSortOrder: 'descend',
+        align: 'center',
+    },
+    {
+        title: t('job.labels.category'),
+        dataIndex: 'category_name',
+        key: 'category_name',
+        align: 'center',
+    },
+    {
+        title: t('job.labels.city'),
+        dataIndex: 'city_name',
+        key: 'city_name',
         align: 'center',
     },
     {
@@ -27,26 +43,41 @@ export const columns: ColumnTable[] = [
         dataIndex: 'company_name',
         key: 'company_name',
         align: 'center',
-        width: 250,
-        customRender: ({ record }) => <span>{record.company?.name}</span>,
+        customRender: ({ record }) => (
+            <a
+                href={
+                    router.resolve({
+                        name: 'company-home-detail',
+                        params: { id: record.company?.id },
+                    }).href
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                {record.company?.name}
+            </a>
+        ),
     },
     {
         title: t('job.labels.start_date'),
         dataIndex: 'start_date',
         key: 'start_date',
         align: 'center',
+        sorter: true,
+        sortDirections: ['descend', 'ascend', 'descend'],
     },
     {
         title: t('job.labels.end_date'),
         dataIndex: 'end_date',
         key: 'end_date',
         align: 'center',
+        sorter: true,
+        sortDirections: ['descend', 'ascend', 'descend'],
     },
     {
         title: t('job.labels.type'),
         dataIndex: 'type',
         key: 'type',
-        width: 150,
         align: 'center',
         customRender: ({ record }) => <TypeColumnJob type={record.type} />,
     },
@@ -54,7 +85,6 @@ export const columns: ColumnTable[] = [
         title: t('job.labels.status'),
         dataIndex: 'status',
         key: 'status',
-        width: 120,
         align: 'center',
         customRender: ({ record }) => (
             <StatusColumnJob status={record.status} />
@@ -64,7 +94,8 @@ export const columns: ColumnTable[] = [
         title: t('operation'),
         key: 'action',
         align: 'center',
-        width: 100,
+        fixed: 'right',
+        className: 'cel-action',
         customRender: ({ record }: any) => (
             <DetailColumn
                 routeEdit={'admin-jobs-edit'}
