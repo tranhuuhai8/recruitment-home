@@ -231,16 +231,18 @@
 .content-manager {
     min-height: 100%;
     @include center_flex(stretch, space-between);
+    overflow: hidden auto;
 
     #sidebar {
-        width: var(--width-sidebar);
+        width: calc(var(--width-sidebar) + 1px);
         min-height: calc(100vh - 50px);
         padding-top: 10px;
         position: relative;
         background-color: var(--vt-c-white);
-        border-inline-end: 1px solid var(--vt-c-border);
+        border-right: 1px solid var(--vt-c-border);
 
         .logo {
+            width: 100%;
             text-align: center;
             cursor: pointer;
 
@@ -263,18 +265,8 @@
             }
         }
 
-        &:has(.sidebar-menu.sp) {
-            padding-top: 0;
-            .logo {
-                height: 0;
-                img {
-                    width: 0;
-                }
-            }
-        }
-
         .sidebar-menu {
-            width: 215px;
+            width: 100%;
             padding: 10px 12px 15px;
             transition: all 0.3s linear;
 
@@ -320,6 +312,18 @@
 
                 .ant-menu-title-content {
                     display: none !important;
+                }
+            }
+        }
+
+        &:has(.sidebar-menu.sp) {
+            width: fit-content;
+            padding-top: 0;
+
+            .logo {
+                height: 0;
+                img {
+                    width: 0;
                 }
             }
         }
