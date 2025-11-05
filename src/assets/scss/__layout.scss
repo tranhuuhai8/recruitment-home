@@ -480,6 +480,94 @@
     }
 }
 
+.ant-card {
+    &.card-file-uploaded {
+        .file-upload-list {
+            margin-top: 30px;
+            @extend .flex-center-start;
+            gap: 15px;
+            flex-wrap: wrap;
+
+            .drag-ghost {
+                opacity: 0.5;
+            }
+
+            .file-upload-item {
+                border: 1px solid var(--vt-c-border);
+                border-radius: 8px;
+                padding: 35px 15px 15px;
+                min-width: 185px;
+                width: max-content;
+                position: relative;
+                text-align: center;
+
+                .ant-card-head {
+                    border: none;
+                    padding: 0;
+
+                    .ant-card-extra {
+                        margin: 0 auto;
+                    }
+                }
+
+                a,
+                button {
+                    position: absolute;
+                    top: 5px;
+                    height: 30px;
+                    padding: 4px;
+
+                    svg {
+                        font-size: 18px;
+                    }
+                }
+
+                a {
+                    left: 10px;
+                }
+
+                button {
+                    right: 10px;
+                    border: none;
+                }
+
+                .pdf-icon {
+                    width: 110px;
+                    margin: 0 auto;
+                }
+
+                .drag-handle {
+                    position: absolute;
+                    top: 5px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    cursor: move;
+                }
+
+                .file-name-box {
+                    margin-top: 5px;
+                    @extend .flex-center;
+                    gap: 4px;
+                    min-height: 32px;
+
+                    .file-name-input {
+                        width: 95%;
+                        text-align: center;
+                        padding: 4px;
+                    }
+
+                    .editable-text {
+                        cursor: pointer;
+                        padding-bottom: 2px;
+                        border-bottom: 1px dashed var(--vt-c-gray-v5);
+                        color: var(--vt-c-blue);
+                    }
+                }
+            }
+        }
+    }
+}
+
 .page-not-found {
     background: url('http://salehriaz.com/404Page/img/bg_purple.png');
     background-repeat: repeat-x;

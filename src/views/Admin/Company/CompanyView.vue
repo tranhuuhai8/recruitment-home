@@ -4,10 +4,15 @@ import { useI18n } from 'vue3-i18n'
 import { nextTick, onMounted, ref } from 'vue'
 import { useSettingStore } from '@/stores'
 import { useCompanyStore } from '@/stores/admin'
-import {  mapSortQuery, TRUE_VALUE } from '@/libs'
+import { mapSortQuery, TRUE_VALUE } from '@/libs'
 import SearchForm from './components/SearchForm.vue'
 import type { FormSearchCompany, SortProps } from '@/interface'
-import { columns, getQuerySearch, INITIAL_FORM_SEARCH, INITIAL_QUERY_COMPANY } from './shared'
+import {
+    columns,
+    getQuerySearch,
+    INITIAL_FORM_SEARCH,
+    INITIAL_QUERY_COMPANY,
+} from './shared'
 
 const { t } = useI18n()
 const settingStore = useSettingStore()

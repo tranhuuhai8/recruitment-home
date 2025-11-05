@@ -62,9 +62,6 @@ const onApply = async () => {
     }
 }
 
-const detailCompany = (id: number | null) =>
-    router.push({ name: 'company-home-detail', params: { id } })
-
 const handleSaveJob = () => {
     console.log('id :>> ', id)
 }
@@ -90,6 +87,12 @@ const handleCancel = () => {
     formRef.value.resetFields()
     openModal.value = false
 }
+
+const redirectToDetailCompany = (id: number | null) =>
+    router.push({ name: 'company-home-detail', params: { id } })
+
+const redirectToManagementFile = () =>
+    router.push({ name: 'applicant-file-upload' })
 
 onMounted(async () => {
     loading.value = true
@@ -213,7 +216,9 @@ watch(
                             />
                             <div class="contact-item flex-center">
                                 <a-button
-                                    @click="detailCompany(job.company?.id)"
+                                    @click="
+                                        redirectToDetailCompany(job.company?.id)
+                                    "
                                 >
                                     {{ t('detail') }}
                                 </a-button>
@@ -250,6 +255,12 @@ watch(
                         <a-radio-group v-model:value="formState.source_cv">
                             <a-radio value="library">
                                 {{ t('home.job.modal.upload.radio.library') }}
+                                <span
+                                    class="text-link"
+                                    @click="redirectToManagementFile"
+                                >
+                                    (Quản lý CV)
+                                </span>
                             </a-radio>
                             <a-radio value="upload">
                                 {{ t('home.job.modal.upload.radio.upload') }}

@@ -1,3 +1,4 @@
 import { useInfoStore } from './info'
+import { useFileUploadStore } from './file'
 
-export { useInfoStore }
+export { useInfoStore, useFileUploadStore }

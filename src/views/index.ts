@@ -17,6 +17,8 @@ export const HomeViewApplicant = () =>
     import('@/views/Applicant/DashboardView.vue')
 export const InformationApplicant = () =>
     import('@/views/Applicant/Information/UpdateView.vue')
+export const FileUploadApplicant = () =>
+    import('@/views/Applicant/FileUpload/FileUploadView.vue')
 
 // Page Company
 export const HomeViewCompany = () => import('@/views/Company/DashboardView.vue')
