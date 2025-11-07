@@ -284,6 +284,12 @@ const router = createRouter({
                             component: Pages.InformationApplicant,
                             beforeEnter: ifAuthenticated,
                         },
+                        {
+                            path: 'file-upload',
+                            name: 'applicant-file-upload',
+                            component: Pages.FileUploadApplicant,
+                            beforeEnter: ifAuthenticated,
+                        },
                     ],
                 },
                 {

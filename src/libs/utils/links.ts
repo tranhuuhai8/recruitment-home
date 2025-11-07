@@ -163,11 +163,11 @@ export const APP_SIDEBAR_APPLICANT: Record<string, any> = {
         class: '',
         menu_childs: [],
     },
-    menu2: {
+    file: {
         order: 3,
-        label: t('sidebar.menu2'),
-        route: '/menu2',
-        name: 'menu2',
+        label: t('sidebar.files'),
+        route: 'applicant-file-upload',
+        name: 'file-upload',
         class: '',
         menu_childs: [],
     },

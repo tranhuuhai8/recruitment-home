@@ -13,4 +13,7 @@ export default {
         address: 'Address',
         description: 'Description',
     },
+    file: {
+        title_page: 'List of uploaded files',
+    },
 }

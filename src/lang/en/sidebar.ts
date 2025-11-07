@@ -7,6 +7,7 @@ export default {
     menu3: 'Menu3',
     menu4: 'Menu4',
     menu5: 'Menu5',
+    files: 'CV upload',
     companies: 'Companies',
     applicants: 'Applicants',
     jobs: 'Jobs',

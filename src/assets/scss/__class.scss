@@ -57,3 +57,17 @@
 .w-full {
     width: 100%;
 }
+
+.text-link {
+    color: var(--vt-c-blue);
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.note {
+    font-size: 12px;
+    color: var(--vt-c-gray-v4);
+}

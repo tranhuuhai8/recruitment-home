@@ -13,4 +13,7 @@ export default {
         address: 'Địa chỉ',
         description: 'Mô tả',
     },
+    file: {
+        title_page: 'Danh sách file đã tải lên',
+    },
 }

@@ -28,6 +28,8 @@ export default {
         file: '{0} must be smaller than {1}KB',
         string: '{0} must be at most {1} characters',
         array: '{0} must contain {1} items or fewer',
+        total_file:
+            'The total number of uploaded files must not exceed {0} files',
     },
     min: {
         numeric: '{0} must be at least {1}',

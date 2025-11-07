@@ -37,6 +37,7 @@ export const MAX_STRING_50 = 50
 export const API_URL = import.meta.env.VITE_PUBLIC_APP_API
 export const MAX_SIZE_IMAGE = +import.meta.env.VITE_MAX_SIZE_IMAGE
 export const MAX_SIZE_PDF = +import.meta.env.VITE_MAX_SIZE_PDF
+export const MAX_FILE_UPLOAD = 12
 
 export const SORT_TYPE_ASC = 'ascending'
 export const SORT_TYPE_DESC = 'descending'

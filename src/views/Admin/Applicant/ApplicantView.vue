@@ -7,7 +7,12 @@ import { useSettingStore } from '@/stores'
 import { useApplicantStore } from '@/stores/admin'
 import SearchForm from './components/SearchForm.vue'
 import type { FormSearchApplicant, SortProps } from '@/interface'
-import { columns, getQuerySearch, INITIAL_FORM_SEARCH, INITIAL_QUERY_APPLICANT } from './shared'
+import {
+    columns,
+    getQuerySearch,
+    INITIAL_FORM_SEARCH,
+    INITIAL_QUERY_APPLICANT,
+} from './shared'
 
 const { t } = useI18n()
 const settingStore = useSettingStore()

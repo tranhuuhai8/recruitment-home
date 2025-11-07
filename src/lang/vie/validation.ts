@@ -28,6 +28,7 @@ export default {
         file: '{0} chỉ hợp lệ với các tệp nhỏ hơn {1}KB',
         string: '{0} tối đa {1} ký tự',
         array: '{0} chỉ hợp lệ cho {1} hoặc ít hơn',
+        total_file: 'Tổng số tệp tải lên không được vượt quá {0} tệp',
     },
     min: {
         numeric: '{0} chỉ hợp lệ cho {1} hoặc cao hơn',

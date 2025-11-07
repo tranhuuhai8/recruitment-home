@@ -7,6 +7,7 @@ export default {
     menu3: 'Menu3',
     menu4: 'Menu4',
     menu5: 'Menu5',
+    files: 'Quản lý CV',
     companies: 'Công ty',
     applicants: 'Ứng viên',
     jobs: 'Công việc',

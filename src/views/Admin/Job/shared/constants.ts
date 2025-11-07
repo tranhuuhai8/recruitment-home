@@ -1,6 +1,5 @@
 import { FALSE_VALUE, TRUE_VALUE } from '@/libs'
 
-
 export const INITIAL_FORM_SEARCH = {
     search: '',
     status: FALSE_VALUE,
