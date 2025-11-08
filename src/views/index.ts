@@ -37,7 +37,8 @@ export const JobApplicationsViewCompany = () =>
     import('@/views/Company/Apply/ApplyView.vue')
 
 // Page Admin
-export const HomeViewAdmin = () => import('@/views/Admin/DashboardView.vue')
+export const HomeViewAdmin = () =>
+    import('@/views/Admin/Dashboard/DashboardView.vue')
 
 export const MasterView = () => import('@/views/Admin/Master/MasterView.vue')
 

@@ -90,6 +90,7 @@ export const columns: ColumnTable[] = [
             <DetailColumn
                 routeDetail={'company-jobs-detail'}
                 routeEdit={'company-jobs-edit'}
+                isDelete={true}
                 id={record.id}
             />
         ),

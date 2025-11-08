@@ -57,12 +57,6 @@ export const rules: Record<string, Rule[]> = {
             required: true,
             message: t('validation.required', [t('job.labels.description')]),
         },
-        {
-            pattern: REGEX_NO_SPECIAL_CHARS_DES,
-            message: t('validation.no_special_chars', [
-                t('job.labels.description'),
-            ]),
-        },
     ],
 }
 

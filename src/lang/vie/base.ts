@@ -102,4 +102,16 @@ export default {
         id: 'ID',
     },
     people: 'người',
+    dashboard: {
+        admin: {
+            title: {
+                applicant: 'Tổng số ứng viên',
+                company: 'Tổng số công ty',
+                job: 'Tổng số công việc',
+                rate_application: 'Tỷ lệ ứng viên được nhận',
+                line_chart: 'Tình hình ứng tuyển tháng {0}',
+                bar_chart: 'Top ngành nghề nổi bật',
+            },
+        },
+    },
 }

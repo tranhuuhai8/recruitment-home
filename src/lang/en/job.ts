@@ -15,6 +15,7 @@ export default {
         city: 'City',
         start_date: 'Start date',
         end_date: 'End date',
+        created_at: 'Created at',
         salary_min: 'Minimum Salary',
         salary_max: 'Maximum Salary',
         status: 'Status',

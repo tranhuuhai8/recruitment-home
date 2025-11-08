@@ -75,6 +75,14 @@ export const columns: ColumnTable[] = [
         sortDirections: ['descend', 'ascend', 'descend'],
     },
     {
+        title: t('job.labels.created_at'),
+        dataIndex: 'created_at',
+        key: 'created_at',
+        align: 'center',
+        sorter: true,
+        sortDirections: ['descend', 'ascend', 'descend'],
+    },
+    {
         title: t('job.labels.type'),
         dataIndex: 'type',
         key: 'type',
@@ -101,6 +109,7 @@ export const columns: ColumnTable[] = [
                 routeEdit={'admin-jobs-edit'}
                 routeDetail={'admin-jobs-edit'}
                 id={record.id}
+                isDelete={true}
             />
         ),
     },
