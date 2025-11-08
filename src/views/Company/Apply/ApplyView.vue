@@ -81,6 +81,11 @@ const handleResetQuery = () => {
     tableKey.value++
 }
 
+const handleRefreshData = () => {
+    getData()
+    tableKey.value++
+}
+
 onMounted(async () => {
     await nextTick()
     settingStore.setTitle(t('sidebar.applications'))
@@ -143,7 +148,7 @@ watch(
                 :open="openUpdate"
                 @cancel="((openUpdate = false), (updateId = null))"
                 @submit="openUpdate = false"
-                @reset-data="handleResetQuery"
+                @reset-data="handleRefreshData"
             />
         </template>
     </modal-vue>

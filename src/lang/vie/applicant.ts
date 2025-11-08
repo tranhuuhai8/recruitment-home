@@ -16,4 +16,7 @@ export default {
     file: {
         title_page: 'Danh sách file đã tải lên',
     },
+    apply: {
+        title_page: 'Danh sách các công việc đã ứng tuyển',
+    },
 }

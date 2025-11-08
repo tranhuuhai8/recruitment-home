@@ -25,7 +25,6 @@ const onFinish = async (values: LoginDto) => {
         )
 
         if (status_code === STATUS_CODE_SUCCESS) {
-            notify(message, '', 'success')
             return router.push({ name: getRouterDashboard() })
         }
         notify(message, '', 'error')

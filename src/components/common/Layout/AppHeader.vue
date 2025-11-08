@@ -26,7 +26,7 @@ const itemsMobile = reactive<ItemType[]>([])
 const selectedKeys = ref<string[]>([])
 
 const handleRoute = async () => {
-    itemsMobile.push(getItem(t('header.account'), '0'))
+    itemsMobile.push(getItem(t('header.management'), '0'))
     for (const key in APP_HEADER) {
         const item = APP_HEADER[key]
         items.push(getItem(item.label, String(item.order)))

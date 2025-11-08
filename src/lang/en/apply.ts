@@ -3,16 +3,23 @@ export default {
         list: 'Job List',
     },
     placeholder: {
-        search: 'Search by candidate name, job title, email, telephone...',
+        company: {
+            search: 'Search by candidate name, position, email, telephone...',
+        },
+        applicant: {
+            search: 'Search by company name, applied position',
+        },
     },
     labels: {
         id: 'ID',
         full_name: 'Name',
+        company_name: 'Company Name',
         job_title: 'Job Title',
         created_at: 'Applied At',
         file: 'Attachment',
         email: 'Email',
         telephone: 'Telephone',
+        cover_letter: 'Content',
         status: 'Status',
     },
     confirm_delete_id:

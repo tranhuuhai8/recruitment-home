@@ -12,6 +12,7 @@ export default {
     applicants: 'Applicants',
     jobs: 'Jobs',
     applications: 'Job Applications',
+    applied: 'Applied Jobs',
     reviews: 'Reviews',
     master_data: 'Master data',
     change_password: 'Change password',

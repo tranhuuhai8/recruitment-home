@@ -65,6 +65,7 @@ const roleIconMap: Record<string, Record<string, any>> = {
     3: {
         info: Icons.IconUser,
         fileUpload: Icons.IconUploadFile,
+        applied: Icons.IconJob,
     },
 }
 

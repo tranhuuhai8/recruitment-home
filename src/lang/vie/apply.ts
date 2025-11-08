@@ -3,16 +3,23 @@ export default {
         list: 'Danh sách hồ sơ ứng tuyển',
     },
     placeholder: {
-        search: 'Tìm kiếm tên ứng viên, vị trí, email, số điện thoại...',
+        company: {
+            search: 'Tìm kiếm tên ứng viên, vị trí, email, số điện thoại...',
+        },
+        applicant: {
+            search: 'Tìm kiếm tên công ty, vị trí ứng tuyển',
+        },
     },
     labels: {
         id: 'ID',
         full_name: 'Tên ứng viên',
+        company_name: 'Tên công ty',
         job_title: 'Vị trí ứng tuyển',
         created_at: 'Thời gian gửi',
         file: 'File đính kèm',
         email: 'Email',
         telephone: 'Số điện thoại',
+        cover_letter: 'Nội dung',
         status: 'Trạng thái',
     },
     confirm_delete_id: 'Bạn có chắc chắn muốn xóa hồ sơ ID {0}?',

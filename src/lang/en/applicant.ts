@@ -16,4 +16,7 @@ export default {
     file: {
         title_page: 'List of uploaded files',
     },
+    apply: {
+        title_page: 'List of job applications',
+    },
 }
