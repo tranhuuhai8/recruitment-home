@@ -69,13 +69,11 @@ const handleClick = async (e: any, isMobile: Boolean = false) => {
 
     if ((e.key == '2' && !isMobile) || +e.key === KEY_LOGOUT) {
         const messageLogout = await authStore.logout()
-        if (messageLogout) {
-            notify(messageLogout, '', 'success')
-            redirectToLogin()
-            return
+        if (!messageLogout) {
+            return notify(t('notify.error'), '', 'error')
         }
 
-        notify(t('notify.error'), '', 'error')
+        redirectToLogin()
     }
 
     handleMenuClick(e)

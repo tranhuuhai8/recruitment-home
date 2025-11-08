@@ -12,7 +12,6 @@ import { INITIAL_VALUE_FILE, mapDataUpsert } from './shared'
 const { t } = useI18n()
 const fileUploadStore = useFileUploadStore()
 const loading = ref(false)
-const loadingBtn = ref(false)
 const fileList = ref<any[]>([])
 
 const getData = async () => {
@@ -48,7 +47,7 @@ const handleAdd = (data: Record<string, any>) => {
 
 const onSubmit = async () => {
     try {
-        loadingBtn.value = true
+        loading.value = true
         const { status_code, message } = await fileUploadStore.upsert(
             mapDataUpsert(fileList.value)
         )
@@ -60,7 +59,7 @@ const onSubmit = async () => {
     } catch (error) {
         console.error(error)
     } finally {
-        loadingBtn.value = false
+        loading.value = false
     }
 }
 
@@ -68,7 +67,7 @@ onMounted(() => getData())
 </script>
 
 <template>
-    <a-spin :spinning="loading">
+    <a-spin :spinning="loading" class="spin-full">
         <a-card class="card-file-uploaded">
             <h1 class="title-page">{{ t('applicant.file.title_page') }}</h1>
 
@@ -131,12 +130,12 @@ onMounted(() => getData())
                 <a-button
                     type="primary"
                     class="mr-10"
-                    :loading="loadingBtn"
+                    :loading="loading"
                     @click="onSubmit"
                 >
                     {{ t('update') }}
                 </a-button>
-                <a-button type="default" :loading="loadingBtn" @click="getData">
+                <a-button type="default" :loading="loading" @click="getData">
                     {{ t('reset') }}
                 </a-button>
             </div>

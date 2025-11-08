@@ -47,22 +47,19 @@ const onUpdate = async (values: FormDataApplicant) => {
 }
 
 const getData = async () => {
-    try {
-        loading.value = true
-        const data = await authStore.getMe(GUARD_APPLICANT)
-        Object.assign(formState, mapDataForm(data, data.applicant))
-    } catch (error) {
-        console.error(error)
-    } finally {
-        loading.value = false
-    }
+    const data = await authStore.getMe(GUARD_APPLICANT)
+    Object.assign(formState, mapDataForm(data, data.applicant))
 }
 
-onMounted(() => getData())
+onMounted(async () => {
+    loading.value = true
+    await getData()
+    loading.value = false
+})
 </script>
 
 <template>
-    <a-spin :spinning="loading">
+    <a-card :loading="loading">
         <div class="box">
             <h1 class="title-page">{{ t('applicant.title_page.info') }}</h1>
             <a-form
@@ -163,7 +160,7 @@ onMounted(() => getData())
                 </a-space>
             </a-form>
         </div>
-    </a-spin>
+    </a-card>
 </template>
 
 <style lang="scss" scoped></style>

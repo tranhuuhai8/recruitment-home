@@ -30,7 +30,6 @@ const onUpdate = async (values: FormDataCompany) => {
     loading.value = true
     try {
         const { status_code, message } = await infoStore.update(values)
-
         if (status_code === STATUS_CODE_SUCCESS) {
             await getData()
             return notify(message, '', 'success')
@@ -44,12 +43,8 @@ const onUpdate = async (values: FormDataCompany) => {
 }
 
 const getData = async () => {
-    try {
-        const data = await authStore.getMe(GUARD_COMPANY)
-        Object.assign(formState, mapDataForm(data, data.company))
-    } catch (error) {
-        console.error(error)
-    }
+    const data = await authStore.getMe(GUARD_COMPANY)
+    Object.assign(formState, mapDataForm(data, data.company))
 }
 
 onMounted(async () => {
@@ -61,7 +56,7 @@ onMounted(async () => {
 </script>
 
 <template>
-    <a-spin :spinning="loading">
+    <a-card :loading="loading">
         <div class="box">
             <h1 class="title-page">{{ t('company.title_page.detail') }}</h1>
             <a-form
@@ -188,5 +183,5 @@ onMounted(async () => {
                 </a-space>
             </a-form>
         </div>
-    </a-spin>
+    </a-card>
 </template>

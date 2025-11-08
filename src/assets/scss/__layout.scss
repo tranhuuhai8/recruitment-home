@@ -343,6 +343,11 @@
     position: relative;
     background-color: var(--vt-c-white);
 
+    .title-page {
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
     &.no-border {
         border: none;
     }
@@ -481,6 +486,11 @@
 }
 
 .ant-card {
+    .ant-card-body {
+        &:has(.box) {
+            padding: 0;
+        }
+    }
     &.card-file-uploaded {
         .file-upload-list {
             margin-top: 30px;

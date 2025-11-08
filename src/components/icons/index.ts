@@ -12,6 +12,8 @@ import IconKey from './IconKey.vue'
 import IconLocation from './IconLocation.vue'
 import IconMoney from './IconMoney.vue'
 import IconCopy from './IconCopy.vue'
+import IconInfo from './IconInfo.vue'
+import IconUploadFile from './IconUploadFile.vue'
 
 export {
     IconHome,
@@ -28,4 +30,6 @@ export {
     IconLocation,
     IconMoney,
     IconCopy,
+    IconInfo,
+    IconUploadFile,
 }

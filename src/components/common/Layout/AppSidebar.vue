@@ -27,7 +27,7 @@ const handleRoute = async () => {
     for (const key in menus) {
         const item = menus[key]
         items.push(
-            getItem(item.label, String(item.order), h(getIcon(item.order)))
+            getItem(item.label, String(item.order), h(getIcon(item.name)))
         )
         if (route.name === item.route)
             selectedKeys.value.push(String(item.order))
@@ -49,45 +49,39 @@ const getItem = (
         type,
     }) as ItemType
 
-const roleIconMap: Record<string, Record<number, any>> = {
+const roleIconMap: Record<string, Record<string, any>> = {
     1: {
-        2: Icons.IconCompany,
-        3: Icons.IconUser,
-        4: Icons.IconJob,
-        5: Icons.IconFeedback,
-        6: Icons.IconData,
-        7: Icons.IconKey,
+        companies: Icons.IconCompany,
+        applicants: Icons.IconUser,
+        jobs: Icons.IconJob,
+        reviews: Icons.IconFeedback,
+        masterData: Icons.IconData,
     },
     2: {
-        2: Icons.IconUser,
-        3: Icons.IconJob,
-        4: Icons.IconData,
-        5: Icons.IconData,
-        6: Icons.IconData,
-        7: Icons.IconData,
+        info: Icons.IconUser,
+        jobs: Icons.IconJob,
+        applications: Icons.IconInfo,
     },
     3: {
-        2: Icons.IconData,
-        3: Icons.IconData,
-        4: Icons.IconData,
-        5: Icons.IconData,
-        6: Icons.IconData,
-        7: Icons.IconData,
+        info: Icons.IconUser,
+        fileUpload: Icons.IconUploadFile,
     },
 }
 
-const getIcon = (order: number) => {
+const getIcon = (name: string) => {
     const role = getUserInformation()?.role ?? ROLE_APPLICANT
 
-    switch (order) {
-        case 1:
+    switch (name) {
+        case 'dashboard':
             return Icons.IconDashboard
-        case 8:
+        case 'home':
             return Icons.IconHome
-        case 9:
+        case 'changePassword':
+            return Icons.IconKey
+        case 'logout':
             return Icons.IconLogout
         default:
-            return roleIconMap[role]?.[order] ?? Icons.IconCompany
+            return roleIconMap[role]?.[name] ?? Icons.IconCompany
     }
 }
 
