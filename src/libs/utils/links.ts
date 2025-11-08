@@ -156,6 +156,14 @@ export const APP_SIDEBAR_APPLICANT: Record<string, any> = {
         class: '',
         menu_childs: [],
     },
+    applied: {
+        order: 4,
+        label: t('sidebar.applied'),
+        route: 'applicant-applied',
+        name: 'applied',
+        class: '',
+        menu_childs: [],
+    },
 }
 
 export const APP_SIDEBAR_BOTTOM: Record<string, any> = {

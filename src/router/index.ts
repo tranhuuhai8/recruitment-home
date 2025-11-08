@@ -290,6 +290,12 @@ const router = createRouter({
                             component: Pages.FileUploadApplicant,
                             beforeEnter: ifAuthenticated,
                         },
+                        {
+                            path: 'applied',
+                            name: 'applicant-applied',
+                            component: Pages.JobAppliedApplicant,
+                            beforeEnter: ifAuthenticated,
+                        },
                     ],
                 },
                 {

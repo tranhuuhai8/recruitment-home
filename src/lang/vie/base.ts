@@ -69,8 +69,8 @@ export default {
         closed: 'Đóng',
         pending: 'Chờ xem xét',
         reviewed: 'Đã xem',
-        accepted: 'Đã chấp nhận',
-        rejected: 'Đã từ chối',
+        accepted: 'Đạt',
+        rejected: 'Không đạt',
     },
     type: {
         label: 'Loại',
