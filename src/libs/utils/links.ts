@@ -179,6 +179,7 @@ export const APP_SIDEBAR_BOTTOM: Record<string, any> = {
         order: 2,
         label: t('sidebar.back_to_home'),
         route: 'home',
+        name: 'home',
         class: '',
         menu_childs: [],
     },

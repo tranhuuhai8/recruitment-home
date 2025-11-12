@@ -83,7 +83,7 @@
     }
 
     @include media(mobile) {
-        padding: 10px 20px;
+        padding: 10px 16px 10px 20px;
 
         .header-logo {
             width: 100px;
@@ -489,6 +489,10 @@
     .ant-card-body {
         &:has(.box) {
             padding: 0;
+        }
+
+        &:has(.page-detail) {
+            padding: 10px;
         }
     }
     &.card-file-uploaded {

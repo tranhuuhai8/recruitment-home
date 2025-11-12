@@ -233,6 +233,17 @@
                 margin-top: 10px;
             }
         }
+
+        @include media(mobile) {
+            .ant-modal {
+                min-width: 98%;
+                max-width: 98%;
+
+                .ant-modal-content {
+                    padding: 20px;
+                }
+            }
+        }
     }
 
     .ant-modal-footer {

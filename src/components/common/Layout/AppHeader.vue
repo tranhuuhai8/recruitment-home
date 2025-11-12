@@ -4,13 +4,7 @@ import type { MenuProps, ItemType } from 'ant-design-vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores'
 import Avatar from '@/assets/imgs/avatar.png'
-import {
-    APP_HEADER,
-    getUserInformation,
-    getRolePathMap,
-    notify,
-    getAvatarUser,
-} from '@/libs'
+import { APP_HEADER, getRolePathMap, notify, getAvatarUser } from '@/libs'
 import { reactive, ref, VueElement, onMounted } from 'vue'
 import Logo from '@/assets/imgs/logo.png'
 import { KEY_LOGOUT } from '@/libs'
@@ -19,14 +13,14 @@ const { t } = useI18n()
 const router = useRouter()
 const route = useRoute()
 const authStore = useAuthStore()
-const isLogin = ref()
+const isLogin = ref(authStore.isAuthenticated)
 const isShowNavMobile = ref(false)
 const items = reactive<ItemType[]>([])
 const itemsMobile = reactive<ItemType[]>([])
 const selectedKeys = ref<string[]>([])
 
 const handleRoute = async () => {
-    itemsMobile.push(getItem(t('header.management'), '0'))
+    isLogin.value && itemsMobile.push(getItem(t('header.management'), '0'))
     for (const key in APP_HEADER) {
         const item = APP_HEADER[key]
         items.push(getItem(item.label, String(item.order)))
@@ -36,6 +30,8 @@ const handleRoute = async () => {
     }
     isLogin.value &&
         itemsMobile.push(getItem(t('header.logout'), String(KEY_LOGOUT)))
+
+    !isLogin.value && itemsMobile.push(getItem(t('auth.login'), '0'))
 }
 
 const getItem = (
@@ -73,7 +69,7 @@ const handleClick = async (e: any, isMobile: Boolean = false) => {
             return notify(t('notify.error'), '', 'error')
         }
 
-        redirectToLogin()
+        return redirectToLogin()
     }
 
     handleMenuClick(e)
@@ -85,7 +81,6 @@ const redirectToHome = () => router.push({ name: 'home' })
 onMounted(async () => {
     await router.isReady()
     await handleRoute()
-    isLogin.value = !!getUserInformation()
 })
 </script>
 

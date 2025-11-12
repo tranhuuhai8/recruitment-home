@@ -75,7 +75,7 @@ onMounted(async () => {
             @filter-category="filterJobByCategory"
             @change-page="handleChangePageJob"
         />
-        <div style="height: 500px; text-align: center; margin-top: 50px">
+        <div style="height: 200px; text-align: center; margin-top: 50px">
             ...
         </div>
     </div>

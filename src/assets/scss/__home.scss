@@ -19,7 +19,12 @@
 
         .subtitle {
             font-size: var(--fz-subtitle-sp);
+            padding: 0 10px;
         }
+    }
+
+    .ant-card-body {
+        padding: 12px;
     }
 }
 
@@ -168,6 +173,7 @@
         height: auto;
         margin: 0 30px;
     }
+
     @include media(mobile) {
         .marquee-item {
             margin: 0 10px;
@@ -202,10 +208,9 @@
             .job-item-header {
                 @extend .flex-start;
                 gap: 12px;
-                flex: 1;
 
                 .company-logo {
-                    @include box_square(50px);
+                    width: 50px;
 
                     img {
                         object-fit: cover;
@@ -301,6 +306,7 @@
                     max-width: 300px;
                 }
             }
+
             .space-group-btn {
                 width: auto;
             }
@@ -308,6 +314,7 @@
 
         .job-list {
             margin-top: 20px;
+
             .ant-row {
                 flex-direction: column;
                 gap: 10px 0;
@@ -323,6 +330,24 @@
     .ant-pagination {
         text-align: center;
         margin-top: 15px;
+    }
+
+    @include media(mobile) {
+        .job-list {
+            .ant-list-item {
+                .job-item-header {
+                    .job-title {
+                        font-size: 16px;
+                    }
+                }
+
+                .job-item-body {
+                    .meta-item {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -511,6 +536,55 @@
             }
         }
     }
+
+    @include media(mobile) {
+        max-width: 100%;
+        margin: 80px auto 30px !important;
+
+        .box-header {
+            gap: 15px;
+            flex-direction: column;
+            padding: 15px;
+
+            .info {
+                .title {
+                    font-size: 21px;
+                }
+
+                .info-meta {
+                    font-size: var(--fz-subtitle-sp);
+                }
+            }
+        }
+
+        .box-body {
+            flex-direction: column;
+
+            .left,
+            .right {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .form-search {
+                flex-wrap: wrap;
+
+                .ant-form-item {
+                    width: 100%;
+
+                    .ant-select-selector {
+                        max-width: 100%;
+                    }
+                }
+            }
+
+            .box-body-item {
+                .content {
+                    padding: 15px;
+                }
+            }
+        }
+    }
 }
 
 .company-detail {
@@ -574,6 +648,32 @@
             .info-item {
                 @extend .flex-center-start;
             }
+        }
+    }
+
+    @include media(mobile) {
+        .box-header {
+            .box-header-content {
+                justify-content: space-between;
+                gap: 12px;
+
+                .info-meta {
+                    width: 48%;
+                    padding: 0 10px;
+
+                    &:nth-child(2) {
+                        border-right: none;
+                    }
+                }
+            }
+
+            .box-header-btn {
+                margin-top: 15px;
+            }
+        }
+
+        .box-body {
+            gap: 15px;
         }
     }
 }
