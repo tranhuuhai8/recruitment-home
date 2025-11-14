@@ -322,6 +322,7 @@
 
             .logo {
                 height: 0;
+
                 img {
                     width: 0;
                 }
@@ -483,6 +484,88 @@
             }
         }
     }
+
+    &.box-dashboard {
+        .box-total {
+            @extend .flex-center-between;
+            gap: 20px;
+            flex-wrap: wrap;
+
+            .total-item {
+                flex: 1;
+                min-width: 200px;
+                padding: 20px;
+                @extend .box-item;
+                background-color: var(--bg-box-item-admin);
+
+                .total-label {
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: var(--vt-c-gray);
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    margin-bottom: 8px;
+                }
+
+                .total-value {
+                    @extend .flex-end-between;
+                    font-size: 40px;
+                    line-height: 1.2;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .box-double-chart {
+            @extend .flex-center-between;
+            gap: 10px;
+        }
+
+        .box-chart-wrapper {
+            width: 58%;
+            @extend .box-item;
+            margin-top: 20px;
+            background-color: var(--bg-box-item-admin);
+
+            &.bar-chart {
+                width: 42%;
+            }
+
+            .chart-header {
+                text-align: center;
+                padding: 10px 10px 0;
+
+                .chart-title {
+                    h3 {
+                        font-size: 20px;
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            .box-chart {
+                padding: 10px 20px 20px;
+                border-radius: 0 0 14px 14px;
+                min-height: 500px;
+                height: auto;
+            }
+        }
+
+        @include media(mobile) {
+            .box-chart-wrapper {
+                .chart-header {
+                    .chart-title h3 {
+                        font-size: 18px;
+                    }
+                }
+
+                .box-chart {
+                    height: 380px;
+                    padding: 20px;
+                }
+            }
+        }
+    }
 }
 
 .ant-card {
@@ -495,6 +578,7 @@
             padding: 10px;
         }
     }
+
     &.card-file-uploaded {
         .file-upload-list {
             margin-top: 30px;

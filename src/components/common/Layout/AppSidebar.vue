@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { MenuProps, ItemType } from 'ant-design-vue'
-import { useRouter, useRoute } from 'vue-router'
 import { useI18n } from 'vue3-i18n'
-import { reactive, ref, h, VueElement, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import { reactive, ref, h, VueElement, onMounted, watch } from 'vue'
+import type { MenuProps, ItemType } from 'ant-design-vue'
 import * as Icons from '@/components/icons'
 import { useAuthStore } from '@/stores'
 import {
@@ -31,6 +31,19 @@ const handleRoute = async () => {
         )
         if (route.name === item.route)
             selectedKeys.value.push(String(item.order))
+    }
+}
+
+const updateSelectedKeys = (routeName: string) => {
+    selectedKeys.value = []
+    const menus = SIDEBAR_BY_ROLE[getUserInformation()?.role ?? ROLE_APPLICANT]
+
+    for (const key in menus) {
+        const item = menus[key]
+        if (item.route === routeName) {
+            selectedKeys.value = [String(item.order)]
+            break
+        }
     }
 }
 
@@ -104,8 +117,9 @@ const handleMenuClick: MenuProps['onClick'] = (e) => {
         return handleLogout()
     }
 
-    side && router.push({ name: side.route })
-    selectedKeys.value.splice(0, 1, String(side?.order))
+    if (side) {
+        router.push({ name: side.route })
+    }
 }
 
 const toggleCollapsed = () => (collapsed.value = !collapsed.value)
@@ -114,6 +128,14 @@ onMounted(async () => {
     await router.isReady()
     await handleRoute()
 })
+
+watch(
+    () => route.name,
+    (newRouteName) => {
+        updateSelectedKeys(String(newRouteName))
+    },
+    { immediate: true }
+)
 </script>
 
 <template>
@@ -122,11 +144,11 @@ onMounted(async () => {
             <img :src="Logo" alt="Logo sidebar" />
         </div>
         <a-menu
+            mode="inline"
             class="sidebar-menu"
             :class="`${collapsed ? 'sp' : 'pc'}`"
             :items="items"
-            mode="inline"
-            :selectedKeys="selectedKeys"
+            v-model:selectedKeys="selectedKeys"
             :inline-collapsed="collapsed"
             @click="handleMenuClick"
         />

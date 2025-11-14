@@ -9,6 +9,7 @@ import { inject } from 'vue'
 
 const props = defineProps<{
     isUpdate?: boolean
+    isDelete?: boolean
     routeEdit?: string | null
     routeDetail?: string | null
     id: number
@@ -61,7 +62,11 @@ const onDelete = (event: Event) => {
         >
             <EditOutlined />
         </div>
-        <div class="icon-operation icon-delete" @click="onDelete">
+        <div
+            v-if="isDelete"
+            class="icon-operation icon-delete"
+            @click="onDelete"
+        >
             <DeleteOutlined />
         </div>
     </a-row>

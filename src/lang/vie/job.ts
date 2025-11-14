@@ -15,6 +15,7 @@ export default {
         city: 'Khu vực',
         start_date: 'Ngày bắt đầu',
         end_date: 'Ngày kết thúc',
+        created_at: 'Ngày tạo',
         salary_min: 'Lương tối thiểu',
         salary_max: 'Lương tối đa',
         status: 'Trạng thái',

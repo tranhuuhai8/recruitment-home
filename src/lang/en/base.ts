@@ -102,4 +102,16 @@ export default {
         id: 'ID',
     },
     people: 'people',
+    dashboard: {
+        admin: {
+            title: {
+                applicant: 'Total applicant',
+                company: 'Total company',
+                job: 'Total job',
+                rate_application: 'Application acceptance rate',
+                line_chart: 'Application Status of the Month {0}',
+                bar_chart: 'Top Outstanding Industries',
+            },
+        },
+    },
 }

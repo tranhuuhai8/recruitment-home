@@ -58,17 +58,9 @@ export const formatDate = (
     return dayjs(`${newDate} ${newTime}`)
 }
 
-export const formatDateJP = (date: Date | string) => {
-    const day = dayjs(date).format('D')
-    const month = dayjs(date).format('M')
-    const dayOfWeek = formatDay(date, 'd')
-
-    return month + '月' + day + '日' + ` (${DAY_LIST[parseInt(dayOfWeek) + 1]})`
-}
-
 export const formatRangeDateByMonth = (
     month: string,
-    format = 'YYYY年MM月DD日'
+    format = 'YYYY/MM/DD'
 ) => {
     const start = dayjs(month).startOf('month')
     const end = dayjs(month).endOf('month')
