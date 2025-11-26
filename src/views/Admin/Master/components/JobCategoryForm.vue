@@ -63,7 +63,7 @@ const onDelete = async () => {
             +props.id
         )
 
-        notifyDelete(status_code, message, t('notify.error'))
+        notifyDelete(status_code, message, message ?? t('notify.error'))
         openDelete.value = false
         resetForm(true)
     } catch (error: any) {

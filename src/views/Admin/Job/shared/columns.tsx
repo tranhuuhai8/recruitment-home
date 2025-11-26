@@ -28,15 +28,26 @@ export const columns: ColumnTable[] = [
     },
     {
         title: t('job.labels.category'),
-        dataIndex: 'category_name',
-        key: 'category_name',
+        dataIndex: 'job_category_name',
+        key: 'job_category_name',
         align: 'center',
+        customRender: ({ record }) => (
+            <span>
+                {record.job_category_name} <br />{' '}
+                {record.job_category_parent_name}
+            </span>
+        ),
     },
     {
         title: t('job.labels.city'),
         dataIndex: 'city_name',
         key: 'city_name',
         align: 'center',
+        customRender: ({ record }) => (
+            <span>
+                {record.city_name} <br /> {record.city_parent_name}
+            </span>
+        ),
     },
     {
         title: t('job.labels.company'),

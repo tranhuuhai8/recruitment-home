@@ -41,9 +41,8 @@ export const notifyDelete = (
     status: number,
     msgSuccess: string,
     msgError: string
-) => {
+) =>
     notifyStatus(status, status === STATUS_CODE_SUCCESS ? msgSuccess : msgError)
-}
 
 export const trim = (field: string, formState: any, trimAll = false) => {
     if (formState[field]) {
