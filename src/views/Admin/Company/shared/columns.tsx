@@ -3,6 +3,7 @@ import type { ColumnTable } from '@/interface'
 import StatusColumn from '@/components/common/Column/StatusColumn.vue'
 import EditColumn from '@/components/common/TableData/EditColumn.vue'
 import router from '@/router'
+import { FALSE_VALUE } from '@/libs'
 
 const { t } = i18n
 
@@ -38,7 +39,7 @@ export const columns: ColumnTable[] = [
                 href={
                     router.resolve({
                         name: 'company-home-detail',
-                        params: { id: record.company_id },
+                        params: { id: record.company_id ?? FALSE_VALUE },
                     }).href
                 }
                 target="_blank"

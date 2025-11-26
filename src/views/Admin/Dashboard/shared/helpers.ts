@@ -1,4 +1,4 @@
-import { FALSE_VALUE } from "@/libs"
+import { FALSE_VALUE } from '@/libs'
 
 export const makeDataTopCategory = (items: Record<string, any>[]) => ({
     labels: items.map((item: Record<string, any>) => item.name),
