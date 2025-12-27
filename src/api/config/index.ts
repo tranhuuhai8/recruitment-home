@@ -6,6 +6,7 @@ import {
     getRolePathMap,
     STATUS_CODE_FORBIDDEN,
     STATUS_CODE_SUCCESS,
+    STATUS_CODE_UNAUTHORIZED,
     setAuth,
 } from '@/libs'
 import * as API from '@/api/auth'
@@ -20,59 +21,62 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use(
-    function (config: any) {
-        try {
-            const token = getToken()
-            if (token) {
-                config.headers['Authorization'] = `Bearer ${token}`
-            }
-        } catch (error) {
-            throw Error('')
+    (config: any) => {
+        const token = getToken()
+        if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`
         }
         return config
     },
-    function (error) {
-        return Promise.reject(error)
-    }
+    (error) => Promise.reject(error)
 )
 
 instance.interceptors.response.use(
-    function (response) {
+    (response) => {
         if (response?.data?.status_code === STATUS_CODE_FORBIDDEN) {
             notify(t('auth.notify.permission_denied'), '', 'error')
-            return router.push({ name: 'not-found' })
+            router.push({ name: 'not-found' })
+            return Promise.reject(response.data)
         }
-        if (response?.status !== STATUS_CODE_SUCCESS) {
-            return Promise.reject(response?.data)
+
+        if (response?.data?.status_code !== STATUS_CODE_SUCCESS) {
+            return Promise.reject(response.data)
         }
         return response.data
     },
-    async function (error) {
+
+    async (error) => {
         const originalRequest = error.config
+        if (!error.response) {
+            return Promise.reject(error)
+        }
 
         if (
-            error?.response?.data.message === 'Unauthenticated.' &&
+            error.response.status === STATUS_CODE_UNAUTHORIZED &&
+            error.response.data?.message === 'Unauthenticated.' &&
             !originalRequest._retry
         ) {
             originalRequest._retry = true
+            try {
+                const { status_code, data } = await API.refresh(getRolePathMap())
+                if (status_code === STATUS_CODE_SUCCESS) {
+                    setAuth(data.me, data.access_token)
+                    originalRequest.headers['Authorization'] =
+                        `Bearer ${data.access_token}`
 
-            const { status_code, data } = await API.refresh(getRolePathMap())
-            if (status_code === STATUS_CODE_SUCCESS) {
-                setAuth(data.me, data.access_token)
-                originalRequest.headers['Authorization'] =
-                    `Bearer ${data.access_token}`
-
-                return instance(originalRequest)
+                    return instance(originalRequest)
+                }
+            } catch (err) {
+                console.error('❌ REFRESH TOKEN FAILED', err)
             }
 
             localStorage.clear()
             notify(t('auth.notify.token_failed'), '', 'error')
-            return router.push({ name: 'login' })
+            router.push({ name: 'login' })
+            return Promise.reject(error.response.data)
         }
-        if (error?.response?.data) {
-            return Promise.reject(error?.response?.data)
-        }
-        return Promise.reject(error)
+
+        return Promise.reject(error.response.data)
     }
 )
 
