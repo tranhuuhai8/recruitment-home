@@ -5,31 +5,15 @@ import {
     getRolePathMap,
     getUserInformation,
     notify,
+    ROLE_ADMIN,
     ROLE_COMPANY,
-    ROUTE_CHANGE_PASSWORD,
+    ROLE_APPLICANT,
 } from '@/libs'
+import { ROUTER_AUTH } from '@/libs/constants/router'
 import i18n from '@/lang'
+import { storeToRefs } from 'pinia'
 
 const { t } = i18n
-
-const ifAuthenticated = (to: any, from: any, next: any) => {
-    const authStore = useAuthStore()
-    if (!authStore.isAuthenticated) {
-        next({ name: 'login' })
-        return
-    }
-
-    const expectedPath = getRolePathMap()
-    const isAuthorized = to.matched.some((record: Record<string, any>) =>
-        record.path.startsWith(`/${expectedPath}`)
-    )
-
-    if (!isAuthorized && to.name != ROUTE_CHANGE_PASSWORD) {
-        return next({ name: `${expectedPath}-dashboard` })
-    }
-
-    next()
-}
 
 const ifInfoCompleted = (to: any, from: any, next: any) => {
     const me = getUserInformation()
@@ -126,7 +110,7 @@ const router = createRouter({
                             path: 'change-password',
                             name: 'change-password',
                             component: Pages.ChangePasswordView,
-                            beforeEnter: ifAuthenticated,
+                            meta: { requiresAuth: true },
                         },
                         {
                             path: 'forgot-password',
@@ -142,12 +126,12 @@ const router = createRouter({
                 },
                 {
                     path: 'admin',
+                    meta: { requiresAuth: true, roles: [ROLE_ADMIN] },
                     children: [
                         {
                             path: 'dashboard',
                             name: 'admin-dashboard',
                             component: Pages.HomeViewAdmin,
-                            beforeEnter: ifAuthenticated,
                         },
                         {
                             path: 'companies',
@@ -156,13 +140,11 @@ const router = createRouter({
                                     path: '',
                                     name: 'admin-companies',
                                     component: Pages.CompanyView,
-                                    beforeEnter: ifAuthenticated,
                                 },
                                 {
                                     path: ':id/edit',
                                     name: 'admin-companies-edit',
                                     component: Pages.CompanyUpdate,
-                                    beforeEnter: ifAuthenticated,
                                 },
                             ],
                         },
@@ -173,13 +155,11 @@ const router = createRouter({
                                     path: '',
                                     name: 'admin-applicants',
                                     component: Pages.ApplicantView,
-                                    beforeEnter: ifAuthenticated,
                                 },
                                 {
                                     path: ':id/edit',
                                     name: 'admin-applicants-edit',
                                     component: Pages.ApplicantUpdate,
-                                    beforeEnter: ifAuthenticated,
                                 },
                             ],
                         },
@@ -190,7 +170,6 @@ const router = createRouter({
                                     path: '',
                                     name: 'admin-jobs',
                                     component: Pages.JobViewAdmin,
-                                    beforeEnter: ifAuthenticated,
                                 },
                             ],
                         },
@@ -198,30 +177,27 @@ const router = createRouter({
                             path: 'reviews',
                             name: 'admin-reviews',
                             component: Pages.HomeViewAdmin,
-                            beforeEnter: ifAuthenticated,
                         },
                         {
                             path: 'master-data',
                             name: 'admin-master-data',
                             component: Pages.MasterView,
-                            beforeEnter: ifAuthenticated,
                         },
                     ],
                 },
                 {
                     path: 'company',
+                    meta: { requiresAuth: true, roles: [ROLE_COMPANY] },
                     children: [
                         {
                             path: '',
                             name: 'company-dashboard',
                             component: Pages.HomeViewCompany,
-                            beforeEnter: ifAuthenticated,
                         },
                         {
                             path: 'info',
                             name: 'company-info',
                             component: Pages.InformationCompany,
-                            beforeEnter: ifAuthenticated,
                         },
                         {
                             path: 'jobs',
@@ -230,32 +206,25 @@ const router = createRouter({
                                     path: '',
                                     name: 'company-jobs',
                                     component: Pages.JobViewCompany,
-                                    beforeEnter: ifAuthenticated,
                                 },
                                 {
                                     path: 'create',
                                     name: 'company-jobs-create',
                                     component: Pages.JobCreateViewCompany,
-                                    beforeEnter: [
-                                        ifAuthenticated,
-                                        ifInfoCompleted,
-                                    ],
+                                    beforeEnter: ifInfoCompleted,
                                 },
                                 {
                                     path: ':id',
                                     name: 'company-jobs-detail',
                                     component: Pages.JobDetailViewCompany,
-                                    beforeEnter: ifAuthenticated,
                                 },
                                 {
                                     path: ':id/edit',
                                     name: 'company-jobs-edit',
                                     component: Pages.JobUpdateViewCompany,
-                                    beforeEnter: ifAuthenticated,
                                 },
                             ],
                         },
-
                         {
                             path: 'applications',
                             children: [
@@ -263,7 +232,6 @@ const router = createRouter({
                                     path: '',
                                     name: 'company-applications',
                                     component: Pages.JobApplicationsViewCompany,
-                                    beforeEnter: ifAuthenticated,
                                 },
                             ],
                         },
@@ -271,30 +239,27 @@ const router = createRouter({
                 },
                 {
                     path: 'applicant',
+                    meta: { requiresAuth: true, roles: [ROLE_APPLICANT] },
                     children: [
                         {
                             path: '',
                             name: 'applicant-dashboard',
                             component: Pages.HomeViewApplicant,
-                            beforeEnter: ifAuthenticated,
                         },
                         {
                             path: 'info',
                             name: 'applicant-info',
                             component: Pages.InformationApplicant,
-                            beforeEnter: ifAuthenticated,
                         },
                         {
                             path: 'file-upload',
                             name: 'applicant-file-upload',
                             component: Pages.FileUploadApplicant,
-                            beforeEnter: ifAuthenticated,
                         },
                         {
                             path: 'applied',
                             name: 'applicant-applied',
                             component: Pages.JobAppliedApplicant,
-                            beforeEnter: ifAuthenticated,
                         },
                     ],
                 },
@@ -310,10 +275,35 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     const queryStore = useQueryStore()
+    const authStore = useAuthStore()
+    const { token, role } = storeToRefs(authStore)
+
     const fromModule = from.name?.toString().split('-')[0]
     const toModule = to.name?.toString().split('-')[0]
 
     if (fromModule !== toModule) queryStore.clearQuery()
+
+    if (to.meta.requiresAuth && !token.value) {
+        return next('/auth/login')
+    }
+
+    if (ROUTER_AUTH.includes(String(to.name)) && token.value) {
+        if (authStore.isAdmin) return next({ name: 'admin-dashboard' })
+        if (authStore.isCompany) return next({ name: 'company-dashboard' })
+        if (authStore.isApplicant) return next({ name: 'applicant-dashboard' })
+        return next({ name: 'home' })
+    }
+
+    if (to.meta.roles) {
+        const routeRoles = to.meta.roles as number[]
+        if (role.value === null || !routeRoles.includes(role.value)) {
+            if (authStore.isAdmin) return next({ name: 'admin-dashboard' })
+            if (authStore.isCompany) return next({ name: 'company-dashboard' })
+            if (authStore.isApplicant)
+                return next({ name: 'applicant-dashboard' })
+            return next({ name: 'home' })
+        }
+    }
 
     next()
 })

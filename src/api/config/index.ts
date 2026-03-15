@@ -3,7 +3,6 @@ import router from '@/router'
 import {
     notify,
     getToken,
-    getRolePathMap,
     STATUS_CODE_FORBIDDEN,
     STATUS_CODE_SUCCESS,
     STATUS_CODE_UNAUTHORIZED,
@@ -54,15 +53,16 @@ instance.interceptors.response.use(
         if (
             error.response.status === STATUS_CODE_UNAUTHORIZED &&
             error.response.data?.message === 'Unauthenticated.' &&
-            !originalRequest._retry
+            !originalRequest._retry &&
+            originalRequest.url !== 'auth/refresh'
         ) {
             originalRequest._retry = true
             try {
-                const { status_code, data } = await API.refresh(getRolePathMap())
+                const { status_code, data } = await API.refresh()
                 if (status_code === STATUS_CODE_SUCCESS) {
-                    setAuth(data.me, data.access_token)
+                    setAuth(data.me, data.token)
                     originalRequest.headers['Authorization'] =
-                        `Bearer ${data.access_token}`
+                        `Bearer ${data.token}`
 
                     return instance(originalRequest)
                 }

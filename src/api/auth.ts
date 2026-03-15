@@ -6,16 +6,16 @@ import type {
     ResponseList,
 } from '@/interface'
 
-export const login = (payload: Record<string, any>, prefix: string) =>
-    request<ResponseList, ResponseList>({
-        url: `auth/${prefix}/login`,
+export const login = (payload: Record<string, any>) =>
+    request<any, any>({
+        url: `auth/login`,
         method: 'POST',
         data: payload,
     })
 
-export const refresh = (prefix: string) =>
+export const refresh = () =>
     request<ResponseList, ResponseList>({
-        url: `auth/${prefix}/refresh`,
+        url: `auth/refresh`,
         method: 'POST',
     })
 
@@ -26,9 +26,9 @@ export const register = (payload: Record<string, any>, prefix: string) =>
         data: payload,
     })
 
-export const changePassword = (payload: ChangePasswordDto, prefix: string) =>
+export const changePassword = (payload: ChangePasswordDto) =>
     request<ResponseList, ResponseList>({
-        url: `auth/${prefix}/change-password`,
+        url: `auth/change-password`,
         method: 'POST',
         data: payload,
     })
@@ -47,14 +47,14 @@ export const resetPassword = (token: String, payload: ResetPasswordDto) =>
         data: payload,
     })
 
-export const logout = (prefix: string) =>
+export const logout = () =>
     request<any, any>({
-        url: `auth/${prefix}/logout`,
+        url: `auth/logout`,
         method: 'POST',
     })
 
-export const me = (prefix: string) =>
+export const me = () =>
     request<any, any>({
-        url: `auth/${prefix}/me`,
+        url: `auth/me`,
         method: 'GET',
     })

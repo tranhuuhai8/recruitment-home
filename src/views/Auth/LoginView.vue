@@ -2,8 +2,8 @@
 import { reactive, ref } from 'vue'
 import { INITIAL_LOGIN, rulesLogin } from './shared'
 import { useAuthStore } from '@/stores'
-import { useRoute, useRouter } from 'vue-router'
-import { STATUS_CODE_SUCCESS, getRouterDashboard, notify } from '@/libs'
+import { useRouter, useRoute } from 'vue-router'
+import { STATUS_CODE_SUCCESS, notify } from '@/libs'
 import i18n from '@/lang'
 import { ArrowLeftOutlined } from '@ant-design/icons-vue'
 import AuthForm from './components/AuthForm.vue'
@@ -19,13 +19,20 @@ const formState = reactive<LoginDto>({ ...INITIAL_LOGIN })
 const onFinish = async (values: LoginDto) => {
     try {
         loading.value = true
-        const { status_code, message } = await authStore.login(
-            { ...values, token: route.query.token },
-            values.role
-        )
+        let payload = { ...values }
+        if (route.query.token) {
+            payload.token = String(route.query.token)
+        }
+        const { status_code, message } = await authStore.login(payload)
 
         if (status_code === STATUS_CODE_SUCCESS) {
-            return router.push({ name: getRouterDashboard() })
+            if (authStore.isAdmin)
+                return router.push({ name: 'admin-dashboard' })
+            if (authStore.isCompany)
+                return router.push({ name: 'company-dashboard' })
+            if (authStore.isApplicant)
+                return router.push({ name: 'applicant-dashboard' })
+            return router.push({ name: 'home' })
         }
         notify(message, '', 'error')
     } catch (error) {

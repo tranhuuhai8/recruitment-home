@@ -39,7 +39,7 @@ watch(route, async () => {
                 <slot />
             </a-layout-content>
         </a-layout>
-        <a-layout class="ant-layout-body" v-if="isRouteManager">
+        <a-layout class="ant-layout-body" v-else-if="isRouteManager">
             <div class="content-manager">
                 <AppSidebarVue />
                 <a-layout-content>
@@ -47,10 +47,7 @@ watch(route, async () => {
                 </a-layout-content>
             </div>
         </a-layout>
-        <a-layout
-            class="ant-layout-body"
-            v-if="!isRouteAuth && !isRouteManager && !isRouteNotFound"
-        >
+        <a-layout class="ant-layout-body" v-else>
             <AppHeaderHomepage />
             <a-layout-content>
                 <slot />

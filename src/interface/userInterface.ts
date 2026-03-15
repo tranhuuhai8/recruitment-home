@@ -1,7 +1,7 @@
 export interface LoginDto {
     mail_address: string
     password: string
-    role: string
+    token?: string
 }
 
 export interface RegisterDto {

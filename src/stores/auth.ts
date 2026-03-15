@@ -4,8 +4,9 @@ import * as API from '@/api/auth'
 import {
     setAuth,
     ACCESS_TOKEN,
+    ROLE_COMPANY,
     ROLE_APPLICANT,
-    ROLE_PATH_PREFIX,
+    ROLE_ADMIN,
     STATUS_CODE_SUCCESS,
     getUserInformation,
 } from '@/libs'
@@ -19,17 +20,22 @@ import type {
 } from '@/interface'
 
 export const useAuthStore = defineStore('auth', () => {
-    const me = ref<User>()
+    const userInfo = getUserInformation()
+    const me = ref<User | undefined>(userInfo)
     const TOKEN_STR = localStorage.getItem(ACCESS_TOKEN)
     const token = ref(TOKEN_STR)
+    const role = ref<number | null>(userInfo?.role ?? null)
     const isAuthenticated = computed(() => !!token.value)
+    const isAdmin = computed(() => role.value === ROLE_ADMIN)
+    const isCompany = computed(() => role.value === ROLE_COMPANY)
+    const isApplicant = computed(() => role.value === ROLE_APPLICANT)
 
-    const login = async (payload: LoginDto, prefix: string) => {
+    const login = async (payload: LoginDto) => {
         try {
-            const result = await API.login(payload, prefix)
+            const result = await API.login(payload)
             if (result.status_code === STATUS_CODE_SUCCESS) {
                 const { data } = result
-                setUserInformation(data.me, data.access_token)
+                setUserInformation(data.user, data.token)
             }
 
             return result
@@ -46,9 +52,9 @@ export const useAuthStore = defineStore('auth', () => {
         }
     }
 
-    const changePassword = async (data: ChangePasswordDto, prefix: string) => {
+    const changePassword = async (data: ChangePasswordDto) => {
         try {
-            return await API.changePassword(data, prefix)
+            return await API.changePassword(data)
         } catch (error: any) {
             return error
         }
@@ -72,12 +78,12 @@ export const useAuthStore = defineStore('auth', () => {
 
     const logout = async () => {
         try {
-            const { status_code, message } = await API.logout(
-                ROLE_PATH_PREFIX[getUserInformation()?.role ?? ROLE_APPLICANT]
-            )
+            const { status_code, message } = await API.logout()
             if (status_code === STATUS_CODE_SUCCESS) {
                 localStorage.clear()
                 token.value = null
+                role.value = null
+                me.value = undefined
                 return message
             }
             return false
@@ -90,11 +96,12 @@ export const useAuthStore = defineStore('auth', () => {
         setAuth(user, accessToken)
         token.value = accessToken
         me.value = user
+        role.value = user.role
     }
 
-    const getMe = async (prefix: string) => {
+    const getMe = async () => {
         try {
-            const { data } = await API.me(prefix)
+            const { data } = await API.me()
             me.value = data
             setAuth(data, token.value ?? '')
             return data
@@ -107,7 +114,11 @@ export const useAuthStore = defineStore('auth', () => {
 
     return {
         token,
+        role,
         isAuthenticated,
+        isAdmin,
+        isCompany,
+        isApplicant,
         login,
         register,
         changePassword,

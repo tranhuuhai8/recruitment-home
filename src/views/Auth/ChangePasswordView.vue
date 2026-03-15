@@ -4,7 +4,7 @@ import { getRuleChangePassword, INITIAL_CHANGE_PASSWORD } from './shared'
 import { useRouter } from 'vue-router'
 import i18n from '@/lang'
 import { useAuthStore } from '@/stores'
-import { getRolePathMap, notify, STATUS_CODE_SUCCESS, trim } from '@/libs'
+import { notify, STATUS_CODE_SUCCESS, trim } from '@/libs'
 import type { FormInstance } from 'ant-design-vue'
 import type { ChangePasswordDto } from '@/interface'
 
@@ -18,10 +18,7 @@ const formState = reactive<ChangePasswordDto>({ ...INITIAL_CHANGE_PASSWORD })
 const onFinish = async (values: ChangePasswordDto) => {
     try {
         loading.value = true
-        const { status_code, message } = await authStore.changePassword(
-            values,
-            getRolePathMap()
-        )
+        const { status_code, message } = await authStore.changePassword(values)
 
         if (status_code === STATUS_CODE_SUCCESS) {
             notify(t('auth.notify.change_password.success'), '', 'success')

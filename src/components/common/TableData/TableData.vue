@@ -69,6 +69,11 @@ provide('handleDelete', handleDelete)
             :loading="loading"
             :pagination="false"
             :customRow="customRow"
+            :locale="{
+                triggerDesc: 'Nhấp để sắp xếp giảm dần',
+                triggerAsc: 'Nhấp để sắp xếp tăng dần',
+                cancelSort: 'Nhấp để hủy sắp xếp',
+            }"
             :scroll="{ x: 'max-content' }"
             @change="handleChangeTable"
         >
