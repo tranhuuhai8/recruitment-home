@@ -1,25 +1,25 @@
-name: Deploy action
+# name: Deploy action
 
-on:
-    push:
-        branches: ['develop']
+# on:
+#     push:
+#         branches: ['develop']
 
-jobs:
-    deploy:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v3
+# jobs:
+#     deploy:
+#         runs-on: ubuntu-latest
+#         steps:
+#             - name: Checkout code
+#               uses: actions/checkout@v3
 
-            - name: Connect via SSH and execute script
-              uses: appleboy/ssh-action@master
-              with:
-                  host: ${{ secrets.SSH_HOST }}
-                  username: ${{ secrets.SSH_USER }}
-                  key: ${{ secrets.SSH_KEY }}
-                  allenvs: true
-                  script: |
-                      cd /var/www/recruitment-home
-                      git pull origin develop
-                      npm install
-                      NODE_OPTIONS="--max-old-space-size=2048" npm run build-only
+#             - name: Connect via SSH and execute script
+#               uses: appleboy/ssh-action@master
+#               with:
+#                   host: ${{ secrets.SSH_HOST }}
+#                   username: ${{ secrets.SSH_USER }}
+#                   key: ${{ secrets.SSH_KEY }}
+#                   allenvs: true
+#                   script: |
+#                       cd /var/www/recruitment-home
+#                       git pull origin develop
+#                       npm install
+#                       NODE_OPTIONS="--max-old-space-size=2048" npm run build-only
