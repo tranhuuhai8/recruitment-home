@@ -17,7 +17,6 @@ const { t } = i18n
 export const INITIAL_LOGIN: LoginDto = {
     mail_address: '',
     password: '',
-    role: PREFIX_ROLE_APPLICANT,
 }
 
 export const INITIAL_REGISTER: RegisterDto = {
@@ -61,4 +60,4 @@ export const ROLE_OPTIONS = [
 export const getRoleOptions = (isLogin = true) =>
     isLogin
         ? ROLE_OPTIONS
-        : ROLE_OPTIONS.filter((role) => role.value !== 'admin')
+        : ROLE_OPTIONS.filter((role) => role.value !== PREFIX_ROLE_ADMIN)

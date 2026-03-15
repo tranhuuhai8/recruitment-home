@@ -90,13 +90,6 @@ export const rulesLogin = {
             trigger: 'blur',
         },
     ],
-    role: [
-        {
-            required: true,
-            message: t('validation.required', [t('auth.labels.role')]),
-            trigger: 'blur',
-        },
-    ],
 }
 
 export const getRuleRegister = (ruleForm: Record<string, any>) => ({

@@ -53,7 +53,12 @@ onUnmounted(() => formRef.value?.resetFields())
                 @blur="trim('password_confirmation', formState, true)"
             />
         </a-form-item>
-        <a-form-item name="role" class="role" :label="t('auth.labels.role')">
+        <a-form-item
+            v-if="!isLogin"
+            name="role"
+            class="role"
+            :label="t('auth.labels.role')"
+        >
             <a-select
                 ref="select"
                 v-model:value="formState.role"
