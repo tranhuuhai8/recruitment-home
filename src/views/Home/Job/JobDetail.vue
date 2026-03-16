@@ -2,7 +2,7 @@
 import { useI18n } from 'vue3-i18n'
 import { useHead } from '@vueuse/head'
 import { useRoute, useRouter } from 'vue-router'
-import { onMounted, reactive, ref, watch } from 'vue'
+import { onMounted, reactive, ref, computed } from 'vue'
 import {
     FieldTimeOutlined,
     FilePdfOutlined,
@@ -104,22 +104,17 @@ onMounted(async () => {
     loading.value = false
 })
 
-watch(
-    () => job.title,
-    (newName) => {
-        if (!newName) return
-        useHead({
-            title: job.title,
-            meta: [
-                { property: 'og:title', content: job.title },
-                { property: 'og:description', content: job.description },
-                { property: 'og:image', content: job.banner },
-                { property: 'og:url', content: currentUrl },
-                { property: 'og:type', content: 'website' },
-            ],
-        })
-    },
-    { immediate: false }
+useHead(
+    computed(() => ({
+        title: job.title,
+        meta: [
+            { property: 'og:title', content: job.title },
+            { property: 'og:description', content: job.description },
+            { property: 'og:image', content: job.banner },
+            { property: 'og:url', content: currentUrl },
+            { property: 'og:type', content: 'website' },
+        ],
+    }))
 )
 </script>
 

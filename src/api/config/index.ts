@@ -60,14 +60,32 @@ instance.interceptors.response.use(
             try {
                 const { status_code, data } = await API.refresh()
                 if (status_code === STATUS_CODE_SUCCESS) {
-                    setAuth(data.me, data.token)
+                    setAuth(data.me, data.access_token)
                     originalRequest.headers['Authorization'] =
-                        `Bearer ${data.token}`
+                        `Bearer ${data.access_token}`
+
+                    try {
+                        const { useAuthStore } = await import('@/stores')
+                        const authStore = useAuthStore()
+                        authStore.token = data.access_token
+                        authStore.role = data.me.role
+                    } catch (syncErr) {
+                        console.error('Store sync failed', syncErr)
+                    }
 
                     return instance(originalRequest)
                 }
             } catch (err) {
                 console.error('❌ REFRESH TOKEN FAILED', err)
+            }
+
+            try {
+                const { useAuthStore } = await import('@/stores')
+                const authStore = useAuthStore()
+                authStore.token = null
+                authStore.role = null
+            } catch (clearAuthErr) {
+                console.error('Failed to clear auth state', clearAuthErr)
             }
 
             localStorage.clear()

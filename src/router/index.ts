@@ -273,10 +273,14 @@ const router = createRouter({
     ],
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
     const queryStore = useQueryStore()
     const authStore = useAuthStore()
     const { token, role } = storeToRefs(authStore)
+
+    if (token.value && role.value === null) {
+        await authStore.getMe()
+    }
 
     const fromModule = from.name?.toString().split('-')[0]
     const toModule = to.name?.toString().split('-')[0]

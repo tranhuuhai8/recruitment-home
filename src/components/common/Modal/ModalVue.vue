@@ -16,6 +16,8 @@ const {
     wrapClassName,
     maskClosable,
 } = defineProps(PROPS_MODAL)
+
+defineEmits(['cancel', 'submit'])
 </script>
 
 <template>

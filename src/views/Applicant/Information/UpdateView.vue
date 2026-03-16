@@ -8,7 +8,6 @@ import {
     disabledDateFuture,
     FORMAT_DATE_DASH,
     GENDER_OPTIONS_FORM,
-    GUARD_APPLICANT,
     notify,
     STATUS_CODE_SUCCESS,
     trim,
@@ -47,7 +46,7 @@ const onUpdate = async (values: FormDataApplicant) => {
 }
 
 const getData = async () => {
-    const data = await authStore.getMe(GUARD_APPLICANT)
+    const data = await authStore.getMe()
     Object.assign(formState, mapDataForm(data, data.applicant))
 }
 

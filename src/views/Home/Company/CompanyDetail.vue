@@ -2,7 +2,7 @@
 import { useI18n } from 'vue3-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { useHead } from '@vueuse/head'
-import { onMounted, reactive, ref, watch } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import type { Company } from '@/interface'
 import { STATUS_CODE_SUCCESS } from '@/libs'
 import { useCompanyStore } from '@/stores/home'
@@ -35,22 +35,19 @@ onMounted(async () => {
     loading.value = false
 })
 
-watch(
-    () => company.name,
-    (newName) => {
-        if (!newName) return
-        useHead({
-            title: company.name,
-            meta: [
-                { property: 'og:title', content: company.name },
-                { property: 'og:description', content: company.description },
-                { property: 'og:image', content: company.logo },
-                { property: 'og:url', content: currentUrl },
-                { property: 'og:type', content: 'website' },
-            ],
-        })
-    },
-    { immediate: false }
+import { computed } from 'vue'
+
+useHead(
+    computed(() => ({
+        title: company.name,
+        meta: [
+            { property: 'og:title', content: company.name },
+            { property: 'og:description', content: company.description },
+            { property: 'og:image', content: company.logo },
+            { property: 'og:url', content: currentUrl },
+            { property: 'og:type', content: 'website' },
+        ],
+    }))
 )
 </script>
 

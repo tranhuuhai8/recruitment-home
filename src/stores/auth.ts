@@ -35,7 +35,7 @@ export const useAuthStore = defineStore('auth', () => {
             const result = await API.login(payload)
             if (result.status_code === STATUS_CODE_SUCCESS) {
                 const { data } = result
-                setUserInformation(data.user, data.token)
+                setUserInformation(data.me, data.access_token)
             }
 
             return result
@@ -102,8 +102,7 @@ export const useAuthStore = defineStore('auth', () => {
     const getMe = async () => {
         try {
             const { data } = await API.me()
-            me.value = data
-            setAuth(data, token.value ?? '')
+            setUserInformation(data, token.value ?? '')
             return data
         } catch (error: any) {
             return error

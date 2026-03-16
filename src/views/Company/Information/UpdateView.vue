@@ -8,7 +8,6 @@ import type { FormDataCompany } from '@/interface'
 import {
     filterTreeSelect,
     getTreeData,
-    GUARD_COMPANY,
     notify,
     QUERY_GET_TREE,
     STATUS_CODE_SUCCESS,
@@ -43,7 +42,7 @@ const onUpdate = async (values: FormDataCompany) => {
 }
 
 const getData = async () => {
-    const data = await authStore.getMe(GUARD_COMPANY)
+    const data = await authStore.getMe()
     Object.assign(formState, mapDataForm(data, data.company))
 }
 
