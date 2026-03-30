@@ -1,7 +1,7 @@
 import request from '@/api/config'
-import type { ResponseList } from '@/interface'
+import type { ParamsList, ResponseList } from '@/interface'
 
-export const list = (payload: Record<string, any>) =>
+export const list = (payload: ParamsList) =>
     request<ResponseList, ResponseList>({
         url: `applicant/applied`,
         method: 'GET',

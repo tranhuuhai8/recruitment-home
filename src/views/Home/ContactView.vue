@@ -12,24 +12,45 @@ import {
     TwitterOutlined,
 } from '@ant-design/icons-vue'
 import { notify } from '@/libs/utils/helperUI'
+import * as ContactAPI from '@/api/home/contact'
+import type { IContactFormDto } from '@/interface'
 
-const formState = reactive({ name: '', email: '', subject: '', message: '' })
+const formRef = ref()
+const isSubmitting = ref(false)
 
-const onFinish = (values: any) => {
-    console.log('Success:', values)
-    notify(
-        'Thành công',
-        'Tin nhắn của bạn đã được gửi. Chúng tôi sẽ liên hệ lại sớm!',
-        'success'
-    )
-    formState.name = ''
-    formState.email = ''
-    formState.subject = ''
-    formState.message = ''
-}
+const formState = reactive<IContactFormDto>({
+    full_name: '',
+    email: '',
+    phone: '',
+    title: '',
+    content: '',
+})
 
-const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo)
+const onFinish = async (values: IContactFormDto) => {
+    isSubmitting.value = true
+    try {
+        await ContactAPI.submitContact({
+            full_name: values.full_name,
+            email: values.email,
+            phone: values.phone || undefined,
+            title: values.title,
+            content: values.content,
+        })
+        notify(
+            'Gửi thành công!',
+            'Tin nhắn của bạn đã được gửi. Chúng tôi sẽ liên hệ lại sớm và bạn sẽ nhận được email xác nhận!',
+            'success'
+        )
+        formRef.value?.resetFields()
+    } catch (e: any) {
+        notify(
+            'Gửi thất bại',
+            e?.message ?? 'Đã có lỗi xảy ra, vui lòng thử lại!',
+            'error'
+        )
+    } finally {
+        isSubmitting.value = false
+    }
 }
 
 const activeKey = ref('1')
@@ -203,30 +224,35 @@ const infoItems = [
                         <h2 class="form-card__title">Gửi Lời Nhắn</h2>
                         <p class="form-card__sub">
                             Điền vào form bên dưới và chúng tôi sẽ phản hồi
-                            trong vòng 2 giờ làm việc.
+                            trong vòng 2 giờ làm việc. Bạn sẽ nhận được email
+                            xác nhận ngay sau khi gửi.
                         </p>
                         <a-form
+                            ref="formRef"
                             :model="formState"
                             name="contact_form"
                             layout="vertical"
                             @finish="onFinish"
-                            @finishFailed="onFinishFailed"
                         >
                             <a-row :gutter="16">
                                 <a-col :xs="24" :sm="12">
                                     <a-form-item
                                         label="Họ và tên"
-                                        name="name"
+                                        name="full_name"
                                         :rules="[
                                             {
                                                 required: true,
                                                 message:
                                                     'Vui lòng nhập họ tên!',
                                             },
+                                            {
+                                                max: 255,
+                                                message: 'Tối đa 255 ký tự!',
+                                            },
                                         ]"
                                     >
                                         <a-input
-                                            v-model:value="formState.name"
+                                            v-model:value="formState.full_name"
                                             placeholder="Nguyễn Văn A"
                                             size="large"
                                         />
@@ -245,6 +271,10 @@ const infoItems = [
                                                 type: 'email',
                                                 message: 'Email không hợp lệ!',
                                             },
+                                            {
+                                                max: 255,
+                                                message: 'Tối đa 255 ký tự!',
+                                            },
                                         ]"
                                     >
                                         <a-input
@@ -256,24 +286,44 @@ const infoItems = [
                                 </a-col>
                             </a-row>
                             <a-form-item
+                                label="Số điện thoại"
+                                name="phone"
+                                :rules="[
+                                    {
+                                        max: 20,
+                                        message: 'Tối đa 20 ký tự!',
+                                    },
+                                ]"
+                            >
+                                <a-input
+                                    v-model:value="formState.phone"
+                                    placeholder="0901234567 (không bắt buộc)"
+                                    size="large"
+                                />
+                            </a-form-item>
+                            <a-form-item
                                 label="Chủ đề"
-                                name="subject"
+                                name="title"
                                 :rules="[
                                     {
                                         required: true,
                                         message: 'Vui lòng nhập chủ đề!',
                                     },
+                                    {
+                                        max: 255,
+                                        message: 'Tối đa 255 ký tự!',
+                                    },
                                 ]"
                             >
                                 <a-input
-                                    v-model:value="formState.subject"
+                                    v-model:value="formState.title"
                                     placeholder="Bạn cần hỗ trợ về..."
                                     size="large"
                                 />
                             </a-form-item>
                             <a-form-item
                                 label="Nội dung"
-                                name="message"
+                                name="content"
                                 :rules="[
                                     {
                                         required: true,
@@ -282,7 +332,7 @@ const infoItems = [
                                 ]"
                             >
                                 <a-textarea
-                                    v-model:value="formState.message"
+                                    v-model:value="formState.content"
                                     placeholder="Viết tin nhắn cho chúng tôi..."
                                     :rows="6"
                                     size="large"
@@ -294,6 +344,7 @@ const infoItems = [
                                     html-type="submit"
                                     size="large"
                                     class="submit-btn"
+                                    :loading="isSubmitting"
                                 >
                                     <template #icon><SendOutlined /></template>
                                     Gửi Tin Nhắn

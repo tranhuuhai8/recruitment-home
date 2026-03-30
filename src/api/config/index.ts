@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { type InternalAxiosRequestConfig } from 'axios'
 import router from '@/router'
 import {
     notify,
@@ -20,7 +20,7 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use(
-    (config: any) => {
+    (config: InternalAxiosRequestConfig) => {
         const token = getToken()
         if (token) {
             config.headers['Authorization'] = `Bearer ${token}`

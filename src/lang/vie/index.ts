@@ -8,6 +8,7 @@ import applicant from './applicant'
 import home from './home'
 import job from './job'
 import apply from './apply'
+import contact from './contact'
 
 export const vie = {
     ...base,
@@ -20,4 +21,5 @@ export const vie = {
     home,
     job,
     apply,
+    contact,
 }

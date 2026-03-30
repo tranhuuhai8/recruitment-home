@@ -114,6 +114,27 @@ const adminRoutes: RouteRecordRaw[] = [
         name: 'admin-master-data',
         component: Pages.MasterView,
     },
+    {
+        path: 'contact',
+        name: 'admin-contact',
+        component: Pages.ContactAdminView,
+    },
+    {
+        path: 'contact/:id',
+        name: 'admin-contact-detail',
+        component: Pages.ContactDetailAdmin,
+        meta: { parentRoute: 'admin-contact' },
+    },
+    {
+        path: 'mail-template',
+        name: 'admin-mail-template',
+        component: Pages.MailTemplateView,
+    },
+    {
+        path: 'mail-log',
+        name: 'admin-mail-log',
+        component: Pages.MailLogView,
+    },
 ]
 
 // Layout: Company Routes

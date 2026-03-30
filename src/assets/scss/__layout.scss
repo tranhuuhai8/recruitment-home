@@ -416,6 +416,12 @@
                 z-index: 1;
             }
         }
+
+        .search-contact {
+            .ant-form-item {
+                margin-bottom: 8px;
+            }
+        }
     }
 
     .box-body {

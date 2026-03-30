@@ -1,5 +1,5 @@
 import request from '@/api/config'
-import type { ResponseList } from '@/interface'
+import type { ParamsList, ResponseList } from '@/interface'
 
 export const list = () =>
     request<ResponseList, ResponseList>({
@@ -7,7 +7,7 @@ export const list = () =>
         method: 'GET',
     })
 
-export const upsert = (payload: Record<string, any>[]) =>
+export const upsert = (payload: ParamsList[]) =>
     request<ResponseList, ResponseList>({
         url: `applicant/file-upload/upsert`,
         method: 'PUT',
