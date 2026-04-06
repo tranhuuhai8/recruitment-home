@@ -1,21 +1,21 @@
 import request from '@/api/config'
-import type { ResponseList } from '@/interface'
+import type { ParamsList, ResponseList } from '@/interface'
 
-export const list = (payload: Record<string, any>) =>
+export const list = (payload: ParamsList) =>
     request<ResponseList, ResponseList>({
         url: `admin/master-data/cities`,
         method: 'GET',
         params: payload,
     })
 
-export const create = (payload: Record<string, any>) =>
+export const create = (payload: ParamsList) =>
     request<ResponseList, ResponseList>({
         url: `admin/master-data/cities/`,
         method: 'POST',
         data: payload,
     })
 
-export const update = (payload: Record<string, any>, id: number) =>
+export const update = (payload: ParamsList, id: number) =>
     request<ResponseList, ResponseList>({
         url: `admin/master-data/cities/${id}`,
         method: 'PUT',

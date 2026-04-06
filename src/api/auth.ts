@@ -1,13 +1,15 @@
 import request from '@/api/config'
 import type {
+    ParamsList,
+    ResponseResult,
     ChangePasswordDto,
     ForgotPasswordDto,
     ResetPasswordDto,
     ResponseList,
 } from '@/interface'
 
-export const login = (payload: Record<string, any>) =>
-    request<any, any>({
+export const login = (payload: ParamsList) =>
+    request<ResponseResult, any>({
         url: `auth/login`,
         method: 'POST',
         data: payload,
@@ -19,7 +21,7 @@ export const refresh = () =>
         method: 'POST',
     })
 
-export const register = (payload: Record<string, any>, prefix: string) =>
+export const register = (payload: ParamsList, prefix: string) =>
     request<ResponseList, ResponseList>({
         url: `auth/${prefix}/register`,
         method: 'POST',
@@ -48,13 +50,13 @@ export const resetPassword = (token: String, payload: ResetPasswordDto) =>
     })
 
 export const logout = () =>
-    request<any, any>({
+    request<ResponseResult, any>({
         url: `auth/logout`,
         method: 'POST',
     })
 
 export const me = () =>
-    request<any, any>({
+    request<ResponseResult, any>({
         url: `auth/me`,
         method: 'GET',
     })

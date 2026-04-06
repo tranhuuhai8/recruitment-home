@@ -53,6 +53,14 @@ export const ApplicantUpdate = () =>
 
 export const JobViewAdmin = () => import('@/views/Admin/Job/JobView.vue')
 
+export const ContactAdminView = () =>
+    import('@/views/Admin/Contact/ContactView.vue')
+export const ContactDetailAdmin = () =>
+    import('@/views/Admin/Contact/ContactDetail.vue')
+export const MailTemplateView = () =>
+    import('@/views/Admin/MailTemplate/MailTemplateView.vue')
+export const MailLogView = () => import('@/views/Admin/MailLog/MailLogView.vue')
+
 // Auth
 export const LoginView = () => import('@/views/Auth/LoginView.vue')
 export const RegisterView = () => import('@/views/Auth/RegisterView.vue')

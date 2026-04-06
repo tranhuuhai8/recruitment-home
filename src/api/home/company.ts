@@ -1,7 +1,7 @@
 import request from '@/api/config'
-import type { ResponseList } from '@/interface'
+import type { ParamsList, ResponseResult, ResponseList } from '@/interface'
 
-export const list = (payload: Record<string, any>) =>
+export const list = (payload: ParamsList) =>
     request<ResponseList, ResponseList>({
         url: `home/company`,
         method: 'GET',
@@ -9,7 +9,7 @@ export const list = (payload: Record<string, any>) =>
     })
 
 export const detail = (id: number) =>
-    request<any, any>({
+    request<ResponseResult, any>({
         url: `home/company/${id}`,
         method: 'GET',
     })

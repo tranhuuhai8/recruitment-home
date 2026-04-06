@@ -26,11 +26,35 @@ const handleRoute = async () => {
     const menus = SIDEBAR_BY_ROLE[getUserInformation()?.role ?? ROLE_APPLICANT]
     for (const key in menus) {
         const item = menus[key]
-        items.push(
-            getItem(item.label, String(item.order), h(getIcon(item.name)))
-        )
-        if (route.name === item.route)
-            selectedKeys.value.push(String(item.order))
+        if (item.menu_childs && !!item.menu_childs.length) {
+            const children: ItemType[] = item.menu_childs.map((child: any) =>
+                getItem(
+                    child.label,
+                    String(child.order),
+                    h(getIcon(child.name))
+                )
+            )
+            items.push(
+                getItem(
+                    item.label,
+                    String(item.order),
+                    h(getIcon(item.name)),
+                    children
+                )
+            )
+            const matchedChild = item.menu_childs.find(
+                (child: Record<string, any>) => route.name === child.route
+            )
+            if (matchedChild) {
+                selectedKeys.value.push(String(matchedChild.order))
+            }
+        } else {
+            items.push(
+                getItem(item.label, String(item.order), h(getIcon(item.name)))
+            )
+            if (route.name === item.route)
+                selectedKeys.value.push(String(item.order))
+        }
     }
 }
 
@@ -38,11 +62,25 @@ const updateSelectedKeys = (routeName: string) => {
     selectedKeys.value = []
     const menus = SIDEBAR_BY_ROLE[getUserInformation()?.role ?? ROLE_APPLICANT]
 
+    const currentMeta = route.meta as Record<string, any>
+    const parentRoute = currentMeta?.parentRoute as string | undefined
+
     for (const key in menus) {
         const item = menus[key]
         if (item.route === routeName) {
             selectedKeys.value = [String(item.order)]
             break
+        }
+        if (item.menu_childs && item.menu_childs.length) {
+            const matchedChild = item.menu_childs.find(
+                (child: any) =>
+                    child.route === routeName ||
+                    (parentRoute && child.route === parentRoute)
+            )
+            if (matchedChild) {
+                selectedKeys.value = [String(matchedChild.order)]
+                break
+            }
         }
     }
 }
@@ -69,6 +107,10 @@ const roleIconMap: Record<string, Record<string, any>> = {
         jobs: Icons.IconJob,
         reviews: Icons.IconFeedback,
         masterData: Icons.IconData,
+        contactGroup: Icons.IconFeedback,
+        contact: Icons.IconInfo,
+        mailTemplate: Icons.IconCopy,
+        mailLog: Icons.IconData,
     },
     2: {
         info: Icons.IconUser,
@@ -109,15 +151,34 @@ const handleLogout = async () => {
 }
 
 const handleMenuClick: MenuProps['onClick'] = (e) => {
-    const side: any = Object.values(
+    const allMenus =
         SIDEBAR_BY_ROLE[getUserInformation()?.role ?? ROLE_APPLICANT]
-    ).find((item: any) => String(item.order) === e.key)
+
+    // Search in top-level items first
+    let side: any = Object.values(allMenus).find(
+        (item: any) => String(item.order) === e.key
+    )
+
+    // If not found, search in menu_childs
+    if (!side) {
+        for (const item of Object.values(allMenus) as any[]) {
+            if (item.menu_childs && item.menu_childs.length > 0) {
+                const child = item.menu_childs.find(
+                    (c: any) => String(c.order) === e.key
+                )
+                if (child) {
+                    side = child
+                    break
+                }
+            }
+        }
+    }
 
     if (side?.route === 'logout') {
         return handleLogout()
     }
 
-    if (side) {
+    if (side?.route) {
         router.push({ name: side.route })
     }
 }

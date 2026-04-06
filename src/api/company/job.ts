@@ -1,7 +1,12 @@
 import request from '@/api/config'
-import type { FormDataJob, ResponseList } from '@/interface'
+import type {
+    ParamsList,
+    ResponseResult,
+    FormDataJob,
+    ResponseList,
+} from '@/interface'
 
-export const list = (payload: Record<string, any>) =>
+export const list = (payload: ParamsList) =>
     request<ResponseList, ResponseList>({
         url: `company/job`,
         method: 'GET',
@@ -9,12 +14,12 @@ export const list = (payload: Record<string, any>) =>
     })
 
 export const detail = (id: number) =>
-    request<any, any>({
+    request<ResponseResult, any>({
         url: `company/job/${id}`,
         method: 'GET',
     })
 
-export const update = (payload: Record<string, any>, id: number) =>
+export const update = (payload: ParamsList, id: number) =>
     request<ResponseList, ResponseList>({
         url: `company/job/${id}`,
         method: 'PUT',
@@ -29,7 +34,7 @@ export const create = (payload: FormDataJob) =>
     })
 
 export const remove = (id: number) =>
-    request<any, any>({
+    request<ResponseResult, any>({
         url: `company/job/${id}`,
         method: 'DELETE',
     })

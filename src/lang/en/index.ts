@@ -8,6 +8,7 @@ import applicant from './applicant'
 import home from './home'
 import job from './job'
 import apply from './apply'
+import contact from './contact'
 
 export const en = {
     ...base,
@@ -20,4 +21,5 @@ export const en = {
     home,
     job,
     apply,
+    contact,
 }

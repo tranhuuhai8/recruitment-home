@@ -94,6 +94,33 @@ export const APP_SIDEBAR_ADMIN: Record<string, any> = {
         class: '',
         menu_childs: [],
     },
+    contact_group: {
+        order: 7,
+        label: t('sidebar.contact_group'),
+        route: '',
+        name: 'contactGroup',
+        class: '',
+        menu_childs: [
+            {
+                order: 71,
+                label: t('sidebar.contacts'),
+                route: 'admin-contact',
+                name: 'contact',
+            },
+            {
+                order: 72,
+                label: t('sidebar.mail_log'),
+                route: 'admin-mail-log',
+                name: 'mailLog',
+            },
+            {
+                order: 73,
+                label: t('sidebar.mail_template'),
+                route: 'admin-mail-template',
+                name: 'mailTemplate',
+            },
+        ],
+    },
 }
 
 export const APP_SIDEBAR_COMPANY: Record<string, any> = {

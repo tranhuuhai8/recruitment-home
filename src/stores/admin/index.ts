@@ -3,6 +3,9 @@ import { useJobCategoryStore } from './jobCategory'
 import { useCompanyStore } from './company'
 import { useApplicantStore } from './applicant'
 import { useJobStore } from './job'
+import { useContactStore } from './contact'
+import { useMailTemplateStore } from './mailTemplate'
+import { useMailLogStore } from './mailLog'
 
 export {
     useCityStore,
@@ -10,4 +13,7 @@ export {
     useCompanyStore,
     useApplicantStore,
     useJobStore,
+    useContactStore,
+    useMailTemplateStore,
+    useMailLogStore,
 }
