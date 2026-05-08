@@ -112,7 +112,7 @@ onMounted(async () => {
                     </a-menu>
                 </template>
             </a-dropdown>
-            <a-button v-else @click="redirectToLogin()">
+            <a-button type="primary" v-else @click="redirectToLogin()">
                 {{ t('auth.login') }}
             </a-button>
         </a-col>

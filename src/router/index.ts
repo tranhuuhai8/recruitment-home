@@ -135,6 +135,11 @@ const adminRoutes: RouteRecordRaw[] = [
         name: 'admin-mail-log',
         component: Pages.MailLogView,
     },
+    {
+        path: 'company-followers',
+        name: 'admin-company-followers',
+        component: Pages.CompanyFollowersAdminView,
+    },
 ]
 
 // Layout: Company Routes
@@ -186,6 +191,11 @@ const applicantRoutes: RouteRecordRaw[] = [
         path: 'applied',
         name: 'applicant-applied',
         component: Pages.JobAppliedApplicant,
+    },
+    {
+        path: 'saved-jobs',
+        name: 'applicant-saved-jobs',
+        component: Pages.SavedJobsApplicant,
     },
 ]
 

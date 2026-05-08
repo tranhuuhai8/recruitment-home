@@ -285,11 +285,7 @@ const team = [
     min-height: 520px;
 }
 .about-hero__overlay {
-    background: linear-gradient(
-        135deg,
-        rgba(15, 52, 96, 0.88) 0%,
-        rgba(24, 144, 255, 0.7) 100%
-    );
+    background: linear-gradient(105deg, rgba(15, 23, 42, 0.75) 0%, rgba(15, 118, 110, 0.55) 45%, rgba(14, 165, 233, 0.35) 100%);
 }
 
 .image-wrapper {
@@ -315,7 +311,7 @@ const team = [
     backdrop-filter: blur(10px);
 }
 .overlay-title {
-    color: #1890ff;
+    color: #0d9488;
     font-weight: 700;
     margin-bottom: 6px;
 }
@@ -346,13 +342,13 @@ const team = [
     transition: all 0.3s;
 }
 .feature-box:hover {
-    border-color: #1890ff;
+    border-color: #0d9488;
     box-shadow: 0 6px 20px rgba(24, 144, 255, 0.1);
     transform: translateY(-4px);
 }
 .feature-icon {
     font-size: 28px;
-    color: #1890ff;
+    color: #0d9488;
     margin-bottom: 10px;
 }
 .feature-box h4 {
@@ -367,7 +363,7 @@ const team = [
 }
 
 .stats-banner {
-    background: linear-gradient(135deg, #0050b3 0%, #1890ff 100%);
+    background: linear-gradient(105deg, rgba(15, 23, 42, 0.75) 0%, rgba(15, 118, 110, 0.55) 45%, rgba(14, 165, 233, 0.35) 100%);
     padding: 60px 0;
 }
 .stat-card {
@@ -412,7 +408,7 @@ const team = [
 }
 .color-0 {
     background: #e6f7ff;
-    color: #1890ff;
+    color: #0d9488;
 }
 .color-1 {
     background: #fff7e6;
@@ -467,7 +463,7 @@ const team = [
 }
 .member-card__role {
     font-size: 0.9rem;
-    color: #1890ff;
+    color: #0d9488;
     margin: 0;
 }
 

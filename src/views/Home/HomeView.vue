@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { useI18n } from 'vue3-i18n'
+import { useRouter } from 'vue-router'
 import {
     useCityStore,
     useJobCategoryStore,
@@ -13,6 +15,8 @@ import { BoxBanner } from './components'
 import CompanyBoxHome from './Company/CompanyBoxHome.vue'
 import JobBoxHome from './Job/JobBoxHome.vue'
 
+const { t } = useI18n()
+const router = useRouter()
 const loading = ref(false)
 const formSearch = ref<any>({ ...FORM_SEARCH_HOME })
 const querySearch = ref<ParamsList>({
@@ -75,8 +79,19 @@ onMounted(async () => {
             @filter-category="filterJobByCategory"
             @change-page="handleChangePageJob"
         />
-        <div style="height: 200px; text-align: center; margin-top: 50px">
-            ...
-        </div>
+        <section class="home-cta">
+            <div class="home-cta__inner">
+                <h2 class="home-cta__title">{{ t('home.title') }}</h2>
+                <p class="home-cta__text">{{ t('home.sub_title') }}</p>
+                <a-button
+                    type="primary"
+                    size="large"
+                    class="home-cta__btn"
+                    @click="router.push({ name: 'job-home-list' })"
+                >
+                    {{ t('header.job') }}
+                </a-button>
+            </div>
+        </section>
     </div>
 </template>

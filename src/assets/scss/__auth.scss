@@ -6,15 +6,14 @@
     max-width: 500px;
     margin: 0 auto;
     transform: translateY(200px);
-    padding: 20px 40px 30px;
-    border: 1px solid var(--vt-c-gray);
-    border-radius: 10px;
+    padding: 32px 40px 36px;
+    border: 1px solid var(--vt-c-border);
+    border-radius: 20px;
     box-shadow: var(--vt-box-shadow-1);
     background-color: var(--vt-c-white);
 
     &.register {
         max-width: 650px;
-        transform: translateY(100px);
     }
 
     .back-to-home {

@@ -42,14 +42,16 @@
 .box-item {
     cursor: pointer;
     border-radius: var(--vt-br-box);
-    border: 1px solid transparent;
+    border: 1px solid var(--vt-c-border);
     background-color: var(--bg-box-item);
-    transition: all 0.3s linear;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.25s ease,
+        transform 0.2s ease;
 
     &:hover {
-        border-color: var(--vt-c-main);
-        background-color: var(--vt-c-white);
-        box-shadow: var(--vt-box-shadow-box);
+        border-color: rgba(13, 148, 136, 0.4);
+        box-shadow: var(--vt-box-shadow-1);
+        transform: translateY(-2px);
     }
 }
 

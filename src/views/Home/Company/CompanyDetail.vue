@@ -10,6 +10,7 @@ import { IconUser, IconJob } from '@/components/icons'
 import ImgDefault from '@/assets/imgs/img-default.png'
 import { getCompanyName, INITIAL_COMPANY_INFO_NULL } from '../shared'
 import { BoxContactCompany, BoxShare, CompanyListJob } from '../components'
+import { useFavoritesStore } from '@/stores'
 
 const { t } = useI18n()
 const {
@@ -18,12 +19,12 @@ const {
 const router = useRouter()
 const currentUrl = window.location.href
 const companyStore = useCompanyStore()
+const favoritesStore = useFavoritesStore()
 const loading = ref(false)
 const company = reactive<Company>(INITIAL_COMPANY_INFO_NULL)
 
-const handleFollow = (id: number) => {
-    console.log('Follow company id:', id)
-}
+const isFollowed = computed(() => favoritesStore.isCompanyFollowed(company.id))
+const handleFollow = async (id: number) => favoritesStore.toggleCompanyFollowed(id)
 
 onMounted(async () => {
     loading.value = true
@@ -90,7 +91,11 @@ useHead(
                     class="ant-btn-follow"
                     @click="handleFollow(company.id)"
                 >
-                    {{ t('home.company.detail.btn.follow') }}
+                    {{
+                        isFollowed
+                            ? t('home.company.detail.btn.followed')
+                            : t('home.company.detail.btn.follow')
+                    }}
                 </a-button>
             </div>
 

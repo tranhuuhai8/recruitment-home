@@ -393,11 +393,7 @@ const infoItems = [
     min-height: 440px;
 }
 .contact-hero__overlay {
-    background: linear-gradient(
-        135deg,
-        rgba(0, 80, 179, 0.85) 0%,
-        rgba(24, 144, 255, 0.75) 100%
-    );
+    background: linear-gradient(105deg, rgba(15, 23, 42, 0.75) 0%, rgba(15, 118, 110, 0.55) 45%, rgba(14, 165, 233, 0.35) 100%);
 }
 
 .quick-bar {
@@ -419,7 +415,7 @@ const infoItems = [
 .quick-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(24, 144, 255, 0.15);
-    background: #1890ff;
+    background: #0d9488;
 }
 .quick-card:hover .quick-card__icon,
 .quick-card:hover .quick-card__label,
@@ -428,7 +424,7 @@ const infoItems = [
 }
 .quick-card__icon {
     font-size: 28px;
-    color: #1890ff;
+    color: #0d9488;
     flex-shrink: 0;
     transition: color 0.3s;
 }
@@ -461,16 +457,16 @@ const infoItems = [
     transition: all 0.3s;
 }
 .info-item:hover {
-    border-color: #1890ff;
-    box-shadow: 0 4px 16px rgba(24, 144, 255, 0.1);
-    transform: translateX(6px);
+    border-color: rgba(13, 148, 136, 0.35);
+    box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+    transform: translateY(-2px);
 }
 .info-item__icon {
     width: 48px;
     height: 48px;
     border-radius: 12px;
     background: #e6f7ff;
-    color: #1890ff;
+    color: #0d9488;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -586,5 +582,9 @@ const infoItems = [
     color: #4b5563;
     line-height: 1.7;
     margin: 0;
+}
+
+.contact-page {
+    overflow-x: clip;
 }
 </style>

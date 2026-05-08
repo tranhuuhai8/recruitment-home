@@ -13,6 +13,7 @@ export default {
     jobs: 'Jobs',
     applications: 'Job Applications',
     applied: 'Applied Jobs',
+    saved_jobs: 'Saved Jobs',
     reviews: 'Reviews',
     master_data: 'Master data',
     contacts: 'Contacts',

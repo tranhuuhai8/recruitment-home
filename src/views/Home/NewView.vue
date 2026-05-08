@@ -265,11 +265,7 @@ const filteredNews = computed(() => {
     min-height: 380px;
 }
 .news-hero__overlay {
-    background: linear-gradient(
-        135deg,
-        rgba(0, 21, 41, 0.85),
-        rgba(24, 144, 255, 0.65)
-    );
+    background: linear-gradient(105deg, rgba(15, 23, 42, 0.75) 0%, rgba(15, 118, 110, 0.55) 45%, rgba(14, 165, 233, 0.35) 100%);
 }
 
 .featured {
@@ -338,7 +334,7 @@ const filteredNews = computed(() => {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: #1890ff;
+    background: #0d9488;
     color: #fff;
     font-size: 0.95rem;
     font-weight: 600;
@@ -350,7 +346,7 @@ const filteredNews = computed(() => {
     text-decoration: none;
 
     &:hover {
-        background: #40a9ff;
+        background: #0d9488;
         transform: translateY(-2px);
         box-shadow: 0 8px 20px rgba(24, 144, 255, 0.35);
         color: #fff;
@@ -399,14 +395,14 @@ const filteredNews = computed(() => {
     user-select: none;
 
     &:hover {
-        border-color: #1890ff;
-        color: #1890ff;
+        border-color: #0d9488;
+        color: #0d9488;
         transform: translateY(-1px);
     }
 
     &--active {
-        background: #1890ff;
-        border-color: #1890ff;
+        background: #0d9488;
+        border-color: #0d9488;
         color: #fff;
 
         &:hover {
@@ -449,7 +445,7 @@ const filteredNews = computed(() => {
     position: absolute;
     bottom: 12px;
     left: 12px;
-    background: rgba(24, 144, 255, 0.9);
+    background: #0d9488;
     color: #fff;
     font-size: 0.75rem;
     font-weight: 600;
@@ -497,7 +493,7 @@ const filteredNews = computed(() => {
     overflow: hidden;
 }
 .news-card__readmore {
-    color: #1890ff;
+    color: #0d9488;
     font-weight: 600;
     font-size: 0.9rem;
     display: inline-flex;

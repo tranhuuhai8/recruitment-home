@@ -1,63 +1,71 @@
 :root {
-    --vt-box-shadow-1: 0px 0px 8px rgba(78, 37, 0, 0.78);
-    --vt-box-shadow-2: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    --vt-box-shadow-box: 0 10px 20px rgb(14 44 166 / 20%);
+    /* Surfaces & elevation */
+    --vt-box-shadow-1: 0 1px 3px rgba(15, 23, 42, 0.06),
+        0 8px 24px rgba(15, 23, 42, 0.06);
+    --vt-box-shadow-2: 0 4px 14px rgba(15, 23, 42, 0.08);
+    --vt-box-shadow-box: 0 12px 40px rgba(13, 148, 136, 0.12);
 
-    --vt-c-main: #3e43e9;
-    --vt-c-primary: #e08c04cd;
+    /* Brand — teal primary, warm accent for highlights */
+    --vt-c-main: #0f766e;
+    --vt-c-primary: #0d9488;
+    --vt-c-accent: #f97316;
     --vt-c-white: #ffffff;
-    --vt-c-white-v2: #f2f2f2;
-    --vt-c-white-v3: #f9fffb;
-    --vt-c-black: #242732;
-    --vt-c-gray: #7e84a3;
-    --vt-c-gray-v1: #888888;
-    --vt-c-gray-v2: #e9e9e9;
-    --vt-c-gray-v3: #444444;
-    --vt-c-gray-v4: #696969;
-    --vt-c-gray-v5: #d9d9d9;
-    --vt-c-blue: #0095ff;
-    --vt-c-blue-v2: #1967d226;
+    --vt-c-white-v2: #f1f5f9;
+    --vt-c-white-v3: #f8fafc;
+    --vt-c-black: #0f172a;
+    --vt-c-gray: #64748b;
+    --vt-c-gray-v1: #94a3b8;
+    --vt-c-gray-v2: #e2e8f0;
+    --vt-c-gray-v3: #475569;
+    --vt-c-gray-v4: #64748b;
+    --vt-c-gray-v5: #cbd5e1;
+    --vt-c-blue: #0284c7;
+    --vt-c-blue-v2: rgba(2, 132, 199, 0.12);
     --vt-c-blue-v3: #3b5998;
     --vt-c-blue-v4: #0077b5;
     --vt-c-blue-v5: #1da1f2;
-    --vt-c-blue-bg: #1967d2;
-    --vt-c-green: #008000;
-    --vt-c-green-v2: #00b14f;
-    --vt-c-red: #e80000;
-    --vt-c-yellow: #f9ab00;
-    --vt-c-yellow-bg: #f9ab0026;
-    --vt-c-border: #dedcdc;
+    --vt-c-blue-bg: #0369a1;
+    --vt-c-green: #059669;
+    --vt-c-green-v2: #10b981;
+    --vt-c-red: #dc2626;
+    --vt-c-yellow: #d97706;
+    --vt-c-yellow-bg: rgba(217, 119, 6, 0.12);
+    --vt-c-border: #e2e8f0;
 
     // ── Pages Home: Text Hierarchy ──
-    --vt-c-text-dark: #1f2937;
-    --vt-c-text-body: #4b5563;
-    --vt-c-text-muted: #6b7280;
-    --vt-c-text-base: #333333;
+    --vt-c-text-dark: #0f172a;
+    --vt-c-text-body: #334155;
+    --vt-c-text-muted: #64748b;
+    --vt-c-text-base: #1e293b;
 
-    // ── Pages Home: Blue Palette ──
-    --vt-c-primary-blue: #1890ff;
-    --vt-c-blue-light: #e6f7ff;
-    --vt-c-blue-dark: #0050b3;
+    // ── Pages Home: Accent tints ──
+    --vt-c-primary-blue: #0d9488;
+    --vt-c-blue-light: #ccfbf1;
+    --vt-c-blue-dark: #0f766e;
 
     // ── Pages Home: Background ──
-    --vt-c-bg-page: #f9fafb;
-    --vt-c-bg-dark-1: #001529;
-    --vt-c-bg-dark-2: #003a70;
+    --vt-c-bg-page: #f1f5f9;
+    --vt-c-bg-dark-1: #0f172a;
+    --vt-c-bg-dark-2: #134e4a;
 
-    --bg-main-home: #13172b;
-    --bg-body: #f4f5ff;
-    --bg-box-item: #f3f5f7;
-    --bg-box-item-admin: #f3f5f78f;
-    --bg-head-linear: linear-gradient(90deg, #256b61, #c6c922);
+    --bg-main-home: #0f172a;
+    --bg-body: #f1f5f9;
+    --bg-box-item: #ffffff;
+    --bg-box-item-admin: #f8fafc;
+    --bg-head-linear: linear-gradient(120deg, #0f766e 0%, #14b8a6 45%, #0ea5e9 100%);
 
-    --font-size: 14px;
-    --fz-title-pc: 25px;
-    --fz-subtitle-pc: 18px;
-    --fz-title-sp: 18px;
-    --fz-subtitle-sp: 14px;
-    --vt-br-btn: 5px;
-    --vt-br-box: 12px;
-    --max-width-pc: 1200px;
+    --vt-sidebar-bg: #0f172a;
+    --vt-sidebar-border: rgba(148, 163, 184, 0.12);
+    --vt-header-blur: rgba(255, 255, 255, 0.72);
 
-    --width-sidebar: 210px;
+    --font-size: 15px;
+    --fz-title-pc: 2rem;
+    --fz-subtitle-pc: 1.125rem;
+    --fz-title-sp: 1.35rem;
+    --fz-subtitle-sp: 0.95rem;
+    --vt-br-btn: 10px;
+    --vt-br-box: 16px;
+    --max-width-pc: 1280px;
+
+    --width-sidebar: 248px;
 }

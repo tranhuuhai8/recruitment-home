@@ -13,6 +13,7 @@ export default {
     jobs: 'Công việc',
     applications: 'Hồ sơ ứng tuyển',
     applied: 'Việc đã ứng tuyển',
+    saved_jobs: 'Việc đã lưu',
     reviews: 'Đánh giá',
     master_data: 'Dữ liệu',
     contacts: 'Đã nhận',

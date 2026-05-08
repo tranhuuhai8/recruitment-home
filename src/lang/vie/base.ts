@@ -1,6 +1,7 @@
 export default {
     title: 'Recruitment',
     save: 'Lưu',
+    saved: 'Đã lưu',
     back: 'Quay lại',
     cancel: 'Đóng',
     reset: 'Làm mới',

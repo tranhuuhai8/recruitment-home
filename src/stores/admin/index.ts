@@ -6,6 +6,7 @@ import { useJobStore } from './job'
 import { useContactStore } from './contact'
 import { useMailTemplateStore } from './mailTemplate'
 import { useMailLogStore } from './mailLog'
+import { useCompanyFollowersStore } from './companyFollowers'
 
 export {
     useCityStore,
@@ -16,4 +17,5 @@ export {
     useContactStore,
     useMailTemplateStore,
     useMailLogStore,
+    useCompanyFollowersStore,
 }

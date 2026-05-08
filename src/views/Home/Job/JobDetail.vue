@@ -18,6 +18,7 @@ import {
 } from '../shared'
 import { useJobStore } from '@/stores/home'
 import { useAuthStore } from '@/stores'
+import { useFavoritesStore } from '@/stores'
 import { BoxContactCompany } from '../components'
 import { IconLocation, IconMoney, IconUser } from '@/components/icons'
 import type { ApplicationFile, Job, JobApplication } from '@/interface'
@@ -38,6 +39,7 @@ const router = useRouter()
 const currentUrl = window.location.href
 const jobStore = useJobStore()
 const authStore = useAuthStore()
+const favoritesStore = useFavoritesStore()
 const formRef = ref()
 const loading = ref(false)
 const openModal = ref(false)
@@ -62,8 +64,9 @@ const onApply = async () => {
     }
 }
 
-const handleSaveJob = () => {
-    console.log('id :>> ', id)
+const handleSaveJob = async () => {
+    const saved = await favoritesStore.toggleJobSaved(+id)
+    if (saved !== false) notify(saved ? t('saved') : t('save'), '', 'success')
 }
 
 const handleManagement = () =>

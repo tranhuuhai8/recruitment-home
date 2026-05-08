@@ -21,6 +21,8 @@ export const FileUploadApplicant = () =>
     import('@/views/Applicant/FileUpload/FileUploadView.vue')
 export const JobAppliedApplicant = () =>
     import('@/views/Applicant/Applied/AppliedView.vue')
+export const SavedJobsApplicant = () =>
+    import('@/views/Applicant/SavedJobsView.vue')
 
 // Page Company
 export const HomeViewCompany = () => import('@/views/Company/DashboardView.vue')
@@ -52,6 +54,8 @@ export const ApplicantUpdate = () =>
     import('@/views/Admin/Applicant/ApplicantUpdate.vue')
 
 export const JobViewAdmin = () => import('@/views/Admin/Job/JobView.vue')
+export const CompanyFollowersAdminView = () =>
+    import('@/views/Admin/CompanyFollowers/CompanyFollowersView.vue')
 
 export const ContactAdminView = () =>
     import('@/views/Admin/Contact/ContactView.vue')

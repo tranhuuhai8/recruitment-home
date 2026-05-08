@@ -617,7 +617,7 @@ onMounted(async () => {
     }
 
     &__icon {
-        color: #1890ff;
+        color: #0d9488;
         font-size: 16px;
     }
 }

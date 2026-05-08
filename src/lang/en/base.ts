@@ -1,6 +1,7 @@
 export default {
     title: 'Recruitment',
     save: 'Save',
+    saved: 'Saved',
     back: 'Back',
     cancel: 'Cancel',
     reset: 'Reset',

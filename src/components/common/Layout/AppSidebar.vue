@@ -107,6 +107,7 @@ const roleIconMap: Record<string, Record<string, any>> = {
         jobs: Icons.IconJob,
         reviews: Icons.IconFeedback,
         masterData: Icons.IconData,
+        companyFollowers: Icons.IconCompany,
         contactGroup: Icons.IconFeedback,
         contact: Icons.IconInfo,
         mailTemplate: Icons.IconCopy,
@@ -121,6 +122,7 @@ const roleIconMap: Record<string, Record<string, any>> = {
         info: Icons.IconUser,
         fileUpload: Icons.IconUploadFile,
         applied: Icons.IconJob,
+        savedJobs: Icons.IconJob,
     },
 }
 
@@ -213,7 +215,7 @@ watch(
             :inline-collapsed="collapsed"
             @click="handleMenuClick"
         />
-        <a-button type="primary" class="btn-collapsed" @click="toggleCollapsed">
+        <a-button class="btn-collapsed" @click="toggleCollapsed">
             <MenuUnfoldOutlined v-if="collapsed" />
             <MenuFoldOutlined v-else />
         </a-button>
