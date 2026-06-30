@@ -3,7 +3,6 @@ import type { ColumnTable } from '@/interface'
 import StatusColumn from '@/components/common/Column/StatusColumn.vue'
 import EditColumn from '@/components/common/TableData/EditColumn.vue'
 import router from '@/router'
-import { FALSE_VALUE } from '@/libs'
 
 const { t } = i18n
 
@@ -34,20 +33,23 @@ export const columns: ColumnTable[] = [
         sortDirections: ['ascend', 'descend', 'ascend'],
         defaultSortOrder: 'ascend',
         align: 'center',
-        customRender: ({ record }) => (
-            <a
-                href={
-                    router.resolve({
-                        name: 'company-home-detail',
-                        params: { id: record.company_id ?? FALSE_VALUE },
-                    }).href
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                {record.name}
-            </a>
-        ),
+        customRender: ({ record }) =>
+            record.slug ? (
+                <a
+                    href={
+                        router.resolve({
+                            name: 'company-home-detail',
+                            params: { slug: record.slug },
+                        }).href
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    {record.name}
+                </a>
+            ) : (
+                <span>{record.name}</span>
+            ),
     },
     {
         title: t('company.labels.short_name'),
@@ -86,7 +88,7 @@ export const columns: ColumnTable[] = [
             <EditColumn
                 url={{
                     name: 'admin-companies-edit',
-                    params: { id: record.id },
+                    params: { slug: record.slug ?? record.id },
                 }}
             />
         ),

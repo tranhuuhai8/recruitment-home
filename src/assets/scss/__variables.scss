@@ -1,7 +1,7 @@
 :root {
     /* Surfaces & elevation */
-    --vt-box-shadow-1: 0 1px 3px rgba(15, 23, 42, 0.06),
-        0 8px 24px rgba(15, 23, 42, 0.06);
+    --vt-box-shadow-1:
+        0 1px 3px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.06);
     --vt-box-shadow-2: 0 4px 14px rgba(15, 23, 42, 0.08);
     --vt-box-shadow-box: 0 12px 40px rgba(13, 148, 136, 0.12);
 
@@ -52,7 +52,12 @@
     --bg-body: #f1f5f9;
     --bg-box-item: #ffffff;
     --bg-box-item-admin: #f8fafc;
-    --bg-head-linear: linear-gradient(120deg, #0f766e 0%, #14b8a6 45%, #0ea5e9 100%);
+    --bg-head-linear: linear-gradient(
+        120deg,
+        #0f766e 0%,
+        #14b8a6 45%,
+        #0ea5e9 100%
+    );
 
     --vt-sidebar-bg: #0f172a;
     --vt-sidebar-border: rgba(148, 163, 184, 0.12);

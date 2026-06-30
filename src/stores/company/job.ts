@@ -16,9 +16,9 @@ export const useJobStore = defineStore('job', () => {
         }
     }
 
-    const detail = async (id: number) => {
+    const detail = async (slug: string) => {
         try {
-            const response = await API.detail(id)
+            const response = await API.detail(slug)
             return (job.value = response.data)
         } catch (error: any) {
             return error
@@ -33,17 +33,17 @@ export const useJobStore = defineStore('job', () => {
         }
     }
 
-    const update = async (payload: FormDataJob, id: number) => {
+    const update = async (payload: FormDataJob, slug: string) => {
         try {
-            return await API.update(payload, id)
+            return await API.update(payload, slug)
         } catch (error: any) {
             return error
         }
     }
 
-    const remove = async (id: number) => {
+    const remove = async (slug: string) => {
         try {
-            return await API.remove(id)
+            return await API.remove(slug)
         } catch (error: any) {
             return error
         }

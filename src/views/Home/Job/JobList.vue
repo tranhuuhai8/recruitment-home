@@ -1,10 +1,15 @@
 <script setup lang="ts">
+import { reactive } from 'vue'
 import { useI18n } from 'vue3-i18n'
 import { useRouter } from 'vue-router'
 import { TYPE_JOB_MAP } from '@/libs'
 import { getSalaryText } from '../shared'
 import { useJobStore } from '@/stores/home'
-import { HeartFilled, HeartOutlined } from '@ant-design/icons-vue'
+import {
+    HeartFilled,
+    HeartOutlined,
+    LoadingOutlined,
+} from '@ant-design/icons-vue'
 import { useFavoritesStore } from '@/stores'
 import ImgDefault from '@/assets/imgs/img-default.png'
 import { IconLocation, IconMoney } from '@/components/icons'
@@ -13,14 +18,21 @@ const { t } = useI18n()
 const jobStore = useJobStore()
 const favoritesStore = useFavoritesStore()
 const router = useRouter()
+const savingIds = reactive(new Set<number>())
 
-const redirectToDetail = (id: number) =>
-    router.push({ name: 'job-home-detail', params: { id } })
+const redirectToDetail = (slug: string) =>
+    router.push({ name: 'job-home-detail', params: { slug } })
 
-const toggleSaved = async (e: MouseEvent, id: number) => {
+const toggleSaved = async (e: MouseEvent, id: number, slug: string) => {
     e.preventDefault()
     e.stopPropagation()
-    await favoritesStore.toggleJobSaved(id)
+    if (savingIds.has(id)) return
+    savingIds.add(id)
+    try {
+        await favoritesStore.toggleJobSaved(id, slug)
+    } finally {
+        savingIds.delete(id)
+    }
 }
 </script>
 
@@ -38,7 +50,7 @@ const toggleSaved = async (e: MouseEvent, id: number) => {
         :data-source="jobStore.getJobs.data"
     >
         <template #renderItem="{ item }">
-            <a-list-item @click="redirectToDetail(item.id)">
+            <a-list-item @click="redirectToDetail(item.slug)">
                 <div class="job-item-header">
                     <div class="company-logo" :title="item.company_name">
                         <img
@@ -61,11 +73,22 @@ const toggleSaved = async (e: MouseEvent, id: number) => {
                 </div>
                 <button
                     class="bookmark-btn"
-                    :class="{ active: favoritesStore.isJobSaved(item.id) }"
-                    @click="(e) => toggleSaved(e, item.id)"
-                    :title="favoritesStore.isJobSaved(item.id) ? t('saved') : t('save')"
+                    :class="{
+                        active: favoritesStore.isJobSaved(item.id),
+                        saving: savingIds.has(item.id),
+                    }"
+                    :disabled="savingIds.has(item.id)"
+                    @click="(e) => toggleSaved(e, item.id, item.slug)"
+                    :title="
+                        favoritesStore.isJobSaved(item.id)
+                            ? t('saved')
+                            : t('save')
+                    "
                 >
-                    <HeartFilled v-if="favoritesStore.isJobSaved(item.id)" />
+                    <LoadingOutlined v-if="savingIds.has(item.id)" />
+                    <HeartFilled
+                        v-else-if="favoritesStore.isJobSaved(item.id)"
+                    />
                     <HeartOutlined v-else />
                 </button>
 

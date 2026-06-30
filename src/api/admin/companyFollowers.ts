@@ -7,4 +7,3 @@ export const list = (payload: ParamsList) =>
         method: 'GET',
         params: payload,
     })
-

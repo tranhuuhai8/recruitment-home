@@ -38,6 +38,8 @@ const footerNav = Object.values(APP_HEADER).sort(
                 </p>
             </div>
         </div>
-        <div class="footer-bottom">© {{ new Date().getFullYear() }} Viet Job</div>
+        <div class="footer-bottom">
+            © {{ new Date().getFullYear() }} Viet Job
+        </div>
     </footer>
 </template>

@@ -14,8 +14,8 @@ const { t } = useI18n()
 const router = useRouter()
 const companyStore = useCompanyStore()
 
-const handleDetail = (id: number) =>
-    router.push({ name: 'company-home-detail', params: { id } })
+const handleDetail = (slug?: string) =>
+    router.push({ name: 'company-home-detail', params: { slug } })
 </script>
 
 <template>
@@ -46,7 +46,7 @@ const handleDetail = (id: number) =>
                 v-for="company in companyStore.getCompanies.data"
                 class="company-item"
                 :key="company.id"
-                @click="handleDetail(company.id)"
+                @click="handleDetail(company.slug)"
             >
                 <img :src="company.logo ?? ImgDefault" alt="" class="logo" />
                 <a-tooltip>

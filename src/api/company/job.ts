@@ -13,15 +13,15 @@ export const list = (payload: ParamsList) =>
         params: payload,
     })
 
-export const detail = (id: number) =>
+export const detail = (slug: string) =>
     request<ResponseResult, any>({
-        url: `company/job/${id}`,
+        url: `company/job/${slug}`,
         method: 'GET',
     })
 
-export const update = (payload: ParamsList, id: number) =>
+export const update = (payload: ParamsList, slug: string) =>
     request<ResponseList, ResponseList>({
-        url: `company/job/${id}`,
+        url: `company/job/${slug}`,
         method: 'PUT',
         data: payload,
     })
@@ -33,8 +33,8 @@ export const create = (payload: FormDataJob) =>
         data: payload,
     })
 
-export const remove = (id: number) =>
+export const remove = (slug: string) =>
     request<ResponseResult, any>({
-        url: `company/job/${id}`,
+        url: `company/job/${slug}`,
         method: 'DELETE',
     })

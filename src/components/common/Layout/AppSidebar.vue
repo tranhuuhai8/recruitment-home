@@ -67,7 +67,10 @@ const updateSelectedKeys = (routeName: string) => {
 
     for (const key in menus) {
         const item = menus[key]
-        if (item.route === routeName) {
+        if (
+            item.route === routeName ||
+            (parentRoute && item.route === parentRoute)
+        ) {
             selectedKeys.value = [String(item.order)]
             break
         }

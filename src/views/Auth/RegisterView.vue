@@ -52,7 +52,7 @@ const onFinish = async (values: RegisterDto) => {
 
         <div class="suggest-auth">
             {{ t('auth.btn.suggest_login') }}
-            <span @click="() => router.push('/auth/login')">
+            <span @click="() => router.push('/tai-khoan/dang-nhap')">
                 {{ t('auth.login') }}
             </span>
         </div>

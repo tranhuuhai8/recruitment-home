@@ -12,16 +12,17 @@ const props = defineProps<{
     isDelete?: boolean
     routeEdit?: string | null
     routeDetail?: string | null
-    id: number
+    paramKey?: string
+    id: number | string
 }>()
 const router = useRouter()
-const handleDelete = inject('handleDelete') as (id: number) => void
-const handleUpdate = inject('handleUpdate') as (id: number) => void
+const handleDelete = inject('handleDelete') as (id: number | string) => void
+const handleUpdate = inject('handleUpdate') as (id: number | string) => void
 
 const handleDetail = () =>
     router.push({
         name: props.routeDetail ?? '',
-        params: { id: props.id },
+        params: { [props.paramKey ?? 'id']: props.id },
     })
 
 const handleEdit = (event: Event) => {
@@ -31,7 +32,7 @@ const handleEdit = (event: Event) => {
 
     router.push({
         name: props.routeEdit ?? '',
-        params: { id: props.id },
+        params: { [props.paramKey ?? 'id']: props.id },
     })
 }
 

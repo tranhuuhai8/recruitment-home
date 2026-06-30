@@ -65,7 +65,7 @@ export const getCityName = (city: City) => {
     return city.name + ' (' + city.parent.name + ')'
 }
 
-export const getInitValueFormApply = (id: number) => ({
+export const getInitValueFormApply = (id: number | null) => ({
     ...INITIAL_FORM_APPLY,
     source_cv: 'upload',
     applicant_id: getUserInformation()?.applicant?.id ?? null,

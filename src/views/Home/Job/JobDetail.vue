@@ -7,6 +7,8 @@ import {
     FieldTimeOutlined,
     FilePdfOutlined,
     EyeOutlined,
+    HeartFilled,
+    HeartOutlined,
 } from '@ant-design/icons-vue'
 import {
     applyJobRules,
@@ -33,7 +35,7 @@ import {
 
 const { t } = useI18n()
 const {
-    params: { id },
+    params: { slug },
 } = useRoute()
 const router = useRouter()
 const currentUrl = window.location.href
@@ -46,7 +48,7 @@ const openModal = ref(false)
 const loadingModal = ref(false)
 const applicationFiles = ref<ApplicationFile[]>([])
 const job = reactive<Job>(INITIAL_JOB_INFO_NULL)
-const formState = reactive<JobApplication>(getInitValueFormApply(+id))
+const formState = reactive<JobApplication>(getInitValueFormApply(null))
 
 const onApply = async () => {
     try {
@@ -64,13 +66,25 @@ const onApply = async () => {
     }
 }
 
+const savingJob = ref(false)
+
 const handleSaveJob = async () => {
-    const saved = await favoritesStore.toggleJobSaved(+id)
-    if (saved !== false) notify(saved ? t('saved') : t('save'), '', 'success')
+    if (savingJob.value) return
+    savingJob.value = true
+    try {
+        const saved = await favoritesStore.toggleJobSaved(
+            job.id as number,
+            job.slug as string
+        )
+        if (saved !== false)
+            notify(saved ? t('saved') : t('save'), '', 'success')
+    } finally {
+        savingJob.value = false
+    }
 }
 
 const handleManagement = () =>
-    router.push({ name: 'company-jobs-detail', params: { id } })
+    router.push({ name: 'company-jobs-detail', params: { slug: job.slug } })
 
 const handlePreview = (url: string) => url && window.open(url, '_blank')
 
@@ -86,24 +100,25 @@ const handleApply = async () => {
 }
 
 const handleCancel = () => {
-    Object.assign(formState, getInitValueFormApply(+id))
+    Object.assign(formState, getInitValueFormApply(job.id))
     formRef.value.resetFields()
     openModal.value = false
 }
 
-const redirectToDetailCompany = (id: number | null) =>
-    router.push({ name: 'company-home-detail', params: { id } })
+const redirectToDetailCompany = (companySlug: string | undefined) =>
+    router.push({ name: 'company-home-detail', params: { slug: companySlug } })
 
 const redirectToManagementFile = () =>
     router.push({ name: 'applicant-file-upload' })
 
 onMounted(async () => {
     loading.value = true
-    const data = await jobStore.detail(+id)
+    const data = await jobStore.detail(slug as string)
     if (!data || (!data.id && data.status_code !== STATUS_CODE_SUCCESS)) {
         return router.push({ name: 'not-found' })
     }
     Object.assign(job, data)
+    formState.job_id = job.id
     loading.value = false
 })
 
@@ -183,8 +198,21 @@ useHead(
                     <a-button class="btn-apply" @click="handleApply">
                         {{ t('home.job.detail.btn.apply') }}
                     </a-button>
-                    <a-button class="btn-save" @click="handleSaveJob">
-                        {{ t('save') }}
+                    <a-button
+                        class="btn-save"
+                        :class="{
+                            'btn-saved': favoritesStore.isJobSaved(job.id),
+                        }"
+                        :loading="savingJob"
+                        @click="handleSaveJob"
+                    >
+                        <HeartFilled v-if="favoritesStore.isJobSaved(job.id)" />
+                        <HeartOutlined v-else />
+                        {{
+                            favoritesStore.isJobSaved(job.id)
+                                ? t('saved')
+                                : t('save')
+                        }}
                     </a-button>
                 </div>
             </div>
@@ -215,7 +243,9 @@ useHead(
                             <div class="contact-item flex-center">
                                 <a-button
                                     @click="
-                                        redirectToDetailCompany(job.company?.id)
+                                        redirectToDetailCompany(
+                                            job.company?.slug
+                                        )
                                     "
                                 >
                                     {{ t('detail') }}

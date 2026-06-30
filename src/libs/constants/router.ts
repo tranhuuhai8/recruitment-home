@@ -21,12 +21,6 @@ export const ROLE_PATH_PREFIX: Record<number, string> = {
     [ROLE_APPLICANT]: PREFIX_ROLE_APPLICANT,
 }
 
-export const ROUTE_PATH_MANAGER = [
-    PREFIX_ROLE_ADMIN,
-    PREFIX_ROLE_COMPANY,
-    PREFIX_ROLE_APPLICANT,
-]
-
 export const ROUTE_NAME_DASHBOARD = {
     1: 'admin-dashboard',
     2: 'company-dashboard',

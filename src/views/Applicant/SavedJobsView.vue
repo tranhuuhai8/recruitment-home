@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 import { useI18n } from 'vue3-i18n'
 import { useRouter } from 'vue-router'
 import { useSettingStore, useFavoritesStore } from '@/stores'
@@ -13,22 +13,28 @@ const settingStore = useSettingStore()
 const favoritesStore = useFavoritesStore()
 
 const loading = ref(false)
+const removingIds = reactive(new Set<number>())
 const jobs = ref<Job[]>([])
 
-const savedIds = computed(() => favoritesStore.state.savedJobIds)
+const savedSlugs = computed(() => favoritesStore.state.savedJobSlugs)
 
 const fetchSavedJobs = async () => {
     loading.value = true
     try {
         await favoritesStore.hydrate()
-        const ids = savedIds.value
-        if (!ids.length) {
+        const slugs = savedSlugs.value
+        if (!slugs.length) {
             jobs.value = []
             return
         }
-        const results = await Promise.allSettled(ids.map((id) => JobAPI.detail(id)))
+        const results = await Promise.allSettled(
+            slugs.map((slug: string) => JobAPI.detail(slug))
+        )
         jobs.value = results
-            .filter((r): r is PromiseFulfilledResult<any> => r.status === 'fulfilled')
+            .filter(
+                (r): r is PromiseFulfilledResult<any> =>
+                    r.status === 'fulfilled'
+            )
             .map((r) => r.value?.data as Job)
             .filter((j) => !!j && !!j.id)
     } catch (e: any) {
@@ -38,12 +44,19 @@ const fetchSavedJobs = async () => {
     }
 }
 
-const removeSaved = (jobId: number) => {
-    favoritesStore.toggleJobSaved(jobId).finally(fetchSavedJobs)
+const removeSaved = async (jobId: number, jobSlug: string) => {
+    if (removingIds.has(jobId)) return
+    removingIds.add(jobId)
+    try {
+        await favoritesStore.toggleJobSaved(jobId, jobSlug)
+        await fetchSavedJobs()
+    } finally {
+        removingIds.delete(jobId)
+    }
 }
 
-const goDetail = (jobId: number) =>
-    router.push({ name: 'job-home-detail', params: { id: jobId } })
+const goDetail = (jobSlug: string) =>
+    router.push({ name: 'job-home-detail', params: { slug: jobSlug } })
 
 onMounted(async () => {
     settingStore.setTitle(t('sidebar.saved_jobs'))
@@ -63,7 +76,11 @@ onMounted(async () => {
                     <template #renderItem="{ item }">
                         <a-list-item>
                             <template #actions>
-                                <a-button danger @click="removeSaved(item.id)">
+                                <a-button
+                                    danger
+                                    :loading="removingIds.has(item.id)"
+                                    @click="removeSaved(item.id, item.slug)"
+                                >
                                     {{ t('delete') }}
                                 </a-button>
                             </template>
@@ -71,7 +88,7 @@ onMounted(async () => {
                                 :title="item.title"
                                 :description="item.company_name"
                             />
-                            <a-button type="link" @click="goDetail(item.id)">
+                            <a-button type="link" @click="goDetail(item.slug)">
                                 {{ t('detail') }}
                             </a-button>
                         </a-list-item>
@@ -91,4 +108,3 @@ onMounted(async () => {
     background: var(--vt-c-white);
 }
 </style>
-

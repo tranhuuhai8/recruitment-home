@@ -265,7 +265,12 @@ const filteredNews = computed(() => {
     min-height: 380px;
 }
 .news-hero__overlay {
-    background: linear-gradient(105deg, rgba(15, 23, 42, 0.75) 0%, rgba(15, 118, 110, 0.55) 45%, rgba(14, 165, 233, 0.35) 100%);
+    background: linear-gradient(
+        105deg,
+        rgba(15, 23, 42, 0.75) 0%,
+        rgba(15, 118, 110, 0.55) 45%,
+        rgba(14, 165, 233, 0.35) 100%
+    );
 }
 
 .featured {

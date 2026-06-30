@@ -25,18 +25,18 @@ export const useCompanyStore = defineStore('company', () => {
         }
     }
 
-    const detail = async (id: number) => {
+    const detail = async (slug: string) => {
         try {
-            const response = await API.detail(id)
+            const response = await API.detail(slug)
             return (company.value = response.data)
         } catch (error: any) {
             return error
         }
     }
 
-    const update = async (payload: Record<string, any>, id: number) => {
+    const update = async (payload: Record<string, any>, slug: string) => {
         try {
-            return await API.update(payload, id)
+            return await API.update(payload, slug)
         } catch (error: any) {
             return error
         }

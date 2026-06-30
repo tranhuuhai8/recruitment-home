@@ -8,7 +8,7 @@ import BoxDetail from './components/BoxDetail.vue'
 
 const { t } = useI18n()
 const {
-    params: { id },
+    params: { slug },
 } = useRoute()
 const router = useRouter()
 const jobStore = useJobStore()
@@ -20,7 +20,7 @@ const job = computed(() => jobStore.getJob)
 const onDelete = async () => {
     try {
         loadingDelete.value = true
-        const { status_code, message } = await jobStore.remove(+id)
+        const { status_code, message } = await jobStore.remove(slug as string)
         if (status_code === STATUS_CODE_SUCCESS) {
             notify(message, '', 'success')
             return backToList()
@@ -36,11 +36,11 @@ const onDelete = async () => {
 const backToList = () => router.push({ name: 'company-jobs' })
 
 const handleUpdate = () =>
-    router.push({ name: 'company-jobs-edit', params: { id } })
+    router.push({ name: 'company-jobs-edit', params: { slug } })
 
 onMounted(async () => {
     loading.value = true
-    await jobStore.detail(+id)
+    await jobStore.detail(slug as string)
     loading.value = false
 })
 </script>

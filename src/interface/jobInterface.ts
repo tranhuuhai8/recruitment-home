@@ -4,6 +4,7 @@ import type { City, JobCategory } from './masterDataInterface'
 
 export interface Job {
     id: number | null
+    slug?: string
     title: string
     banner?: string
     number_of_recruitment: number | string
@@ -19,6 +20,7 @@ export interface Job {
     city_name?: string
     job_category_name?: string
     company_name?: string
+    company_slug?: string
     last_sent_notify?: string
     notify_frequency?: number
     status: number
@@ -60,7 +62,7 @@ export interface FormDataJob {
 export interface JobApplication {
     id?: number
     applicant_id: number | null
-    job_id: number
+    job_id: number | null
     file_name: string
     file_path: string
     file_size?: number

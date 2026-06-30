@@ -2,12 +2,7 @@
 import { ref, watch } from 'vue'
 import { AppHeaderHomepage, AppFooterVue, AppSidebarVue } from '.'
 import { useRoute } from 'vue-router'
-import {
-    PAGE_NOT_FOUND,
-    ROUTE_CHANGE_PASSWORD,
-    ROUTE_PATH_MANAGER,
-    ROUTER_AUTH,
-} from '@/libs'
+import { PAGE_NOT_FOUND, ROUTE_CHANGE_PASSWORD, ROUTER_AUTH } from '@/libs'
 
 const isRouteAuth = ref()
 const isRouteManager = ref()
@@ -17,9 +12,7 @@ const route = useRoute()
 
 const checkRoute = async () => {
     isRouteManager.value =
-        ROUTE_PATH_MANAGER.some((prefix) =>
-            route.path.startsWith(`/${prefix}`)
-        ) || route.name === ROUTE_CHANGE_PASSWORD
+        Boolean(route.meta.roles) || route.name === ROUTE_CHANGE_PASSWORD
     isRouteAuth.value =
         ROUTER_AUTH.includes(String(route.name)) &&
         route.name !== ROUTE_CHANGE_PASSWORD

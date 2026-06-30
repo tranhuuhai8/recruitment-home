@@ -13,9 +13,9 @@ export const list = (payload: ParamsList) =>
         params: payload,
     })
 
-export const detail = (id: number) =>
+export const detail = (slug: string) =>
     request<ResponseResult, any>({
-        url: `home/job/${id}`,
+        url: `home/job/${slug}`,
         method: 'GET',
     })
 

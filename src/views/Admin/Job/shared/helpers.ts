@@ -1,10 +1,5 @@
 import type { FormDataJob, ParamsList } from '@/interface'
-import {
-    formatDay,
-    getUserInformation,
-    mapFilterQuery,
-    mapKeyToData,
-} from '@/libs'
+import { formatDay, mapFilterQuery, mapKeyToData } from '@/libs'
 import dayjs from 'dayjs'
 
 export const getQuerySearch = (
@@ -36,5 +31,4 @@ export const makeDataUpsert = (data: FormDataJob) => ({
     ...data,
     start_date: formatDay(data.start_date),
     end_date: formatDay(data.end_date),
-    company_id: getUserInformation()?.company.id,
 })

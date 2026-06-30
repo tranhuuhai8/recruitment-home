@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import LayoutVue from '@/components/common/LayoutVue.vue'
+import { onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore, useFavoritesStore } from '@/stores'
 import { ROUTER_AUTH } from './libs'
@@ -21,6 +22,12 @@ const route = useRoute()
 const authStore = useAuthStore()
 const favoritesStore = useFavoritesStore()
 const router = useRouter()
+
+onMounted(() => {
+    if (authStore.isAuthenticated) {
+        favoritesStore.hydrate()
+    }
+})
 
 authStore.$subscribe((mutations: any, state: any) => {
     // hydrate saved/followed when logging in

@@ -8,8 +8,8 @@ export const list = (payload: ParamsList) =>
         params: payload,
     })
 
-export const detail = (id: number) =>
+export const detail = (slug: string) =>
     request<ResponseResult, any>({
-        url: `home/company/${id}`,
+        url: `home/company/${slug}`,
         method: 'GET',
     })

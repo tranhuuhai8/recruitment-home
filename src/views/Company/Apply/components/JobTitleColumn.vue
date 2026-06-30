@@ -3,7 +3,7 @@ import { useRouter } from 'vue-router'
 
 const props = defineProps<{
     routeDetail: string
-    id: number
+    slug: string
     name: string
 }>()
 const router = useRouter()
@@ -11,7 +11,7 @@ const router = useRouter()
 const handleDetailJob = () =>
     router.push({
         name: props.routeDetail,
-        params: { id: props.id },
+        params: { slug: props.slug },
     })
 </script>
 
