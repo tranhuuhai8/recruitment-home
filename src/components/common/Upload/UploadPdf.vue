@@ -13,12 +13,13 @@ import {
     API_URL,
     FALSE_VALUE,
     formatBytes,
-    getToken,
     MAX_SIZE_PDF,
     notify,
 } from '@/libs'
+import { useAuthStore } from '@/stores/auth'
 
 const { t } = useI18n()
+const authStore = useAuthStore()
 const props = defineProps(['url', 'name'])
 const emit = defineEmits(['update:url', 'update:name', 'update:size'])
 const uploading = ref(false)
@@ -76,7 +77,7 @@ const previewFile = () => {
         class="upload-pdf"
         :action="API_URL + '/upload/pdf'"
         :headers="{
-            Authorization: `Bearer ${getToken()}`,
+            Authorization: `Bearer ${authStore.token}`,
             'X-Requested-With': null,
         }"
         :show-upload-list="false"

@@ -6,12 +6,13 @@ import {
     ALLOWED_TYPE_PDF,
     API_URL,
     formatBytes,
-    getToken,
     MAX_SIZE_PDF,
     notify,
 } from '@/libs'
+import { useAuthStore } from '@/stores/auth'
 
 const { t } = useI18n()
+const authStore = useAuthStore()
 const emit = defineEmits(['submit'])
 
 const beforeUpload = (file: File) => {
@@ -45,7 +46,7 @@ const handleChange = (info: Record<string, any>) => {
         class="upload-pdf-btn"
         :action="API_URL + '/upload/pdf'"
         :headers="{
-            Authorization: `Bearer ${getToken()}`,
+            Authorization: `Bearer ${authStore.token}`,
             'X-Requested-With': null,
         }"
         :show-upload-list="false"

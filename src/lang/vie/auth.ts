@@ -33,4 +33,14 @@ export default {
         suggest_register: 'Bạn chưa có tài khoản?',
         suggest_login: 'Bạn đã có tài khoản?',
     },
+    verify_email: {
+        success_title: 'Xác thực tài khoản thành công!',
+        success_description:
+            'Tài khoản của bạn đã được kích hoạt. Tự động chuyển về đăng nhập sau {seconds} giây...',
+        error_title: 'Liên kết không hợp lệ',
+        error_description:
+            'Liên kết xác thực đã hết hạn hoặc không hợp lệ. Vui lòng đăng ký lại để nhận liên kết mới.',
+        btn_login: 'Đăng nhập ngay',
+        btn_register: 'Đăng ký lại',
+    },
 }
