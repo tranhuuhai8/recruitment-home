@@ -2,16 +2,18 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { useAuthStore } from './auth'
 import { notify, ROLE_APPLICANT } from '@/libs'
-import * as FavoriteAPI from '@/api/applicant/favorites'
-import * as FollowAPI from '@/api/applicant/follows'
+import * as favoriteAPI from '@/api/applicant/favorites'
+import * as followAPI from '@/api/applicant/follows'
 
 type FavoritesState = {
     savedJobIds: number[]
+    savedJobSlugs: string[]
     followedCompanyIds: number[]
 }
 
 const emptyState = (): FavoritesState => ({
     savedJobIds: [],
+    savedJobSlugs: [],
     followedCompanyIds: [],
 })
 
@@ -39,10 +41,12 @@ export const useFavoritesStore = defineStore('favorites', () => {
         }
         try {
             const [jobsRes, companiesRes] = await Promise.all([
-                FavoriteAPI.listSavedJobs(),
-                FollowAPI.listFollowedCompanies(),
+                favoriteAPI.listSavedJobs(),
+                followAPI.listFollowedCompanies(),
             ])
             state.value.savedJobIds = (jobsRes?.data?.job_ids ?? []) as number[]
+            state.value.savedJobSlugs = (jobsRes?.data?.job_slugs ??
+                []) as string[]
             state.value.followedCompanyIds = (companiesRes?.data?.company_ids ??
                 []) as number[]
         } catch {
@@ -50,20 +54,30 @@ export const useFavoritesStore = defineStore('favorites', () => {
         }
     }
 
-    const toggleJobSaved = async (jobId: number) => {
+    const toggleJobSaved = async (jobId: number, jobSlug: string) => {
         if (!requireApplicantAuth()) return false
-        const res = await FavoriteAPI.toggleSavedJob(jobId)
+        const res = await favoriteAPI.toggleSavedJob(jobSlug)
         const saved = !!res?.data?.saved
-        const set = new Set(state.value.savedJobIds)
-        if (saved) set.add(jobId)
-        else set.delete(jobId)
-        state.value.savedJobIds = Array.from(set)
+        const idSet = new Set(state.value.savedJobIds)
+        const slugSet = new Set(state.value.savedJobSlugs)
+        if (saved) {
+            idSet.add(jobId)
+            slugSet.add(jobSlug)
+        } else {
+            idSet.delete(jobId)
+            slugSet.delete(jobSlug)
+        }
+        state.value.savedJobIds = Array.from(idSet)
+        state.value.savedJobSlugs = Array.from(slugSet)
         return saved
     }
 
-    const toggleCompanyFollowed = async (companyId: number) => {
+    const toggleCompanyFollowed = async (
+        companyId: number,
+        companySlug: string
+    ) => {
         if (!requireApplicantAuth()) return false
-        const res = await FollowAPI.toggleFollowedCompany(companyId)
+        const res = await followAPI.toggleFollowedCompany(companySlug)
         const followed = !!res?.data?.followed
         const set = new Set(state.value.followedCompanyIds)
         if (followed) set.add(companyId)
@@ -76,7 +90,8 @@ export const useFavoritesStore = defineStore('favorites', () => {
         !!jobId && state.value.savedJobIds.includes(Number(jobId))
 
     const isCompanyFollowed = (companyId: number | null | undefined) =>
-        !!companyId && state.value.followedCompanyIds.includes(Number(companyId))
+        !!companyId &&
+        state.value.followedCompanyIds.includes(Number(companyId))
 
     const savedJobsCount = computed(() => state.value.savedJobIds.length)
     const followedCompaniesCount = computed(
@@ -94,4 +109,3 @@ export const useFavoritesStore = defineStore('favorites', () => {
         followedCompaniesCount,
     }
 })
-

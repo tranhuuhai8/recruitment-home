@@ -26,13 +26,16 @@ const formState = reactive<FormDataCompany>({ ...INITIAL_FORM_COMPANY })
 const loading = ref(false)
 const formRef = ref()
 const {
-    params: { id },
+    params: { slug },
 } = useRoute()
 
 const onUpdate = async (values: Record<string, any>) => {
     loading.value = true
     try {
-        const { status_code, message } = await companyStore.update(values, +id)
+        const { status_code, message } = await companyStore.update(
+            values,
+            slug as string
+        )
 
         if (status_code === STATUS_CODE_SUCCESS) {
             notify(message, '', 'success')
@@ -49,7 +52,7 @@ const onUpdate = async (values: Record<string, any>) => {
 const getData = async () => {
     loading.value = true
     try {
-        const data = await companyStore.detail(+id)
+        const data = await companyStore.detail(slug as string)
         Object.assign(formState, data)
         formState.status = data.user?.status ?? data.status
         formState.mail_address = data.user?.mail_address ?? data.mail_address

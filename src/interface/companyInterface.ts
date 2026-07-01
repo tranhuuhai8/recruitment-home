@@ -4,6 +4,7 @@ import type { User } from './userInterface'
 
 export interface Company {
     id: number | null
+    slug?: string
     logo?: string
     cover_img?: string
     name: string

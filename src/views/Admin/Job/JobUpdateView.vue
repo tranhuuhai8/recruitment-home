@@ -5,7 +5,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { notify, QUERY_GET_TREE, STATUS_CODE_SUCCESS } from '@/libs'
 import { INITIAL_FORM_JOB, makeDataUpsert, mapDataForm } from './shared'
 import { useCityStore, useJobCategoryStore } from '@/stores/home'
-import { useJobStore } from '@/stores/company'
+import { useJobStore } from '@/stores/admin'
 import type { FormDataJob } from '@/interface'
 import JobForm from './components/JobForm.vue'
 
@@ -63,7 +63,7 @@ const getData = async () => {
     Object.assign(formState.value, mapDataForm(jobStore.getJob))
 }
 
-const backToList = () => router.push({ name: 'company-jobs' })
+const backToList = () => router.push({ name: 'admin-jobs' })
 
 onMounted(async () => {
     loading.value = true

@@ -16,6 +16,23 @@ export const useJobStore = defineStore('jobAdmin', () => {
         }
     }
 
+    const detail = async (id: number) => {
+        try {
+            const response = await API.detail(id)
+            return (job.value = response.data)
+        } catch (error: any) {
+            return error
+        }
+    }
+
+    const update = async (payload: Record<string, any>, id: number) => {
+        try {
+            return await API.update(payload, id)
+        } catch (error: any) {
+            return error
+        }
+    }
+
     const remove = async (id: number) => {
         try {
             return await API.remove(id)
@@ -31,6 +48,8 @@ export const useJobStore = defineStore('jobAdmin', () => {
         getJob,
         getJobs,
         list,
+        detail,
+        update,
         remove,
     }
 })

@@ -16,9 +16,9 @@ export const useJobStore = defineStore('jobHome', () => {
         }
     }
 
-    const detail = async (id: number) => {
+    const detail = async (slug: string) => {
         try {
-            const response = await API.detail(id)
+            const response = await API.detail(slug)
             return (job.value = response.data)
         } catch (error: any) {
             return error

@@ -18,7 +18,7 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css'
 const { t } = useI18n()
 const props = defineProps({
     data: { type: Object, required: true },
-    id: { type: Number, required: false },
+    id: { type: [Number, String], required: false },
 })
 const emits = defineEmits(['submit', 'delete'])
 const { data, id } = toRefs(props)

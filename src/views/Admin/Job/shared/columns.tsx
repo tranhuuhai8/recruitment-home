@@ -25,6 +25,20 @@ export const columns: ColumnTable[] = [
         sorter: true,
         sortDirections: ['descend', 'ascend', 'descend'],
         align: 'center',
+        customRender: ({ record }) => (
+            <a
+                href={
+                    router.resolve({
+                        name: 'job-home-detail',
+                        params: { slug: record.slug },
+                    }).href
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                {record.title}
+            </a>
+        ),
     },
     {
         title: t('job.labels.category'),
@@ -59,7 +73,7 @@ export const columns: ColumnTable[] = [
                 href={
                     router.resolve({
                         name: 'company-home-detail',
-                        params: { id: record.company?.id },
+                        params: { slug: record.company?.slug },
                     }).href
                 }
                 target="_blank"
@@ -119,7 +133,8 @@ export const columns: ColumnTable[] = [
             <DetailColumn
                 routeEdit={'admin-jobs-edit'}
                 routeDetail={'admin-jobs-edit'}
-                id={record.id}
+                paramKey={'slug'}
+                id={record.slug}
                 isDelete={true}
             />
         ),

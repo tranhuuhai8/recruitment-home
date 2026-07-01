@@ -23,7 +23,7 @@ const query = ref<Record<string, any>>({ ...INITIAL_QUERY })
 const loading = ref(false)
 const openDelete = ref(false)
 const loadingDelete = ref(false)
-const deleteId = ref<number | null>(null)
+const deleteId = ref<string | null>(null)
 const tableKey = ref(TRUE_VALUE)
 
 const getData = async () => {
@@ -32,8 +32,8 @@ const getData = async () => {
     loading.value = false
 }
 
-const onDelete = (id: number) => {
-    deleteId.value = id
+const onDelete = (slug: string) => {
+    deleteId.value = slug
     openDelete.value = true
 }
 
@@ -42,7 +42,7 @@ const handleDelete = async () => {
         try {
             loadingDelete.value = true
             const { status_code, message } = await jobStore.remove(
-                +deleteId.value
+                deleteId.value
             )
             if (status_code === STATUS_CODE_SUCCESS) {
                 return notify(message, '', 'success')

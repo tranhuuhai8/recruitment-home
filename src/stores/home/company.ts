@@ -16,9 +16,9 @@ export const useCompanyStore = defineStore('companyHome', () => {
         }
     }
 
-    const detail = async (id: number) => {
+    const detail = async (slug: string) => {
         try {
-            const response = await API.detail(id)
+            const response = await API.detail(slug)
             return (company.value = response.data)
         } catch (error: any) {
             return error

@@ -54,6 +54,8 @@ export const ApplicantUpdate = () =>
     import('@/views/Admin/Applicant/ApplicantUpdate.vue')
 
 export const JobViewAdmin = () => import('@/views/Admin/Job/JobView.vue')
+export const JobUpdateViewAdmin = () =>
+    import('@/views/Admin/Job/JobUpdateView.vue')
 export const CompanyFollowersAdminView = () =>
     import('@/views/Admin/CompanyFollowers/CompanyFollowersView.vue')
 

@@ -326,7 +326,7 @@
         }
 
         .ant-list-item {
-            padding: 20px 20px 8px;
+            padding: 20px;
             height: 100%;
             position: relative;
             @extend .box-item;
@@ -382,9 +382,15 @@
                     color: var(--vt-c-red);
                 }
 
-                &:hover {
+                &:hover:not(:disabled) {
                     color: var(--vt-c-red);
                     transform: scale(1.2);
+                }
+
+                &:disabled,
+                &.saving {
+                    cursor: not-allowed;
+                    opacity: 0.6;
                 }
             }
 
@@ -413,28 +419,41 @@
     }
 
     &.content {
-        background-color: var(--vt-c-white);
+        background-color: var(--vt-c-bg-page);
+
+        .job-content {
+            padding: 40px 0 60px;
+        }
+
+        .job-search-box {
+            background: var(--vt-c-white);
+            border-radius: var(--vt-br-box);
+            border: 1px solid var(--vt-c-border);
+            padding: 20px 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+        }
 
         .form-search {
             @extend .flex-center-start;
             gap: 10px;
+            flex-wrap: wrap;
 
             .ant-form-item {
-                width: 30%;
+                flex: 1;
+                min-width: 180px;
                 margin-bottom: 0;
 
                 &.search-all {
-                    flex: 1;
-                }
-
-                .ant-select-selector {
-                    min-width: 200px;
-                    max-width: 300px;
+                    flex: 2;
+                    min-width: 220px;
                 }
             }
 
-            .space-group-btn {
-                width: auto;
+            .ant-btn.ant-btn-primary {
+                height: 40px;
+                padding: 0 20px;
+                font-weight: 600;
             }
         }
 
@@ -448,6 +467,21 @@
                 > div {
                     width: 100% !important;
                     max-width: 100% !important;
+                }
+            }
+        }
+
+        @include media(mobile) {
+            .job-content {
+                padding: 24px 0 40px;
+            }
+
+            .form-search {
+                flex-direction: column;
+
+                .ant-form-item {
+                    width: 100%;
+                    min-width: 0;
                 }
             }
         }
@@ -512,7 +546,17 @@
 
             &.btn-save {
                 margin-left: 15px;
-                width: 75px;
+                width: auto;
+                gap: 6px;
+
+                &.btn-saved {
+                    color: var(--vt-c-red) !important;
+                    border-color: var(--vt-c-red) !important;
+                }
+            }
+
+            &.ant-btn-follow {
+                width: auto;
             }
 
             &:hover {

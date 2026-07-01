@@ -49,7 +49,9 @@ watch(
                 allowClear
                 style="width: 360px"
             />
-            <a-button type="primary" @click="onSearch">{{ t('search') }}</a-button>
+            <a-button type="primary" @click="onSearch">
+                {{ t('search') }}
+            </a-button>
         </a-space>
     </div>
 
@@ -74,7 +76,10 @@ watch(
             />
         </a-table>
 
-        <div style="margin-top: 12px; text-align: right" v-if="store.getCompanies">
+        <div
+            style="margin-top: 12px; text-align: right"
+            v-if="store.getCompanies"
+        >
             <a-pagination
                 :current="store.getCompanies.current_page"
                 :pageSize="store.getCompanies.per_page"
@@ -85,4 +90,3 @@ watch(
         </div>
     </div>
 </template>
-

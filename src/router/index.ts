@@ -42,17 +42,21 @@ const requireCompanyInfo = (to: any, from: any, next: any) => {
 // Layout: Public Routes
 const publicRoutes: RouteRecordRaw[] = [
     { path: '', name: 'home', component: Pages.HomeView },
-    { path: 'introduce', name: 'introduce', component: Pages.AboutView },
-    { path: 'news', name: 'news', component: Pages.NewView },
-    { path: 'contact', name: 'contact', component: Pages.ContactView },
     {
-        path: 'page-company/:id',
+        path: 'gioi-thieu',
+        name: 'introduce',
+        component: Pages.AboutView,
+    },
+    { path: 'tin-tuc', name: 'news', component: Pages.NewView },
+    { path: 'lien-he', name: 'contact', component: Pages.ContactView },
+    {
+        path: 'cong-ty/:slug',
         name: 'company-home-detail',
         component: Pages.CompanyDetailView,
     },
-    { path: 'page-job', name: 'job-home-list', component: Pages.JobView },
+    { path: 'viec-lam', name: 'job-home-list', component: Pages.JobView },
     {
-        path: 'page-job/:id',
+        path: 'viec-lam/:slug',
         name: 'job-home-detail',
         component: Pages.JobDetailView,
     },
@@ -60,21 +64,21 @@ const publicRoutes: RouteRecordRaw[] = [
 
 // Layout: Auth Routes
 const authRoutes: RouteRecordRaw[] = [
-    { path: 'login', name: 'login', component: Pages.LoginView },
-    { path: 'register', name: 'register', component: Pages.RegisterView },
+    { path: 'dang-nhap', name: 'login', component: Pages.LoginView },
+    { path: 'dang-ky', name: 'register', component: Pages.RegisterView },
     {
-        path: 'change-password',
+        path: 'doi-mat-khau',
         name: 'change-password',
         component: Pages.ChangePasswordView,
         meta: { requiresAuth: true },
     },
     {
-        path: 'forgot-password',
+        path: 'quen-mat-khau',
         name: 'forgot-password',
         component: Pages.ForgotPasswordView,
     },
     {
-        path: 'reset-password',
+        path: 'dat-lai-mat-khau',
         name: 'reset-password',
         component: Pages.ResetPasswordView,
     },
@@ -83,60 +87,68 @@ const authRoutes: RouteRecordRaw[] = [
 // Layout: Admin Routes
 const adminRoutes: RouteRecordRaw[] = [
     {
-        path: 'dashboard',
+        path: 'tong-quan',
         name: 'admin-dashboard',
         component: Pages.HomeViewAdmin,
     },
     {
-        path: 'companies',
+        path: 'cong-ty',
         name: 'admin-companies',
         component: Pages.CompanyView,
     },
     {
-        path: 'companies/:id/edit',
+        path: 'cong-ty/:slug/chinh-sua',
         name: 'admin-companies-edit',
         component: Pages.CompanyUpdate,
+        meta: { parentRoute: 'admin-companies' },
     },
     {
-        path: 'applicants',
+        path: 'ung-vien',
         name: 'admin-applicants',
         component: Pages.ApplicantView,
     },
     {
-        path: 'applicants/:id/edit',
+        path: 'ung-vien/:id/chinh-sua',
         name: 'admin-applicants-edit',
         component: Pages.ApplicantUpdate,
+        meta: { parentRoute: 'admin-applicants' },
     },
-    { path: 'jobs', name: 'admin-jobs', component: Pages.JobViewAdmin },
-    { path: 'reviews', name: 'admin-reviews', component: Pages.HomeViewAdmin },
+    { path: 'viec-lam', name: 'admin-jobs', component: Pages.JobViewAdmin },
     {
-        path: 'master-data',
+        path: 'viec-lam/:slug/chinh-sua',
+        name: 'admin-jobs-edit',
+        component: Pages.JobUpdateViewAdmin,
+        meta: { parentRoute: 'admin-jobs' },
+    },
+    { path: 'danh-gia', name: 'admin-reviews', component: Pages.HomeViewAdmin },
+    {
+        path: 'du-lieu-chung',
         name: 'admin-master-data',
         component: Pages.MasterView,
     },
     {
-        path: 'contact',
+        path: 'lien-he',
         name: 'admin-contact',
         component: Pages.ContactAdminView,
     },
     {
-        path: 'contact/:id',
+        path: 'lien-he/:id',
         name: 'admin-contact-detail',
         component: Pages.ContactDetailAdmin,
         meta: { parentRoute: 'admin-contact' },
     },
     {
-        path: 'mail-template',
+        path: 'mau-mail',
         name: 'admin-mail-template',
         component: Pages.MailTemplateView,
     },
     {
-        path: 'mail-log',
+        path: 'nhat-ky-mail',
         name: 'admin-mail-log',
         component: Pages.MailLogView,
     },
     {
-        path: 'company-followers',
+        path: 'cong-ty-da-luu',
         name: 'admin-company-followers',
         component: Pages.CompanyFollowersAdminView,
     },
@@ -145,26 +157,33 @@ const adminRoutes: RouteRecordRaw[] = [
 // Layout: Company Routes
 const companyRoutes: RouteRecordRaw[] = [
     { path: '', name: 'company-dashboard', component: Pages.HomeViewCompany },
-    { path: 'info', name: 'company-info', component: Pages.InformationCompany },
-    { path: 'jobs', name: 'company-jobs', component: Pages.JobViewCompany },
     {
-        path: 'jobs/create',
+        path: 'thong-tin',
+        name: 'company-info',
+        component: Pages.InformationCompany,
+    },
+    { path: 'viec-lam', name: 'company-jobs', component: Pages.JobViewCompany },
+    {
+        path: 'viec-lam/tao',
         name: 'company-jobs-create',
         component: Pages.JobCreateViewCompany,
         beforeEnter: requireCompanyInfo,
+        meta: { parentRoute: 'company-jobs' },
     },
     {
-        path: 'jobs/:id',
+        path: 'viec-lam/:slug',
         name: 'company-jobs-detail',
         component: Pages.JobDetailViewCompany,
+        meta: { parentRoute: 'company-jobs' },
     },
     {
-        path: 'jobs/:id/edit',
+        path: 'viec-lam/:slug/chinh-sua',
         name: 'company-jobs-edit',
         component: Pages.JobUpdateViewCompany,
+        meta: { parentRoute: 'company-jobs' },
     },
     {
-        path: 'applications',
+        path: 'ung-tuyen',
         name: 'company-applications',
         component: Pages.JobApplicationsViewCompany,
     },
@@ -178,22 +197,22 @@ const applicantRoutes: RouteRecordRaw[] = [
         component: Pages.HomeViewApplicant,
     },
     {
-        path: 'info',
+        path: 'thong-tin',
         name: 'applicant-info',
         component: Pages.InformationApplicant,
     },
     {
-        path: 'file-upload',
+        path: 'tai-len-tep',
         name: 'applicant-file-upload',
         component: Pages.FileUploadApplicant,
     },
     {
-        path: 'applied',
+        path: 'ung-tuyen',
         name: 'applicant-applied',
         component: Pages.JobAppliedApplicant,
     },
     {
-        path: 'saved-jobs',
+        path: 'viec-lam-da-luu',
         name: 'applicant-saved-jobs',
         component: Pages.SavedJobsApplicant,
     },
@@ -206,19 +225,19 @@ const router = createRouter({
             path: '/',
             children: [
                 ...publicRoutes,
-                { path: 'auth', children: authRoutes },
+                { path: 'tai-khoan', children: authRoutes },
                 {
-                    path: 'admin',
+                    path: 'quan-tri',
                     meta: { requiresAuth: true, roles: [ROLE_ADMIN] },
                     children: adminRoutes,
                 },
                 {
-                    path: 'company',
+                    path: 'cong-ty',
                     meta: { requiresAuth: true, roles: [ROLE_COMPANY] },
                     children: companyRoutes,
                 },
                 {
-                    path: 'applicant',
+                    path: 'ung-vien',
                     meta: { requiresAuth: true, roles: [ROLE_APPLICANT] },
                     children: applicantRoutes,
                 },
@@ -257,7 +276,7 @@ router.beforeEach(async (to, from, next) => {
     if (fromModule !== toModule) queryStore.clearQuery()
 
     if (to.meta.requiresAuth && !token.value) {
-        return next('/auth/login')
+        return next('/tai-khoan/dang-nhap')
     }
 
     if (ROUTER_AUTH.includes(String(to.name)) && token.value) {

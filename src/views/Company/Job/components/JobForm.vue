@@ -21,7 +21,7 @@ const { t } = useI18n()
 const router = useRouter()
 const props = defineProps({
     data: { type: Object, required: true },
-    id: { type: Number, required: false },
+    id: { type: [Number, String], required: false },
 })
 const emits = defineEmits(['submit', 'delete'])
 const { data, id } = toRefs(props)

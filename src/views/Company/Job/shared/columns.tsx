@@ -24,6 +24,15 @@ export const columns: ColumnTable[] = [
         sorter: true,
         sortDirections: ['descend', 'ascend', 'descend'],
         align: 'center',
+        customRender: ({ record }) => (
+            <a
+                href={`/viec-lam/${record.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                {record.title} <br /> {record.short_name}
+            </a>
+        ),
     },
     {
         title: t('job.labels.category'),
@@ -91,7 +100,8 @@ export const columns: ColumnTable[] = [
                 routeDetail={'company-jobs-detail'}
                 routeEdit={'company-jobs-edit'}
                 isDelete={true}
-                id={record.id}
+                paramKey={'slug'}
+                id={record.slug}
             />
         ),
     },

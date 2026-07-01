@@ -24,7 +24,7 @@ export const columns: ColumnTable[] = [
         customRender: ({ record }) => (
             <JobTitleColumn
                 routeDetail={'job-home-detail'}
-                id={record.job_id}
+                slug={record.job_slug}
                 name={record.job_title}
             />
         ),

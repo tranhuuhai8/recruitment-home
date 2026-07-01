@@ -18,7 +18,7 @@ export const APP_HEADER: Record<string, any> = {
         name: 'introduce',
         class: '',
         menu_childs: [],
-},
+    },
     job: {
         order: 3,
         label: t('header.job'),
@@ -78,16 +78,8 @@ export const APP_SIDEBAR_ADMIN: Record<string, any> = {
         class: '',
         menu_childs: [],
     },
-    reviews: {
-        order: 5,
-        label: t('sidebar.reviews'),
-        route: 'admin-reviews',
-        name: 'reviews',
-        class: '',
-        menu_childs: [],
-    },
     master_data: {
-        order: 6,
+        order: 5,
         label: t('sidebar.master_data'),
         route: 'admin-master-data',
         name: 'masterData',
@@ -95,7 +87,7 @@ export const APP_SIDEBAR_ADMIN: Record<string, any> = {
         menu_childs: [],
     },
     company_followers: {
-        order: 7,
+        order: 6,
         label: 'Công ty đã lưu',
         route: 'admin-company-followers',
         name: 'companyFollowers',
@@ -103,7 +95,7 @@ export const APP_SIDEBAR_ADMIN: Record<string, any> = {
         menu_childs: [],
     },
     contact_group: {
-        order: 8,
+        order: 7,
         label: t('sidebar.contact_group'),
         route: '',
         name: 'contactGroup',

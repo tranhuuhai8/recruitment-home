@@ -260,7 +260,7 @@ const team = [
                     pháp phù hợp dành riêng cho bạn.
                 </p>
                 <div class="ph-dark-banner__actions">
-                    <router-link to="/auth/register">
+                    <router-link to="/tai-khoan/dang-ky">
                         <a-button
                             type="primary"
                             size="large"
@@ -268,7 +268,7 @@ const team = [
                             >Đăng ký ngay</a-button
                         >
                     </router-link>
-                    <router-link to="/contact">
+                    <router-link to="/lien-he">
                         <a-button size="large" class="ph-btn-ghost-dark cta-btn"
                             >Liên hệ chúng tôi</a-button
                         >
@@ -285,7 +285,12 @@ const team = [
     min-height: 520px;
 }
 .about-hero__overlay {
-    background: linear-gradient(105deg, rgba(15, 23, 42, 0.75) 0%, rgba(15, 118, 110, 0.55) 45%, rgba(14, 165, 233, 0.35) 100%);
+    background: linear-gradient(
+        105deg,
+        rgba(15, 23, 42, 0.75) 0%,
+        rgba(15, 118, 110, 0.55) 45%,
+        rgba(14, 165, 233, 0.35) 100%
+    );
 }
 
 .image-wrapper {
@@ -363,7 +368,12 @@ const team = [
 }
 
 .stats-banner {
-    background: linear-gradient(105deg, rgba(15, 23, 42, 0.75) 0%, rgba(15, 118, 110, 0.55) 45%, rgba(14, 165, 233, 0.35) 100%);
+    background: linear-gradient(
+        105deg,
+        rgba(15, 23, 42, 0.75) 0%,
+        rgba(15, 118, 110, 0.55) 45%,
+        rgba(14, 165, 233, 0.35) 100%
+    );
     padding: 60px 0;
 }
 .stat-card {

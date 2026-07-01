@@ -7,9 +7,8 @@ export const listFollowedCompanies = () =>
         method: 'GET',
     })
 
-export const toggleFollowedCompany = (companyId: number) =>
+export const toggleFollowedCompany = (companySlug: string) =>
     request<ResponseResult, any>({
-        url: `applicant/follows/companies/${companyId}/toggle`,
+        url: `applicant/follows/companies/${companySlug}/toggle`,
         method: 'POST',
     })
-

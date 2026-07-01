@@ -43,8 +43,8 @@ const onChangePage = (pageNumber: number) => emit('changePage', pageNumber)
 
 const handleCreate = () => router.push(props.createLink)
 
-const handleUpdate = (id: number) => emit('handle-update', id)
-const handleDelete = (id: number) => emit('handle-delete', id)
+const handleUpdate = (id: number | string) => emit('handle-update', id)
+const handleDelete = (id: number | string) => emit('handle-delete', id)
 
 provide('handleUpdate', handleUpdate)
 provide('handleDelete', handleDelete)

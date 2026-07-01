@@ -2,7 +2,7 @@
 import { useI18n } from 'vue3-i18n'
 import { useRoute, useRouter } from 'vue-router'
 import { useHead } from '@vueuse/head'
-import { onMounted, reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 import type { Company } from '@/interface'
 import { STATUS_CODE_SUCCESS } from '@/libs'
 import { useCompanyStore } from '@/stores/home'
@@ -14,29 +14,41 @@ import { useFavoritesStore } from '@/stores'
 
 const { t } = useI18n()
 const {
-    params: { id },
+    params: { slug },
 } = useRoute()
 const router = useRouter()
 const currentUrl = window.location.href
 const companyStore = useCompanyStore()
 const favoritesStore = useFavoritesStore()
 const loading = ref(false)
+const savingFollow = ref(false)
 const company = reactive<Company>(INITIAL_COMPANY_INFO_NULL)
 
 const isFollowed = computed(() => favoritesStore.isCompanyFollowed(company.id))
-const handleFollow = async (id: number) => favoritesStore.toggleCompanyFollowed(id)
+const companyId = computed(() => company.id ?? 0)
+
+const handleFollow = async () => {
+    if (savingFollow.value) return
+    savingFollow.value = true
+    try {
+        await favoritesStore.toggleCompanyFollowed(
+            company.id as number,
+            company.slug as string
+        )
+    } finally {
+        savingFollow.value = false
+    }
+}
 
 onMounted(async () => {
     loading.value = true
-    const data = await companyStore.detail(+id)
+    const data = await companyStore.detail(slug as string)
     if (!data || (!data.id && data.status_code !== STATUS_CODE_SUCCESS)) {
         return router.push({ name: 'not-found' })
     }
     Object.assign(company, data)
     loading.value = false
 })
-
-import { computed } from 'vue'
 
 useHead(
     computed(() => ({
@@ -89,7 +101,8 @@ useHead(
                 </div>
                 <a-button
                     class="ant-btn-follow"
-                    @click="handleFollow(company.id)"
+                    :loading="savingFollow"
+                    @click="handleFollow()"
                 >
                     {{
                         isFollowed
@@ -112,7 +125,7 @@ useHead(
                             {{ t('home.company.detail.title_box.recruitment') }}
                         </h2>
                         <div class="content box-job">
-                            <CompanyListJob :id="+id" />
+                            <CompanyListJob :id="companyId" />
                         </div>
                     </div>
                 </div>
