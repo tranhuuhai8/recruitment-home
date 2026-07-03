@@ -126,6 +126,7 @@ const roleIconMap: Record<string, Record<string, any>> = {
         fileUpload: Icons.IconUploadFile,
         applied: Icons.IconJob,
         savedJobs: Icons.IconJob,
+        followedCompanies: Icons.IconCompany,
     },
 }
 

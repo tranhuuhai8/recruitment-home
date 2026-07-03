@@ -121,7 +121,7 @@ watch(
     <modal-delete
         :open="openDelete"
         :loading="loadingDelete"
-        :title="t('job.confirm_delete_id', [deleteId])"
+        :title="t('job.confirm_delete_title', [deleteId])"
         @close="
             () => {
                 openDelete = false

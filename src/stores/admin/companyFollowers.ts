@@ -1,26 +1,27 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import * as API from '@/api/admin/companyFollowers'
+import type { CompanyFollowerResult } from '@/interface'
 
 export const useCompanyFollowersStore = defineStore(
     'adminCompanyFollowers',
     () => {
-        const companies = ref({} as any)
+        const followers = ref({} as CompanyFollowerResult)
 
         const list = async (payload: Record<string, any>) => {
             try {
                 const response = await API.list(payload as any)
-                return (companies.value = response.data)
+                return (followers.value = response.data)
             } catch (error: any) {
                 return error
             }
         }
 
-        const getCompanies = computed(() => companies.value)
+        const getFollowers = computed(() => followers.value)
 
         return {
             list,
-            getCompanies,
+            getFollowers,
         }
     }
 )

@@ -1,7 +1,11 @@
 import i18n from '@/lang'
 import type { ColumnTable } from '@/interface'
 import DetailColumn from '@/components/common/TableData/DetailColumn.vue'
-import { StatusColumnJob, TypeColumnJob } from '@/components/common'
+import {
+    StatusColumnJob,
+    TypeColumnJob,
+    StatusColumnApply,
+} from '@/components/common'
 import router from '@/router'
 
 const { t } = i18n
@@ -132,11 +136,106 @@ export const columns: ColumnTable[] = [
         customRender: ({ record }: any) => (
             <DetailColumn
                 routeEdit={'admin-jobs-edit'}
-                routeDetail={'admin-jobs-edit'}
-                paramKey={'slug'}
-                id={record.slug}
+                routeDetail={'admin-jobs-detail'}
+                paramKey={'id'}
+                id={record.id}
                 isDelete={true}
             />
         ),
+    },
+]
+
+export const applicationColumns: ColumnTable[] = [
+    {
+        title: t('columns.id'),
+        dataIndex: 'id',
+        key: 'id',
+        align: 'center',
+        className: 'cel-id',
+    },
+    {
+        title: t('applicant.labels.name'),
+        dataIndex: 'full_name',
+        key: 'full_name',
+        align: 'center',
+    },
+    {
+        title: t('auth.labels.mail_address'),
+        dataIndex: 'email',
+        key: 'email',
+        align: 'center',
+    },
+    {
+        title: t('applicant.labels.telephone'),
+        dataIndex: 'telephone',
+        key: 'telephone',
+        align: 'center',
+    },
+    {
+        title: t('apply.labels.file'),
+        dataIndex: 'file_path',
+        key: 'file_path',
+        align: 'center',
+        customRender: ({ record }) =>
+            record.file_path ? (
+                <a
+                    href={record.file_path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    {record.file_name}
+                </a>
+            ) : (
+                <span>-</span>
+            ),
+    },
+    {
+        title: t('status.label'),
+        dataIndex: 'status',
+        key: 'status',
+        align: 'center',
+        customRender: ({ record }) => (
+            <StatusColumnApply status={record.status} />
+        ),
+    },
+    {
+        title: t('job.detail.applied_at'),
+        dataIndex: 'created_at',
+        key: 'created_at',
+        align: 'center',
+    },
+]
+
+export const favoriteColumns: ColumnTable[] = [
+    {
+        title: t('columns.id'),
+        dataIndex: 'id',
+        key: 'id',
+        align: 'center',
+        className: 'cel-id',
+    },
+    {
+        title: t('applicant.labels.name'),
+        dataIndex: 'full_name',
+        key: 'full_name',
+        align: 'center',
+    },
+    {
+        title: t('auth.labels.mail_address'),
+        dataIndex: 'email',
+        key: 'email',
+        align: 'center',
+    },
+    {
+        title: t('applicant.labels.telephone'),
+        dataIndex: 'telephone',
+        key: 'telephone',
+        align: 'center',
+    },
+    {
+        title: t('job.detail.saved_at'),
+        dataIndex: 'created_at',
+        key: 'created_at',
+        align: 'center',
     },
 ]

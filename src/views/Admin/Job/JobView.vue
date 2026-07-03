@@ -23,7 +23,7 @@ const query = ref<Record<string, any>>({ ...INITIAL_QUERY })
 const loading = ref(false)
 const openDelete = ref(false)
 const loadingDelete = ref(false)
-const deleteId = ref<string | null>(null)
+const deleteId = ref<number | null>(null)
 const tableKey = ref(TRUE_VALUE)
 
 const getData = async () => {
@@ -32,8 +32,8 @@ const getData = async () => {
     loading.value = false
 }
 
-const onDelete = (slug: string) => {
-    deleteId.value = slug
+const onDelete = (id: number) => {
+    deleteId.value = id
     openDelete.value = true
 }
 

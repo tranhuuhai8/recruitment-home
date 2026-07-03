@@ -87,7 +87,7 @@ provide('handleDelete', handleDelete)
             :show-size-changer="false"
             @change="onChangePage"
             class="tbl-pagination"
-            v-if="props.showPagination && data.total"
+            v-if="props.showPagination && data.total_page > 1"
         >
             <template #itemRender="{ type, originalElement }">
                 <a v-if="type === 'prev'">{{ t('pagination.prev') }}</a>

@@ -63,6 +63,10 @@ export interface JobApplication {
     id?: number
     applicant_id: number | null
     job_id: number | null
+    job_title?: string
+    full_name?: string
+    email?: string
+    telephone?: string
     file_name: string
     file_path: string
     file_size?: number
@@ -76,6 +80,20 @@ export interface JobApplication {
     created_at?: string
     updated_at?: string
     source_cv?: string
+}
+
+export interface JobFavorite {
+    id: number
+    job_id: number
+    applicant_id: number
+    full_name?: string
+    email?: string
+    telephone?: string
+    created_at: string
+}
+
+export interface JobFavoriteResult extends Result {
+    data?: JobFavorite[]
 }
 
 export interface FormSearchJobApply {

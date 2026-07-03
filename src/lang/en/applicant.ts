@@ -19,4 +19,15 @@ export default {
     apply: {
         title_page: 'List of job applications',
     },
+    followed_companies: {
+        search_placeholder: 'Search by company name',
+        confirm_unfollow: 'Are you sure you want to unfollow "{0}"?',
+        notify_new_job: 'Receive new job notifications',
+        btn: {
+            unfollow: 'Unfollow',
+        },
+        notify: {
+            unfollowed: 'Company unfollowed',
+        },
+    },
 }

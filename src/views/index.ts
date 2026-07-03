@@ -23,6 +23,8 @@ export const JobAppliedApplicant = () =>
     import('@/views/Applicant/Applied/AppliedView.vue')
 export const SavedJobsApplicant = () =>
     import('@/views/Applicant/SavedJobsView.vue')
+export const FollowedCompaniesApplicant = () =>
+    import('@/views/Applicant/FollowedCompaniesView.vue')
 
 // Page Company
 export const HomeViewCompany = () => import('@/views/Company/DashboardView.vue')
@@ -47,6 +49,8 @@ export const MasterView = () => import('@/views/Admin/Master/MasterView.vue')
 export const CompanyView = () => import('@/views/Admin/Company/CompanyView.vue')
 export const CompanyUpdate = () =>
     import('@/views/Admin/Company/CompanyUpdate.vue')
+export const CompanyDetailAdmin = () =>
+    import('@/views/Admin/Company/CompanyDetail.vue')
 
 export const ApplicantView = () =>
     import('@/views/Admin/Applicant/ApplicantView.vue')
@@ -56,8 +60,7 @@ export const ApplicantUpdate = () =>
 export const JobViewAdmin = () => import('@/views/Admin/Job/JobView.vue')
 export const JobUpdateViewAdmin = () =>
     import('@/views/Admin/Job/JobUpdateView.vue')
-export const CompanyFollowersAdminView = () =>
-    import('@/views/Admin/CompanyFollowers/CompanyFollowersView.vue')
+export const JobDetailAdmin = () => import('@/views/Admin/Job/JobDetail.vue')
 
 export const ContactAdminView = () =>
     import('@/views/Admin/Contact/ContactView.vue')

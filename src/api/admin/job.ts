@@ -8,21 +8,21 @@ export const list = (payload: ParamsList) =>
         params: payload,
     })
 
-export const detail = (slug: string) =>
+export const detail = (id: number) =>
     request<ResponseResult, any>({
-        url: `admin/job/${slug}`,
+        url: `admin/job/${id}`,
         method: 'GET',
     })
 
-export const update = (payload: ParamsList, slug: string) =>
+export const update = (payload: ParamsList, id: number) =>
     request<ResponseList, ResponseList>({
-        url: `admin/job/${slug}`,
+        url: `admin/job/${id}`,
         method: 'PUT',
         data: payload,
     })
 
-export const remove = (slug: string) =>
+export const remove = (id: number) =>
     request<ResponseResult, any>({
-        url: `admin/job/${slug}`,
+        url: `admin/job/${id}`,
         method: 'DELETE',
     })

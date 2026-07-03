@@ -24,5 +24,13 @@ export default {
         notify_frequency: 'Tần suất nhận thông báo ứng tuyển',
     },
     confirm_delete_id: 'Bạn có chắc chắn muốn xóa công việc ID {0}?',
-    confirm_delete_title: 'Bạn có chắc chắn muốn xóa công việc: {0}?',
+    confirm_delete_title: 'Bạn có chắc chắn muốn xóa công việc {0}?',
+    detail: {
+        applications_title: 'Ứng viên đã ứng tuyển',
+        favorites_title: 'Ứng viên đã lưu',
+        no_applications: 'Chưa có ứng viên nào ứng tuyển',
+        no_favorites: 'Chưa có ai lưu công việc này',
+        applied_at: 'Ứng tuyển lúc',
+        saved_at: 'Lưu lúc',
+    },
 }

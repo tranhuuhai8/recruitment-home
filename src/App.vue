@@ -3,7 +3,6 @@ import LayoutVue from '@/components/common/LayoutVue.vue'
 import { onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore, useFavoritesStore } from '@/stores'
-import { ROUTER_AUTH } from './libs'
 
 const config = {
     token: {
@@ -29,15 +28,12 @@ onMounted(() => {
     }
 })
 
-authStore.$subscribe((mutations: any, state: any) => {
+authStore.$subscribe(() => {
     // hydrate saved/followed when logging in
     if (authStore.isAuthenticated) {
         favoritesStore.hydrate()
     }
-    if (
-        !authStore.isAuthenticated &&
-        !ROUTER_AUTH.includes((route.name as string) || '')
-    ) {
+    if (!authStore.isAuthenticated && route.meta.requiresAuth) {
         router.push({ name: 'login' })
     }
 })
