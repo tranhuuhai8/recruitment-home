@@ -14,8 +14,8 @@ import { storeToRefs } from 'pinia'
 
 const { t } = i18n
 
-const requireCompanyInfo = (to: any, from: any, next: any) => {
-    const me = getUserInformation()
+const requireCompanyInfo = (_to: any, _from: any, next: any) => {
+    const me = getUserInformation() as any
 
     if (me?.role === ROLE_COMPANY) {
         const company = me?.company
@@ -81,6 +81,11 @@ const authRoutes: RouteRecordRaw[] = [
         path: 'dat-lai-mat-khau',
         name: 'reset-password',
         component: Pages.ResetPasswordView,
+    },
+    {
+        path: 'xac-thuc-email',
+        name: 'verify-email',
+        component: Pages.VerifyEmailView,
     },
 ]
 
@@ -254,7 +259,6 @@ const router = createRouter({
     },
 })
 
-// Helper routing
 const navigateToDashboard = (roleValue: number | null) => {
     const dashboardRouteName = roleValue
         ? ROUTE_NAME_DASHBOARD[roleValue]
@@ -266,6 +270,10 @@ router.beforeEach(async (to, from, next) => {
     const queryStore = useQueryStore()
     const authStore = useAuthStore()
     const { token, role } = storeToRefs(authStore)
+
+    if (!authStore.initialized) {
+        await authStore.initAuth()
+    }
 
     if (token.value && role.value === null) {
         await authStore.getMe()

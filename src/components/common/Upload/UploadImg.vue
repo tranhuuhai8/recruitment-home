@@ -3,14 +3,15 @@ import { PlusOutlined, DeleteOutlined } from '@ant-design/icons-vue'
 import {
     API_URL,
     formatBytes,
-    getToken,
     IMAGE_EXTENSIONS,
     MAX_SIZE_IMAGE,
     notify,
 } from '@/libs'
 import { useI18n } from 'vue3-i18n'
+import { useAuthStore } from '@/stores/auth'
 
 const { t } = useI18n()
+const authStore = useAuthStore()
 const props = defineProps({
     url: { type: String, default: '' },
     hasRadius: { type: Boolean, required: false, default: true },
@@ -56,7 +57,7 @@ const removeImage = () => emit('update:url', null)
         list-type="picture-card"
         :action="API_URL + '/upload/image'"
         :headers="{
-            Authorization: `Bearer ${getToken()}`,
+            Authorization: `Bearer ${authStore.token}`,
             'X-Requested-With': null,
         }"
         :show-upload-list="false"

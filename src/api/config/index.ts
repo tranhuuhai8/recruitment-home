@@ -2,28 +2,33 @@ import axios, { type InternalAxiosRequestConfig } from 'axios'
 import router from '@/router'
 import {
     notify,
-    getToken,
     STATUS_CODE_FORBIDDEN,
     STATUS_CODE_SUCCESS,
     STATUS_CODE_UNAUTHORIZED,
-    setAuth,
+    setUserInformation,
+    clearUserInformation,
 } from '@/libs'
 import * as API from '@/api/auth'
 import i18n from '@/lang'
 
-axios.defaults.withCredentials = false
 const { t } = i18n
 
 export const API_URL = import.meta.env.VITE_PUBLIC_APP_API
 const instance = axios.create({
     baseURL: API_URL,
+    withCredentials: true,
 })
 
 instance.interceptors.request.use(
-    (config: InternalAxiosRequestConfig) => {
-        const token = getToken()
-        if (token) {
-            config.headers['Authorization'] = `Bearer ${token}`
+    async (config: InternalAxiosRequestConfig) => {
+        try {
+            const { useAuthStore } = await import('@/stores')
+            const authStore = useAuthStore()
+            if (authStore.token) {
+                config.headers['Authorization'] = `Bearer ${authStore.token}`
+            }
+        } catch {
+            // store not yet initialised (early boot requests)
         }
         return config
     },
@@ -60,7 +65,7 @@ instance.interceptors.response.use(
             try {
                 const { status_code, data } = await API.refresh()
                 if (status_code === STATUS_CODE_SUCCESS) {
-                    setAuth(data.me, data.access_token)
+                    setUserInformation(data.me)
                     originalRequest.headers['Authorization'] =
                         `Bearer ${data.access_token}`
 
@@ -84,11 +89,12 @@ instance.interceptors.response.use(
                 const authStore = useAuthStore()
                 authStore.token = null
                 authStore.role = null
+                authStore.initialized = true
             } catch (clearAuthErr) {
                 console.error('Failed to clear auth state', clearAuthErr)
             }
 
-            localStorage.clear()
+            clearUserInformation()
             notify(t('auth.notify.token_failed'), '', 'error')
             router.push({ name: 'login' })
             return Promise.reject(error.response.data)

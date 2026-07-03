@@ -76,3 +76,4 @@ export const ForgotPasswordView = () =>
     import('@/views/Auth/ForgotPasswordView.vue')
 export const ResetPasswordView = () =>
     import('@/views/Auth/ResetPasswordView.vue')
+export const VerifyEmailView = () => import('@/views/Auth/VerifyEmailView.vue')

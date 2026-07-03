@@ -299,6 +299,14 @@
 
 .ant-layout-body {
     background-color: var(--vt-c-bg-page);
+    min-height: 100vh;
+
+    :has(.verify-email) {
+        > .ant-layout-content {
+            flex: 1;
+        }
+    }
+
 
     .header-manager {
         position: fixed;

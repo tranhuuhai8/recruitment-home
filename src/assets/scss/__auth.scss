@@ -55,6 +55,16 @@
             padding: 0;
             height: auto;
         }
+
+        &.form-login {
+            .ant-form-item-row {
+                align-items: center;
+            }
+
+            .ant-form-item-label {
+                padding-bottom: 0;
+            }
+        }
     }
 
     .suggest-auth {
