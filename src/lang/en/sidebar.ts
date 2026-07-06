@@ -14,6 +14,7 @@ export default {
     applications: 'Job Applications',
     applied: 'Applied Jobs',
     saved_jobs: 'Saved Jobs',
+    followed_companies: 'Followed Companies',
     reviews: 'Reviews',
     master_data: 'Master data',
     contacts: 'Contacts',

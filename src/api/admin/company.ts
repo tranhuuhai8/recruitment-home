@@ -15,15 +15,15 @@ export const getSelect = (payload: ParamsList) =>
         params: payload,
     })
 
-export const detail = (slug: string) =>
+export const detail = (id: number) =>
     request<ResponseResult, any>({
-        url: `admin/company/${slug}`,
+        url: `admin/company/${id}`,
         method: 'GET',
     })
 
-export const update = (payload: ParamsList, slug: string) =>
+export const update = (payload: ParamsList, id: number) =>
     request<ResponseList, ResponseList>({
-        url: `admin/company/${slug}`,
+        url: `admin/company/${id}`,
         method: 'PUT',
         data: payload,
     })

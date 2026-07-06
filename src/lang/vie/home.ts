@@ -24,7 +24,7 @@ export default {
                 share_sns: 'Chia sẻ qua mạng xã hội',
                 copy_link: 'Sao chép liên kết',
             },
-            follower: 'Người theo dõi',
+            follower: 'người theo dõi',
             btn: {
                 follow: 'Theo dõi',
                 followed: 'Đang theo dõi',

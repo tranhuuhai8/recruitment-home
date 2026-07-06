@@ -12,8 +12,9 @@ import JobForm from './components/JobForm.vue'
 const { t } = useI18n()
 const router = useRouter()
 const {
-    params: { slug },
+    params: { id },
 } = useRoute()
+const jobId = Number(id)
 const cityStore = useCityStore()
 const jobCategoryStore = useJobCategoryStore()
 const jobStore = useJobStore()
@@ -25,10 +26,7 @@ const openDelete = ref(false)
 const onUpdate = async (values: FormDataJob) => {
     try {
         loading.value = true
-        const response = await jobStore.update(
-            makeDataUpsert(values),
-            slug as string
-        )
+        const response = await jobStore.update(makeDataUpsert(values), jobId)
 
         responseNotify(response)
     } catch (error) {
@@ -41,7 +39,7 @@ const onUpdate = async (values: FormDataJob) => {
 const onDelete = async () => {
     try {
         loadingDelete.value = true
-        const response = await jobStore.remove(slug as string)
+        const response = await jobStore.remove(jobId)
         responseNotify(response)
     } catch (error) {
         console.error(error)
@@ -59,7 +57,7 @@ const responseNotify = ({ status_code, message }: Record<string, any>) => {
 }
 
 const getData = async () => {
-    await jobStore.detail(slug as string)
+    await jobStore.detail(jobId)
     Object.assign(formState.value, mapDataForm(jobStore.getJob))
 }
 
@@ -80,7 +78,7 @@ onMounted(async () => {
             <h1 class="title-page">{{ t('job.title_page.edit') }}</h1>
             <JobForm
                 :data="formState"
-                :id="slug"
+                :id="jobId"
                 @submit="onUpdate"
                 @delete="openDelete = true"
             />
@@ -88,7 +86,7 @@ onMounted(async () => {
         <modal-delete
             :open="openDelete"
             :loading="loadingDelete"
-            :title="t('job.confirm_delete_id', [slug])"
+            :title="t('job.confirm_delete_id', [jobId])"
             @close="openDelete = false"
             @on-delete="onDelete"
         />

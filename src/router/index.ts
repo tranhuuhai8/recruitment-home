@@ -102,9 +102,15 @@ const adminRoutes: RouteRecordRaw[] = [
         component: Pages.CompanyView,
     },
     {
-        path: 'cong-ty/:slug/chinh-sua',
+        path: 'cong-ty/:id/chinh-sua',
         name: 'admin-companies-edit',
         component: Pages.CompanyUpdate,
+        meta: { parentRoute: 'admin-companies' },
+    },
+    {
+        path: 'cong-ty/:id',
+        name: 'admin-companies-detail',
+        component: Pages.CompanyDetailAdmin,
         meta: { parentRoute: 'admin-companies' },
     },
     {
@@ -120,9 +126,15 @@ const adminRoutes: RouteRecordRaw[] = [
     },
     { path: 'viec-lam', name: 'admin-jobs', component: Pages.JobViewAdmin },
     {
-        path: 'viec-lam/:slug/chinh-sua',
+        path: 'viec-lam/:id/chinh-sua',
         name: 'admin-jobs-edit',
         component: Pages.JobUpdateViewAdmin,
+        meta: { parentRoute: 'admin-jobs' },
+    },
+    {
+        path: 'viec-lam/:id',
+        name: 'admin-jobs-detail',
+        component: Pages.JobDetailAdmin,
         meta: { parentRoute: 'admin-jobs' },
     },
     { path: 'danh-gia', name: 'admin-reviews', component: Pages.HomeViewAdmin },
@@ -151,11 +163,6 @@ const adminRoutes: RouteRecordRaw[] = [
         path: 'nhat-ky-mail',
         name: 'admin-mail-log',
         component: Pages.MailLogView,
-    },
-    {
-        path: 'cong-ty-da-luu',
-        name: 'admin-company-followers',
-        component: Pages.CompanyFollowersAdminView,
     },
 ]
 
@@ -220,6 +227,11 @@ const applicantRoutes: RouteRecordRaw[] = [
         path: 'viec-lam-da-luu',
         name: 'applicant-saved-jobs',
         component: Pages.SavedJobsApplicant,
+    },
+    {
+        path: 'cong-ty-theo-doi',
+        name: 'applicant-followed-companies',
+        component: Pages.FollowedCompaniesApplicant,
     },
 ]
 

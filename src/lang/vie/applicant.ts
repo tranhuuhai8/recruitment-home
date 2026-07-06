@@ -19,4 +19,15 @@ export default {
     apply: {
         title_page: 'Danh sách các công việc đã ứng tuyển',
     },
+    followed_companies: {
+        search_placeholder: 'Tìm theo tên công ty',
+        confirm_unfollow: 'Bạn có chắc muốn bỏ theo dõi công ty "{0}"?',
+        notify_new_job: 'Nhận thông báo việc làm mới',
+        btn: {
+            unfollow: 'Bỏ theo dõi',
+        },
+        notify: {
+            unfollowed: 'Đã bỏ theo dõi công ty',
+        },
+    },
 }

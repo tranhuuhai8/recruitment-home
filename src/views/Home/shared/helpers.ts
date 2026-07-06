@@ -65,6 +65,19 @@ export const getCityName = (city: City) => {
     return city.name + ' (' + city.parent.name + ')'
 }
 
+export const getNotifyFrequencyText = (frequency: number) => {
+    switch (frequency) {
+        case 0:
+            return 'Tắt'
+        case 1:
+            return 'Hàng ngày'
+        case 2:
+            return 'Hàng tuần'
+        default:
+            return '—'
+    }
+}
+
 export const getInitValueFormApply = (id: number | null) => ({
     ...INITIAL_FORM_APPLY,
     source_cv: 'upload',

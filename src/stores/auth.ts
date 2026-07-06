@@ -88,7 +88,10 @@ export const useAuthStore = defineStore('auth', () => {
         }
     }
 
-    const resetPassword = async (resetToken: string, data: ResetPasswordDto) => {
+    const resetPassword = async (
+        resetToken: string,
+        data: ResetPasswordDto
+    ) => {
         try {
             return await API.resetPassword(resetToken, data)
         } catch (error: any) {

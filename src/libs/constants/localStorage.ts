@@ -12,6 +12,7 @@ export const getUserInformation = (): User | Record<string, never> => {
     }
 }
 
-export const setUserInformation = (user: User) => localStorage.setItem(USER, JSON.stringify(user))
+export const setUserInformation = (user: User) =>
+    localStorage.setItem(USER, JSON.stringify(user))
 
 export const clearUserInformation = () => localStorage.removeItem(USER)

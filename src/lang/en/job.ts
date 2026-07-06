@@ -25,4 +25,12 @@ export default {
     },
     confirm_delete_id: 'Are you sure you want to delete job id {0}?',
     confirm_delete_title: 'Are you sure you want to delete job: ',
+    detail: {
+        applications_title: 'Applicants',
+        favorites_title: 'Saved By',
+        no_applications: 'No applications yet',
+        no_favorites: 'No one has saved this job yet',
+        applied_at: 'Applied at',
+        saved_at: 'Saved at',
+    },
 }

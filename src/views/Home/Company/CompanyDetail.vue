@@ -87,11 +87,11 @@ useHead(
                                 }}
                             </span>
                         </div>
-                        <div class="info-meta">
+                        <div class="info-meta" v-if="company.followers_count">
                             <IconUser />
                             <span>
                                 {{
-                                    9999 +
+                                    company.followers_count +
                                     ' ' +
                                     t('home.company.detail.follower')
                                 }}
