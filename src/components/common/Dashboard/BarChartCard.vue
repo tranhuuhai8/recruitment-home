@@ -10,13 +10,16 @@ import {
     Legend,
     type ChartOptions,
 } from 'chart.js'
-import { useI18n } from 'vue3-i18n'
-import { barChartOptions } from '../shared'
+import { barChartOptions } from './chartOptions'
 
-const { t } = useI18n()
-const props = defineProps(['data'])
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend)
-const chartData = computed(() => props.data)
+
+const props = defineProps<{
+    title: string
+    chartData: { labels: string[]; datasets: Record<string, any>[] }
+}>()
+
+const chartData = computed(() => props.chartData as any)
 const chartOptions = computed<ChartOptions<'bar'>>(() => barChartOptions)
 </script>
 
@@ -24,7 +27,7 @@ const chartOptions = computed<ChartOptions<'bar'>>(() => barChartOptions)
     <div class="box-chart-wrapper bar-chart">
         <div class="chart-header">
             <div class="chart-title">
-                <h3>{{ t('dashboard.admin.title.bar_chart') }}</h3>
+                <h3>{{ title }}</h3>
             </div>
         </div>
         <div class="box-chart" style="height: 360px">

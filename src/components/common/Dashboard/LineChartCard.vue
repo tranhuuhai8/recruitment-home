@@ -10,13 +10,9 @@ import {
     Legend,
     Filler,
 } from 'chart.js'
-import { useI18n } from 'vue3-i18n'
 import { computed } from 'vue'
-import { lineChartOptions } from '../shared'
-import dayjs from '@/libs/utils/dayjs'
+import { lineChartOptions } from './chartOptions'
 
-const { t } = useI18n()
-const props = defineProps(['data'])
 Chart.register(
     LineElement,
     CategoryScale,
@@ -26,14 +22,42 @@ Chart.register(
     Legend,
     Filler
 )
-const chartData = computed(() => props.data)
+
+const props = withDefaults(
+    defineProps<{
+        title: string
+        chartData: { labels: string[]; datasets: Record<string, any>[] }
+        tooltipSuffix?: string
+        showLegend?: boolean
+    }>(),
+    {
+        tooltipSuffix: '',
+        showLegend: false,
+    }
+)
+
+const chartData = computed(() => props.chartData as any)
 const chartOptions = computed(() => {
-    const dataValues = props.data.datasets[0]?.data || []
-    const maxValue = Math.max(...dataValues, 0)
+    const allValues = props.chartData.datasets.flatMap(
+        (dataset) => dataset.data || []
+    )
+    const maxValue = Math.max(...allValues, 0)
     const suggestedMax = Math.max(maxValue, 6)
 
     return {
         ...lineChartOptions,
+        plugins: {
+            ...lineChartOptions.plugins,
+            legend: { display: props.showLegend },
+            tooltip: {
+                ...lineChartOptions.plugins.tooltip,
+                callbacks: {
+                    title: (context: Record<string, any>) => context[0].label,
+                    label: (context: Record<string, any>) =>
+                        `${context.dataset.label ? context.dataset.label + ': ' : ''}${context.parsed.y}${props.tooltipSuffix}`,
+                },
+            },
+        },
         scales: {
             y: {
                 beginAtZero: true,
@@ -61,20 +85,13 @@ const chartOptions = computed(() => {
         },
     }
 }) as any
-const currentMonthNumber = dayjs().month() + 1 || 12
 </script>
 
 <template>
     <div class="box-chart-wrapper">
         <div class="chart-header">
             <div class="chart-title">
-                <h3>
-                    {{
-                        t('dashboard.admin.title.line_chart', [
-                            currentMonthNumber,
-                        ])
-                    }}
-                </h3>
+                <h3>{{ title }}</h3>
             </div>
         </div>
         <div class="box-chart">

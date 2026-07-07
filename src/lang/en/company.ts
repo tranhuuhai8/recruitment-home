@@ -25,4 +25,22 @@ export default {
         notify_new_job: 'Notify new job',
         followed_at: 'Followed at',
     },
+    dashboard: {
+        title: {
+            open_jobs: 'Open jobs',
+            total_applications: 'Total applications',
+            pending_applications: 'Pending applications',
+            followers: 'Followers',
+            application_chart: 'Applications by day',
+            status_chart: 'Application status breakdown',
+            top_jobs: 'Top jobs',
+            applications_unit: 'applications',
+            recruited_unit: 'recruited',
+            range: {
+                '7d': '7 days',
+                last_month: 'Last month',
+                month: 'This month',
+            },
+        },
+    },
 }

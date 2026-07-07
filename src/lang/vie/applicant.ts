@@ -30,4 +30,21 @@ export default {
             unfollowed: 'Đã bỏ theo dõi công ty',
         },
     },
+    dashboard: {
+        title: {
+            total_applications: 'Đã ứng tuyển',
+            pending: 'Chờ duyệt',
+            accepted: 'Được chấp nhận',
+            favorites: 'Việc đã lưu',
+            follows: 'Công ty theo dõi',
+            application_chart: 'Lịch sử ứng tuyển',
+            status_chart: 'Tỷ lệ trạng thái hồ sơ',
+            recent_applications: 'Ứng tuyển gần đây',
+            range: {
+                '7d': '7 ngày',
+                last_month: 'Tháng trước',
+                month: 'Tháng này',
+            },
+        },
+    },
 }

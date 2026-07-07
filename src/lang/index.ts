@@ -1,9 +1,9 @@
 import { createI18n } from 'vue3-i18n'
-import { en } from './en'
+// import { en } from './en'
 import { vie } from './vie'
 
 const messages = {
-    en: en,
+    // en: en,
     vie: vie,
 }
 

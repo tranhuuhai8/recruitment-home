@@ -1,4 +1,14 @@
 import { FALSE_VALUE } from '@/libs'
+import i18n from '@/lang'
+import { DOUGHNUT_COLORS_JOB } from '@/components/common/Dashboard/chartOptions'
+import {
+    getRangeDates,
+    buildDateLabels,
+} from '@/components/common/Dashboard/dateRange'
+import { makeDataApplicationByDay } from '@/components/common/Dashboard/applicationByDay'
+import type { ChartDatePoint, StatusBreakdownItem } from '@/interface'
+
+const { t } = i18n
 
 export const makeDataTopCategory = (items: Record<string, any>[]) => ({
     labels: items.map((item: Record<string, any>) => item.name),
@@ -12,45 +22,73 @@ export const makeDataTopCategory = (items: Record<string, any>[]) => ({
     ],
 })
 
-export const makeDataJobApplication = (items: Record<string, any>[]) => {
-    const today = new Date()
-    const daysInMonth = new Date(
-        today.getFullYear(),
-        today.getMonth() + 1,
-        0
-    ).getDate()
+export const makeDataJobApplication = (
+    items: ChartDatePoint[],
+    range: string
+) => makeDataApplicationByDay(items, range)
 
-    const labels = []
-    const data = []
+export const makeDataUserGrowth = (
+    items: Record<string, any>[],
+    range: string
+) => {
+    const { from, to } = getRangeDates(range)
+    const { keys, labels } = buildDateLabels(from, to)
 
-    for (let i = 1; i <= daysInMonth; i++) {
-        const dateStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`
-
-        const day = i
-        const month = today.getMonth() + 1
-        labels.push(`${day} Th${month}`)
-
-        const record = items.find((item) => item.date === dateStr)
-        data.push(record ? record.count : FALSE_VALUE)
-    }
+    const companyData = keys.map((date) => {
+        const record = items.find((item) => item.date === date)
+        return record ? record.company : FALSE_VALUE
+    })
+    const applicantData = keys.map((date) => {
+        const record = items.find((item) => item.date === date)
+        return record ? record.applicant : FALSE_VALUE
+    })
 
     return {
         labels,
         datasets: [
             {
-                data,
+                label: t('dashboard.admin.title.company'),
+                data: companyData,
                 borderColor: '#4A90E2',
                 backgroundColor: 'rgba(74, 144, 226, 0.1)',
-                borderWidth: 3,
-                tension: 0.5,
-                pointRadius: 4,
-                pointHoverRadius: 6,
-                pointBackgroundColor: '#4A90E2',
-                pointBorderColor: '#fff',
-                pointBorderWidth: 2,
-                pointHoverBackgroundColor: '#4A90E2',
-                pointHoverBorderColor: '#fff',
-                fill: true,
+                borderWidth: 2,
+                tension: 0.4,
+                pointRadius: 3,
+                fill: false,
+            },
+            {
+                label: t('dashboard.admin.title.applicant'),
+                data: applicantData,
+                borderColor: '#12CC47',
+                backgroundColor: 'rgba(18, 204, 71, 0.1)',
+                borderWidth: 2,
+                tension: 0.4,
+                pointRadius: 3,
+                fill: false,
+            },
+        ],
+    }
+}
+
+export const makeDataJobStatus = (items: StatusBreakdownItem[]) => {
+    const labelMap: Record<number, string> = {
+        1: t('status.draft'),
+        2: t('status.open'),
+        3: t('status.closed'),
+    }
+
+    return {
+        labels: items.map(
+            (item) => labelMap[item.status] ?? String(item.status)
+        ),
+        datasets: [
+            {
+                data: items.map((item) => item.count),
+                backgroundColor: items.map(
+                    (_, index) =>
+                        DOUGHNUT_COLORS_JOB[index % DOUGHNUT_COLORS_JOB.length]
+                ),
+                borderWidth: 0,
             },
         ],
     }
