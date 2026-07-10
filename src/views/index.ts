@@ -22,7 +22,7 @@ export const FileUploadApplicant = () =>
 export const JobAppliedApplicant = () =>
     import('@/views/Applicant/Applied/AppliedView.vue')
 export const SavedJobsApplicant = () =>
-    import('@/views/Applicant/SavedJobsView.vue')
+    import('@/views/Applicant/SavedJobs/SavedJobsView.vue')
 export const FollowedCompaniesApplicant = () =>
     import('@/views/Applicant/FollowedCompaniesView.vue')
 

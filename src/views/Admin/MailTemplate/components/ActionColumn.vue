@@ -40,9 +40,3 @@ const { t } = useI18n()
         </a-tooltip>
     </a-row>
 </template>
-
-<style scoped lang="scss">
-.col-action {
-    gap: 10px;
-}
-</style>

@@ -165,6 +165,14 @@ export const STATUS_APPLY_OPTIONS_SEARCH: Record<number, string> = {
     4: t('status.rejected'),
 }
 
+export const IS_APPLIED_YES = 1
+export const IS_APPLIED_NO = 2
+
+export const IS_APPLIED_OPTIONS_SEARCH: Record<number, string> = {
+    [IS_APPLIED_YES]: t('applicant.saved_jobs.is_applied.yes'),
+    [IS_APPLIED_NO]: t('applicant.saved_jobs.is_applied.no'),
+}
+
 export const STATUS_DISPLAY_OPTIONS_FORM = [
     {
         label: t('status.show'),
