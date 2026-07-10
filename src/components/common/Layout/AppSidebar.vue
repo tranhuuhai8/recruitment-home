@@ -108,7 +108,6 @@ const roleIconMap: Record<string, Record<string, any>> = {
         companies: Icons.IconCompany,
         applicants: Icons.IconUser,
         jobs: Icons.IconJob,
-        reviews: Icons.IconFeedback,
         masterData: Icons.IconData,
         companyFollowers: Icons.IconCompany,
         contactGroup: Icons.IconFeedback,

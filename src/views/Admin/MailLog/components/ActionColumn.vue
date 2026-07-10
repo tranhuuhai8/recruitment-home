@@ -39,9 +39,6 @@ const { t } = useI18n()
 </template>
 
 <style scoped lang="scss">
-.col-action {
-    gap: 10px;
-}
 .is-disabled {
     opacity: 0.35;
     cursor: not-allowed;

@@ -30,6 +30,25 @@ export default {
             unfollowed: 'Đã bỏ theo dõi công ty',
         },
     },
+    saved_jobs: {
+        title_page: 'Việc làm đã lưu',
+        search_placeholder: 'Tìm theo tên công việc, tên công ty',
+        labels: {
+            id: 'ID',
+            job_title: 'Tên công việc',
+            company_name: 'Tên công ty',
+            is_applied: 'Đã ứng tuyển',
+            created_at: 'Thời gian lưu',
+        },
+        is_applied: {
+            yes: 'Đã ứng tuyển',
+            no: 'Chưa ứng tuyển',
+        },
+        confirm_delete: 'Bạn có chắc muốn bỏ lưu công việc "{0}"?',
+        notify: {
+            deleted: 'Đã bỏ lưu công việc',
+        },
+    },
     dashboard: {
         title: {
             total_applications: 'Đã ứng tuyển',

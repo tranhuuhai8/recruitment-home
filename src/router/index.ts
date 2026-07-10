@@ -137,7 +137,6 @@ const adminRoutes: RouteRecordRaw[] = [
         component: Pages.JobDetailAdmin,
         meta: { parentRoute: 'admin-jobs' },
     },
-    { path: 'danh-gia', name: 'admin-reviews', component: Pages.HomeViewAdmin },
     {
         path: 'du-lieu-chung',
         name: 'admin-master-data',

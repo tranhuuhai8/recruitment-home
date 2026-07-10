@@ -30,6 +30,26 @@ export default {
             unfollowed: 'Company unfollowed',
         },
     },
+    saved_jobs: {
+        title_page: 'Saved jobs',
+        search_placeholder: 'Search by job title, company name',
+        labels: {
+            id: 'ID',
+            job_title: 'Job Title',
+            company_name: 'Company Name',
+            is_applied: 'Applied',
+            created_at: 'Saved At',
+        },
+        is_applied: {
+            yes: 'Applied',
+            no: 'Not applied',
+        },
+        confirm_delete:
+            'Are you sure you want to remove "{0}" from saved jobs?',
+        notify: {
+            deleted: 'Job removed from saved list',
+        },
+    },
     dashboard: {
         title: {
             total_applications: 'Applications sent',

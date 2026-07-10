@@ -102,6 +102,25 @@ export interface FormSearchJobApply {
     created_at: string | null
 }
 
+export interface SavedJob {
+    id: number
+    slug?: string
+    title: string
+    company_name?: string
+    company_slug?: string
+    is_applied: boolean
+    created_at?: string
+}
+
+export interface SavedJobResult extends Result {
+    data?: SavedJob[]
+}
+
+export interface FormSearchSavedJob {
+    search: string
+    is_applied: number | string
+}
+
 export interface JobApplicationResult extends Result {
     data?: JobApplication[]
 }
