@@ -79,6 +79,8 @@ export default {
         reviewed: 'Reviewed',
         accepted: 'Accepted',
         rejected: 'Rejected',
+        on: 'On',
+        off: 'Off',
     },
     type: {
         label: 'Type',

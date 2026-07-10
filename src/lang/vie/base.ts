@@ -72,6 +72,8 @@ export default {
         reviewed: 'Đã xem',
         accepted: 'Đạt',
         rejected: 'Không đạt',
+        on: 'Bật',
+        off: 'Tắt',
     },
     type: {
         label: 'Loại',

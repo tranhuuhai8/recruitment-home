@@ -4,6 +4,7 @@ import StatusColumn from '@/components/common/Column/StatusColumn.vue'
 import DetailColumn from '@/components/common/TableData/DetailColumn.vue'
 import { TypeColumnJob, StatusColumnJob } from '@/components/common'
 import router from '@/router'
+import { RouterLink } from 'vue-router'
 
 const { t } = i18n
 
@@ -176,6 +177,16 @@ export const followerColumns: ColumnTable[] = [
         dataIndex: 'full_name',
         key: 'full_name',
         align: 'center',
+        customRender: ({ record }) => (
+            <RouterLink
+                to={{
+                    name: 'admin-applicants-detail',
+                    params: { id: record.applicant_user_id },
+                }}
+            >
+                {record.full_name}
+            </RouterLink>
+        ),
     },
     {
         title: t('auth.labels.mail_address'),
@@ -196,9 +207,7 @@ export const followerColumns: ColumnTable[] = [
         align: 'center',
         customRender: ({ record }) => (
             <a-tag color={record.notify_new_job ? 'green' : 'default'}>
-                {record.notify_new_job
-                    ? t('status.active')
-                    : t('status.unverified')}
+                {record.notify_new_job ? t('status.on') : t('status.off')}
             </a-tag>
         ),
     },

@@ -42,6 +42,9 @@ export interface CompanyFollower {
     full_name?: string
     email?: string
     telephone?: string
+    company_id?: number
+    company_name?: string
+    company_logo?: string
     notify_new_job: boolean
     created_at: string
 }

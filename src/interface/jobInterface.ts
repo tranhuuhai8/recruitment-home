@@ -64,6 +64,8 @@ export interface JobApplication {
     applicant_id: number | null
     job_id: number | null
     job_title?: string
+    job_slug?: string
+    company_name?: string
     full_name?: string
     email?: string
     telephone?: string
@@ -85,6 +87,9 @@ export interface JobApplication {
 export interface JobFavorite {
     id: number
     job_id: number
+    job_title?: string
+    job_slug?: string
+    company_name?: string
     applicant_id: number
     full_name?: string
     email?: string
@@ -134,4 +139,8 @@ export interface ApplicationFile {
     file_size: number
     created_at?: string
     updated_at?: string
+}
+
+export interface ApplicationFileResult extends Result {
+    data?: ApplicationFile[]
 }
