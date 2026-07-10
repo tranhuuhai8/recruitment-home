@@ -294,6 +294,10 @@ provide('handleDelete', handleDelete)
                     &:hover {
                         opacity: 0.8;
                     }
+
+                    &.locked {
+                        background-color: var(--vt-c-red);
+                    }
                 }
 
                 .update {

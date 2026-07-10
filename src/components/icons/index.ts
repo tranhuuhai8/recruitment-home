@@ -15,6 +15,9 @@ import IconCopy from './IconCopy.vue'
 import IconInfo from './IconInfo.vue'
 import IconUploadFile from './IconUploadFile.vue'
 import IconChart from './IconChart.vue'
+import IconMail from './IconMail.vue'
+import IconFollow from './IconFollow.vue'
+import IconFavorite from './IconFavorite.vue'
 
 export {
     IconHome,
@@ -34,4 +37,7 @@ export {
     IconInfo,
     IconUploadFile,
     IconChart,
+    IconMail,
+    IconFollow,
+    IconFavorite,
 }

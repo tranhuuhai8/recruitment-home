@@ -25,4 +25,22 @@ export default {
         notify_new_job: 'Nhận thông báo việc mới',
         followed_at: 'Theo dõi lúc',
     },
+    dashboard: {
+        title: {
+            open_jobs: 'Việc đang tuyển',
+            total_applications: 'Tổng hồ sơ nhận được',
+            pending_applications: 'Hồ sơ chờ duyệt',
+            followers: 'Người theo dõi',
+            application_chart: 'Lượt ứng tuyển theo ngày',
+            status_chart: 'Tỷ lệ trạng thái hồ sơ',
+            top_jobs: 'Việc làm nổi bật',
+            applications_unit: 'ứng tuyển',
+            recruited_unit: 'đã tuyển',
+            range: {
+                '7d': '7 ngày',
+                last_month: 'Tháng trước',
+                month: 'Tháng này',
+            },
+        },
+    },
 }

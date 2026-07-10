@@ -14,7 +14,7 @@ export const NotFound = () => import('@/views/NotFound.vue')
 
 // Page Applicant
 export const HomeViewApplicant = () =>
-    import('@/views/Applicant/DashboardView.vue')
+    import('@/views/Applicant/Dashboard/DashboardView.vue')
 export const InformationApplicant = () =>
     import('@/views/Applicant/Information/UpdateView.vue')
 export const FileUploadApplicant = () =>
@@ -27,7 +27,8 @@ export const FollowedCompaniesApplicant = () =>
     import('@/views/Applicant/FollowedCompaniesView.vue')
 
 // Page Company
-export const HomeViewCompany = () => import('@/views/Company/DashboardView.vue')
+export const HomeViewCompany = () =>
+    import('@/views/Company/Dashboard/DashboardView.vue')
 export const InformationCompany = () =>
     import('@/views/Company/Information/UpdateView.vue')
 export const JobViewCompany = () => import('@/views/Company/Job/JobView.vue')

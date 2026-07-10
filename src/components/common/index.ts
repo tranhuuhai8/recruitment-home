@@ -12,6 +12,12 @@ import TypeColumnJob from './Column/Job/TypeColumn.vue'
 import StatusColumnJob from './Column/Job/StatusColumn.vue'
 import StatusColumnApply from './Column/Apply/StatusColumn.vue'
 import PaginationHome from './TableData/PaginationHome.vue'
+import StatCard from './Dashboard/StatCard.vue'
+import LineChartCard from './Dashboard/LineChartCard.vue'
+import BarChartCard from './Dashboard/BarChartCard.vue'
+import DoughnutChartCard from './Dashboard/DoughnutChartCard.vue'
+import RankedListWidget from './Dashboard/RankedListWidget.vue'
+import RangeFilter from './Dashboard/RangeFilter.vue'
 
 export {
     AppHeaderHomepage,
@@ -28,4 +34,10 @@ export {
     StatusColumnJob,
     StatusColumnApply,
     PaginationHome,
+    StatCard,
+    LineChartCard,
+    BarChartCard,
+    DoughnutChartCard,
+    RankedListWidget,
+    RangeFilter,
 }

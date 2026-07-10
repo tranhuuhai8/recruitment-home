@@ -30,4 +30,21 @@ export default {
             unfollowed: 'Company unfollowed',
         },
     },
+    dashboard: {
+        title: {
+            total_applications: 'Applications sent',
+            pending: 'Pending',
+            accepted: 'Accepted',
+            favorites: 'Saved jobs',
+            follows: 'Followed companies',
+            application_chart: 'Application history',
+            status_chart: 'Application status breakdown',
+            recent_applications: 'Recent applications',
+            range: {
+                '7d': '7 days',
+                last_month: 'Last month',
+                month: 'This month',
+            },
+        },
+    },
 }

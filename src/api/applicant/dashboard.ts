@@ -1,9 +1,9 @@
 import request from '@/api/config'
 import type { FormSearchDashboard, ResponseList } from '@/interface'
 
-export const dashboardAdmin = (params?: FormSearchDashboard) =>
+export const dashboardApplicant = (params?: FormSearchDashboard) =>
     request<ResponseList, ResponseList>({
-        url: `admin/dashboard`,
+        url: `applicant/dashboard`,
         method: 'GET',
         params,
     })
