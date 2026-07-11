@@ -1,6 +1,7 @@
 export default {
     title_page: {
         detail: 'Applicant Info',
+        view: 'Applicant Detail',
         info: 'Information',
     },
     labels: {
@@ -12,6 +13,8 @@ export default {
         city_id: 'City',
         address: 'Address',
         description: 'Description',
+        file_type: 'File Type',
+        file_size: 'File Size',
     },
     file: {
         title_page: 'List of uploaded files',
@@ -20,6 +23,7 @@ export default {
         title_page: 'List of job applications',
     },
     followed_companies: {
+        title_page: 'Followed Companies',
         search_placeholder: 'Search by company name',
         confirm_unfollow: 'Are you sure you want to unfollow "{0}"?',
         notify_new_job: 'Receive new job notifications',

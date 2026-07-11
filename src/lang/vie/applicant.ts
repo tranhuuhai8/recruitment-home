@@ -1,6 +1,7 @@
 export default {
     title_page: {
         detail: 'Thông tin ứng viên',
+        view: 'Chi tiết ứng viên',
         info: 'Thông tin cá nhân',
     },
     labels: {
@@ -12,6 +13,8 @@ export default {
         city_id: 'Thành phố',
         address: 'Địa chỉ',
         description: 'Mô tả',
+        file_type: 'Loại file',
+        file_size: 'Dung lượng',
     },
     file: {
         title_page: 'Danh sách file đã tải lên',
@@ -20,6 +23,7 @@ export default {
         title_page: 'Danh sách các công việc đã ứng tuyển',
     },
     followed_companies: {
+        title_page: 'Công ty đang theo dõi',
         search_placeholder: 'Tìm theo tên công ty',
         confirm_unfollow: 'Bạn có chắc muốn bỏ theo dõi công ty "{0}"?',
         notify_new_job: 'Nhận thông báo việc làm mới',

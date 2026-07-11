@@ -124,6 +124,12 @@ const adminRoutes: RouteRecordRaw[] = [
         component: Pages.ApplicantUpdate,
         meta: { parentRoute: 'admin-applicants' },
     },
+    {
+        path: 'ung-vien/:id',
+        name: 'admin-applicants-detail',
+        component: Pages.ApplicantDetailAdmin,
+        meta: { parentRoute: 'admin-applicants' },
+    },
     { path: 'viec-lam', name: 'admin-jobs', component: Pages.JobViewAdmin },
     {
         path: 'viec-lam/:id/chinh-sua',

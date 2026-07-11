@@ -7,9 +7,11 @@ import { useContactStore } from './contact'
 import { useMailTemplateStore } from './mailTemplate'
 import { useMailLogStore } from './mailLog'
 import { useCompanyFollowersStore } from './companyFollowers'
+import { useFollowedCompaniesStore } from './followedCompanies'
 import { useCompanyJobsStore } from './companyJobs'
 import { useJobApplicationStore } from './jobApplication'
 import { useJobFavoriteStore } from './jobFavorite'
+import { useApplicationFileStore } from './applicationFile'
 
 export {
     useCityStore,
@@ -21,7 +23,9 @@ export {
     useMailTemplateStore,
     useMailLogStore,
     useCompanyFollowersStore,
+    useFollowedCompaniesStore,
     useCompanyJobsStore,
     useJobApplicationStore,
     useJobFavoriteStore,
+    useApplicationFileStore,
 }

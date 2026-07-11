@@ -57,6 +57,8 @@ export const ApplicantView = () =>
     import('@/views/Admin/Applicant/ApplicantView.vue')
 export const ApplicantUpdate = () =>
     import('@/views/Admin/Applicant/ApplicantUpdate.vue')
+export const ApplicantDetailAdmin = () =>
+    import('@/views/Admin/Applicant/ApplicantDetail.vue')
 
 export const JobViewAdmin = () => import('@/views/Admin/Job/JobView.vue')
 export const JobUpdateViewAdmin = () =>
