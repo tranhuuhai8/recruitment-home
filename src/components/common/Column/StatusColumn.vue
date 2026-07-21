@@ -7,7 +7,7 @@ const props = defineProps(['status'])
 </script>
 
 <template>
-    <div :class="`type-status ${STATUS_MAP[props.status]}`">
+    <div :class="`type-status ${STATUS_MAP[props.status]}`" v-if="props.status">
         {{ t(`status.${STATUS_MAP[props.status]}`) }}
     </div>
 </template>

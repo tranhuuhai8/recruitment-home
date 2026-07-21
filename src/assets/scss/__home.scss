@@ -557,6 +557,11 @@
 
             &.ant-btn-follow {
                 width: auto;
+
+                &.unfollow-hover {
+                    color: var(--vt-c-red) !important;
+                    border-color: var(--vt-c-red) !important;
+                }
             }
 
             &:hover {

@@ -18,7 +18,13 @@ const isLogin = computed(() => authStore.isAuthenticated)
 const isShowNavMobile = ref(false)
 const items = reactive<ItemType[]>([])
 const itemsMobile = reactive<ItemType[]>([])
-const selectedKeys = ref<string[]>([])
+
+const selectedKeys = computed<string[]>(() => {
+    const matched = Object.values(APP_HEADER).find(
+        (item: any) => item.name === route.name
+    )
+    return matched ? [String(matched.order)] : []
+})
 
 const handleRoute = async () => {
     isLogin.value && itemsMobile.push(getItem(t('header.management'), '0'))
@@ -26,8 +32,6 @@ const handleRoute = async () => {
         const item = APP_HEADER[key]
         items.push(getItem(item.label, String(item.order)))
         itemsMobile.push(getItem(item.label, String(item.order)))
-        if (route.name === item.name)
-            selectedKeys.value.push(String(item.order))
     }
     isLogin.value &&
         itemsMobile.push(getItem(t('header.logout'), String(KEY_LOGOUT)))
@@ -55,7 +59,6 @@ const handleMenuClick: MenuProps['onClick'] = (e) => {
         (item: any) => String(item.order) === e.key
     )
     if (side) router.push({ name: side.name })
-    selectedKeys.value.splice(0, 1, String(side?.order))
 }
 
 const handleClick = async (e: any, isMobile: Boolean = false) => {

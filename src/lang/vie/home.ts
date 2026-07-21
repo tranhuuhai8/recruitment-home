@@ -28,6 +28,7 @@ export default {
             btn: {
                 follow: 'Theo dõi',
                 followed: 'Đang theo dõi',
+                unfollow: 'Hủy theo dõi',
             },
             contact: {
                 email: 'Email:',

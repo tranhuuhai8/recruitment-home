@@ -22,19 +22,31 @@ const companyStore = useCompanyStore()
 const favoritesStore = useFavoritesStore()
 const loading = ref(false)
 const savingFollow = ref(false)
+const isHoveringFollow = ref(false)
 const company = reactive<Company>(INITIAL_COMPANY_INFO_NULL)
 
 const isFollowed = computed(() => favoritesStore.isCompanyFollowed(company.id))
 const companyId = computed(() => company.id ?? 0)
+const followButtonLabel = computed(() => {
+    if (!isFollowed.value) return t('home.company.detail.btn.follow')
+    return isHoveringFollow.value
+        ? t('home.company.detail.btn.unfollow')
+        : t('home.company.detail.btn.followed')
+})
 
 const handleFollow = async () => {
     if (savingFollow.value) return
     savingFollow.value = true
+    const wasFollowed = isFollowed.value
     try {
-        await favoritesStore.toggleCompanyFollowed(
+        const followed = await favoritesStore.toggleCompanyFollowed(
             company.id as number,
             company.slug as string
         )
+        if (followed !== wasFollowed) {
+            company.followers_count =
+                (company.followers_count ?? 0) + (followed ? 1 : -1)
+        }
     } finally {
         savingFollow.value = false
     }
@@ -101,14 +113,16 @@ useHead(
                 </div>
                 <a-button
                     class="ant-btn-follow"
+                    :class="{
+                        followed: isFollowed,
+                        'unfollow-hover': isFollowed && isHoveringFollow,
+                    }"
                     :loading="savingFollow"
                     @click="handleFollow()"
+                    @mouseenter="isHoveringFollow = true"
+                    @mouseleave="isHoveringFollow = false"
                 >
-                    {{
-                        isFollowed
-                            ? t('home.company.detail.btn.followed')
-                            : t('home.company.detail.btn.follow')
-                    }}
+                    {{ followButtonLabel }}
                 </a-button>
             </div>
 

@@ -28,6 +28,7 @@ export default {
             btn: {
                 follow: 'Follow',
                 followed: 'Following',
+                unfollow: 'Unfollow',
             },
             contact: {
                 email: 'Email:',
